@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html;charset=GB2312"/>
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <title>今天，我为新中国升国旗！</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="catalogs" content="421594" />
+    <meta name="filetype" content="1" />
+    <meta name="publishedtype" content="1" />
+    <meta name="pagetype" content="2" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <link href="./css/default.css" rel="stylesheet">
+    <link href="./css/home.css" rel="stylesheet">
+</head>
+<body ontouchmove="return false">
+   <section class="content-box">
+        <div class="bird bird-1"></div>
+        <div class="bird bird-2"></div>
+        <div class="bird bird-3"></div>
+        <div class="bird bird-4"></div>
+        <div class="start-box">
+            <div id="start" class="btn btn-start"></div>
+            <div class="btn btn-outer btn-wave ani"></div>
+            <div class="btn btn-inner btn-wave ani"></div>
+        </div>
+   </section>
+   <script src="http://tools.people.com.cn/libs/jquery/3.0.0/jquery-3.0.0.min.js"></script>
+   <script>
+       $('#start').on('click', function () {
+            $('.bird').each(function () {
+                $(this).addClass('flaying')
+            })
+       })
+   </script>
+</body>
+</html>

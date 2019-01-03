@@ -1,0 +1,114 @@
+.content-box {
+    width: 100%;
+    height: 100%;
+    background: url('http://politics.people.com.cn/img/MAIN/2018/09/118689/images/bg-cover2.jpg') center/cover no-repeat;
+}
+.bird {
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    background: url('../images/bird.gif') center/contain no-repeat;
+    /* 移出动画效果 */
+    transition: all 2.5s;
+}
+.bird-1 {
+    left: 3%;
+    top: 50%;
+}
+.bird-2 {
+    left: 58%;
+    top: 63%;
+}
+.bird-3 {
+    left: 68%;
+    top: 70%;
+}
+.bird-4 {
+    left: 86%;
+    top: 71%;
+}
+.start-box {
+    width: 60%;
+    height: 120px;
+    position: fixed;
+    bottom: 20px;
+    background: url(http://politics.people.com.cn/img/MAIN/2018/09/118689/images/cover-text.png) center/contain no-repeat;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.btn-outer {
+    -webkit-animation: wave 1s linear infinite forwards;
+    animation: wave 1s linear infinite forwards;
+    -webkit-animation-delay: .2s;
+    animation-delay: .2s;
+    width: 55px;
+    height: 55px;
+    z-index: -2;
+    background-color: #bdbac1;
+}
+.btn-inner {
+    -webkit-animation: wave 1s linear infinite forwards;
+    animation: wave 1s linear infinite forwards;
+    background-color: #f76a3f;
+    width: 40px;
+    height: 40px;
+    z-index: -1;
+}
+.btn-wave {
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.btn-start {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+    z-index: 1px;
+    border-radius: 50%;
+    background: url(../images/bird.gif) center/contain no-repeat;
+    background-color: #fb5b40;
+    background-size: 40px;
+    background-position: 3px 9px;
+}
+.content-box .flaying {
+    left: -120px;
+    top: 5px;
+}
+/* 波浪动画 */
+@-webkit-keyframes wave {
+	0% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+
+	100% {
+		opacity: 0;
+		-webkit-transform: scale(1.6);
+		transform: scale(1.6)
+	}
+}
+
+@keyframes wave {
+	0% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+
+	100% {
+		opacity: 0;
+		-webkit-transform: scale(1.6);
+		transform: scale(1.6)
+	}
+}
