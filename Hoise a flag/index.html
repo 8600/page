@@ -23,26 +23,65 @@
     <meta name="x5-page-mode" content="app">
     <link href="./css/default.css" rel="stylesheet">
     <link href="./css/home.css" rel="stylesheet">
+    <link href="http://people.com.cn/img/MAIN/2018/10/118767/css/animate.min.css" rel="stylesheet">
 </head>
 <body ontouchmove="return false">
    <section class="content-box">
+        <div class="loading-page" id="loadingBox">
+            <img src="http://politics.people.com.cn/img/MAIN/2018/09/118689/images/flag.gif"/>
+            <div class="loading-text" id="loadingText"></div>
+        </div>
         <div class="bird bird-1"></div>
         <div class="bird bird-2"></div>
         <div class="bird bird-3"></div>
         <div class="bird bird-4"></div>
         <div class="start-box">
-            <div id="start" class="btn btn-start"></div>
+            <div id="start" class="btn btn-start">
+                <img id="birdButton" class="bird-button" src="./images/bird.gif"/>
+            </div>
             <div class="btn btn-outer btn-wave ani"></div>
             <div class="btn btn-inner btn-wave ani"></div>
         </div>
    </section>
-   <script src="http://tools.people.com.cn/libs/jquery/3.0.0/jquery-3.0.0.min.js"></script>
+   <script charset="utf-8" src="http://tools.people.com.cn/libs/jquery/3.0.0/jquery-3.0.0.min.js"></script>
    <script>
-       $('#start').on('click', function () {
-            $('.bird').each(function () {
-                $(this).addClass('flaying')
+       var isLoading = true
+       var loadingProgress = 0
+       // 页面资源加载完毕事件
+        window.onload=function(){
+            // 关闭加载动画
+            isLoading = false
+
+            // 使加载动画页面淡出
+            $('#loadingBox').addClass('fadeOut animated')
+            // 延迟后移除加载动画元素
+            setTimeout(() => {
+                $('#loadingBox').remove()
+            }, 1000)
+        }
+        function changeLoadingText () {
+            console.log(loadingProgress)
+            $('#loadingText').text(loadingProgress + '%')
+            loadingProgress += 10
+            if (isLoading) {
+                setTimeout(changeLoadingText, 10)
+            } else {
+                $('#loadingText').text('100%')
+            }
+        }
+        // DOM创建完毕事件
+        $(function(){
+            setTimeout(changeLoadingText, 10)
+            // 首页开始按钮点击事件
+            $('#start').on('click', function () {
+                $('.bird').each(function () {
+                    $(this).addClass('flaying')
+                })
+                // 按钮上的小鸟变大效果
+                $('#birdButton').addClass('bigger')
             })
-       })
+        })
+        
    </script>
 </body>
 </html>
