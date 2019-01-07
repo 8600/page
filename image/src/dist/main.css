@@ -1,0 +1,146 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Microsoft YaHei;
+}
+/* 清除浮动 */
+.clear {
+  clear: both;
+}
+
+@font-face {
+  font-family: 'iconfont';  /* project id 1002795 */
+  src: url('./font/iconfont.eot');
+  src: url('./font/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('./font/iconfont.woff2') format('woff2'),
+  url('./font/iconfont.woff') format('woff'),
+  url('./font/iconfont.ttf') format('truetype'),
+  url('./font/iconfont.svg#iconfont') format('svg');
+}
+
+.icon {
+  font-family: "iconfont";
+  font-style: normal;
+  font-weight: normal;
+  display: inline-block;
+  user-select: none;
+}
+.page-class-hellow .title-bar {
+    height: 45px;
+    width: 100%;
+    background-color: white;
+  }
+.page-class-hellow .title-bar img {
+    padding: 4px 20px;
+  }
+.page-class-hellow .banner {
+    height: 480px;
+    width: 100%;
+    background: url('./image/banner.png') center/cover no-repeat;
+  }
+.page-class-hellow .tab-title {
+    background-color: #eaeaea;
+    line-height: 40px;
+    color: #3d3d3d;
+    font-size: 15px;
+    font-weight: 400;
+  }
+.page-class-hellow .tab-title .tab-title-item {
+    padding: 0 25px;
+    float: left;
+    cursor: pointer;
+  }
+.page-class-hellow .tab-title .active {
+    color: #fe0712;
+    background-color: white;
+  }
+.page-class-hellow .search-bar {
+    height: 40px;
+    display: flex;
+    padding: 5px;
+  }
+.page-class-hellow .search-bar input {
+    font-size: 14px;
+    padding: 0 10px;
+    width: calc(100% - 40px);
+  }
+.page-class-hellow .search-bar .search-button {
+    height: 40px;
+    width: 125px;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    font-size: 23px;
+    background-color: #c63c3c;
+  }
+.page-class-hellow .paging-bar {
+    height: 25px;
+    width: 280px;
+    margin: 0 auto;
+    display: flex;
+    padding: 25px 0;
+  }
+.page-class-hellow .image-box img {
+    height: 150px;
+    cursor: pointer;
+  }
+.page-class-hellow .image-item {
+    overflow: hidden;
+    position: relative;
+  }
+.page-class-hellow .image-item .title {
+    position: absolute;
+    bottom: -60px;
+    left: 0px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: calc(100% - 40px);
+    font-size: 14px;
+    text-align: left;
+    padding: 10px 20px;
+    height: 40px;
+    transition: bottom 0.5s;
+    overflow: hidden;
+    cursor: pointer;
+  }
+.page-class-hellow .image-item:hover .title {
+    bottom: 3px;
+    cursor: pointer;
+  }
+.page-class-hellow .paging-bar .paging-item {
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    color: #c0c0c0;
+    cursor: pointer;
+  }
+.page-class-hellow .paging-bar .active {
+    color: white;
+    background-color: #c53c3c;
+  }
+.page-class-hellow .page {
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    margin: 0 5px;
+  }
+.page-class-hellow .copyright-box {
+    height: 130px;
+    position: relative;
+    color: #aeaeae;
+    font-size: 12px;
+    background-color: #f2f2f2;
+  }
+.page-class-hellow .copyright {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 70px;
+  }
+.page-class-hellow .copyright-box p {
+    text-align: center;
+  }
+

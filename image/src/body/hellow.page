@@ -1,0 +1,369 @@
+<template>
+  <div class="home-box">
+    <div class="title-bar">
+      <img src="./image/logo.png"/>
+    </div>
+    <div class="banner"></div>
+    <div class="tab-box">
+      <div pg-name="tabTitle" class="tab-title">
+        <div class="tab-title-item" @click="activeItem">每日推荐</div>
+        <div class="tab-title-item" @click="activeItem">人民日报刊登作品</div>
+        <div class="tab-title-item" @click="activeItem">人民日报收藏摄影作品</div>
+        <div class="tab-title-item" @click="activeItem">活动简介</div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="tab-1">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="请输入关键字查询"/>
+        <div class="search-button">搜索</div>
+      </div>
+      <div pg-name="imageBox" class="image-box grid">
+        <div class="image-item grid-item">
+          <img src="./image/commend/1.png"/>
+          <div class="title">习近平重要讲话引发强烈反响国际社会热议</div>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/2.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/3.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/4.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/5.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/6.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/7.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/8.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/9.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/10.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/11.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/12.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/13.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/14.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/15.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/16.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/17.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/18.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/19.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/20.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/21.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/22.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/23.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/24.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/25.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/26.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/27.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/28.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/29.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/30.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/31.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/32.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/33.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/34.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/35.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/36.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/37.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/38.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/39.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/40.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/41.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/42.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/43.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/44.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/45.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/46.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/47.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/48.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/49.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/50.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/51.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/52.png"/>
+        </div>
+        <div class="image-item grid-item">
+          <img src="./image/commend/53.png"/>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="paging-box">
+        <div class="paging-bar" pg-name="pagingBox">
+          <div class="paging-item last icon">&#xe600;</div>
+          <div class="paging-item page" @click="changePage">1</div>
+          <div class="paging-item page" @click="changePage">2</div>
+          <div class="paging-item page" @click="changePage">3</div>
+          <div class="paging-item page active" @click="changePage">4</div>
+          <div class="paging-item page" @click="changePage">5</div>
+          <div class="paging-item more icon" @click="changePage">&#xe602;</div>
+          <div class="paging-item page" @click="changePage">99</div>
+          <div class="paging-item next icon" @click="changePage">&#xe601;</div>
+        <div>
+      </div>
+    </div>
+    <div class="copyright-box">
+      <div class="copyright">
+        <p>人 民 网 版 权 所 有 ，未 经 书 面 授 权 禁 止 使 用</p>
+        <p>Copyright © 1997-2018 by www.people.com.cn. all rights reserved</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  {
+    created: function () {
+      // 默认选中第一项
+      this.domList["tabTitle"].children[0].classList.add("active")
+      // 获取可见区域宽度
+      var webWidth = document.body.clientWidth
+      console.log(webWidth)
+      console.log(this.domList["imageBox"])
+      var elem = document.querySelector('.grid');
+      var msnry = new Masonry( elem, {
+        // options
+        itemSelector: '.grid-item',
+        columnWidth: 20
+      })
+    },
+    methods: {
+      activeItem: function (event) {
+        // 遍历tab页所有子节点去掉“活跃标识”
+        var tabTitleBarChildren = this.domList["tabTitle"].children
+        for (var i = 0; i < tabTitleBarChildren.length; i++) {
+          // 去掉活跃class
+          tabTitleBarChildren[i].classList.remove('active')
+        }
+        event.dom.classList.add("active")
+      },
+      changePage: function (event) {
+        // 遍历tab页所有子节点去掉“活跃标识”
+        var tabTitleBarChildren = this.domList["pagingBox"].children
+        for (var i = 0; i < tabTitleBarChildren.length; i++) {
+          // 去掉活跃class
+          tabTitleBarChildren[i].classList.remove('active')
+        }
+        event.dom.classList.add("active")
+      }
+    }
+  }
+</script>
+
+
+<style>
+  .title-bar {
+    height: 45px;
+    width: 100%;
+    background-color: white;
+  }
+
+  .title-bar img {
+    padding: 4px 20px;
+  }
+
+  .banner {
+    height: 480px;
+    width: 100%;
+    background: url('./image/banner.png') center/cover no-repeat;
+  }
+  .tab-title {
+    background-color: #eaeaea;
+    line-height: 40px;
+    color: #3d3d3d;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  .tab-title .tab-title-item {
+    padding: 0 25px;
+    float: left;
+    cursor: pointer;
+  }
+  .tab-title .active {
+    color: #fe0712;
+    background-color: white;
+  }
+  .search-bar {
+    height: 40px;
+    display: flex;
+    padding: 5px;
+  }
+  .search-bar input {
+    font-size: 14px;
+    padding: 0 10px;
+    width: calc(100% - 40px);
+  }
+  .search-bar .search-button {
+    height: 40px;
+    width: 125px;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    font-size: 23px;
+    background-color: #c63c3c;
+  }
+  .paging-bar {
+    height: 25px;
+    width: 280px;
+    margin: 0 auto;
+    display: flex;
+    padding: 25px 0;
+  }
+
+  .image-box img {
+    height: 150px;
+    cursor: pointer;
+  }
+  .image-item {
+    overflow: hidden;
+    position: relative;
+  }
+  .image-item .title {
+    position: absolute;
+    bottom: -60px;
+    left: 0px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: calc(100% - 40px);
+    font-size: 14px;
+    text-align: left;
+    padding: 10px 20px;
+    height: 40px;
+    transition: bottom 0.5s;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .image-item:hover .title {
+    bottom: 3px;
+    cursor: pointer;
+  }
+  .paging-bar .paging-item {
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    color: #c0c0c0;
+    cursor: pointer;
+  }
+  .paging-bar .active {
+    color: white;
+    background-color: #c53c3c;
+  }
+  .page {
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    margin: 0 5px;
+  }
+  .copyright-box {
+    height: 130px;
+    position: relative;
+    color: #aeaeae;
+    font-size: 12px;
+    background-color: #f2f2f2;
+  }
+  .copyright {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 70px;
+  }
+  .copyright-box p {
+    text-align: center;
+  }
+</style>
