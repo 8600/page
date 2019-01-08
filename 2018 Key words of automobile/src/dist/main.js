@@ -102,13 +102,19 @@ function pgClick (item) {
 }
           window.PG.script.home = 
   {
+    data: {
+      imageList: [
+        {url: "./image/1.png", explain: "图片说明图片说明"},
+        {url: "./image/2.png", explain: "图片说明图片说明"},
+        {url: "./image/3.png", explain: "图片说明图片说明"}
+      ]
+    },
     created: function () {
       console.log('hellow word!')
     },
     methods: {
       showAlert: function (event) {
-        console.log(event)
-        event.dom.innerText = "Welcome"
+        window.location.href = '#name'
       }
     }
   }
@@ -116,8 +122,15 @@ function pgClick (item) {
         
           window.PG.script.name = 
   {
+    data: {
+      imageList: [
+        {url: "./image/1.png", explain: "图片说明图片说明"},
+        {url: "./image/2.png", explain: "图片说明图片说明"},
+        {url: "./image/3.png", explain: "图片说明图片说明"}
+      ]
+    },
     created: function () {
-      console.log('my name is pack!')
+      console.log('hellow word!')
     }
   }
 

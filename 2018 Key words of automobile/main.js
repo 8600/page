@@ -7,7 +7,8 @@ const bodyHandle = require('./lib/body')
 
 const path = './src/'
 const headPath = path + 'head/'
-const bodyPath = path + 'body/'
+const pagePath = path + 'page/'
+const templePath = path + 'temple/'
 const outPutPath = path + 'dist/'
 const corePath = './core/'
 
@@ -20,7 +21,7 @@ let templet = fs.readFileSync(`${path}index.html`, 'utf8')
 // 使用heard处理文件
 templet = heardHandle(headPath, templet)
 
-const dom = bodyHandle(bodyPath, templet)
+const dom = bodyHandle(pagePath, templet)
 
 // 读取出核心代码
 const configData = `

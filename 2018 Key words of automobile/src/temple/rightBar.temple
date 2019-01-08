@@ -1,0 +1,49 @@
+<template>
+  <div class="right-bar">
+    <div class="navigation-box">
+      <div class="title">封面</div>
+      <div class="right-bar-item">销量负增长</div>
+      <div class="right-bar-item">新能源</div>
+      <div class="right-bar-item">国家品牌</div>
+      <div class="right-bar-item">放开股比</div>
+      <div class="right-bar-item">进口关税</div>
+      <div class="right-bar-item">共享汽车</div>
+      <div class="right-bar-item">自动驾驶</div>
+      <div class="right-bar-item">造车新势力</div>
+      <div class="right-bar-item">人事变动</div>
+      <div class="right-bar-item">二手车</div>
+    </div>
+  </div>
+</template>
+
+<style>
+
+  /* 右侧菜单栏 */
+  .right-bar-item {
+    color: #395888;
+    width: 70px;
+    text-align: center;
+    padding: 6px 0;
+    margin: 20px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 1px solid #d5dee8;
+  }
+  .right-bar .title {
+    text-align: center;
+    padding: 6px 0;
+    margin: 20px 20px;
+    color: #be3752;
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 1px solid #be3752;
+  }
+  .navigation-box {
+    height: 590px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+</style>

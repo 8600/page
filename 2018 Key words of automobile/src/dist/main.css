@@ -15,7 +15,53 @@ body, html {
   height: 100%;
 }
 
-.page-class-home .home {
+.page-class-home .right-bar-item {
+    color: #395888;
+    width: 70px;
+    text-align: center;
+    padding: 6px 0;
+    margin: 20px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 1px solid #d5dee8;
+  }
+.page-class-home .right-bar .title {
+    text-align: center;
+    padding: 6px 0;
+    margin: 20px 20px;
+    color: #be3752;
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 1px solid #be3752;
+  }
+.page-class-home .navigation-box {
+    height: 590px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+.page-class-home .copyright-box {
+    height: 170px;
+    color: white;
+    font-size: 12px;
+    background-color: #2b588e;
+    position: relative;
+  }
+.page-class-home .copyright-box .copyright {
+    width: 500px;
+    height: 100px;
+    line-height: 20px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+.page-class-home .home {
     width: 100%;
     height: 100%;
   }
@@ -86,6 +132,7 @@ body, html {
   }
 .page-class-home .image-box {
     display: flex;
+    overflow: auto;
     justify-content: space-between;
   }
 .page-class-home .image-item {
@@ -102,14 +149,41 @@ body, html {
     text-align: center;
     line-height: 50px;
   }
-.page-class-home .copyright-box {
+.page-class-name .right-bar-item {
+    color: #395888;
+    width: 70px;
+    text-align: center;
+    padding: 6px 0;
+    margin: 20px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 1px solid #d5dee8;
+  }
+.page-class-name .right-bar .title {
+    text-align: center;
+    padding: 6px 0;
+    margin: 20px 20px;
+    color: #be3752;
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 1px solid #be3752;
+  }
+.page-class-name .navigation-box {
+    height: 590px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+.page-class-name .copyright-box {
     height: 170px;
     color: white;
     font-size: 12px;
     background-color: #2b588e;
     position: relative;
   }
-.page-class-home .copyright-box .copyright {
+.page-class-name .copyright-box .copyright {
     width: 500px;
     height: 100px;
     line-height: 20px;
@@ -121,34 +195,51 @@ body, html {
     bottom: 0;
     margin: auto;
   }
-.page-class-home .right-bar-item {
-    color: #395888;
-    width: 70px;
-    text-align: center;
-    padding: 6px 0;
-    margin: 20px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    border-bottom: 1px solid #d5dee8;
+.page-class-name .cover {
+    width: 100%;
+    height: 100%;
   }
-.page-class-home .right-bar .title {
-    text-align: center;
-    padding: 6px 0;
-    margin: 20px 20px;
-    color: #be3752;
-    font-weight: bold;
-    font-size: 16px;
-    border-bottom: 1px solid #be3752;
+.page-class-name .top-box {
+    display: flex;
+    position: relative;
+    height: calc(100% - 170px);
   }
-.page-class-home .navigation-box {
-    height: 590px;
+.page-class-name .top-box .content {
+    position: relative;
+    display: flex;
+    width: calc(100% - 110px);
+    background: url('./image/cover.png') center/cover no-repeat;
+  }
+.page-class-name .container {
+    width: 90%;
+    height: 90%;
     position: absolute;
+    left: 0;
+    right: 0;
     top: 0;
     bottom: 0;
     margin: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
-.page-class-name p {
-    color: red;
+.page-class-name .text-box {
+    color: #46040e;
+    width: 250px;
+    position: absolute;
+    left: 55px;
+    top: 268px;
+    font-size: 14px;
+  }
+.page-class-name .layer {
+    width: 1005px;
+    height: 532px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: url(./image/layer.png) no-repeat;
+    background-size: contain;
   }
 
