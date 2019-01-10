@@ -1,0 +1,67 @@
+body, html, .ox-home {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Microsoft YaHei;
+}
+/* 清除浮动 */
+.clear {
+  clear: both;
+}
+
+.page-class {
+  width: 100%;
+  height: 100%;
+}
+
+.ox-home .page-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: url('./image/bg.jpg') no-repeat;
+  background-size: 100%;
+  background-color: #ebf5ff;
+}
+
+.ox-home .top-box {
+  position: relative;
+  width: 100%;
+  height: 560px;
+}
+
+.ox-home .rise-box {
+  height: 80%;
+  background: url(./image/rise.png) center / contain no-repeat;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.ox-home .introduce {
+  position: absolute;
+  left: 85px;
+  right: 0;
+  width: 479px;
+  font-size: 18px;
+  margin: auto;
+  top: 373px;
+  line-height: 30px;
+  color: #0e346e;
+  font-weight: bolder;
+  -webkit-text-stroke: 1px white;
+}
+
+.ox-home .introduce .prominent {
+  font-size: 35px;
+  -webkit-text-stroke: 2px white;
+}
+
+.ox-home .right-bar {
+  position: fixed;
+  right: 0;
+  top: 50%;
+}

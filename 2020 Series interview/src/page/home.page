@@ -1,0 +1,84 @@
+<template>
+  <div class="page-box">
+    <!-- 顶部主介绍文字 -->
+    <div class="top-box">
+      <div class="rise-box"></div>
+      <div class="introduce">
+        <span class="prominent">编者按</span>
+        <span>今年是改革开放40周年，也是创投行业“一号提案”提出20周年。人民网创投频道联合每日经济新闻推出系列报道，将创投行业20年的发展成就浓缩为10位投资人的个人关键词，以投资人视角展现我国经济发展与社会进步的巨大成就，并充分彰显我国创投行业的巨大贡献。</span>
+      </div>
+    </div>
+    <!-- 右侧信息条 -->
+    <div class="right-bar">
+      <div class="right-bar-item QR"></div>
+      <div class="right-bar-item home"></div>
+      <div class="right-bar-item to-top"></div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    created: () => {
+      console.log('hellow word!')
+    },
+    methods: {
+      showAlert: (othersName, myName) => {
+        console.log(this)
+        alert('Hellow ' + othersName + ', My name is ' + myName)
+      }
+    }
+  }
+</script>
+
+
+<style lang="less">
+  .page-box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: url('./image/bg.jpg') no-repeat;
+    background-size: 100%;
+    background-color: #ebf5ff;
+  }
+  .top-box {
+    position: relative;
+    width: 100%;
+    height: 560px;
+  }
+  .rise-box {
+    height: 80%;
+    background: url(./image/rise.png) center/contain no-repeat;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  .introduce {
+    position: absolute;
+    left: 85px;
+    right: 0;
+    width: 479px;
+    font-size: 18px;
+    margin: auto;
+    top: 373px;
+    line-height: 30px;
+    color: #0e346e;
+    font-weight: bolder;
+    -webkit-text-stroke: 1px white;
+    .prominent {
+      font-size: 35px;
+      -webkit-text-stroke: 2px white;
+    }
+  }
+  .right-bar {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    .right-bar-item {
+      
+    }
+  }
+</style>
