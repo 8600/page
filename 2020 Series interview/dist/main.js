@@ -38,23 +38,28 @@ function pgNameHandler (dom) {
     // 判断是否存在@name属性
     var pgName = tempDom.attributes['@name']
     if (pgName) {
-      console.log(pgName.textContent)
+      // console.log(pgName.textContent)
       window.ozzx.domList[pgName.textContent] = tempDom
     }
     // 判断是否有点击事件
     var clickFunc = tempDom.attributes['@click']
     
     if (clickFunc) {
-      var clickFor = clickFunc.textContent
+      
       tempDom.onclick = function() {
+        var clickFor = clickFunc.textContent
         // 判断页面是否有自己的方法
         var newPageFunction = window.ozzx.script[window.ozzx.activePage]
         
         // 取出参数
-        var parameter = clickFor.match(/[^\(\)]+(?=\))/g)[0]
-        // 参数列表
-        var parameterArr = parameter.split(',')
-        clickFor = clickFor.replace('(' + parameter + ')', '')
+        var parameterArr = []
+        var parameterList = clickFor.match(/[^\(\)]+(?=\))/g)
+        if (parameterList && parameterList.length > 0) {
+          // 参数列表
+          parameterArr = parameterList[0].split(',')
+          clickFor = clickFor.replace('(' + parameterList + ')', '')
+        }
+        
         // 如果有方法,则运行它
         if (newPageFunction.methods[clickFor]) {
           // 绑定window.ozzx对象
@@ -121,5 +126,5 @@ window.onhashchange = function(e) {
   runPageFunction(newUrlParam, entryDom)
 }
 
-      window.ozzx.script = {home:{created:function created(){console.log('hellow word!');},methods:{showAlert:function showAlert(othersName,myName){console.log(_this);alert('Hellow '+othersName+', My name is '+myName);}}}}
+      window.ozzx.script = {home:{created:function created(){var swiper=new Swiper('#auto-swiper',{autoplay:3000,slidesPerView:3,spaceBetween:20,nextButton:'#swiper-button-next-auto',prevButton:'#swiper-button-prev-auto'});var swiper2=new Swiper('#swiper',{slidesPerView:3,spaceBetween:20,nextButton:'#swiper-button-next',prevButton:'#swiper-button-prev'});},data:{peopleList:[{image:"./image/people1.png",viewpoint:"观点观点观点观点观点观点",identity:"中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平",transform:"translate(-395px, 0)",identityStyle:"left: -160px;top: 30px;"},{image:"./image/people1.png",viewpoint:"观点观点观点观点观点观点",identity:"中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平",transform:"translate(-345px, -219px)",identityStyle:"left: -160px;top: 30px;"},{image:"./image/people1.png",viewpoint:"观点观点观点观点观点观点",identity:"中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平",transform:"translate(-140px, -378px)",identityStyle:"left: -160px;top: 30px;"},{image:"./image/people1.png",viewpoint:"观点观点观点观点观点观点",identity:"中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平",transform:"translate(140px, -378px)",identityStyle:"left: 160px;top: 30px;"},{image:"./image/people1.png",viewpoint:"观点观点观点观点观点观点",identity:"中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平",transform:"translate(345px, -219px)",identityStyle:"left: 160px;top: 30px;"},{image:"./image/people1.png",viewpoint:"观点观点观点观点观点观点",identity:"中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平",transform:"translate(395px, 0)",identityStyle:"left: 160px;top: 30px;"},{image:"./image/people1.png",viewpoint:"观点观点观点观点观点观点",identity:"中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平",transform:"translate(345px, 219px)",identityStyle:"left: 160px;top: 30px;"},{image:"./image/people1.png",viewpoint:"观点观点观点观点观点观点",identity:"中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平",transform:"translate(-140px, 378px)",identityStyle:"left: -160px;top: 30px;"},{image:"./image/people1.png",viewpoint:"观点观点观点观点观点观点",identity:"中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平",transform:"translate(140px, 378px)",identityStyle:"left: 160px;top: 30px;"},{image:"./image/people1.png",viewpoint:"观点观点观点观点观点观点",identity:"中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平",transform:"translate(-345px, 219px)",identityStyle:"left: -160px;top: 30px;"}],speakBox:[{image:"./image/people-big.png",title:"陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛",text:"      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。"},{image:"./image/people-big.png",title:"陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛",text:"      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。"},{image:"./image/people-big.png",title:"陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛",text:"      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。"},{image:"./image/people-big.png",title:"陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛",text:"      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。"},{image:"./image/people-big.png",title:"陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛",text:"      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。"},{image:"./image/people-big.png",title:"陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛",text:"      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。"},{image:"./image/people-big.png",title:"陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛",text:"      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。"},{image:"./image/people-big.png",title:"陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛",text:"      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。"},{image:"./image/people-big.png",title:"陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛",text:"      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。"},{image:"./image/people-big.png",title:"陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛",text:"      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。"}],swiperList1:[{image:"./image/people-big.png",title:"标题文字 标题文字 标题文字 标题文字"},{image:"./image/people-big.png",title:"标题文字 标题文字 标题文字 标题文字"},{image:"./image/people-big.png",title:"标题文字 标题文字 标题文字 标题文字"},{image:"./image/people-big.png",title:"标题文字 标题文字 标题文字 标题文字"},{image:"./image/people-big.png",title:"标题文字 标题文字 标题文字 标题文字"},{image:"./image/people-big.png",title:"标题文字 标题文字 标题文字 标题文字"},{image:"./image/people-big.png",title:"标题文字 标题文字 标题文字 标题文字"}],videoList:["0","0","0","0","0","0","0","0","0","0","0","0"]},methods:{toTop:function toTop(){var timer=setInterval(function(){var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;var ispeed=Math.floor(-scrollTop/3);if(scrollTop==0){clearInterval(timer);}document.documentElement.scrollTop=document.body.scrollTop=scrollTop+ispeed;},30);}}}}
     

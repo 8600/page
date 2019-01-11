@@ -1,8 +1,7 @@
 body, html, .ox-home {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  min-width: 1370px;
   font-family: Microsoft YaHei;
 }
 /* 清除浮动 */
@@ -10,12 +9,28 @@ body, html, .ox-home {
   clear: both;
 }
 
-.page-class {
-  width: 100%;
-  height: 100%;
+a{text-decoration:none}
+
+.ox-home .copyright-box {
+  height: 170px;
+  color: #727272;
+  font-size: 12px;
+  background-color: #ebf5ff;
+  position: relative;
 }
 
-.ox-home .page-box {
+.ox-home .copyright-box .copyright {
+  width: 500px;
+  height: 100px;
+  line-height: 20px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}.ox-home .page-box {
   width: 100%;
   height: 100%;
   position: relative;
@@ -27,7 +42,7 @@ body, html, .ox-home {
 .ox-home .top-box {
   position: relative;
   width: 100%;
-  height: 560px;
+  height: 700px;
 }
 
 .ox-home .rise-box {
@@ -45,10 +60,10 @@ body, html, .ox-home {
   position: absolute;
   left: 85px;
   right: 0;
-  width: 479px;
+  width: 585px;
   font-size: 18px;
   margin: auto;
-  top: 373px;
+  top: 460px;
   line-height: 30px;
   color: #0e346e;
   font-weight: bolder;
@@ -62,6 +77,199 @@ body, html, .ox-home {
 
 .ox-home .right-bar {
   position: fixed;
+  right: 15px;
+  top: 42%;
+  z-index: 99;
+}
+
+.ox-home .right-bar .right-bar-item {
+  width: 75px;
+  height: 75px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.6);
+  margin: 4px;
+}
+
+.ox-home .right-bar .QR {
+  background-size: 100%;
+  background-image: url(./image/QR.png);
+}
+
+.ox-home .right-bar .home {
+  background-position: 20px;
+  background-image: url(./image/home.png);
+}
+
+.ox-home .right-bar .to-top {
+  background-position: 24px;
+  background-image: url(./image/to-top.png);
+}
+
+.ox-home .body-box {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.ox-home .photo-wall {
+  position: relative;
+  padding: 100px;
+  margin-top: 100px;
+}
+
+.ox-home .photo-wall img {
+  width: 100%;
+}
+
+.ox-home .photo-wall .central-text {
+  font-size: 48px;
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  position: absolute;
+  left: 0;
   right: 0;
-  top: 50%;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  color: white;
+}
+
+.ox-home .people-box {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.ox-home .people-box .head {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ox-home .people-box img {
+  width: 150px;
+  height: 150px;
+}
+
+.ox-home .people-box .people-info {
+  position: absolute;
+  top: -100%;
+  color: white;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  background-color: #2469c5;
+  border-radius: 50%;
+  padding: 30px;
+}
+
+.ox-home .people-box .identity {
+  position: absolute;
+  left: 160px;
+  top: 30px;
+  width: 200px;
+  text-align: center;
+  color: #0752ae;
+}
+
+.ox-home .people-box:hover .people-info {
+  top: 0;
+}
+
+.ox-home .title-bar {
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  font-size: 43px;
+  color: #005aa7;
+  font-weight: bold;
+  line-height: 121px;
+  background-image: url(./image/title.png);
+}
+
+.ox-home .speak-box {
+  height: 190px;
+  margin: 40px 0;
+}
+
+.ox-home .speak-box img {
+  width: 280px;
+  height: 190px;
+}
+
+.ox-home .speak-box .separator {
+  width: 30px;
+  height: 30px;
+}
+
+.ox-home .speak-box .text-box {
+  width: 690px;
+}
+
+.ox-home .speak-box .title {
+  font-size: 34px;
+  color: #333333;
+  font-weight: bold;
+  width: 690px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ox-home .speak-box .text {
+  color: #696d71;
+  line-height: 30px;
+  padding-top: 20px;
+  text-indent: 2em;
+}
+
+.ox-home .speak-box .text a {
+  margin: 0 3px;
+}
+
+.ox-home .speak-box:nth-child(odd) .speak-box-item {
+  float: left;
+}
+
+.ox-home .speak-box:nth-child(even) .speak-box-item {
+  float: right;
+}
+
+.ox-home .swiper-container {
+  width: 100%;
+  height: 250px;
+}
+
+.ox-home .card img {
+  width: 100%;
+  height: 190px;
+  display: block;
+}
+
+.ox-home .card .image-title {
+  background-color: #d4e8fa;
+  line-height: 50px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ox-home .video-box {
+  margin: 5px;
+}
+
+.ox-home .video-box .card {
+  padding: 10px;
+  width: 310px;
+  float: left;
 }

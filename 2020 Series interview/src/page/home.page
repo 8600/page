@@ -12,20 +12,134 @@
     <div class="right-bar">
       <div class="right-bar-item QR"></div>
       <div class="right-bar-item home"></div>
-      <div class="right-bar-item to-top"></div>
+      <div class="right-bar-item to-top" @click="toTop"></div>
     </div>
+    <div class="body-box">
+      <div class="photo-wall">
+        <img src="./image/ring.svg"/>
+        <div v-for="(value, key) in peopleList" style="transform: {{value.transform}} ;" class="people-box people-{{key}}">
+          <div class="head">
+            <img src="{{value.image}}"/>
+            <div class="people-info">{{value.viewpoint}}</div>
+          </div>
+          <div class="identity" style="{{value.identityStyle}}">{{value.identity}}</div>
+        </div>
+        <div class="central-text">标题文字</div>
+      </div>
+      <!-- 点评 -->
+      <div class="title-bar">标题文字</div>
+      <div class="speak-box" v-for="value in speakBox" >
+        <img class="speak-box-item" src="{{value.image}}"/>
+        <div class="speak-box-item separator"></div>
+        <div class="text-box speak-box-item">
+          <div class="title">{{value.title}}</div>
+          <div class="text">{{value.text}}[<a href="#">详细</a>]</div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!-- 自动轮播 -->
+      <div class="title-bar">标题文字</div>
+      <div class="swiper-container" id="auto-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide card" v-for="value in swiperList1">
+            <img src="{{value.image}}"/>
+            <div class="image-title">{{value.title}}</div>
+          </div>
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next" id="swiper-button-next-auto"></div>
+        <div class="swiper-button-prev" id="swiper-button-prev-auto"></div>
+      </div>
+      <!-- 普通轮播 -->
+      <div class="title-bar">标题文字</div>
+      <div class="swiper-container" id="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide card" v-for="value in swiperList1">
+            <img src="{{value.image}}"/>
+            <div class="image-title">{{value.title}}</div>
+          </div>
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next" id="swiper-button-next"></div>
+        <div class="swiper-button-prev" id="swiper-button-prev"></div>
+      </div>
+      <!-- 视频播放 -->
+      <div class="title-bar">标题文字</div>
+      <div class="video-box">
+        <div class="card" v-for="value in videoList">
+          <img src="./image/people-big.png"/>
+          <div class="image-title">标题文字 标题文字 标题文字 标题文字</div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <temple name="copyright"></temple>
   </div>
 </template>
 
 <script>
   export default {
     created: () => {
-      console.log('hellow word!')
+      const swiper = new Swiper('#auto-swiper', {
+        autoplay: 3000,
+        slidesPerView: 3,
+        spaceBetween: 20,
+        nextButton: '#swiper-button-next-auto',
+        prevButton: '#swiper-button-prev-auto'
+      })
+      const swiper2 = new Swiper('#swiper', {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        nextButton: '#swiper-button-next',
+        prevButton: '#swiper-button-prev'
+      })
+    },
+    data: {
+      peopleList: [
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(-395px, 0)', identityStyle: 'left: -160px;top: 30px;'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(-345px, -219px)', identityStyle: 'left: -160px;top: 30px;'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(-140px, -378px)', identityStyle: 'left: -160px;top: 30px;'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(140px, -378px)', identityStyle: 'left: 160px;top: 30px;'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(345px, -219px)', identityStyle: 'left: 160px;top: 30px;'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(395px, 0)', identityStyle: 'left: 160px;top: 30px;'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(345px, 219px)', identityStyle: 'left: 160px;top: 30px;'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(-140px, 378px)', identityStyle: 'left: -160px;top: 30px;'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(140px, 378px)', identityStyle: 'left: 160px;top: 30px;'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(-345px, 219px)', identityStyle: 'left: -160px;top: 30px;'},
+      ],
+      speakBox: [
+        {image: './image/people-big.png', title: '陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛', text: '      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。'},
+        {image: './image/people-big.png', title: '陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛', text: '      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。'},
+        {image: './image/people-big.png', title: '陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛', text: '      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。'},
+        {image: './image/people-big.png', title: '陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛', text: '      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。'},
+        {image: './image/people-big.png', title: '陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛', text: '      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。'},
+        {image: './image/people-big.png', title: '陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛', text: '      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。'},
+        {image: './image/people-big.png', title: '陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛', text: '      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。'},
+        {image: './image/people-big.png', title: '陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛', text: '      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。'},
+        {image: './image/people-big.png', title: '陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛', text: '      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。'},
+        {image: './image/people-big.png', title: '陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛', text: '      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。'}
+      ],
+      swiperList1: [
+        {image: './image/people-big.png', title: '标题文字 标题文字 标题文字 标题文字'},
+        {image: './image/people-big.png', title: '标题文字 标题文字 标题文字 标题文字'},
+        {image: './image/people-big.png', title: '标题文字 标题文字 标题文字 标题文字'},
+        {image: './image/people-big.png', title: '标题文字 标题文字 标题文字 标题文字'},
+        {image: './image/people-big.png', title: '标题文字 标题文字 标题文字 标题文字'},
+        {image: './image/people-big.png', title: '标题文字 标题文字 标题文字 标题文字'},
+        {image: './image/people-big.png', title: '标题文字 标题文字 标题文字 标题文字'}
+      ],
+      videoList: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     methods: {
-      showAlert: (othersName, myName) => {
-        console.log(this)
-        alert('Hellow ' + othersName + ', My name is ' + myName)
+      toTop: () => {
+        let timer=setInterval(function(){
+           const scrollTop=document.documentElement.scrollTop||document.body.scrollTop
+           const ispeed = Math.floor(-scrollTop / 3)
+           if(scrollTop==0){
+             clearInterval(timer)
+           }
+           document.documentElement.scrollTop = document.body.scrollTop=scrollTop+ispeed
+       },30)
       }
     }
   }
@@ -44,11 +158,11 @@
   .top-box {
     position: relative;
     width: 100%;
-    height: 560px;
+    height: 700px;
   }
   .rise-box {
     height: 80%;
-    background: url(./image/rise.png) center/contain no-repeat;
+    background: url(./image/rise.png) center / contain no-repeat;
     position: absolute;
     left: 0;
     right: 0;
@@ -60,10 +174,10 @@
     position: absolute;
     left: 85px;
     right: 0;
-    width: 479px;
+    width: 585px;
     font-size: 18px;
     margin: auto;
-    top: 373px;
+    top: 460px;
     line-height: 30px;
     color: #0e346e;
     font-weight: bolder;
@@ -75,10 +189,180 @@
   }
   .right-bar {
     position: fixed;
-    right: 0;
-    top: 50%;
+    right: 15px;
+    top: 42%;
+    z-index: 99;
     .right-bar-item {
-      
+      width: 75px;
+      height: 75px;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-color: rgba(255, 255, 255, 0.6);
+      margin: 4px;
+    }
+    .QR {
+      background-size: 100%;
+      background-image: url(./image/QR.png);
+    }
+    .home {
+      background-position: 20px;
+      background-image: url(./image/home.png);
+    }
+    .to-top {
+      background-position: 24px;
+      background-image: url(./image/to-top.png);
+    }
+  }
+  .body-box {
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .photo-wall {
+    position: relative;
+    padding: 100px;
+    margin-top: 100px;
+    img {
+      width: 100%;
+    }
+    .central-text {
+      font-size: 48px;
+      width: 250px;
+      height: 50px;
+      line-height: 50px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      text-align: center;
+      color: white;
+    }
+  }
+  .people-box {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    .head {
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
+      position: relative;
+    }
+    img {
+      width: 150px;
+      height: 150px;
+    }
+    .people-info {
+      position: absolute;
+      top: -100%;
+      color: white;
+      width: 90px;
+      height: 90px;
+      cursor: pointer;
+      background-color: #2469c5;
+      border-radius: 50%;
+      padding: 30px;
+    }
+    .identity {
+      position: absolute;
+      left: 160px;
+      top: 30px;
+      width: 200px;
+      text-align: center;
+      color: #0752ae;
+    }
+  }
+  .people-box:hover .people-info {
+    top: 0;
+  }
+  .title-bar {
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-size: 43px;
+    color: #005aa7;
+    font-weight: bold;
+    line-height: 121px;
+    background-image: url(./image/title.png);
+  }
+
+  .speak-box {
+    height: 190px;
+    margin: 40px 0;
+    img {
+      width: 280px;
+      height: 190px;
+    }
+    .separator {
+      width: 30px;
+      height: 30px;
+    }
+    .text-box {
+      width: 690px;
+    }
+    .title {
+      font-size: 34px;
+      color: #333333;
+      font-weight: bold;
+      width: 690px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .text {
+      color: #696d71;
+      line-height: 30px;
+      padding-top: 20px;
+      text-indent: 2em;
+      a {
+        margin: 0 3px;
+      }
+    }
+  }
+  .speak-box:nth-child(odd) {
+    .speak-box-item {
+      float: left;
+    }
+  }
+  .speak-box:nth-child(even) {
+    .speak-box-item {
+      float: right;
+    }
+  }
+
+  .swiper-container {
+    width: 100%;
+    height: 250px;
+  }
+  .card {
+    
+    img {
+      width: 100%;
+      height: 190px;
+      display: block;
+    }
+    .image-title {
+      background-color: #d4e8fa;
+      line-height: 50px;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  .video-box {
+    margin: 5px;
+    .card {
+      padding: 10px;
+      width: 310px;
+      float: left;
     }
   }
 </style>
