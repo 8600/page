@@ -3,7 +3,7 @@
   "entry": "home",
   "headFolder": "head",
   "outFolder": "dist",
-  "autoPack": true,
+  "autoPack": false,
   "minifyCss": false,
   "minifyJs": false,
   "pageFolder": "page"

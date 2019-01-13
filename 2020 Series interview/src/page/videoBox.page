@@ -1,0 +1,38 @@
+<template>
+  <!-- 视频播放 -->
+  <div class="video-box">
+    <div class="card" v-for="value in 12">
+      <img src="./image/people-big.png"/>
+      <div class="image-title">标题文字 标题文字 标题文字 标题文字</div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</template>
+
+<script>
+  export default {
+    methods: {
+      toTop: () => {
+        let timer=setInterval(function(){
+           const scrollTop=document.documentElement.scrollTop||document.body.scrollTop
+           const ispeed = Math.floor(-scrollTop / 3)
+           if(scrollTop==0){
+             clearInterval(timer)
+           }
+           document.documentElement.scrollTop = document.body.scrollTop=scrollTop+ispeed
+       },30)
+      }
+    }
+  }
+</script>
+
+<style lang="less">
+  .video-box {
+    margin: 5px;
+    .card {
+      padding: 10px;
+      width: 310px;
+      float: left;
+    }
+  }
+</style>

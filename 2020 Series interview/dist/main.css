@@ -11,7 +11,44 @@ body, html, .ox-home {
 
 a{text-decoration:none}
 
-.ox-home .copyright-box {
+.ox-home .right-bar {
+  position: fixed;
+  right: 15px;
+  top: 42%;
+  z-index: 99;
+}
+
+.ox-home .right-bar .right-bar-item {
+  width: 75px;
+  height: 75px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.6);
+  margin: 4px;
+}
+
+.ox-home .right-bar .QR {
+  background-size: 100%;
+  background-image: url(./image/QR.png);
+}
+
+.ox-home .right-bar .home {
+  background-position: 20px;
+  background-image: url(./image/home.png);
+}
+
+.ox-home .right-bar .to-top {
+  background-position: 24px;
+  background-image: url(./image/to-top.png);
+}.ox-home .video-box {
+  margin: 5px;
+}
+
+.ox-home .video-box .card {
+  padding: 10px;
+  width: 310px;
+  float: left;
+}.ox-home .copyright-box {
   height: 170px;
   color: #727272;
   font-size: 12px;
@@ -73,37 +110,6 @@ a{text-decoration:none}
 .ox-home .introduce .prominent {
   font-size: 35px;
   -webkit-text-stroke: 2px white;
-}
-
-.ox-home .right-bar {
-  position: fixed;
-  right: 15px;
-  top: 42%;
-  z-index: 99;
-}
-
-.ox-home .right-bar .right-bar-item {
-  width: 75px;
-  height: 75px;
-  cursor: pointer;
-  background-repeat: no-repeat;
-  background-color: rgba(255, 255, 255, 0.6);
-  margin: 4px;
-}
-
-.ox-home .right-bar .QR {
-  background-size: 100%;
-  background-image: url(./image/QR.png);
-}
-
-.ox-home .right-bar .home {
-  background-position: 20px;
-  background-image: url(./image/home.png);
-}
-
-.ox-home .right-bar .to-top {
-  background-position: 24px;
-  background-image: url(./image/to-top.png);
 }
 
 .ox-home .body-box {
@@ -249,6 +255,28 @@ a{text-decoration:none}
   height: 250px;
 }
 
+.ox-home .swiper-container .swiper-button {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  cursor: pointer;
+}
+
+.ox-home .swiper-container .swiper-box {
+  margin: 0 10px;
+}
+
+.ox-home .swiper-container .swiper-button-next {
+  right: 10px;
+}
+
+.ox-home .swiper-container .swiper-button-prev {
+  left: 10px;
+}
+
 .ox-home .card img {
   width: 100%;
   height: 190px;
@@ -262,14 +290,4 @@ a{text-decoration:none}
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.ox-home .video-box {
-  margin: 5px;
-}
-
-.ox-home .video-box .card {
-  padding: 10px;
-  width: 310px;
-  float: left;
 }

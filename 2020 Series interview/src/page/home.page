@@ -8,12 +8,7 @@
         <span>今年是改革开放40周年，也是创投行业“一号提案”提出20周年。人民网创投频道联合每日经济新闻推出系列报道，将创投行业20年的发展成就浓缩为10位投资人的个人关键词，以投资人视角展现我国经济发展与社会进步的巨大成就，并充分彰显我国创投行业的巨大贡献。</span>
       </div>
     </div>
-    <!-- 右侧信息条 -->
-    <div class="right-bar">
-      <div class="right-bar-item QR"></div>
-      <div class="right-bar-item home"></div>
-      <div class="right-bar-item to-top" @click="toTop"></div>
-    </div>
+    <temple name="rightBar"></temple>
     <div class="body-box">
       <div class="photo-wall">
         <img src="./image/ring.svg"/>
@@ -42,36 +37,33 @@
       <div class="swiper-container" id="auto-swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide card" v-for="value in swiperList1">
-            <img src="{{value.image}}"/>
-            <div class="image-title">{{value.title}}</div>
+            <div class="swiper-box" >
+              <img src="{{value.image}}"/>
+              <div class="image-title">{{value.title}}</div>
+            </div>
           </div>
         </div>
         <!-- Add Arrows -->
-        <div class="swiper-button-next" id="swiper-button-next-auto"></div>
-        <div class="swiper-button-prev" id="swiper-button-prev-auto"></div>
+        <img src="./image/right.svg" class="swiper-button swiper-button-next" @click="autoSwiperNext"/>
+        <img src="./image/left.svg" class="swiper-button swiper-button-prev" @click="autoSwiperPrev"/>
       </div>
       <!-- 普通轮播 -->
       <div class="title-bar">标题文字</div>
       <div class="swiper-container" id="swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide card" v-for="value in swiperList1">
-            <img src="{{value.image}}"/>
-            <div class="image-title">{{value.title}}</div>
+            <div class="swiper-box" >
+              <img src="{{value.image}}"/>
+              <div class="image-title">{{value.title}}</div>
+            </div>
           </div>
         </div>
         <!-- Add Arrows -->
-        <div class="swiper-button-next" id="swiper-button-next"></div>
-        <div class="swiper-button-prev" id="swiper-button-prev"></div>
+        <img src="./image/right.svg" class="swiper-button swiper-button-next" @click="swiperNext"/>
+        <img src="./image/left.svg" class="swiper-button swiper-button-prev" @click="swiperPrev"/>
       </div>
-      <!-- 视频播放 -->
       <div class="title-bar">标题文字</div>
-      <div class="video-box">
-        <div class="card" v-for="value in videoList">
-          <img src="./image/people-big.png"/>
-          <div class="image-title">标题文字 标题文字 标题文字 标题文字</div>
-        </div>
-        <div class="clear"></div>
-      </div>
+      <temple name="videoBox"></temple>
     </div>
     <temple name="copyright"></temple>
   </div>
@@ -79,22 +71,18 @@
 
 <script>
   export default {
-    created: () => {
-      const swiper = new Swiper('#auto-swiper', {
+    created: function () {
+      this.data.swiper = new Swiper('#auto-swiper', {
         autoplay: 3000,
-        slidesPerView: 3,
-        spaceBetween: 20,
-        nextButton: '#swiper-button-next-auto',
-        prevButton: '#swiper-button-prev-auto'
+        slidesPerView: 3
       })
-      const swiper2 = new Swiper('#swiper', {
-        slidesPerView: 3,
-        spaceBetween: 20,
-        nextButton: '#swiper-button-next',
-        prevButton: '#swiper-button-prev'
+      this.data.swiper2 = new Swiper('#swiper', {
+        slidesPerView: 3
       })
     },
     data: {
+      swiper: 1,
+      swiper2: 1,
       peopleList: [
         {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(-395px, 0)', identityStyle: 'left: -160px;top: 30px;'},
         {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(-345px, -219px)', identityStyle: 'left: -160px;top: 30px;'},
@@ -127,19 +115,24 @@
         {image: './image/people-big.png', title: '标题文字 标题文字 标题文字 标题文字'},
         {image: './image/people-big.png', title: '标题文字 标题文字 标题文字 标题文字'},
         {image: './image/people-big.png', title: '标题文字 标题文字 标题文字 标题文字'}
-      ],
-      videoList: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      ]
     },
     methods: {
-      toTop: () => {
-        let timer=setInterval(function(){
-           const scrollTop=document.documentElement.scrollTop||document.body.scrollTop
-           const ispeed = Math.floor(-scrollTop / 3)
-           if(scrollTop==0){
-             clearInterval(timer)
-           }
-           document.documentElement.scrollTop = document.body.scrollTop=scrollTop+ispeed
-       },30)
+      swiperNext: function () {
+        console.log('swiperNext')
+        this.data.swiper2.swipeNext()
+      },
+      swiperPrev: function () {
+        console.log('swiperPrev')
+        this.data.swiper2.swipePrev()
+      },
+      autoSwiperNext: function () {
+        console.log('autoSwiperNext')
+        this.data.swiper.swipeNext()
+      },
+      autoSwiperPrev: function () {
+        console.log('autoSwiperPrev')
+        this.data.swiper.swipePrev()
       }
     }
   }
@@ -185,32 +178,6 @@
     .prominent {
       font-size: 35px;
       -webkit-text-stroke: 2px white;
-    }
-  }
-  .right-bar {
-    position: fixed;
-    right: 15px;
-    top: 42%;
-    z-index: 99;
-    .right-bar-item {
-      width: 75px;
-      height: 75px;
-      cursor: pointer;
-      background-repeat: no-repeat;
-      background-color: rgba(255, 255, 255, 0.6);
-      margin: 4px;
-    }
-    .QR {
-      background-size: 100%;
-      background-image: url(./image/QR.png);
-    }
-    .home {
-      background-position: 20px;
-      background-image: url(./image/home.png);
-    }
-    .to-top {
-      background-position: 24px;
-      background-image: url(./image/to-top.png);
     }
   }
   .body-box {
@@ -340,9 +307,26 @@
   .swiper-container {
     width: 100%;
     height: 250px;
+    .swiper-button {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      cursor: pointer;
+    }
+    .swiper-box {
+      margin: 0 10px;
+    }
+    .swiper-button-next {
+      right: 10px;
+    }
+    .swiper-button-prev {
+      left: 10px;
+    }
   }
   .card {
-    
     img {
       width: 100%;
       height: 190px;
@@ -355,14 +339,6 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-    }
-  }
-  .video-box {
-    margin: 5px;
-    .card {
-      padding: 10px;
-      width: 310px;
-      float: left;
     }
   }
 </style>

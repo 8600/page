@@ -1,0 +1,54 @@
+<template>
+  <!-- 右侧信息条 -->
+  <div class="right-bar">
+    <div class="right-bar-item QR"></div>
+    <div class="right-bar-item home"></div>
+    <div class="right-bar-item to-top" @click="toTop"></div>
+  </div>
+</template>
+
+<script>
+  export default {
+    methods: {
+      toTop: () => {
+        let timer=setInterval(function(){
+           const scrollTop=document.documentElement.scrollTop||document.body.scrollTop
+           const ispeed = Math.floor(-scrollTop / 3)
+           if(scrollTop==0){
+             clearInterval(timer)
+           }
+           document.documentElement.scrollTop = document.body.scrollTop=scrollTop+ispeed
+       },30)
+      }
+    }
+  }
+</script>
+
+<style lang="less">
+  .right-bar {
+    position: fixed;
+    right: 15px;
+    top: 42%;
+    z-index: 99;
+    .right-bar-item {
+      width: 75px;
+      height: 75px;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-color: rgba(255, 255, 255, 0.6);
+      margin: 4px;
+    }
+    .QR {
+      background-size: 100%;
+      background-image: url(./image/QR.png);
+    }
+    .home {
+      background-position: 20px;
+      background-image: url(./image/home.png);
+    }
+    .to-top {
+      background-position: 24px;
+      background-image: url(./image/to-top.png);
+    }
+  }
+</style>
