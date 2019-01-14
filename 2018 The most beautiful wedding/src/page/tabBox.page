@@ -9,32 +9,35 @@
       <span class="tab-item" @click="tabClick(5)">最佳高级定制奖</span>
       <span class="tab-item" @click="tabClick(6)">最佳婚礼珠宝奖</span>
     </div>
-    <div class="swiper-container" id="banner">
+    <div class="swiper-container banner-box" id="banner">
       <div class="swiper-wrapper">
         <div class="tab-content swiper-slide" v-for="value in 7">
           <img class="main-img" src="./image/2.png"/>
-          <div class="judges-box">
-            <div class="judges-card">
-              <img src="./image/3.jpg"/>
-              <p>嘉宾评委</p>
-              <p>韩东君</p>
+          <!-- 评委列表滑块 -->
+          <div class="swiper-container judges-swiper-box" id="judges-swiper-box-{{value}}">
+            <div class="judges-box swiper-wrapper">
+              <div class="judges-card swiper-slide">
+                <img src="./image/3.jpg"/>
+                <p>嘉宾评委</p>
+                <p>韩东君</p>
+              </div>
+              <div class="judges-card swiper-slide">
+                <img src="./image/3.jpg"/>
+                <p>嘉宾评委</p>
+                <p>韩东君</p>
+              </div>
+              <div class="judges-card swiper-slide">
+                <img src="./image/3.jpg"/>
+                <p>嘉宾评委</p>
+                <p>韩东君</p>
+              </div>
+              <div class="judges-card swiper-slide">
+                <img src="./image/3.jpg"/>
+                <p>嘉宾评委</p>
+                <p>韩东君</p>
+              </div>
+              <div class="clear"></div>
             </div>
-            <div class="judges-card">
-              <img src="./image/3.jpg"/>
-              <p>嘉宾评委</p>
-              <p>韩东君</p>
-            </div>
-            <div class="judges-card">
-              <img src="./image/3.jpg"/>
-              <p>嘉宾评委</p>
-              <p>韩东君</p>
-            </div>
-            <div class="judges-card">
-              <img src="./image/3.jpg"/>
-              <p>嘉宾评委</p>
-              <p>韩东君</p>
-            </div>
-            <div class="clear"></div>
           </div>
         </div>
       </div>
@@ -46,12 +49,19 @@
 <script>
   export default {
     data: {
-      swiper2: 1
+      swiper2: 1,
+      swiper3: 1
     },
     created: function (index) {
       this.data.swiper2 = new Swiper('#banner', {
         simulateTouch: false
       })
+      for (let i = 0; i < 7; i++) {
+        this.data.swiper3 = new Swiper(`#judges-swiper-box-${i}`, {
+          slidesPerView: 3
+        })
+      }
+      
     },
     methods: {
       tabClick: function (index) {
@@ -90,9 +100,6 @@
   .active {
     background-color: #c71a16;
   }
-  .judges-box {
-    padding: 0 60px;
-  }
   .tab-content .main-img {
     margin: 0 auto;
     width: 800px;
@@ -101,23 +108,18 @@
     margin-top: 40px;
   }
   // 第一个元素不需要加边框
-  .judges-box:nth-child(1) {
-    border-left: none;
-  }
-  .judges-card {
-    width: 149px;
-    height: 210px;
-    position: relative;
-    padding: 0 35px;
-    margin: 35px 0;
-    float: left;
-    border-left: 1px solid #e9e2dc;
-  }
+  // .judges-box:nth-child(1) {
+  //   border-left: none;
+  // }
+  // .judges-card {
+  //   border-left: 1px solid #e9e2dc;
+  // }
   .judges-card img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     overflow: hidden;
+    margin: 30px 60px;
   }
   .judges-card p {
     color: #d0aa2d;
@@ -126,7 +128,11 @@
     line-height: 30px;
     font-weight: bold;
   }
-  .swiper-container {
+  .banner-box {
     height: 760px;
+  }
+  .judges-swiper-box {
+    width: 800px;
+    height: 300px;
   }
 </style>

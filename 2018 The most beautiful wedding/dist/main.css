@@ -132,10 +132,6 @@ a{text-decoration:none}
   background-color: #c71a16;
 }
 
-.ox-home .judges-box {
-  padding: 0 60px;
-}
-
 .ox-home .tab-content .main-img {
   margin: 0 auto;
   width: 800px;
@@ -144,25 +140,12 @@ a{text-decoration:none}
   margin-top: 40px;
 }
 
-.ox-home .judges-box:nth-child(1) {
-  border-left: none;
-}
-
-.ox-home .judges-card {
-  width: 149px;
-  height: 210px;
-  position: relative;
-  padding: 0 35px;
-  margin: 35px 0;
-  float: left;
-  border-left: 1px solid #e9e2dc;
-}
-
 .ox-home .judges-card img {
   width: 150px;
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
+  margin: 30px 60px;
 }
 
 .ox-home .judges-card p {
@@ -173,8 +156,13 @@ a{text-decoration:none}
   font-weight: bold;
 }
 
-.ox-home .swiper-container {
+.ox-home .banner-box {
   height: 760px;
+}
+
+.ox-home .judges-swiper-box {
+  width: 800px;
+  height: 300px;
 }.ox-home .copyright-box {
   height: 170px;
   color: black;
