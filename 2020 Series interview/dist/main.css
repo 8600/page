@@ -28,8 +28,7 @@ a{text-decoration:none}
 }
 
 .ox-home .right-bar .QR {
-  background-size: 100%;
-  background-image: url(./image/QR.png);
+  display: block;
 }
 
 .ox-home .right-bar .home {
@@ -100,16 +99,13 @@ a{text-decoration:none}
   width: 585px;
   font-size: 18px;
   margin: auto;
-  top: 460px;
+  top: 630px;
   line-height: 30px;
   color: #0e346e;
-  font-weight: bolder;
-  -webkit-text-stroke: 1px white;
 }
 
 .ox-home .introduce .prominent {
   font-size: 35px;
-  -webkit-text-stroke: 2px white;
 }
 
 .ox-home .body-box {
@@ -212,42 +208,39 @@ a{text-decoration:none}
   height: 190px;
 }
 
-.ox-home .speak-box .separator {
-  width: 30px;
-  height: 30px;
-}
-
 .ox-home .speak-box .text-box {
-  width: 690px;
+  width: 660px;
 }
 
-.ox-home .speak-box .title {
+.ox-home .speak-box h1 {
   font-size: 34px;
   color: #333333;
   font-weight: bold;
-  width: 690px;
+  width: 660px;
+  margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.ox-home .speak-box .text {
+.ox-home .speak-box p {
   color: #696d71;
   line-height: 30px;
-  padding-top: 20px;
   text-indent: 2em;
 }
 
-.ox-home .speak-box .text a {
+.ox-home .speak-box p a {
   margin: 0 3px;
 }
 
 .ox-home .speak-box:nth-child(odd) .speak-box-item {
   float: left;
+  margin-left: 30px;
 }
 
 .ox-home .speak-box:nth-child(even) .speak-box-item {
   float: right;
+  margin-right: 30px;
 }
 
 .ox-home .swiper-container {
@@ -283,11 +276,12 @@ a{text-decoration:none}
   display: block;
 }
 
-.ox-home .card .image-title {
+.ox-home .card p {
   background-color: #d4e8fa;
   line-height: 50px;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin: 0;
 }

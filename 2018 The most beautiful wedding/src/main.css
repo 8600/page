@@ -1,0 +1,11 @@
+body, html, .ox-home {
+  margin: 0;
+  padding: 0;
+  font-family: Microsoft YaHei;
+}
+/* 清除浮动 */
+.clear {
+  clear: both;
+}
+
+a{text-decoration:none}

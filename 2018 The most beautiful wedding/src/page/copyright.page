@@ -10,9 +10,8 @@
 <style lang="">
   .copyright-box {
     height: 170px;
-    color: #727272;
+    color: black;
     font-size: 12px;
-    background-color: #ebf5ff;
     position: relative;
   }
   .copyright-box .copyright {

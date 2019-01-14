@@ -1,0 +1,45 @@
+<template>
+  <div class="logo-bar-box">
+    <div class="logo-bar">
+      <p class="logo-bar-item">指导单位:</p>
+      <img class="logo-bar-item" src="./image/paper.people.png"/>
+      <p class="logo-bar-item">主办单位:</p>
+      <img class="logo-bar-item" src="./image/people.png"/>
+      <img class="logo-bar-item" src="./image/people-travel.png"/>
+      <p class="logo-bar-item">承办单位:</p>
+      <img class="logo-bar-item" src="./image/baidai.png"/>
+      <img class="logo-bar-item" src="./image/wuyuechenfeng.png"/>
+      <div class="clear"></div>
+    </div>
+  </div>
+</template>
+
+<style lang="less">
+  .clear {
+    clear: both;
+  }
+  .logo-bar-box {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    background-color: white;
+  }
+  .logo-bar {
+    width: 950px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 38px;
+  }
+  .logo-bar p {
+    line-height: 38px;
+    margin: 0;
+  }
+  .logo-bar .logo-bar-item {
+    float: left;
+    margin: 0 10px;
+  }
+</style>

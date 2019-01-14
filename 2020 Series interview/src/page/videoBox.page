@@ -3,7 +3,7 @@
   <div class="video-box">
     <div class="card" v-for="value in 12">
       <img src="./image/people-big.png"/>
-      <div class="image-title">标题文字 标题文字 标题文字 标题文字</div>
+      <p>标题文字 标题文字 标题文字 标题文字</p>
     </div>
     <div class="clear"></div>
   </div>

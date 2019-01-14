@@ -1,0 +1,109 @@
+<template>
+  <div class="tab-box">
+    <div class="tab-bar" @name="tabBar">
+      <span class="tab-item active" @click="tabClick(0)">最佳婚礼目的地奖</span>
+      <span class="tab-item" @click="tabClick(1)">最佳婚礼策划奖</span>
+      <span class="tab-item" @click="tabClick(2)">最佳婚礼摄影奖</span>
+      <span class="tab-item" @click="tabClick(3)">最佳婚礼酒店奖</span>
+      <span class="tab-item" @click="tabClick(4)">最佳蜜月游奖</span>
+      <span class="tab-item" @click="tabClick(5)">最佳高级定制奖</span>
+      <span class="tab-item" @click="tabClick(6)">最佳婚礼珠宝奖</span>
+    </div>
+    <div class="table-content">
+      <img class="main-img" src="./image/2.png"/>
+      <div class="judges-box">
+        <div class="judges-card">
+          <img src="./image/3.jpg"/>
+          <p>嘉宾评委</p>
+          <p>韩东君</p>
+        </div>
+        <div class="judges-card">
+          <img src="./image/3.jpg"/>
+          <p>嘉宾评委</p>
+          <p>韩东君</p>
+        </div>
+        <div class="judges-card">
+          <img src="./image/3.jpg"/>
+          <p>嘉宾评委</p>
+          <p>韩东君</p>
+        </div>
+        <div class="judges-card">
+          <img src="./image/3.jpg"/>
+          <p>嘉宾评委</p>
+          <p>韩东君</p>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    methods: {
+      tabClick: function (index) {
+        console.log(index)
+        for (let index = 0; index < this.domList['tabBar'].children.length; index++) {
+          const dom = this.domList['tabBar'].children[index]
+          dom.classList.remove('active')
+        }
+        this.domList['tabBar'].children[index].classList.add("active")
+      }
+    }
+  }
+</script>
+
+<style lang="less">
+  .clear {
+    clear: both;
+  }
+  .tab-box {
+    width: 100%;
+  }
+  .tab-bar {
+    height: 50px;
+    color: white;
+    background-color: #d3b247;
+    padding: 0 25px;
+  }
+  .tab-item {
+    line-height: 50px;
+    display: inline-block;
+    width: 130px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+  }
+  .active {
+    background-color: #c71a16;
+  }
+  .table-content {
+    margin: 40px 60px;
+  }
+  .table-content .main-img {
+    margin: 0 auto;
+    width: 800px;
+    height: 400px;
+    display: block;
+  }
+  .judges-card {
+    width: 150px;
+    height: 210px;
+    position: relative;
+    padding: 35px;
+    float: left;
+  }
+  .judges-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .judges-card p {
+    color: #d0aa2d;
+    margin: 0;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+  }
+</style>

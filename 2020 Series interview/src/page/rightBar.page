@@ -1,7 +1,7 @@
 <template>
   <!-- 右侧信息条 -->
   <div class="right-bar">
-    <div class="right-bar-item QR"></div>
+    <img src="./image/QR.png" class="right-bar-item QR"/>
     <div class="right-bar-item home"></div>
     <div class="right-bar-item to-top" @click="toTop"></div>
   </div>
@@ -39,8 +39,7 @@
       margin: 4px;
     }
     .QR {
-      background-size: 100%;
-      background-image: url(./image/QR.png);
+      display: block;
     }
     .home {
       background-position: 20px;

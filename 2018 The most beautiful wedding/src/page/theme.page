@@ -1,0 +1,30 @@
+<template>
+  <div class="logo-box">
+    <img src="./image/logo.png"/>
+  </div>
+</template>
+
+<style lang="less">
+  .main-box {
+    width: 100%;
+    background-image: url(./image/bg.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #df1c15;
+  }
+  .logo-box {
+    width: 100%;
+    height: 370px;
+    position: relative;
+    img {
+      margin: auto;
+      width: 905px;
+      height: 242px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+  }
+</style>

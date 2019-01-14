@@ -25,10 +25,9 @@
       <div class="title-bar">标题文字</div>
       <div class="speak-box" v-for="value in speakBox" >
         <img class="speak-box-item" src="{{value.image}}"/>
-        <div class="speak-box-item separator"></div>
         <div class="text-box speak-box-item">
-          <div class="title">{{value.title}}</div>
-          <div class="text">{{value.text}}[<a href="#">详细</a>]</div>
+          <h1>{{value.title}}</h1>
+          <p class="text">{{value.text}}[<a href="#">详细</a>]</p>
         </div>
         <div class="clear"></div>
       </div>
@@ -39,7 +38,7 @@
           <div class="swiper-slide card" v-for="value in swiperList1">
             <div class="swiper-box" >
               <img src="{{value.image}}"/>
-              <div class="image-title">{{value.title}}</div>
+              <p>{{value.title}}</p>
             </div>
           </div>
         </div>
@@ -54,7 +53,7 @@
           <div class="swiper-slide card" v-for="value in swiperList1">
             <div class="swiper-box" >
               <img src="{{value.image}}"/>
-              <div class="image-title">{{value.title}}</div>
+              <p>{{value.title}}</p>
             </div>
           </div>
         </div>
@@ -172,14 +171,11 @@
     width: 585px;
     font-size: 18px;
     margin: auto;
-    top: 460px;
+    top: 630px;
     line-height: 30px;
     color: #0e346e;
-    font-weight: bolder;
-    -webkit-text-stroke: 1px white;
     .prominent {
       font-size: 35px;
-      -webkit-text-stroke: 2px white;
     }
   }
   .body-box {
@@ -269,26 +265,22 @@
       width: 280px;
       height: 190px;
     }
-    .separator {
-      width: 30px;
-      height: 30px;
-    }
     .text-box {
-      width: 690px;
+      width: 660px;
     }
-    .title {
+    h1 {
       font-size: 34px;
       color: #333333;
       font-weight: bold;
-      width: 690px;
+      width: 660px;
+      margin: 0;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-    .text {
+    p {
       color: #696d71;
       line-height: 30px;
-      padding-top: 20px;
       text-indent: 2em;
       a {
         margin: 0 3px;
@@ -298,11 +290,13 @@
   .speak-box:nth-child(odd) {
     .speak-box-item {
       float: left;
+      margin-left: 30px;
     }
   }
   .speak-box:nth-child(even) {
     .speak-box-item {
       float: right;
+      margin-right: 30px;
     }
   }
 
@@ -334,13 +328,14 @@
       height: 190px;
       display: block;
     }
-    .image-title {
+    p {
       background-color: #d4e8fa;
       line-height: 50px;
       text-align: center;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      margin: 0;
     }
   }
 </style>

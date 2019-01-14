@@ -2,7 +2,7 @@
     window.ozzx = {
       script: {}
     };
-    var globalConfig = {"root":"/src","entry":"home","headFolder":"head","outFolder":"dist","autoPack":false,"minifyCss":false,"minifyJs":false,"pageFolder":"page"};
+    var globalConfig = {"root":"/src","entry":"home","headFolder":"head","outFolder":"dist","autoPack":true,"minifyCss":false,"minifyJs":false,"pageFolder":"page"};
   // 获取URL #后面内容
 function getarg(url){
   arg = url.split("#");
@@ -54,7 +54,7 @@ function pgNameHandler (dom) {
         // console.log(this.attributes)
         // 判断是否为模板
         var templateName = this.attributes['template']
-        console.log(templateName)
+        // console.log(templateName)
         if (templateName) {
           newPageFunction = newPageFunction.template[templateName.textContent]
         }
