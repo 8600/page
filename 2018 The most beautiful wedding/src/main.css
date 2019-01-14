@@ -1,6 +1,8 @@
 body, html, .ox-home {
   margin: 0;
   padding: 0;
+  width: 100%;
+  min-width: 1000px;
   font-family: Microsoft YaHei;
 }
 /* 清除浮动 */

@@ -1,6 +1,8 @@
 body, html, .ox-home {
   margin: 0;
   padding: 0;
+  width: 100%;
+  min-width: 1000px;
   font-family: Microsoft YaHei;
 }
 /* 清除浮动 */
@@ -96,6 +98,10 @@ a{text-decoration:none}
   margin: 10px 0;
 }
 
+.ox-home .info-card:nth-last-child(1) {
+  border-bottom: none;
+}
+
 .ox-home .clear {
   clear: both;
 }.ox-home .clear {
@@ -126,23 +132,30 @@ a{text-decoration:none}
   background-color: #c71a16;
 }
 
-.ox-home .table-content {
-  margin: 40px 60px;
+.ox-home .judges-box {
+  padding: 0 60px;
 }
 
-.ox-home .table-content .main-img {
+.ox-home .tab-content .main-img {
   margin: 0 auto;
   width: 800px;
   height: 400px;
   display: block;
+  margin-top: 40px;
+}
+
+.ox-home .judges-box:nth-child(1) {
+  border-left: none;
 }
 
 .ox-home .judges-card {
-  width: 150px;
+  width: 149px;
   height: 210px;
   position: relative;
-  padding: 35px;
+  padding: 0 35px;
+  margin: 35px 0;
   float: left;
+  border-left: 1px solid #e9e2dc;
 }
 
 .ox-home .judges-card img {
@@ -158,6 +171,10 @@ a{text-decoration:none}
   text-align: center;
   line-height: 30px;
   font-weight: bold;
+}
+
+.ox-home .swiper-container {
+  height: 760px;
 }.ox-home .copyright-box {
   height: 170px;
   color: black;
@@ -194,13 +211,13 @@ a{text-decoration:none}
   color: white;
 }
 
-.ox-home .swiper-container {
+.ox-home .swiper-box .swiper-container {
   width: 920px;
   height: 190px;
   margin: 15px 40px;
 }
 
-.ox-home .swiper-container .swiper-item {
+.ox-home .swiper-box .swiper-container .swiper-item {
   margin: 0 10px;
 }
 

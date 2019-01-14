@@ -49,6 +49,10 @@
       margin: 10px 0;
     }
   }
+  // 最后一个元素不需要加边框
+  .info-card:nth-last-child(1) {
+    border-bottom: none;
+  }
   .clear {
     clear: both;
   }

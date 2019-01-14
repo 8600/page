@@ -9,40 +9,48 @@
       <span class="tab-item" @click="tabClick(5)">最佳高级定制奖</span>
       <span class="tab-item" @click="tabClick(6)">最佳婚礼珠宝奖</span>
     </div>
-    <div class="table-content">
-      <img class="main-img" src="./image/2.png"/>
-      <div class="judges-box">
-        <div class="judges-card">
-          <img src="./image/3.jpg"/>
-          <p>嘉宾评委</p>
-          <p>韩东君</p>
+    <div class="swiper-container" id="banner">
+      <div class="swiper-wrapper">
+        <div class="tab-content swiper-slide" v-for="value in 7">
+          <img class="main-img" src="./image/2.png"/>
+          <div class="judges-box">
+            <div class="judges-card">
+              <img src="./image/3.jpg"/>
+              <p>嘉宾评委</p>
+              <p>韩东君</p>
+            </div>
+            <div class="judges-card">
+              <img src="./image/3.jpg"/>
+              <p>嘉宾评委</p>
+              <p>韩东君</p>
+            </div>
+            <div class="judges-card">
+              <img src="./image/3.jpg"/>
+              <p>嘉宾评委</p>
+              <p>韩东君</p>
+            </div>
+            <div class="judges-card">
+              <img src="./image/3.jpg"/>
+              <p>嘉宾评委</p>
+              <p>韩东君</p>
+            </div>
+            <div class="clear"></div>
+          </div>
         </div>
-        <div class="judges-card">
-          <img src="./image/3.jpg"/>
-          <p>嘉宾评委</p>
-          <p>韩东君</p>
-        </div>
-        <div class="judges-card">
-          <img src="./image/3.jpg"/>
-          <p>嘉宾评委</p>
-          <p>韩东君</p>
-        </div>
-        <div class="judges-card">
-          <img src="./image/3.jpg"/>
-          <p>嘉宾评委</p>
-          <p>韩东君</p>
-        </div>
-        <div class="clear"></div>
       </div>
     </div>
+    
   </div>
 </template>
 
 <script>
   export default {
+    created: function (index) {
+      console.log('sd')
+    },
     methods: {
       tabClick: function (index) {
-        console.log(index)
+        console.log(window.ozzx.script[window.ozzx.activePage].data.swiper2.swipeTo(index, 1000, false))
         for (let index = 0; index < this.domList['tabBar'].children.length; index++) {
           const dom = this.domList['tabBar'].children[index]
           dom.classList.remove('active')
@@ -77,21 +85,28 @@
   .active {
     background-color: #c71a16;
   }
-  .table-content {
-    margin: 40px 60px;
+  .judges-box {
+    padding: 0 60px;
   }
-  .table-content .main-img {
+  .tab-content .main-img {
     margin: 0 auto;
     width: 800px;
     height: 400px;
     display: block;
+    margin-top: 40px;
+  }
+  // 第一个元素不需要加边框
+  .judges-box:nth-child(1) {
+    border-left: none;
   }
   .judges-card {
-    width: 150px;
+    width: 149px;
     height: 210px;
     position: relative;
-    padding: 35px;
+    padding: 0 35px;
+    margin: 35px 0;
     float: left;
+    border-left: 1px solid #e9e2dc;
   }
   .judges-card img {
     width: 150px;
@@ -105,5 +120,8 @@
     text-align: center;
     line-height: 30px;
     font-weight: bold;
+  }
+  .swiper-container {
+    height: 760px;
   }
 </style>
