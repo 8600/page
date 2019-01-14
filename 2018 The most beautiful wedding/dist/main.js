@@ -99,7 +99,14 @@ function runPageFunction (pageName, entryDom) {
   var newPageFunction = window.ozzx.script[pageName]
   // 如果有方法,则运行它
   if (newPageFunction) {
-    newPageFunction.created.apply(window.ozzx.script[pageName])
+    newPageFunction.created.apply(newPageFunction)
+  }
+  // 判断页面是否有下属模板,如果有运行所有模板的初始化方法
+  for (var key in newPageFunction.template) {
+    var templateScript = newPageFunction.template[key]
+    if (templateScript.created) {
+      templateScript.created.apply(newPageFunction.template[key])
+    }
   }
 }
 
@@ -134,5 +141,5 @@ window.onhashchange = function(e) {
   runPageFunction(newUrlParam, entryDom)
 }
 
-      window.ozzx.script = {home:{created:function created(){this.data.swiper2=new Swiper('#banner',{simulateTouch:false});this.data.swiper=new Swiper('#auto-swiper',{autoplay:3000,slidesPerView:4,loop:true});},data:{swiper:"1",swiper2:"1",swiperList1:[{image:"./image/4.png",title:"翻阅中外妙文，邂逅最美冬景"},{image:"./image/5.png",title:"翻阅中外妙文，邂逅最美冬景"},{image:"./image/6.png",title:"翻阅中外妙文，邂逅最美冬景"},{image:"./image/4.png",title:"翻阅中外妙文，邂逅最美冬景"},{image:"./image/5.png",title:"翻阅中外妙文，邂逅最美冬景"},{image:"./image/6.png",title:"翻阅中外妙文，邂逅最美冬景"}]},methods:{swiperNext:function swiperNext(){console.log('swiperNext');this.data.swiper.swipeNext();},swiperPrev:function swiperPrev(){console.log('swiperPrev');this.data.swiper.swipePrev();}},template:{tabBox:{created:function created(index){console.log('sd');},methods:{tabClick:function tabClick(index){console.log(window.ozzx.script[window.ozzx.activePage].data.swiper2.swipeTo(index,1000,false));for(var _index=0;_index<this.domList['tabBar'].children.length;_index++){var dom=this.domList['tabBar'].children[_index];dom.classList.remove('active');}this.domList['tabBar'].children[index].classList.add("active");}}}}}}
+      window.ozzx.script = {home:{created:function created(){this.data.swiper=new Swiper('#auto-swiper',{autoplay:3000,slidesPerView:4,loop:true});},data:{swiper:"1",swiperList1:[{image:"./image/4.png",title:"翻阅中外妙文，邂逅最美冬景"},{image:"./image/5.png",title:"翻阅中外妙文，邂逅最美冬景"},{image:"./image/6.png",title:"翻阅中外妙文，邂逅最美冬景"},{image:"./image/4.png",title:"翻阅中外妙文，邂逅最美冬景"},{image:"./image/5.png",title:"翻阅中外妙文，邂逅最美冬景"},{image:"./image/6.png",title:"翻阅中外妙文，邂逅最美冬景"}]},methods:{swiperNext:function swiperNext(){console.log('swiperNext');this.data.swiper.swipeNext();},swiperPrev:function swiperPrev(){console.log('swiperPrev');this.data.swiper.swipePrev();}},template:{tabBox:{data:{swiper2:"1"},created:function created(index){this.data.swiper2=new Swiper('#banner',{simulateTouch:false});},methods:{tabClick:function tabClick(index){this.data.swiper2.swipeTo(index,1000,false);for(var _index=0;_index<this.domList['tabBar'].children.length;_index++){var dom=this.domList['tabBar'].children[_index];dom.classList.remove('active');}this.domList['tabBar'].children[index].classList.add("active");}}}}}}
     

@@ -28,9 +28,6 @@
 <script>
   export default {
     created: function () {
-      this.data.swiper2 = new Swiper('#banner', {
-        simulateTouch: false
-      })
       this.data.swiper = new Swiper('#auto-swiper', {
         autoplay: 3000,
         slidesPerView: 4,
@@ -39,7 +36,6 @@
     },
     data: {
       swiper: 1,
-      swiper2: 1,
       swiperList1: [
         {image: './image/4.png', title: '翻阅中外妙文，邂逅最美冬景'},
         {image: './image/5.png', title: '翻阅中外妙文，邂逅最美冬景'},

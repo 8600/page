@@ -45,12 +45,17 @@
 
 <script>
   export default {
+    data: {
+      swiper2: 1
+    },
     created: function (index) {
-      console.log('sd')
+      this.data.swiper2 = new Swiper('#banner', {
+        simulateTouch: false
+      })
     },
     methods: {
       tabClick: function (index) {
-        console.log(window.ozzx.script[window.ozzx.activePage].data.swiper2.swipeTo(index, 1000, false))
+        this.data.swiper2.swipeTo(index, 1000, false)
         for (let index = 0; index < this.domList['tabBar'].children.length; index++) {
           const dom = this.domList['tabBar'].children[index]
           dom.classList.remove('active')
