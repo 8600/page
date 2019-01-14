@@ -74,10 +74,12 @@
     created: function () {
       this.data.swiper = new Swiper('#auto-swiper', {
         autoplay: 3000,
-        slidesPerView: 3
+        slidesPerView: 3,
+        loop: true
       })
       this.data.swiper2 = new Swiper('#swiper', {
-        slidesPerView: 3
+        slidesPerView: 3,
+        loop: true
       })
     },
     data: {
