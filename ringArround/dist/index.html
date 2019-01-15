@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  
+  <head>
+    <title>{TAG_14226_TAG}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="keywords" content="{TAG_59446_TAG}" />
+    <meta name="description" content="{TAG_59447_TAG}" />
+    <meta name="catalogs" content="{TAG_83943_TAG}" />
+    <meta name="filetype" content="1" />
+    <meta name="publishedtype" content="1" />
+    <meta name="pagetype" content="2" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <meta name="viewport" content="width=device-width" />
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: Microsoft YaHei;
+      }
+
+      .ring-arround {
+        width: 700px;
+        height: 700px;
+        background-image: url('./image/ring.svg');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        /* 居中 */
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+
+      .people-box {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+      }
+
+      .head {
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .people-box img {
+        width: 150px;
+        height: 150px;
+      }
+
+      .people-info {
+        position: absolute;
+        top: -100%;
+        color: white;
+        width: 90px;
+        height: 90px;
+        cursor: pointer;
+        background-color: #2469c5;
+        border-radius: 50%;
+        padding: 30px;
+      }
+
+      .identity {
+        position: absolute;
+        top: 30px;
+        width: 200px;
+        text-align: center;
+        color: #0752ae;
+      }
+
+      .people-box:hover .people-info {
+        top: 0;
+      }
+    </style>
+  
+  <body>
+    <!-- 环绕容器 -->
+    <div class="ring-arround" id="peopleWall">
+      <!-- 环绕元素 -->
+      <div class="people-box">
+        <div class="head">
+          <img src="./image/people1.png"/>
+          <div class="people-info">观点观点观点观点观点观点</div>
+        </div>
+        <div class="identity">中国建筑材料<br>集团有限公司<br>董事长<br>宋志平</div>
+      </div>
+      <div class="people-box">
+        <div class="head">
+          <img src="./image/people1.png"/>
+          <div class="people-info">观点观点观点观点观点观点</div>
+        </div>
+        <div class="identity">中国建筑材料<br>集团有限公司<br>董事长<br>宋志平</div>
+      </div>
+      <div class="people-box">
+        <div class="head">
+          <img src="./image/people1.png"/>
+          <div class="people-info">观点观点观点观点观点观点</div>
+        </div>
+        <div class="identity">中国建筑材料<br>集团有限公司<br>董事长<br>宋志平</div>
+      </div>
+      <div class="people-box">
+        <div class="head">
+          <img src="./image/people1.png"/>
+          <div class="people-info">观点观点观点观点观点观点</div>
+        </div>
+        <div class="identity">中国建筑材料<br>集团有限公司<br>董事长<br>宋志平</div>
+      </div>
+      <div class="people-box">
+        <div class="head">
+          <img src="./image/people1.png"/>
+          <div class="people-info">观点观点观点观点观点观点</div>
+        </div>
+        <div class="identity">中国建筑材料<br>集团有限公司<br>董事长<br>宋志平</div>
+      </div>
+      <div class="people-box">
+        <div class="head">
+          <img src="./image/people1.png"/>
+          <div class="people-info">观点观点观点观点观点观点</div>
+        </div>
+        <div class="identity">中国建筑材料<br>集团有限公司<br>董事长<br>宋志平</div>
+      </div>
+      <div class="people-box">
+        <div class="head">
+          <img src="./image/people1.png"/>
+          <div class="people-info">观点观点观点观点观点观点</div>
+        </div>
+        <div class="identity">中国建筑材料<br>集团有限公司<br>董事长<br>宋志平</div>
+      </div>
+      <div class="people-box">
+        <div class="head">
+          <img src="./image/people1.png"/>
+          <div class="people-info">观点观点观点观点观点观点</div>
+        </div>
+        <div class="identity">中国建筑材料<br>集团有限公司<br>董事长<br>宋志平</div>
+      </div>
+      <div class="people-box">
+        <div class="head">
+          <img src="./image/people1.png"/>
+          <div class="people-info">观点观点观点观点观点观点</div>
+        </div>
+        <div class="identity">中国建筑材料<br>集团有限公司<br>董事长<br>宋志平</div>
+      </div>
+    </div>
+    <script>
+      // 参数
+      // r: 环绕半径
+      // peopleWall: 容器元素
+      // arroundClass: 环绕元素的class
+      // explainClass： 说明元素的class
+      // padding： 说明元素距环绕元素的距离
+      function ringArround (r, peopleWall, arroundClass, explainClass, padding) {
+        if (typeof peopleWall == "string") {
+          peopleWall = document.getElementById(peopleWall)
+        }
+        // 环绕块列表
+        var boxList = peopleWall.getElementsByClassName(arroundClass)
+        
+        // 获取容器大小
+        var wallWidth = peopleWall.offsetWidth
+        var wallHeight = peopleWall.offsetHeight
+        // console.log(this.domList)
+        let angle = 0
+        for (let index = 0; index < boxList.length; index ++) {
+          
+          var element = boxList[index]
+          element.position = "absolute"
+          // 元素的宽高
+          var elementWidth = element.offsetWidth
+          var elementHeight = element.offsetHeight
+          // 计算出元素合适的坐标
+          var x = (wallHeight - elementHeight) / 2 + r * Math.cos(angle * Math.PI / 180)
+          var y = (wallWidth - elementWidth) / 2 + r * Math.sin(angle * Math.PI / 180)
+          // console.log(element, x, y)
+          boxList[index].style.left = x + "px"
+          boxList[index].style.top = y + "px"
+
+          // 判断是否需要同时计算说明文字位置
+          if (explainClass) {
+            if (padding == null) padding = 100
+            // 计算文字介绍坐标
+            var identityList = boxList[index].getElementsByClassName(explainClass)
+            
+            for (let index = 0; index < identityList.length; index ++) {
+              var element = identityList[index]
+              if (x > (wallHeight - elementHeight) / 2) {
+                element.style.left = padding + "px"
+              } else {
+                element.style.right = padding + "px"
+              }
+            }
+          }
+          // 铺满圆的一周
+          angle += 360 / boxList.length
+        }
+      }
+      ringArround(350, document.getElementById('peopleWall'), 'people-box', 'identity', 100)
+    </script>
+  </body>
+</html>

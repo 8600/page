@@ -89,6 +89,18 @@ function pgNameHandler (dom) {
   }
 }
 
+// 对象合并方法
+function assign(a, b) {
+  var newObj = {}
+  for (var key in a){
+    newObj[key] = a[key]
+  }
+  for (var key in b){
+    newObj[key] = b[key]
+  }
+  return newObj
+}
+
 // 运行页面所属的方法
 function runPageFunction (pageName, entryDom) {
   // ozzx-name处理
@@ -97,21 +109,19 @@ function runPageFunction (pageName, entryDom) {
 
   // 判断页面是否有自己的方法
   var newPageFunction = window.ozzx.script[pageName]
-  // 如果有方法,则运行它
-  if (newPageFunction) {
-    // 注入运行环境
-    newPageFunction.created.apply(Object.assign(newPageFunction, {
-      $el: entryDom,
-      activePage: window.ozzx.activePage,
-      domList: window.ozzx.domList
-    }))
-  }
+  if (!newPageFunction) return
+  // 注入运行环境
+  newPageFunction.created.apply(assign(newPageFunction, {
+    $el: entryDom,
+    activePage: window.ozzx.activePage,
+    domList: window.ozzx.domList
+  }))
   // 判断页面是否有下属模板,如果有运行所有模板的初始化方法
   for (var key in newPageFunction.template) {
     var templateScript = newPageFunction.template[key]
     if (templateScript.created) {
       // 为模板注入运行环境
-      templateScript.created.apply(Object.assign(newPageFunction.template[key], {
+      templateScript.created.apply(assign(newPageFunction.template[key], {
         $el: entryDom,
         activePage: window.ozzx.activePage,
         domList: window.ozzx.domList

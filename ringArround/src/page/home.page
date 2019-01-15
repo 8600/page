@@ -1,0 +1,68 @@
+<template>
+  <div class="ring-arround">
+    <div class="people-box">
+    <div class="head">
+      <img src="./image/people1.png"/>
+      <div class="people-info">观点观点观点观点观点观点</div>
+    </div>
+    <div class="identity">中国建筑材料
+      <br>集团有限公司
+      <br>董事长
+      <br>宋志平
+    </div>
+  </div>
+</template>
+
+<style>
+  .ring-arround {
+    width: 500px;
+    height: 500px;
+    background-image: url('./image/ring.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    /* 居中 */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  .people-box {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+  }
+  .head {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+  }
+  .people-box img {
+    width: 150px;
+    height: 150px;
+  }
+  .people-info {
+    position: absolute;
+    top: -100%;
+    color: white;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    background-color: #2469c5;
+    border-radius: 50%;
+    padding: 30px;
+  }
+  .identity {
+    position: absolute;
+    top: 30px;
+    width: 200px;
+    text-align: center;
+    color: #0752ae;
+  }
+  .people-box:hover .people-info {
+    top: 0;
+  }
+</style>
