@@ -1,0 +1,137 @@
+<template>
+  <div @name="peopleWall" class="photo-wall">
+    <div v-for="(value, key) in peopleList" class="people-box">
+      <div class="head">
+        <img src="{{value.image}}"/>
+        <div class="people-info">{{value.viewpoint}}</div>
+      </div>
+      <div class="identity">{{value.identity}}</div>
+    </div>
+    <div class="central-text">标题文字</div>
+  </div>
+</template>
+
+<script>
+  export default {
+    created: function () {
+      // 圆环半径
+      const r = 400
+      // 环绕块数量
+      const num = 10
+      // 介绍文字与头像的间距
+      const padding = 120
+      // 获取容器元素
+      const peopleWall = this.domList.peopleWall
+      // 环绕块列表
+      const boxList = this.domList.peopleWall.getElementsByClassName('people-box')
+      // 获取容器大小
+      const wallWidth = peopleWall.offsetWidth
+      const wallHeight = peopleWall.offsetHeight
+      // console.log(this.domList)
+      let angle = 0
+      for (let index = 0; index < boxList.length; index ++) {
+        
+        const element = boxList[index]
+        // 元素的宽高
+        const elementWidth = element.offsetWidth
+        const elementHeight = element.offsetHeight
+        // 计算出元素合适的坐标
+        const x = (wallHeight - elementHeight) / 2 + r * Math.cos(angle * Math.PI / 180)
+        const y = (wallWidth - elementWidth) / 2 + r * Math.sin(angle * Math.PI / 180)
+        // console.log(element, x, y)
+        boxList[index].style.left = x + 'px'
+        boxList[index].style.top = y + 'px'
+
+        // 计算文字介绍坐标
+        const identityList = boxList[index].getElementsByClassName('identity')
+        for (let index = 0; index < identityList.length; index ++) {
+          const element = identityList[index]
+          // console.log(element)
+          if (x > (wallHeight - elementHeight) / 2) {
+            element.style.left = `${padding}px`
+          } else {
+            element.style.right = `${padding}px`
+          }
+        }
+        // 铺满圆的一周
+        angle += 360 / num
+      }
+    },
+    data: {
+      peopleList: [
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平'},
+        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平'},
+      ]
+    }
+  }
+</script>
+
+<style lang="less">
+  .photo-wall {
+    position: relative;
+    width: 800px;
+    height: 800px;
+    margin: 200px auto;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url('./image/ring.svg');
+  }
+  .central-text {
+    font-size: 48px;
+    width: 250px;
+    height: 50px;
+    line-height: 50px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    color: white;
+  }
+  .people-box {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+  }
+  .head {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+  }
+  .people-box img {
+    width: 150px;
+    height: 150px;
+  }
+  .people-info {
+    position: absolute;
+    top: -100%;
+    color: white;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    background-color: #2469c5;
+    border-radius: 50%;
+    padding: 30px;
+  }
+  .identity {
+    position: absolute;
+    top: 30px;
+    width: 200px;
+    text-align: center;
+    color: #0752ae;
+  }
+  .people-box:hover .people-info {
+    top: 0;
+  }
+</style>

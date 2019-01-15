@@ -10,17 +10,7 @@
     </div>
     <temple name="rightBar"></temple>
     <div class="body-box">
-      <div class="photo-wall">
-        <img src="./image/ring.svg"/>
-        <div v-for="(value, key) in peopleList" style="transform: {{value.transform}} ;" class="people-box people-{{key}}">
-          <div class="head">
-            <img src="{{value.image}}"/>
-            <div class="people-info">{{value.viewpoint}}</div>
-          </div>
-          <div class="identity" style="{{value.identityStyle}}">{{value.identity}}</div>
-        </div>
-        <div class="central-text">标题文字</div>
-      </div>
+      <temple name="ring"></temple>
       <!-- 点评 -->
       <div class="title-bar">标题文字</div>
       <div class="speak-box" v-for="value in speakBox" >
@@ -84,18 +74,6 @@
     data: {
       swiper: 1,
       swiper2: 1,
-      peopleList: [
-        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(-395px, 0)', identityStyle: 'left: -160px;top: 30px;'},
-        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(-345px, -219px)', identityStyle: 'left: -160px;top: 30px;'},
-        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(-140px, -378px)', identityStyle: 'left: -160px;top: 30px;'},
-        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(140px, -378px)', identityStyle: 'left: 160px;top: 30px;'},
-        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(345px, -219px)', identityStyle: 'left: 160px;top: 30px;'},
-        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(395px, 0)', identityStyle: 'left: 160px;top: 30px;'},
-        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(345px, 219px)', identityStyle: 'left: 160px;top: 30px;'},
-        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(-140px, 378px)', identityStyle: 'left: -160px;top: 30px;'},
-        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(140px, 378px)', identityStyle: 'left: 160px;top: 30px;'},
-        {image:'./image/people1.png', viewpoint: '观点观点观点观点观点观点',identity:'中国建筑材料 <br>集团有限公司 <br>董事长 <br>宋志平', transform: 'translate(-345px, 219px)', identityStyle: 'left: -160px;top: 30px;'},
-      ],
       speakBox: [
         {image: './image/people-big.png', title: '陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛', text: '      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。'},
         {image: './image/people-big.png', title: '陈坛根讲述龙泉青瓷陈坛根讲述龙泉青瓷陈坛', text: '      我国将出现今冬以来范围最广、持续时间最长、影响最为严重的低温雨雪冰冻天气过程其中陕西河南安徽江等6省部分地区有暴雪，局部大暴雪，局地积雪可达40厘米以上 同时23-26日，中东部中央气黄色预警我国将出部大部气温普遍下降6-8℃中央气象台2中央气象台中央气象台中央气象台中央气象台中央气象台中央气象台中央气日06时发布暴雪黄色预警。'},
@@ -183,70 +161,7 @@
     margin: 0 auto;
     position: relative;
   }
-  .photo-wall {
-    position: relative;
-    padding: 100px;
-    margin-top: 100px;
-    img {
-      width: 100%;
-    }
-    .central-text {
-      font-size: 48px;
-      width: 250px;
-      height: 50px;
-      line-height: 50px;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      margin: auto;
-      text-align: center;
-      color: white;
-    }
-  }
-  .people-box {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    .head {
-      width: 150px;
-      height: 150px;
-      overflow: hidden;
-      position: relative;
-    }
-    img {
-      width: 150px;
-      height: 150px;
-    }
-    .people-info {
-      position: absolute;
-      top: -100%;
-      color: white;
-      width: 90px;
-      height: 90px;
-      cursor: pointer;
-      background-color: #2469c5;
-      border-radius: 50%;
-      padding: 30px;
-    }
-    .identity {
-      position: absolute;
-      left: 160px;
-      top: 30px;
-      width: 200px;
-      text-align: center;
-      color: #0752ae;
-    }
-  }
-  .people-box:hover .people-info {
-    top: 0;
-  }
+
   .title-bar {
     background-position: center;
     background-repeat: no-repeat;
@@ -269,7 +184,7 @@
       width: 660px;
     }
     h1 {
-      font-size: 34px;
+      font-size: 32px;
       color: #333333;
       font-weight: bold;
       width: 660px;

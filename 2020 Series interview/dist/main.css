@@ -39,6 +39,71 @@ a{text-decoration:none}
 .ox-home .right-bar .to-top {
   background-position: 24px;
   background-image: url(./image/to-top.png);
+}.ox-home .photo-wall {
+  position: relative;
+  width: 800px;
+  height: 800px;
+  margin: 200px auto;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-image: url('./image/ring.svg');
+}
+
+.ox-home .central-text {
+  font-size: 48px;
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  color: white;
+}
+
+.ox-home .people-box {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+}
+
+.ox-home .head {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ox-home .people-box img {
+  width: 150px;
+  height: 150px;
+}
+
+.ox-home .people-info {
+  position: absolute;
+  top: -100%;
+  color: white;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  background-color: #2469c5;
+  border-radius: 50%;
+  padding: 30px;
+}
+
+.ox-home .identity {
+  position: absolute;
+  top: 30px;
+  width: 200px;
+  text-align: center;
+  color: #0752ae;
+}
+
+.ox-home .people-box:hover .people-info {
+  top: 0;
 }.ox-home .video-box {
   margin: 5px;
 }
@@ -114,79 +179,6 @@ a{text-decoration:none}
   position: relative;
 }
 
-.ox-home .photo-wall {
-  position: relative;
-  padding: 100px;
-  margin-top: 100px;
-}
-
-.ox-home .photo-wall img {
-  width: 100%;
-}
-
-.ox-home .photo-wall .central-text {
-  font-size: 48px;
-  width: 250px;
-  height: 50px;
-  line-height: 50px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  text-align: center;
-  color: white;
-}
-
-.ox-home .people-box {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-.ox-home .people-box .head {
-  width: 150px;
-  height: 150px;
-  overflow: hidden;
-  position: relative;
-}
-
-.ox-home .people-box img {
-  width: 150px;
-  height: 150px;
-}
-
-.ox-home .people-box .people-info {
-  position: absolute;
-  top: -100%;
-  color: white;
-  width: 90px;
-  height: 90px;
-  cursor: pointer;
-  background-color: #2469c5;
-  border-radius: 50%;
-  padding: 30px;
-}
-
-.ox-home .people-box .identity {
-  position: absolute;
-  left: 160px;
-  top: 30px;
-  width: 200px;
-  text-align: center;
-  color: #0752ae;
-}
-
-.ox-home .people-box:hover .people-info {
-  top: 0;
-}
-
 .ox-home .title-bar {
   background-position: center;
   background-repeat: no-repeat;
@@ -213,7 +205,7 @@ a{text-decoration:none}
 }
 
 .ox-home .speak-box h1 {
-  font-size: 34px;
+  font-size: 32px;
   color: #333333;
   font-weight: bold;
   width: 660px;
