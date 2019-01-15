@@ -12,14 +12,31 @@
     <div class="swiper-container banner-box" id="banner">
       <div class="swiper-wrapper">
         <div class="tab-content swiper-slide" v-for="value in 7">
-          <img class="main-img" src="./image/2.png"/>
+          <div class="swiper-container main-img-box">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img class="main-img" src="./image/2.png"/>
+                <div class="title-bar">我是标题标题1</div>
+              </div>
+              <div class="swiper-slide">
+                <img class="main-img" src="./image/2.png"/>
+                <div class="title-bar">我是标题标题2</div>
+              </div>
+              <div class="swiper-slide">
+                <img class="main-img" src="./image/2.png"/>
+                <div class="title-bar">我是标题标题3</div>
+              </div>
+            </div>
+            
+            <div class="pagination" id="main-img-pagination-{{value}}"></div>
+          </div>
           <!-- 评委列表滑块 -->
-          <div class="swiper-container judges-swiper-box" id="judges-swiper-box-{{value}}">
+          <div class="swiper-container judges-swiper-box">
             <div class="judges-box swiper-wrapper">
               <div class="judges-card swiper-slide">
                 <img src="./image/3.jpg"/>
-                <p>嘉宾评委</p>
-                <p>韩东君</p>
+                <p>CHOCO启蔻婚礼创始人，资深婚礼人。</p>
+                <p>韩东君韩东君韩东君韩东君</p>
               </div>
               <div class="judges-card swiper-slide">
                 <img src="./image/3.jpg"/>
@@ -36,7 +53,11 @@
                 <p>嘉宾评委</p>
                 <p>韩东君</p>
               </div>
-              <div class="clear"></div>
+              <div class="judges-card swiper-slide">
+                <img src="./image/3.jpg"/>
+                <p>嘉宾评委</p>
+                <p>韩东君</p>
+              </div>
             </div>
           </div>
         </div>
@@ -56,9 +77,25 @@
       this.data.swiper2 = new Swiper('#banner', {
         simulateTouch: false
       })
-      for (let i = 0; i < 7; i++) {
-        this.data.swiper3 = new Swiper(`#judges-swiper-box-${i}`, {
+      const judgesList = document.getElementsByClassName('judges-swiper-box')
+      for (let index = 0; index < judgesList.length; index++) {
+        judgesList[index].setAttribute("id",`judges-swiper-box-${index}`)
+      }
+
+      const mainImg = document.getElementsByClassName('main-img-box')
+      for (let index = 0; index < mainImg.length; index++) {
+        console.log(mainImg[index])
+        mainImg[index].setAttribute("id", `main-img-box-${index}`)
+      }
+      for (let i = 0; i < mainImg.length; i++) {
+        new Swiper(`#judges-swiper-box-${i}`, {
+          autoplay: 3000,
+          loop: true,
           slidesPerView: 3
+        })
+        new Swiper(`#main-img-box-${i}`, {
+          loop: true,
+          pagination : `#main-img-pagination-${i}`
         })
       }
       
@@ -100,20 +137,14 @@
   .active {
     background-color: #c71a16;
   }
-  .tab-content .main-img {
+  .tab-content .main-img-box {
     margin: 0 auto;
     width: 800px;
     height: 400px;
     display: block;
     margin-top: 40px;
   }
-  // 第一个元素不需要加边框
-  // .judges-box:nth-child(1) {
-  //   border-left: none;
-  // }
-  // .judges-card {
-  //   border-left: 1px solid #e9e2dc;
-  // }
+
   .judges-card img {
     width: 150px;
     height: 150px;
@@ -126,7 +157,10 @@
     margin: 0;
     text-align: center;
     line-height: 30px;
-    font-weight: bold;
+    font-size: 14px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
   }
   .banner-box {
     height: 760px;
@@ -134,5 +168,39 @@
   .judges-swiper-box {
     width: 800px;
     height: 300px;
+  }
+  .pagination {
+    position: absolute;
+    z-index: 20;
+    bottom: 5px;
+    right: 5px;
+    width: 100%;
+    text-align: right;
+  }
+  .swiper-pagination-switch {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background: #555;
+    margin: 0 3px;
+    opacity: 0.8;
+    border: 1px solid #fff;
+    cursor: pointer;
+  }
+  .swiper-active-switch {
+    background: #009fe9;
+  }
+  .title-bar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 25px;
+    text-align: left;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 0 10px;
+    font-size: 12px;
+    line-height: 25px;
   }
 </style>

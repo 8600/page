@@ -104,6 +104,44 @@ a{text-decoration:none}
 
 .ox-home .clear {
   clear: both;
+}
+
+.ox-home .pagination {
+  position: absolute;
+  z-index: 20;
+  bottom: 5px;
+  right: 5px;
+  width: 100%;
+  text-align: right;
+}
+
+.ox-home .swiper-pagination-switch {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: #555;
+  margin: 0 3px;
+  opacity: 0.8;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.ox-home .swiper-active-switch {
+  background: #009fe9;
+}
+
+.ox-home .slide-title-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 25px;
+  text-align: left;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 25px;
 }.ox-home .clear {
   clear: both;
 }
@@ -132,7 +170,7 @@ a{text-decoration:none}
   background-color: #c71a16;
 }
 
-.ox-home .tab-content .main-img {
+.ox-home .tab-content .main-img-box {
   margin: 0 auto;
   width: 800px;
   height: 400px;
@@ -153,7 +191,10 @@ a{text-decoration:none}
   margin: 0;
   text-align: center;
   line-height: 30px;
-  font-weight: bold;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ox-home .banner-box {
@@ -163,6 +204,44 @@ a{text-decoration:none}
 .ox-home .judges-swiper-box {
   width: 800px;
   height: 300px;
+}
+
+.ox-home .pagination {
+  position: absolute;
+  z-index: 20;
+  bottom: 5px;
+  right: 5px;
+  width: 100%;
+  text-align: right;
+}
+
+.ox-home .swiper-pagination-switch {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: #555;
+  margin: 0 3px;
+  opacity: 0.8;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.ox-home .swiper-active-switch {
+  background: #009fe9;
+}
+
+.ox-home .title-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 25px;
+  text-align: left;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 25px;
 }.ox-home .copyright-box {
   height: 170px;
   color: black;
