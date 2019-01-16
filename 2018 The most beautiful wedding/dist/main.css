@@ -9,7 +9,9 @@ body, html, .ox-home {
 .clear {
   clear: both;
 }
-
+.swiper-slide a{
+  display: block;
+}
 a{text-decoration:none}
 
 .ox-home .main-box {
@@ -242,6 +244,10 @@ a{text-decoration:none}
   padding: 0 10px;
   font-size: 12px;
   line-height: 25px;
+}
+
+.ox-home .swiper-slide {
+  display: block;
 }.ox-home .copyright-box {
   height: 170px;
   color: black;
@@ -288,6 +294,10 @@ a{text-decoration:none}
   margin: 0 10px;
 }
 
+.ox-home .card {
+  display: block;
+}
+
 .ox-home .card img {
   width: 100%;
   height: 140px;
@@ -295,6 +305,7 @@ a{text-decoration:none}
 }
 
 .ox-home .card .image-title {
+  color: black;
   line-height: 50px;
   text-align: center;
   overflow: hidden;

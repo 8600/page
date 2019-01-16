@@ -3,16 +3,22 @@
     <div class="swiper-container left" id="information-img-box">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="./image/1.jpg"/>
-          <div class="slide-title-bar">我是标题标题1</div>
+          <a href="#">
+            <img src="./image/1.jpg"/>
+            <div class="slide-title-bar">我是标题标题1</div>
+          </a>
         </div>
         <div class="swiper-slide">
-          <img src="./image/1.jpg"/>
-          <div class="slide-title-bar">我是标题标题2</div>
+          <a href="#">
+            <img src="./image/1.jpg"/>
+            <div class="slide-title-bar">我是标题标题1</div>
+          </a>
         </div>
         <div class="swiper-slide">
-          <img src="./image/1.jpg"/>
-          <div class="slide-title-bar">我是标题标题3</div>
+          <a href="#">
+            <img src="./image/1.jpg"/>
+            <div class="slide-title-bar">我是标题标题1</div>
+          </a>
         </div>
       </div>
       <div class="pagination" id="information-pagination"></div>
@@ -38,8 +44,8 @@
 <script>
   export default {
     created: function () {
-      console.log('sdsd')
       new Swiper('#information-img-box', {
+        paginationClickable: true,
         pagination : `#information-pagination`
       })
     }

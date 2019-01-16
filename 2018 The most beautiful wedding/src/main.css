@@ -9,5 +9,7 @@ body, html, .ox-home {
 .clear {
   clear: both;
 }
-
+.swiper-slide a{
+  display: block;
+}
 a{text-decoration:none}

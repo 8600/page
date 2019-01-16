@@ -149,7 +149,7 @@
     width: 585px;
     font-size: 18px;
     margin: auto;
-    top: 630px;
+    top: 890px;
     line-height: 30px;
     color: #0e346e;
     .prominent {
@@ -157,6 +157,7 @@
     }
   }
   .body-box {
+    padding-top: 250px;
     width: 1000px;
     margin: 0 auto;
     position: relative;

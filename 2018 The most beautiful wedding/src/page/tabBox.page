@@ -15,16 +15,22 @@
           <div class="swiper-container main-img-box">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <img class="main-img" src="./image/2.png"/>
-                <div class="title-bar">我是标题标题1</div>
+                <a href="#">
+                  <img class="main-img" src="./image/2.png"/>
+                  <div class="title-bar">我是标题标题1</div>
+                </a>
               </div>
               <div class="swiper-slide">
-                <img class="main-img" src="./image/2.png"/>
-                <div class="title-bar">我是标题标题2</div>
+                <a href="#">
+                  <img class="main-img" src="./image/2.png"/>
+                  <div class="title-bar">我是标题标题2</div>
+                </a>
               </div>
               <div class="swiper-slide">
-                <img class="main-img" src="./image/2.png"/>
-                <div class="title-bar">我是标题标题3</div>
+                <a href="#">
+                  <img class="main-img" src="./image/2.png"/>
+                  <div class="title-bar">我是标题标题3</div>
+                </a>
               </div>
             </div>
             
@@ -33,31 +39,31 @@
           <!-- 评委列表滑块 -->
           <div class="swiper-container judges-swiper-box">
             <div class="judges-box swiper-wrapper">
-              <div class="judges-card swiper-slide">
+              <a href="#" class="judges-card swiper-slide">
                 <img src="./image/3.jpg"/>
                 <p>CHOCO启蔻婚礼创始人，资深婚礼人。</p>
                 <p>韩东君韩东君韩东君韩东君</p>
-              </div>
-              <div class="judges-card swiper-slide">
+              </a>
+              <a href="#" class="judges-card swiper-slide">
                 <img src="./image/3.jpg"/>
                 <p>嘉宾评委</p>
                 <p>韩东君</p>
-              </div>
-              <div class="judges-card swiper-slide">
+              </a>
+              <a href="#" class="judges-card swiper-slide">
                 <img src="./image/3.jpg"/>
                 <p>嘉宾评委</p>
                 <p>韩东君</p>
-              </div>
-              <div class="judges-card swiper-slide">
+              </a>
+              <a href="#" class="judges-card swiper-slide">
                 <img src="./image/3.jpg"/>
                 <p>嘉宾评委</p>
                 <p>韩东君</p>
-              </div>
-              <div class="judges-card swiper-slide">
+              </a>
+              <a href="#" class="judges-card swiper-slide">
                 <img src="./image/3.jpg"/>
                 <p>嘉宾评委</p>
                 <p>韩东君</p>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -95,6 +101,7 @@
         })
         new Swiper(`#main-img-box-${i}`, {
           loop: true,
+          paginationClickable: true,
           pagination : `#main-img-pagination-${i}`
         })
       }
@@ -202,5 +209,8 @@
     padding: 0 10px;
     font-size: 12px;
     line-height: 25px;
+  }
+  .swiper-slide {
+    display: block;
   }
 </style>

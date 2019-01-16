@@ -11,8 +11,10 @@
           <div class="swiper-wrapper">
             <div class="swiper-slide card" v-for="value in swiperList1">
               <div class="swiper-item" >
-                <img src="{{value.image}}"/>
-                <div class="image-title">{{value.title}}</div>
+                <a href="#">
+                  <img src="{{value.image}}"/>
+                  <div class="image-title">{{value.title}}</div>
+                </a>
               </div>
             </div>
           </div>
@@ -85,12 +87,14 @@
     }
   }
   .card {
+    display: block;
     img {
       width: 100%;
       height: 140px;
       display: block;
     }
     .image-title {
+      color: black;
       line-height: 50px;
       text-align: center;
       overflow: hidden;
