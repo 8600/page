@@ -60,8 +60,10 @@ function pgNameHandler (dom) {
     var clickFunc = tempDom.attributes['@click']
     
     if (clickFunc) {
+      console.log(dom.children)
       tempDom.onclick = function() {
         var clickFor = this.attributes['@click'].textContent
+        console.log(i)
         // 判断页面是否有自己的方法
         var newPageFunction = window.ozzx.script[window.ozzx.activePage]
         

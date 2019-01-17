@@ -2,8 +2,10 @@
   <!-- 视频播放 -->
   <div class="video-box">
     <div class="card" v-for="value in 12">
-      <img src="./image/people-big.png"/>
-      <p>标题文字 标题文字 标题文字 标题文字</p>
+      <a href="#">
+        <img src="./image/people-big.png"/>
+        <p>标题文字 标题文字 标题文字 标题文字</p>
+      </a>
     </div>
     <div class="clear"></div>
   </div>
@@ -33,6 +35,10 @@
       padding: 10px;
       width: 310px;
       float: left;
+      a {
+        display: block;
+        color: black;
+      }
     }
   }
 </style>

@@ -2,7 +2,7 @@
   <!-- 右侧信息条 -->
   <div class="right-bar">
     <img src="./image/QR.png" class="right-bar-item QR"/>
-    <div class="right-bar-item home"></div>
+    <a href="#" class="right-bar-item home"></a>
     <div class="right-bar-item to-top" @click="toTop"></div>
   </div>
 </template>
@@ -42,6 +42,7 @@
       display: block;
     }
     .home {
+      display: block;
       background-position: 20px;
       background-image: url(./image/home.png);
     }

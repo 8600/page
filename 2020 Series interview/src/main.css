@@ -8,5 +8,8 @@ body, html, .ox-home {
 .clear {
   clear: both;
 }
-
+.swiper-box a {
+  display: block;
+  color: black;
+}
 a{text-decoration:none}

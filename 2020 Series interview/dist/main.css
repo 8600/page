@@ -8,7 +8,10 @@ body, html, .ox-home {
 .clear {
   clear: both;
 }
-
+.swiper-box a {
+  display: block;
+  color: black;
+}
 a{text-decoration:none}
 
 .ox-home .right-bar {
@@ -32,6 +35,7 @@ a{text-decoration:none}
 }
 
 .ox-home .right-bar .home {
+  display: block;
   background-position: 20px;
   background-image: url(./image/home.png);
 }
@@ -112,6 +116,11 @@ a{text-decoration:none}
   padding: 10px;
   width: 310px;
   float: left;
+}
+
+.ox-home .video-box .card a {
+  display: block;
+  color: black;
 }.ox-home .copyright-box {
   height: 170px;
   color: #727272;
