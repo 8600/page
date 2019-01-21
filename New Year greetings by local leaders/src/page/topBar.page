@@ -7,13 +7,14 @@
 <script>
   export default {
     created: function () {
+      console.log(this)
       const myDate = new Date()
       let hours = myDate.getHours()
       let minutes = myDate.getMinutes()
       if (hours < 10) hours = '0' + hours
       if (minutes < 10) minutes = '0' + minutes
       // console.log(hours, minutes)
-      document.getElementsByClassName('top-bar')[0].innerText = hours + ':' + minutes
+      this.$el.innerText = hours + ':' + minutes
     }
   }
 </script>

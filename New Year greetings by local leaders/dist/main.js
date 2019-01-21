@@ -25,6 +25,8 @@ function runPageFunction (pageName, entryDom) {
     // 注入运行环境
     newPageFunction.created.apply(assign(newPageFunction, {
       $el: entryDom,
+      data: newPageFunction.data,
+      methods: newPageFunction.methods,
       activePage: window.ozzx.activePage,
       domList: window.ozzx.domList
     }))
@@ -34,9 +36,18 @@ function runPageFunction (pageName, entryDom) {
   for (var key in newPageFunction.template) {
     var templateScript = newPageFunction.template[key]
     if (templateScript.created) {
+      // 获取到当前配置页的DOM
+      // 待修复,临时获取方式,这种方式获取到的dom不准确
+      var domList = entryDom.getElementsByClassName('ox-' + key)
+      if (domList.length !== 1){
+        console.error('我就说会有问题吧!')
+        console.log(domList)
+      }
       // 为模板注入运行环境
       templateScript.created.apply(assign(newPageFunction.template[key], {
-        $el: entryDom,
+        $el: domList[0].children[0],
+        data: templateScript.data,
+        methods: templateScript.methods,
         activePage: window.ozzx.activePage,
         domList: window.ozzx.domList
       }))
@@ -239,5 +250,5 @@ function switchPage (oldUrlParam, newUrlParam) {
         script: {}
       };
       var globalConfig = {"root":"/src","entry":"voice","headFolder":"head","outFolder":"dist","autoPack":true,"minifyCss":false,"minifyJs":false,"pageFolder":"page","isOnePage":false};
-      window.ozzx.script = {"voice":{"template":{"topBar":{"created":function created(){var myDate=new Date();var hours=myDate.getHours();var minutes=myDate.getMinutes();if(hours<10)hours='0'+hours;if(minutes<10)minutes='0'+minutes;document.getElementsByClassName('top-bar')[0].innerText=hours+':'+minutes;}}}},"voiceConnect":{"template":{"topBar":{"created":function created(){var myDate=new Date();var hours=myDate.getHours();var minutes=myDate.getMinutes();if(hours<10)hours='0'+hours;if(minutes<10)minutes='0'+minutes;document.getElementsByClassName('top-bar')[0].innerText=hours+':'+minutes;}}}}}
+      window.ozzx.script = {"voice":{"template":{"topBar":{"created":function created(){console.log(this);var myDate=new Date();var hours=myDate.getHours();var minutes=myDate.getMinutes();if(hours<10)hours='0'+hours;if(minutes<10)minutes='0'+minutes;this.$el.innerText=hours+':'+minutes;}}}},"voiceConnect":{"template":{"topBar":{"created":function created(){console.log(this);var myDate=new Date();var hours=myDate.getHours();var minutes=myDate.getMinutes();if(hours<10)hours='0'+hours;if(minutes<10)minutes='0'+minutes;this.$el.innerText=hours+':'+minutes;}}}}}
     
