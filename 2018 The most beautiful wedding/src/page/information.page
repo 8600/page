@@ -2,39 +2,19 @@
   <div class="information-box">
     <div class="swiper-container left" id="information-img-box">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
+        <div class="swiper-slide" v-for="item in swiperList">
           <a href="#">
-            <img src="./image/1.jpg"/>
-            <div class="slide-title-bar">我是标题标题1</div>
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="#">
-            <img src="./image/1.jpg"/>
-            <div class="slide-title-bar">我是标题标题1</div>
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="#">
-            <img src="./image/1.jpg"/>
-            <div class="slide-title-bar">我是标题标题1</div>
+            <img src="{{item.url}}"/>
+            <div class="slide-title-bar">{{item.text}}</div>
           </a>
         </div>
       </div>
       <div class="pagination" id="information-pagination"></div>
     </div>
     <div class="right">
-      <div class="info-card">
-        <h3>实名制，让建筑工人更安心</h3>
-        <h>春节将至，劳碌一年的农民工们能否按时拿到工资？请看记者调查。［<a href="#">阅读</a>］</h>
-      </div>
-      <div class="info-card">
-        <h3>用改革思维解读报业停刊现象</h3>
-        <h>随着新兴媒体的发展，媒体融合的深入，都市报和行业报停刊停办也是正常的过程。［<a href="#">阅读</a>］</h>
-      </div>
-      <div class="info-card">
-        <h3>2018人民日报人民网上的内蒙古</h3>
-        <h>期待你的好照片"名单揭晓为了展现人民日报改版之后新的版面变化和特点，评委们特别推荐了一组版面。［<a href="#">阅读</a>］</h>
+      <div class="info-card" v-for="item in infoList">
+        <h3>{{item.title}}</h3>
+        <h>{{item.text}}</h>
       </div>
     </div>
     <div class="clear"></div>
@@ -43,6 +23,18 @@
 
 <script>
   export default {
+    data: {
+      swiperList: [
+        {"url":"./image/1.jpg","text":"我是标题标题1"},
+        {"url":"./image/1.jpg","text":"我是标题标题1"},
+        {"url":"./image/1.jpg","text":"我是标题标题1"}
+      ],
+      infoList: [
+        {"title":"实名制，让建筑工人更安心","text":"春节将至，劳碌一年的农民工们能否按时拿到工资？请看记者调查。［<a href='#'>阅读</a>］"},
+        {"title":"用改革思维解读报业停刊现象","text":"随着新兴媒体的发展，媒体融合的深入，都市报和行业报停刊停办也是正常的过程。［<a href='#'>阅读</a>］"},
+        {"title":"2018人民日报人民网上的内蒙古","text":"期待你的好照片 名单揭晓为了展现人民日报改版之后新的版面变化和特点，评委们特别推荐了一组版面。［<a href='#'>阅读</a>］"},
+      ]
+    },
     created: function () {
       new Swiper('#information-img-box', {
         paginationClickable: true,
@@ -76,11 +68,11 @@
     border-bottom: 1px solid #e0c9d1;
     padding-bottom: 20px;
     line-height: 25px;
-    h3 {
-      margin: 10px 0;
-    }
+    
   }
-  // 最后一个元素不需要加边框
+  .info-card h3 {
+    margin: 10px 0;
+  }
   .info-card:nth-last-child(1) {
     border-bottom: none;
   }
