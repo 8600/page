@@ -248,6 +248,36 @@ a{text-decoration:none}
 
 .ox-home .swiper-slide {
   display: block;
+}.ox-home .swiper-box .swiper-container {
+  width: 920px;
+  height: 190px;
+  margin: 15px 40px;
+}
+
+.ox-home .swiper-box .swiper-container .swiper-item {
+  margin: 0 10px;
+}
+
+.ox-home .swiper-box {
+  position: relative;
+}
+
+.ox-home .swiper-box .swiper-button {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  bottom: 50px;
+  margin: auto;
+  cursor: pointer;
+}
+
+.ox-home .swiper-box .swiper-button-next {
+  right: 10px;
+}
+
+.ox-home .swiper-box .swiper-button-prev {
+  left: 10px;
 }.ox-home .copyright-box {
   height: 170px;
   color: black;
@@ -284,16 +314,6 @@ a{text-decoration:none}
   color: white;
 }
 
-.ox-home .swiper-box .swiper-container {
-  width: 920px;
-  height: 190px;
-  margin: 15px 40px;
-}
-
-.ox-home .swiper-box .swiper-container .swiper-item {
-  margin: 0 10px;
-}
-
 .ox-home .card {
   display: block;
 }
@@ -311,28 +331,6 @@ a{text-decoration:none}
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.ox-home .swiper-box {
-  position: relative;
-}
-
-.ox-home .swiper-box .swiper-button {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: 0;
-  bottom: 50px;
-  margin: auto;
-  cursor: pointer;
-}
-
-.ox-home .swiper-box .swiper-button-next {
-  right: 10px;
-}
-
-.ox-home .swiper-box .swiper-button-prev {
-  left: 10px;
 }/* animation sets */
 
 /* move from / to  */

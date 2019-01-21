@@ -6,59 +6,12 @@
       <temple name="information"></temple>
       <temple name="tabBox"></temple>
       <div class="video-bar">视频专区</div>
-      <div class="swiper-box">
-        <div class="swiper-container" id="auto-swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide card" v-for="value in swiperList1">
-              <div class="swiper-item" >
-                <a href="#">
-                  <img src="{{value.image}}"/>
-                  <div class="image-title">{{value.title}}</div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <img src="./image/right.svg" class="swiper-button swiper-button-next" @click="swiperNext"/>
-        <img src="./image/left.svg" class="swiper-button swiper-button-prev" @click="swiperPrev"/>
-      </div>
+      <temple name="switch"></temple>
     </div>
     <temple name="copyright"></temple>
   </div>
 </template>
 
-<script>
-  export default {
-    created: function () {
-      this.data.swiper = new Swiper('#auto-swiper', {
-        autoplay: 3000,
-        slidesPerView: 4,
-        loop: true
-      })
-    },
-    data: {
-      swiper: 1,
-      swiperList1: [
-        {image: './image/4.png', title: '翻阅中外妙文，邂逅最美冬景'},
-        {image: './image/5.png', title: '翻阅中外妙文，邂逅最美冬景'},
-        {image: './image/6.png', title: '翻阅中外妙文，邂逅最美冬景'},
-        {image: './image/4.png', title: '翻阅中外妙文，邂逅最美冬景'},
-        {image: './image/5.png', title: '翻阅中外妙文，邂逅最美冬景'},
-        {image: './image/6.png', title: '翻阅中外妙文，邂逅最美冬景'}
-      ]
-    },
-    methods: {
-      swiperNext: function () {
-        console.log('swiperNext')
-        this.data.swiper.swipeNext()
-      },
-      swiperPrev: function () {
-        console.log('swiperPrev')
-        this.data.swiper.swipePrev()
-      }
-    }
-  }
-</script>
 
 <style lang="less">
   .content {
@@ -76,16 +29,6 @@
     line-height: 50px;
     color: white;
   }
-  .swiper-box {
-    .swiper-container {
-      width: 920px;
-      height: 190px;
-      margin: 15px 40px;
-      .swiper-item {
-        margin: 0 10px;
-      }
-    }
-  }
   .card {
     display: block;
     img {
@@ -102,22 +45,5 @@
       white-space: nowrap;
     }
   }
-  .swiper-box {
-    position: relative;
-    .swiper-button {
-      width: 30px;
-      height: 30px;
-      position: absolute;
-      top: 0;
-      bottom: 50px;
-      margin: auto;
-      cursor: pointer;
-    }
-    .swiper-button-next {
-      right: 10px;
-    }
-    .swiper-button-prev {
-      left: 10px;
-    }
-  }
+
 </style>
