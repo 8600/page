@@ -1,0 +1,32 @@
+<template>
+  <div class="top-bar">
+    
+  </div>
+</template>
+
+<script>
+  export default {
+    created: function () {
+      const myDate = new Date()
+      let hours = myDate.getHours()
+      let minutes = myDate.getMinutes()
+      if (hours < 10) hours = '0' + hours
+      if (minutes < 10) minutes = '0' + minutes
+      // console.log(hours, minutes)
+      document.getElementsByClassName('top-bar')[0].innerText = hours + ':' + minutes
+    }
+  }
+</script>
+
+<style lang="less">
+  .top-bar {
+    height: 35px;
+    margin: 0 10px;
+    background-repeat: no-repeat;
+    background-size: 80px;
+    line-height: 35px;
+    color: white;
+    background-position: right;
+    background-image: url(./images/top-icon.png);
+  }
+</style>
