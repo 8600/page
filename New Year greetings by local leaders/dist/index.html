@@ -32,43 +32,49 @@
     
   </div>
 </div>
-    <div class="people-box">
+    <div class="people-box" @name="audioPeopleBox">
       <div class="image-box">
         <img src="./images/people.jpg">
       </div>
       <p class="people-name">领导姓名</p>
       <p class="video-text">邀请你语音通话</p>
     </div>
-    <div class="answer-box">
+    <div class="answer-box" @name="answerBox" @click="answerSpeech">
       <div class="answer"></div>
       <p>接听</p>
     </div>
-    <div class="answer-connect-box">
-      <div class="answer-connect-item">
-        <img src="">
+    <!-- 语音状态 -->
+    <div class="speech-state-box" @name="speechStateBox">
+      <div class="state">已接通</div>
+      <p @name="talkTime">00:00</p>
+    </div>
+    <div class="hang-up-box" @name="hangUpBox">
+      <div class="hang-up-item" @click="sharePage">
+        <img src="./images/share.png">
+        <p>分享</p>
+      </div>
+      <div class="hang-up-item" @click="sharePage">
+        <img src="./images/hangUp.png">
+        <p>挂断</p>
+      </div>
+      <div class="hang-up-item" @click="like">
+        <img src="./images/handsFree.png">
+        <p>免提</p>
       </div>
     </div>
-    <div class="bottom-bar"></div>
+    <div class="bottom-bar" @name="bottomBar"></div>
   </div>
 </div>
-    <div class="ox-voiceConnect ox" id="ox-voiceConnect" style="display: none;"><div class="main-box">
-    <img class="back" src="./images/background.jpg">
-    <div class="ox-topBar"><div class="top-bar">
-    
-  </div>
-</div>
-    <div class="people-box">
-      <div class="image-box">
-        <img src="./images/people.jpg">
-      </div>
+    <div class="ox-share ox" id="ox-share" style="display: none;"><div class="share-box">
+    <div class="share">
+      <p class="share-text">点击右上角，分享祝福</p>
+      <img class="qr-code" src="./images/qr.jpg">
+      <p class="qr-text">扫二维码 关注公众号</p>
+      <div class="back" @click="returnPage">返回</div>
     </div>
-    <div class="answer-box">
-      <div class="answer"></div>
-      <p>接听</p>
-    </div>
-    <div class="bottom-bar"></div>
   </div>
 </div>
     <script src="./main.js" type="text/javascript"></script>
+    <script charset="utf-8" src="http://tools.people.com.cn/libs/jquery/3.0.0/jquery-3.0.0.min.js"></script>
   </body>
 </html>

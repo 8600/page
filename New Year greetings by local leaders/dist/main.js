@@ -189,6 +189,7 @@ function switchPage (oldUrlParam, newUrlParam) {
   var newPage = newUrlParam
   let newPagParamList = newPage.split('&')
   if (newPage) newPage = newPagParamList[0]
+  
   // 查找页面跳转前的page页(dom节点)
   // console.log(oldUrlParam)
   // 如果源地址获取不到 那么一般是因为源页面为首页
@@ -199,6 +200,7 @@ function switchPage (oldUrlParam, newUrlParam) {
   }
   var oldDom = document.getElementById('ox-' + oldPage)
   var newDom = document.getElementById('ox-' + newPage)
+  
   if (!newDom) {
     console.error('页面不存在!')
     return
@@ -223,22 +225,33 @@ function switchPage (oldUrlParam, newUrlParam) {
     animationOut.split(',').forEach(value => {
       newDom.classList.add('ox-page-' + value)
     })
-    oldDom.addEventListener("animationend", function() {
+    // 旧DOM执行函数
+    function oldDomFun () {
       // 隐藏掉旧的节点
       oldDom.style.display = 'none'
+      // console.log(oldDom)
       oldDom.style.position = ''
       // 清除临时设置的class
       animationIn.split(',').forEach(value => {
         oldDom.classList.remove('ox-page-' + value)
       })
-    })
-    newDom.addEventListener("animationend", function() {
+      // 移除监听
+      oldDom.removeEventListener('animationend', oldDomFun, false)
+    }
+
+    // 新DOM执行函数
+    function newDomFun () {
       // 清除临时设置的style
       newDom.style.position = ''
       animationOut.split(',').forEach(value => {
         newDom.classList.remove('ox-page-' + value)
       })
-    })
+      // 移除监听
+      newDom.removeEventListener('animationend', newDomFun, false)
+    }
+    oldDom.addEventListener("animationend", oldDomFun, false)
+    newDom.addEventListener("animationend", newDomFun, false)
+    
   } else {
     dispalyEffect(oldDom, newDom)
   }
@@ -250,5 +263,5 @@ function switchPage (oldUrlParam, newUrlParam) {
         script: {}
       };
       var globalConfig = {"root":"/src","entry":"voice","headFolder":"head","outFolder":"dist","autoPack":true,"minifyCss":false,"minifyJs":false,"pageFolder":"page","isOnePage":false};
-      window.ozzx.script = {"voice":{"template":{"topBar":{"created":function created(){console.log(this);var myDate=new Date();var hours=myDate.getHours();var minutes=myDate.getMinutes();if(hours<10)hours='0'+hours;if(minutes<10)minutes='0'+minutes;this.$el.innerText=hours+':'+minutes;}}}},"voiceConnect":{"template":{"topBar":{"created":function created(){console.log(this);var myDate=new Date();var hours=myDate.getHours();var minutes=myDate.getMinutes();if(hours<10)hours='0'+hours;if(minutes<10)minutes='0'+minutes;this.$el.innerText=hours+':'+minutes;}}}}}
+      window.ozzx.script = {"voice":{"data":{"talkTime":0,"clock":null},"created":function created(){if(this.data.clock!==null){clearInterval(this.data.clock);this.data.clock=null;}this.data.talkTime=0;this.domList.answerBox.style.display='';this.domList.hangUpBox.style.display='';this.domList.audioPeopleBox.style.display='';this.domList.bottomBar.style.display='';this.domList.speechStateBox.style.display='';},"methods":{"answerSpeech":function answerSpeech(){var _this=this;console.log(this);var talkTime=0;this.domList.answerBox.style.display='none';this.domList.hangUpBox.style.display='flex';this.domList.audioPeopleBox.style.display='none';this.domList.bottomBar.style.display='none';this.domList.speechStateBox.style.display='block';this.data.clock=setInterval(function(){_this.data.talkTime++;var minute=Math.floor(_this.data.talkTime/60);if(minute<10)minute='0'+minute;var second=_this.data.talkTime%60;if(second<10)second='0'+second;_this.domList.talkTime.innerText=minute+':'+second;},1000);},"sharePage":function sharePage(){window.location.href='#share&in=moveToTop&out=moveFromBottom';},"like":function like(){console.log('sd');var rand=Math.floor(Math.random()*100+1);var flows=["flowOne","flowTwo","flowThree"];var colors=["like-1","like-2","like-3","like-4","like-5","like-6"];var timing=(Math.random()*(5.3-1.0)+1.0).toFixed(1);$('<div class="particle part-'+rand+' '+colors[Math.floor(Math.random()*6)]+'" style="font-size:'+Math.floor(Math.random()*(40-22)+22)+'px;"><i class="glyphicon glyphicon-heart">&#xe640;</i></div>').appendTo('.ox-voice').css({animation:""+flows[Math.floor(Math.random()*3)]+" "+timing+"s linear"});$('.part-'+rand).show();setTimeout(function(){$('.part-'+rand).remove();},timing*1000-100);}},"template":{"topBar":{"created":function created(){console.log(this);var myDate=new Date();var hours=myDate.getHours();var minutes=myDate.getMinutes();if(hours<10)hours='0'+hours;if(minutes<10)minutes='0'+minutes;this.$el.innerText=hours+':'+minutes;}}}},"share":{"methods":{"returnPage":function returnPage(){window.location.href='#voice&in=moveToBottom&out=moveFromTop';}}}}
     

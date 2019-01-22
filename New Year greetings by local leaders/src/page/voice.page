@@ -2,26 +2,112 @@
   <div class="main-box">
     <img class="back" src="./images/background.jpg"/>
     <temple name="topBar"></temple>
-    <div class="people-box">
+    <div class="people-box" @name="audioPeopleBox">
       <div class="image-box">
         <img src="./images/people.jpg"/>
       </div>
       <p class="people-name">领导姓名</p>
       <p class="video-text">邀请你语音通话</p>
     </div>
-    <div class="answer-box">
+    <div class="answer-box" @name="answerBox" @click="answerSpeech">
       <div class="answer"></div>
       <p>接听</p>
     </div>
-    <div class="answer-connect-box">
-      <div class="answer-connect-item">
-        <img src=""/>
+    <!-- 语音状态 -->
+    <div class="speech-state-box" @name="speechStateBox">
+      <div class="state">已接通</div>
+      <p @name="talkTime">00:00</p>
+    </div>
+    <div class="hang-up-box" @name="hangUpBox">
+      <div class="hang-up-item" @click="sharePage">
+        <img src="./images/share.png"/>
+        <p>分享</p>
+      </div>
+      <div class="hang-up-item" @click="sharePage">
+        <img src="./images/hangUp.png"/>
+        <p>挂断</p>
+      </div>
+      <div class="hang-up-item" @click="like">
+        <img src="./images/handsFree.png"/>
+        <p>免提</p>
       </div>
     </div>
-    <div class="bottom-bar"></div>
+    <div class="bottom-bar" @name="bottomBar"></div>
   </div>
 </template>
 
+<script>
+  export default {
+    data: {
+      // 通话时长
+      talkTime: 0,
+      // 定时器
+      clock: null
+    },
+    created: function () {
+      // 初始化页面
+      if (this.data.clock !== null) {
+        clearInterval(this.data.clock)
+        this.data.clock = null
+      }
+      this.data.talkTime = 0
+      // 显示接听
+      this.domList.answerBox.style.display = ''
+      // 隐藏挂断选项条
+      this.domList.hangUpBox.style.display = ''
+      this.domList.audioPeopleBox.style.display = ''
+      // 显示底部条
+      this.domList.bottomBar.style.display = ''
+      // 隐藏通话时间
+      this.domList.speechStateBox.style.display = ''
+    },
+    methods: {
+      answerSpeech: function () {
+        console.log(this)
+        // 通话时长
+        let talkTime = 0
+        // 隐藏接听
+        this.domList.answerBox.style.display = 'none'
+        // 显示挂断选项条
+        this.domList.hangUpBox.style.display = 'flex'
+        this.domList.audioPeopleBox.style.display = 'none'
+        // 隐藏底部条
+        this.domList.bottomBar.style.display = 'none'
+        // 显示通话时间
+        this.domList.speechStateBox.style.display = 'block'
+        this.data.clock = setInterval(() => {
+          this.data.talkTime++
+          let minute = Math.floor(this.data.talkTime / 60)
+          if (minute < 10) minute = '0' + minute
+          let second = this.data.talkTime % 60
+          if (second < 10) second = '0' + second
+          this.domList.talkTime.innerText = minute + ':' + second
+        }, 1000)
+      },
+      sharePage: function () {
+        window.location.href = '#share&in=moveToTop&out=moveFromBottom'
+      },
+      like: function () {
+        console.log('sd')
+        var rand = Math.floor((Math.random() * 100) + 1);
+        var flows = ["flowOne", "flowTwo", "flowThree"];
+        var colors = ["like-1", "like-2", "like-3", "like-4", "like-5", "like-6"];
+        var timing = (Math.random() * (5.3 - 1.0) + 1.0).toFixed(1)
+        // 创建小心心
+        $('<div class="particle part-' + rand + ' ' + colors[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (40 - 22) + 22) + 'px;"><i class="glyphicon glyphicon-heart">&#xe640;</i></div>').appendTo('.ox-voice').css({
+          animation: "" + flows[Math.floor((Math.random() * 3))] + " " + timing + "s linear"
+        });
+        $('.part-' + rand).show();
+
+        // Remove Particle
+        setTimeout(function() {
+          $('.part-' + rand).remove()
+        },
+        timing * 1000 - 100)
+      }
+    }
+  }
+</script>
 
 <style lang="less">
 .main-box {
@@ -86,6 +172,49 @@
   .video-text {
     line-height: 1.2em;
     font-size: 1em;
+  }
+}
+// 挂断区域
+.hang-up-box {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 90px;
+  bottom: 100px;
+  .hang-up-item {
+    width: 33.33%;
+    height: 100%;
+  }
+  img {
+    width: 65px;
+    height: 65px;
+    display: block;
+    margin: 0 auto;
+  }
+  p {
+    color: white;
+    text-align: center;
+    line-height: 35px;
+    font-size: 0.8em;
+  }
+}
+.speech-state-box {
+  display: none;
+  position: fixed;
+  bottom: 200px;
+  width: 80px;
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  .state {
+    background-color: #282828;
+    line-height: 30px;
+    border-radius: 5px;
+  }
+  p {
+    line-height: 30px;
   }
 }
 </style>
