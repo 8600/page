@@ -6,5 +6,6 @@
   "autoPack": true,
   "minifyCss": false,
   "minifyJs": false,
-  "pageFolder": "page"
+  "pageFolder": "page",
+  "choiceAnimation": true
 }

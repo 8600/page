@@ -36,13 +36,22 @@ a{text-decoration:none}
   z-index: 0;
   color:#E0625E;
 }
-div.particle {
-  width: 30px;
-  height: 30px;
+.particle-heart {
   opacity: 1;
   position: absolute;
-  bottom: 0%;
   display: none;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: -webkit-fill-available;
+}
+.particle-img {
+  opacity: 1;
+  position: absolute;
+  display: none;
+  background-image: url('./images/happy.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: -webkit-fill-available;
 }
 
 div.particle i {
@@ -55,23 +64,23 @@ div.particle i {
 
 
 .like-1{
-color: #F44336;
+color: gold;
 }
 
 .like-2{
-color: #E91E63;
+color: blue;
 }
 .like-3{
-color: #9C27B0;
+color: yellow;
 }
 .like-4{
-color: #D32F2F;
+color: red;
 }
 .like-5{
-color: #FF5722;
+color: orange;
 }
 .like-6{
-color: #FB8C00;
+color: rgb(133, 21, 118);
 }
 
 
@@ -79,7 +88,7 @@ color: #FB8C00;
 0% {
   opacity: 1;
   top: 0%;
-  left: 34%;
+  left: 50%;
 }
 
 50% {
@@ -102,13 +111,13 @@ color: #FB8C00;
 0% {
   opacity: 1;
   top: 0;
-  left: 0;
+  left: 50%;
 }
 
 
 50% {
   opacity: 1;
-  left: 11%;
+  left: 22%;
 }
 
 80% {
@@ -119,14 +128,14 @@ color: #FB8C00;
 100% {
   opacity: 0;
   top: 80%;
-  left: 5%; }
+  left: 50%; }
 }
 
 @keyframes flowThree {
   0% {
     opacity: 1;
     top: 0;
-    left: 62%;
+    left: 50%;
   }
 
   50% {
@@ -144,6 +153,220 @@ color: #FB8C00;
     left: 87%;
   }
 }
+
+@keyframes flowFour {
+  0% {
+    opacity: 1;
+    top: 0;
+    left: 50%;
+  }
+
+  50% {
+    opacity: 1;
+    left: 30%;
+  }
+
+  80% {
+    top: 70%;
+  }
+
+  100% {
+    opacity: 0;
+    top: 90%;
+    left: 10%;
+  }
+}
+
+@keyframes flowFive {
+  0% {
+    opacity: 1;
+    top: 0;
+    left: 50%;
+  }
+
+  50% {
+    opacity: 1;
+    left: 20%;
+  }
+
+  80% {
+    top: 70%;
+  }
+
+  100% {
+    opacity: 0;
+    top: 90%;
+    left: 17%;
+  }
+}
+
+
+@keyframes flowSix {
+  0% {
+    opacity: 1;
+    top: 0;
+    left: 50%;
+  }
+
+  50% {
+    opacity: 1;
+    left: 70%;
+  }
+
+  80% {
+    top: 70%;
+  }
+
+  100% {
+    opacity: 0;
+    top: 80%;
+    left: 80%;
+  }
+}
+
+
+/* 心 */
+
+@keyframes flowOneHeart {
+  0% {
+    opacity: 1;
+    top: 100%;
+    left: 34%;
+  }
+  
+  50% {
+    opacity: 1;
+    left: 50%;
+  }
+  
+  80% {
+    top: 20%; 
+  }
+  
+  100% {
+    opacity: 0;
+    top: 0;
+    left: 38%;
+  }
+  }
+  
+  @keyframes flowTwoHeart {
+  0% {
+    opacity: 1;
+    top: 100%;
+    left: 0;
+  }
+  
+  
+  50% {
+    opacity: 1;
+    left: 11%;
+  }
+  
+  80% {
+    top: 40%;
+  
+  }
+  
+  100% {
+    opacity: 0;
+    top: 20%;
+    left: 5%; }
+  }
+  
+  @keyframes flowThreeHeart {
+    0% {
+      opacity: 1;
+      top: 100%;
+      left: 62%;
+    }
+  
+    50% {
+      opacity: 1;
+      left: 40%;
+    }
+  
+    80% {
+      top: 30%;
+    }
+  
+    100% {
+      opacity: 0;
+      top: 10%;
+      left: 87%;
+    }
+  }
+  
+  @keyframes flowFourHeart {
+    0% {
+      opacity: 1;
+      top: 100%;
+      left: 22%;
+    }
+  
+    50% {
+      opacity: 1;
+      left: 30%;
+    }
+  
+    80% {
+      top: 30%;
+    }
+  
+    100% {
+      opacity: 0;
+      top: 10%;
+      left: 77%;
+    }
+  }
+  
+  @keyframes flowFiveHeart {
+    0% {
+      opacity: 1;
+      top: 100%;
+      left: 82%;
+    }
+  
+    50% {
+      opacity: 1;
+      left: 60%;
+    }
+  
+    80% {
+      top: 30%;
+    }
+  
+    100% {
+      opacity: 0;
+      top: 10%;
+      left: 17%;
+    }
+  }
+  
+  
+  @keyframes flowSixHeart {
+    0% {
+      opacity: 1;
+      top: 100%;
+      left: 32%;
+    }
+  
+    50% {
+      opacity: 1;
+      left: 50%;
+    }
+  
+    80% {
+      top: 30%;
+    }
+  
+    100% {
+      opacity: 0;
+      top: 20%;
+      left: 47%;
+    }
+  }
+
 
 @font-face {
   font-family: 'font';
@@ -292,8 +515,25 @@ color: #FB8C00;
   top: 14px;
 }
 
+.ox-voice .hang-up-box .hang-up-item .number {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  color: gold;
+  opacity: 0;
+  transition: transform 0.5s;
+}
+
+.ox-voice .hang-up-box .hang-up-item .active {
+  opacity: 1;
+  transform: scale(1.4);
+}
+
 .ox-voice .hang-up-box .hang-up-item .icon:active {
-  color: red;
+  transform: scale(1.2);
 }
 
 .ox-voice .hang-up-box img {
@@ -308,6 +548,25 @@ color: #FB8C00;
   text-align: center;
   line-height: 35px;
   font-size: 0.8em;
+}
+
+.ox-voice .hang-up-box .circle-box {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto;
+  position: relative;
+  border: 1px solid white;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.ox-voice .hang-up-box .circle-opacity {
+  width: 100%;
+  height: 100%;
+  top: 100%;
+  transition: top 0.5s linear;
+  position: absolute;
+  background-color: red;
 }
 
 .ox-voice .speech-state-box {

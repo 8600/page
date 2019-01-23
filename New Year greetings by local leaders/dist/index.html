@@ -74,9 +74,12 @@
         <p>挂断</p>
       </div>
       <div class="hang-up-item" @click="like">
-        <img src="./images/ring.png">
-        <p class="icon"></p><p>
-        </p><p>点赞</p>
+        <div class="number" @name="likeNumberBar">+1</div>
+        <div class="circle-box">
+          <div class="circle-opacity" @name="circle"></div>
+        </div>
+        <p class="icon"></p>
+        <p>点赞</p>
       </div>
     </div>
     <div class="bottom-bar" @name="bottomBar"></div>

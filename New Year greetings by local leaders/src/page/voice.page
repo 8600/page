@@ -44,8 +44,11 @@
         <p>挂断</p>
       </div>
       <div class="hang-up-item" @click="like">
-        <img src="./images/ring.png"/>
-        <p class="icon">&#xe60c;<p>
+        <div class="number" @name="likeNumberBar">+1</div>
+        <div class="circle-box">
+          <div class="circle-opacity" @name="circle"></div>
+        </div>
+        <p class="icon">&#xe60c;</p>
         <p>点赞</p>
       </div>
     </div>
@@ -63,7 +66,8 @@
       // 通话时长
       talkTime: 0,
       // 定时器
-      clock: null
+      clock: null,
+      likeNumber: 0
     },
     created: function () {
       // 微信自动播放音频
@@ -144,22 +148,51 @@
         }
       },
       like: function () {
+        this.data.likeNumber++
+        this.domList.circle.classList.add('circle-play')
+        this.domList.likeNumberBar.classList.add('active')
+        this.domList.likeNumberBar.innerText = '+' + this.data.likeNumber
+        // 如果点赞数量小于20一次涨一点
+        if (this.data.likeNumber <= 20) {
+          this.domList.circle.style.top = (100 - this.data.likeNumber * 5) + '%'
+        }
+        setTimeout(() => {
+          this.domList.likeNumberBar.classList.remove('active')
+          this.domList.circle.classList.remove('circle-play')
+        }, 480)
         var rand = Math.floor((Math.random() * 100) + 1);
-        var flows = ["flowOne", "flowTwo", "flowThree"];
         var colors = ["like-1", "like-2", "like-3", "like-4", "like-5", "like-6"];
-        var timing = (Math.random() * (3.3 - 1.0) + 1.0).toFixed(1)
-
-        // 创建小心心
-        $('<div class="particle part-' + rand + ' ' + colors[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (40 - 22) + 22) + 'px;"><i class="glyphicon glyphicon-heart">新年快乐</i></div>').appendTo('.ox-voice').css({
-          animation: "" + flows[Math.floor((Math.random() * 3))] + " " + timing + "s linear"
-        });
-        $('.part-' + rand).show();
         
-        // Remove Particle
-        setTimeout(function() {
-          $('.part-' + rand).remove()
-        },
-        timing * 1000 - 100)
+        // 点赞数小于20掉小心心
+        if (this.data.likeNumber <= 20) {
+          var flows = ["flowOneHeart", "flowTwoHeart", "flowThreeHeart", "flowFourHeart", "flowFiveHeart", "flowSixHeart"];
+          // 创建小心心
+          for (let i = 0; i < 6; i ++) {
+            var timing = (Math.random() * (3.3 - 1.0) + 1.0).toFixed(1)
+            $('<div class="particle particle-heart part-' + rand + ' ' + colors[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (40 - 22) + 22) + 'px;"><i class="icon glyphicon-heart">&#xe640;</i></div>').appendTo('.ox-voice').css({
+              animation: "" + flows[i] + " " + timing + "s linear"
+            });
+            $('.part-' + rand).show();
+            // Remove Particle
+            setTimeout(() => {
+              $('.part-' + rand).remove()
+            }, timing * 1000 - 100)
+          }
+        } else {
+          var flows = ["flowOne", "flowTwo", "flowThree", "flowFour", "flowFive", "flowSix"];
+          // 创建新年快乐
+          for (let i = 0; i < 6; i ++) {
+            var timing = (Math.random() * (3.3 - 1.0) + 1.0).toFixed(1)
+            $('<div class="particle particle-img part-' + rand + ' ' + colors[Math.floor((Math.random() * 6))] + '" style="width:' + Math.floor(Math.random() * (180 - 66) + 66) + 'px;"><i class="glyphicon glyphicon-heart"></i></div>').appendTo('.ox-voice').css({
+              animation: "" + flows[i] + " " + timing + "s linear"
+            });
+            $('.part-' + rand).show();
+            // Remove Particle
+            setTimeout(() => {
+              $('.part-' + rand).remove()
+            }, timing * 1000 - 100)
+          }
+        }
       }
     }
   }
@@ -275,8 +308,24 @@
       right: 0;
       top: 14px;
     }
+    .number {
+      position: absolute;
+      top: -30px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      color: gold;
+      opacity: 0;
+      transition: transform 0.5s;
+    }
+    .active {
+      opacity: 1;
+      transform: scale(1.4);
+    }
     .icon:active {
-      color: red;
+      // color: red;
+      transform: scale(1.2);
     }
   }
   img {
@@ -290,6 +339,23 @@
     text-align: center;
     line-height: 35px;
     font-size: 0.8em;
+  }
+  .circle-box {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto;
+    position: relative;
+    border: 1px solid white;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .circle-opacity {
+    width: 100%;
+    height: 100%;
+    top: 100%;
+    transition: top 0.5s linear;
+    position: absolute;
+    background-color: red;
   }
 }
 .speech-state-box {
@@ -326,4 +392,5 @@ video {
 .glyphicon-heart {
   width: 160px;
 }
+
 </style>
