@@ -1,38 +1,59 @@
 <template>
   <div class="main-box">
     <img class="back" src="./images/background.jpg"/>
+    
+    <!-- 音频播放 -->
+    <audio @name="audioPlay" src="./assets/test.mp3">
+      您的浏览器不支持 audio 标签。
+    </audio>
+    <!-- 视频播放 -->
+    <!-- 如果同时设置了音频和视频，则会忽略音频播放视频 -->
+    <!-- 视频仅支持mp4 -->
+    <!-- <video @name="videoPlay"  webkit-playsinline="true" x5-video-player-type="h5"  x5-video-orientation="portrait" x5-video-player-fullscreen="false" src="./assets/test.mp4">
+      您的浏览器不支持 video 标签。
+    </video> -->
     <temple name="topBar"></temple>
+    <!-- 领导头像区域 -->
     <div class="people-box" @name="audioPeopleBox">
       <div class="image-box">
         <img src="./images/people.jpg"/>
       </div>
-      <p class="people-name">领导姓名</p>
-      <p class="video-text">邀请你语音通话</p>
+      <div>
+        <p class="people-name">领导姓名</p>
+        <p class="video-text audio">邀请你语音通话</p>
+        <p class="video-text video">邀请你视频通话</p>
+      </div>
     </div>
     <div class="answer-box" @name="answerBox" @click="answerSpeech">
       <div class="answer"></div>
       <p>接听</p>
     </div>
-    <!-- 语音状态 -->
+    <!-- 语音/视频状态 -->
     <div class="speech-state-box" @name="speechStateBox">
+      <div class="people-name">领导姓名</div>
       <div class="state">已接通</div>
       <p @name="talkTime">00:00</p>
     </div>
     <div class="hang-up-box" @name="hangUpBox">
-      <div class="hang-up-item" @click="sharePage">
+      <div class="hang-up-item" @click="stopPlaying">
         <img src="./images/share.png"/>
         <p>分享</p>
       </div>
-      <div class="hang-up-item" @click="sharePage">
+      <div class="hang-up-item" @click="stopPlaying">
         <img src="./images/hangUp.png"/>
         <p>挂断</p>
       </div>
       <div class="hang-up-item" @click="like">
-        <img src="./images/handsFree.png"/>
-        <p>免提</p>
+        <img src="./images/ring.png"/>
+        <p class="icon">&#xe60c;<p>
+        <p>点赞</p>
       </div>
     </div>
     <div class="bottom-bar" @name="bottomBar"></div>
+    <!-- 背景音乐 -->
+    <audio @name="autoplayAudio" preload="auto" src="./assets/back.mp3">
+      您的浏览器不支持 audio 标签。
+    </audio>
   </div>
 </template>
 
@@ -45,25 +66,51 @@
       clock: null
     },
     created: function () {
+      // 微信自动播放音频
+      document.addEventListener('WeixinJSBridgeReady', () => {
+        this.domList.autoplayAudio.play()
+      })
       // 初始化页面
       if (this.data.clock !== null) {
         clearInterval(this.data.clock)
         this.data.clock = null
+      }
+      // 判断是否为视频
+      if (this.domList.videoPlay && this.domList.videoPlay.src && this.domList.videoPlay.src.indexOf('mp4') != -1) {
+        this.domList.audioPeopleBox.style.display = 'flex'
+        this.domList.audioPeopleBox.classList.add("video-play")
+        this.domList.speechStateBox.classList.add("video-play")
+      } else {
+        this.domList.audioPeopleBox.style.display = ''
       }
       this.data.talkTime = 0
       // 显示接听
       this.domList.answerBox.style.display = ''
       // 隐藏挂断选项条
       this.domList.hangUpBox.style.display = ''
-      this.domList.audioPeopleBox.style.display = ''
+      
       // 显示底部条
       this.domList.bottomBar.style.display = ''
       // 隐藏通话时间
       this.domList.speechStateBox.style.display = ''
+      // 播放自动播放音频
+      console.log(this.domList.autoplayAudio)
+      
     },
     methods: {
       answerSpeech: function () {
-        console.log(this)
+        // 开始播放音乐或者视频
+        // 如果音频和视频同时存在，优先播放视频
+        if (this.domList.videoPlay && this.domList.videoPlay.src && this.domList.videoPlay.src.indexOf('mp4') != -1) {
+          this.domList.videoPlay.style.display = 'block'
+          // this.domList.videoPlay.currentTime = 0
+          this.domList.videoPlay.play()
+          
+        } else if (this.domList.audioPlay && this.domList.audioPlay.src) {
+          this.domList.audioPlay.currentTime = 0
+          this.domList.audioPlay.play()
+        }
+        
         // 通话时长
         let talkTime = 0
         // 隐藏接听
@@ -84,21 +131,30 @@
           this.domList.talkTime.innerText = minute + ':' + second
         }, 1000)
       },
-      sharePage: function () {
-        window.location.href = '#share&in=moveToTop&out=moveFromBottom'
+      stopPlaying: function () {        
+        // 判断是视频还是音频
+        if (this.domList.videoPlay && this.domList.videoPlay.src && this.domList.videoPlay.src.indexOf('mp4') != -1) {
+          this.domList.videoPlay.pause()
+          this.domList.videoPlay.style.display = 'none'
+          this.domList.videoPlay.currentTime = 0
+          window.location.href = '#share'
+        } else {
+          this.domList.audioPlay.pause()
+          window.location.href = '#share&in=moveToTop&out=moveFromBottom'
+        }
       },
       like: function () {
-        console.log('sd')
         var rand = Math.floor((Math.random() * 100) + 1);
         var flows = ["flowOne", "flowTwo", "flowThree"];
         var colors = ["like-1", "like-2", "like-3", "like-4", "like-5", "like-6"];
-        var timing = (Math.random() * (5.3 - 1.0) + 1.0).toFixed(1)
+        var timing = (Math.random() * (3.3 - 1.0) + 1.0).toFixed(1)
+
         // 创建小心心
-        $('<div class="particle part-' + rand + ' ' + colors[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (40 - 22) + 22) + 'px;"><i class="glyphicon glyphicon-heart">&#xe640;</i></div>').appendTo('.ox-voice').css({
+        $('<div class="particle part-' + rand + ' ' + colors[Math.floor((Math.random() * 6))] + '" style="font-size:' + Math.floor(Math.random() * (40 - 22) + 22) + 'px;"><i class="glyphicon glyphicon-heart">新年快乐</i></div>').appendTo('.ox-voice').css({
           animation: "" + flows[Math.floor((Math.random() * 3))] + " " + timing + "s linear"
         });
         $('.part-' + rand).show();
-
+        
         // Remove Particle
         setTimeout(function() {
           $('.part-' + rand).remove()
@@ -121,7 +177,7 @@
   }
   .answer-box {
     position: fixed;
-    bottom: 100px;
+    bottom: 2em;
     width: 100%;
     p {
       color: white;
@@ -130,10 +186,10 @@
     }
   }
   .answer {
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
     margin: 0 auto;
-    background-size: 75px;
+    background-size: 65px;
     background-image: url('./images/answer.png');
   }
   .bottom-bar {
@@ -145,6 +201,26 @@
     background-repeat: no-repeat;
     background-position: center;
     background-image: url('./images/bottom-bar.png');
+  }
+  .video-play {
+    .image-box {
+      width: 140px;
+    }
+    .people-name {
+      line-height: 2.8em;
+      font-size: 1.6em;
+    }
+    .video {
+      display: block;
+    }
+    .people-name {
+      display: block;
+      font-size: 1.2em;
+      line-height: 1.8em;
+    }
+    .state {
+      display: none;
+    }
   }
 }
 .people-box {
@@ -173,6 +249,12 @@
     line-height: 1.2em;
     font-size: 1em;
   }
+  .video {
+    display: none;
+  }
+  .audio {
+    display: none;
+  }
 }
 // 挂断区域
 .hang-up-box {
@@ -180,10 +262,22 @@
   position: fixed;
   width: 100%;
   height: 90px;
-  bottom: 100px;
+  bottom: 2em;
+  z-index: 9;
   .hang-up-item {
     width: 33.33%;
     height: 100%;
+    position: relative;
+    .icon {
+      position: absolute;
+      font-size: 30px;
+      left: 0;
+      right: 0;
+      top: 14px;
+    }
+    .icon:active {
+      color: red;
+    }
   }
   img {
     width: 65px;
@@ -201,7 +295,7 @@
 .speech-state-box {
   display: none;
   position: fixed;
-  bottom: 200px;
+  bottom: 9em;
   width: 80px;
   color: white;
   text-align: center;
@@ -216,5 +310,20 @@
   p {
     line-height: 30px;
   }
+  .people-name {
+    display: none;
+  }
+}
+video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.glyphicon-heart {
+  width: 160px;
 }
 </style>
