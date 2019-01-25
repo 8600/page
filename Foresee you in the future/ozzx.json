@@ -1,0 +1,11 @@
+{
+  "root": "/src",
+  "entry": "voice",
+  "headFolder": "head",
+  "outFolder": "dist",
+  "autoPack": true,
+  "minifyCss": false,
+  "minifyJs": false,
+  "pageFolder": "page",
+  "choiceAnimation": false
+}

@@ -1,0 +1,121 @@
+<template>
+  <div class="main-box" id="main">
+
+  </div>
+</template>
+
+<script>
+  export default {
+    data: {
+      app: null,
+      loader: null,
+      container: null,
+      titleContainer: null,
+      titleStart: null,
+      imgArr: [
+        './images/1-title.png'
+      ]
+    },
+    created: function () {
+      this.methods.calculationScene(this)
+      // console.log(this)
+      
+      $('#main').append(this.data.app.view)
+      this.data.app.stage.displayList = new PIXI.display.Stage()
+      var greenGroup = new PIXI.display.Group(1, false)
+      // 预加载资源
+      this.data.loader = new PIXI.loaders.Loader();
+      this.data.loader.add("bgm","audio/bgm.mp3")
+        .add("nishuo1","audio/1nishuo.mp3")
+        .add("dida","audio/dida.mp3")
+        .add(this.data.imgArr)
+        .onProgress.add((e) => {
+          console.log(e)
+        }
+      )
+      this.data.container = new PIXI.Container()
+      this.data.container.interactive = true
+      
+      // 创建一个容器
+      const titleContainer = new PIXI.Container()
+      titleContainer.x = 0
+      titleContainer.y = 0
+      // titleContainer.interactive = true;
+
+      const titleStart = this.methods.createSprite("./images/1-title.png", {
+        x: 12,
+        y: 276
+      })
+      titleContainer.addChild(titleStart)
+      $("#main").on("click",() => {
+        console.log('sd')
+        // 加载资源
+        this.data.loader.load((loader) => {
+          // 设置音乐播放模式
+          // console.log(loader.resources.bgm.data)
+          loader.resources.bgm.data.loop = true
+          loader.resources.bgm.data.autoplay = true
+          loader.resources.bgm.data.play()
+
+          this.data.app.stage.addChild(titleContainer)
+        })
+      })
+      
+    },
+    methods: {
+      // 创建sprite对象
+      createSprite: function(name, opt){
+        var newSprite = new PIXI.Sprite.fromImage(name);
+        if (opt) {
+          for (let key in opt) {
+            newSprite[key] = opt[key]
+          }
+        }
+        return newSprite;
+      },
+      // 横竖屏旋转
+      calculationScene: function(_this) {
+        console.log(_this)
+        // 获取屏幕宽高
+        const ww = $(window).width()
+        const wh = $(window).height()
+
+        // 判断是否为微信
+        if (false) {
+          if (window.orientation !== 90 && window.orientation !== -90){
+            window.document.body.classList.add('horizontal')
+            window.document.body.style.width = `${wh}px`
+            window.document.body.style.height = `${ww}px`
+            window.document.body.style.left = `calc(50% - ${wh / 2}px)`
+            window.document.body.style.top = `calc(50% - ${ww / 2}px)`
+            // 创建画布
+            _this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
+              backgroundColor: '0xffffff'
+            })
+            return
+          }
+        } else {
+          if (ww < wh){
+            window.document.body.classList.add('horizontal')
+            window.document.body.style.width = `${wh}px`
+            window.document.body.style.height = `${ww}px`
+            window.document.body.style.left = `calc(50% - ${wh / 2}px)`
+            window.document.body.style.top = `calc(50% - ${ww / 2}px)`
+            // 创建画布
+            _this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
+              backgroundColor: '0xffffff'
+            })
+            return
+          }
+        }
+        // 创建画布
+        _this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
+          backgroundColor: '0xffffff'
+        })
+      }
+    }
+  }
+</script>
+
+<style lang="less">
+</style>

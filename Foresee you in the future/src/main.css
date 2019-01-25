@@ -1,0 +1,30 @@
+body, html, .ox-home {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Microsoft YaHei;
+}
+/* 清除浮动 */
+.clear {
+  clear: both;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+.ox {
+  width: 100%;
+  height: 100%;
+}
+a{text-decoration:none}
+
+body {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.horizontal {
+  transform: translate3d(0, 0, 0) rotate(90deg);
+}
