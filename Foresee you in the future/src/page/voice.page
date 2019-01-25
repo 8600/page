@@ -17,14 +17,10 @@
       ]
     },
     created: function () {
+      // 创建画板区域并获取设备屏幕宽高
       let bodySize = this.methods.calculationScene(this)
-      // console.log(this)
-      
-      $('#main').append(this.data.app.view)
-      this.data.app.stage.displayList = new PIXI.display.Stage()
-      var greenGroup = new PIXI.display.Group(1, false)
       // 预加载资源
-      this.data.loader = new PIXI.loaders.Loader();
+      this.data.loader = new PIXI.loaders.Loader()
       this.data.loader.add("bgm","audio/bgm.mp3")
         .add("nishuo1","audio/1nishuo.mp3")
         .add("dida","audio/dida.mp3")
@@ -82,6 +78,19 @@
         x: (bodySize.w / 2) - (clockWidth / 2),
         y: (bodySize.h * 0.6) - (clockHeight / 2)
       })
+      
+      
+      // 加载指针1-point
+      const pointHeight = bodySize.h / 4
+      // 保持图片比例
+      const onePoint = this.methods.createSprite("./images/1-point.png", {
+        width: pointHeight,
+        height: pointHeight,
+        // 位置中间偏下10像素
+        x: (bodySize.w / 2) - (pointHeight / 2),
+        y: (bodySize.h * 0.6) - (pointHeight / 2)
+      })
+
       // 加载小手
       const handHeight = bodySize.h / 20
       const oneHand = this.methods.createSprite("./images/1-hand.png", {
@@ -89,11 +98,27 @@
         height: handHeight,
         // 位置中间偏下10像素
         x: bodySize.w * 0.4,
-        y: (bodySize.h * 0.54) - (handHeight / 2)
+        y: (bodySize.h * 0.52) - (handHeight / 2)
       })
-      titleContainer.addChild(bg1Image, logoImage, oneTitle, oneClock, oneHand)
-      $("#main").on("click",() => {
-        console.log('sd')
+
+      titleContainer.addChild(bg1Image, logoImage, oneTitle, oneClock, oneHand, onePoint)
+      // 触摸事件
+      $("#main").on("touchstart",(e) => {
+        const touchX = e.originalEvent.targetTouches[0].clientX
+        const touchY = e.originalEvent.targetTouches[0].clientY
+        const touchXRange = touchX / bodySize.w
+        const touchYRange = touchY / bodySize.h
+        console.log(touchXRange, touchYRange)
+        if (touchXRange > 0.43 && touchXRange < 0.46 && touchYRange > 0.47 && touchYRange < 0.55) {
+          console.log('范围内了')
+          $("#main").on("touchmove",(e) => {
+            console.log(e.originalEvent.targetTouches[0])
+            onePoint.rotation += 0.1
+          })
+        }
+      })
+      // 点击事件
+      $("body").on("click",() => {
         // 加载资源
         this.data.loader.load((loader) => {
           // 设置音乐播放模式
@@ -101,7 +126,8 @@
           loader.resources.bgm.data.loop = true
           loader.resources.bgm.data.autoplay = true
           loader.resources.bgm.data.play()
-          let titleHandTween = TweenMax.fromTo(oneHand, 1.5, {x: (bodySize.w * 0.43)},{x: (bodySize.w * 0.48), ease:Linear.easeNone}).repeat(-1)
+          // 小手滑动动画
+          let titleHandTween = TweenMax.fromTo(oneHand, 1.5, {x: (bodySize.w * 0.44)},{x: (bodySize.w * 0.49), ease:Linear.easeNone}).repeat(-1)
           titleHandTween.play()
           this.data.app.stage.addChild(titleContainer)
         })
@@ -119,9 +145,8 @@
         }
         return newSprite;
       },
-      // 横竖屏旋转
+      // 注册画板区域并返回设备屏幕信息
       calculationScene: function(_this) {
-        console.log(_this)
         // 获取屏幕宽高
         const ww = $(window).width()
         const wh = $(window).height()
@@ -138,6 +163,8 @@
             _this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
               backgroundColor: '0xffffff'
             })
+            $('#main').append(_this.data.app.view)
+            _this.data.app.stage.displayList = new PIXI.display.Stage()
             return {w: wh, h: ww}
           }
         } else {
@@ -151,6 +178,8 @@
             _this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
               backgroundColor: '0xffffff'
             })
+            $('#main').append(_this.data.app.view)
+            _this.data.app.stage.displayList = new PIXI.display.Stage()
             return {w: wh, h: ww}
           }
         }
@@ -158,6 +187,8 @@
         _this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
           backgroundColor: '0xffffff'
         })
+        $('#main').append(_this.data.app.view)
+        _this.data.app.stage.displayList = new PIXI.display.Stage()
         return {w: ww, h: wh}
       }
     }
