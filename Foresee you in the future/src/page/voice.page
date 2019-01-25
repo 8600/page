@@ -17,7 +17,7 @@
       ]
     },
     created: function () {
-      this.methods.calculationScene(this)
+      let bodySize = this.methods.calculationScene(this)
       // console.log(this)
       
       $('#main').append(this.data.app.view)
@@ -41,12 +41,57 @@
       titleContainer.x = 0
       titleContainer.y = 0
       // titleContainer.interactive = true;
-
-      const titleStart = this.methods.createSprite("./images/1-title.png", {
-        x: 12,
-        y: 276
+      // 加载背景
+      const bg1Image = this.methods.createSprite("./images/1.png", {
+        width: bodySize.w,
+        height: bodySize.h,
+        x: 0,
+        y: 0
       })
-      titleContainer.addChild(titleStart)
+      // 加载首页logo
+      const logoImageHeight = bodySize.h / 10
+      const logoImageWidth = logoImageHeight * 2.75
+      const logoImage = this.methods.createSprite("./images/logo.png", {
+        width: logoImageWidth,
+        height: logoImageHeight,
+        // 位置左下角
+        x: 0,
+        y: bodySize.h - logoImageHeight
+      })
+
+      // 加载顶部标题
+      const oneTitleHeight = bodySize.h / 20
+      // 保持图片比例
+      const oneTitleWidth = oneTitleHeight * 9.818
+      const oneTitle = this.methods.createSprite("./images/1-title.png", {
+        width: oneTitleWidth,
+        height: oneTitleHeight,
+        // 位置中间靠上
+        x: (bodySize.w / 2) - (oneTitleWidth / 2),
+        y: bodySize.h * 0.1
+      })
+
+      // 加载时钟
+      const clockHeight = bodySize.h / 1.2
+      // 保持图片比例
+      const clockWidth = clockHeight * 1.7801
+      const oneClock = this.methods.createSprite("./images/1-clock.png", {
+        width: clockWidth,
+        height: clockHeight,
+        // 位置中间偏下10像素
+        x: (bodySize.w / 2) - (clockWidth / 2),
+        y: (bodySize.h * 0.6) - (clockHeight / 2)
+      })
+      // 加载小手
+      const handHeight = bodySize.h / 20
+      const oneHand = this.methods.createSprite("./images/1-hand.png", {
+        width: handHeight,
+        height: handHeight,
+        // 位置中间偏下10像素
+        x: bodySize.w * 0.4,
+        y: (bodySize.h * 0.54) - (handHeight / 2)
+      })
+      titleContainer.addChild(bg1Image, logoImage, oneTitle, oneClock, oneHand)
       $("#main").on("click",() => {
         console.log('sd')
         // 加载资源
@@ -56,7 +101,8 @@
           loader.resources.bgm.data.loop = true
           loader.resources.bgm.data.autoplay = true
           loader.resources.bgm.data.play()
-
+          let titleHandTween = TweenMax.fromTo(oneHand, 1.5, {x: (bodySize.w * 0.43)},{x: (bodySize.w * 0.48), ease:Linear.easeNone}).repeat(-1)
+          titleHandTween.play()
           this.data.app.stage.addChild(titleContainer)
         })
       })
@@ -65,7 +111,7 @@
     methods: {
       // 创建sprite对象
       createSprite: function(name, opt){
-        var newSprite = new PIXI.Sprite.fromImage(name);
+        var newSprite = new PIXI.Sprite.from(name);
         if (opt) {
           for (let key in opt) {
             newSprite[key] = opt[key]
@@ -92,7 +138,7 @@
             _this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
               backgroundColor: '0xffffff'
             })
-            return
+            return {w: wh, h: ww}
           }
         } else {
           if (ww < wh){
@@ -105,13 +151,14 @@
             _this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
               backgroundColor: '0xffffff'
             })
-            return
+            return {w: wh, h: ww}
           }
         }
         // 创建画布
         _this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
           backgroundColor: '0xffffff'
         })
+        return {w: ww, h: wh}
       }
     }
   }
