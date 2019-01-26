@@ -81,15 +81,18 @@
       
       
       // 加载指针1-point
-      const pointHeight = bodySize.h / 4
+      const pointHeight = bodySize.h / 12
+      const pointWidth = pointHeight / 0.75
       // 保持图片比例
       const onePoint = this.methods.createSprite("./images/1-point.png", {
         width: pointHeight,
-        height: pointHeight,
+        height: pointWidth,
         // 位置中间偏下10像素
-        x: (bodySize.w / 2) - (pointHeight / 2),
-        y: (bodySize.h * 0.6) - (pointHeight / 2)
+        x: (bodySize.w / 2.20) + (pointWidth / 2),
+        y: (bodySize.h * 0.56) + (pointHeight / 2),
+        zIndex: 1
       })
+      onePoint.pivot.set(77, 106)
 
       // 加载小手
       const handHeight = bodySize.h / 20
@@ -98,7 +101,8 @@
         height: handHeight,
         // 位置中间偏下10像素
         x: bodySize.w * 0.4,
-        y: (bodySize.h * 0.52) - (handHeight / 2)
+        y: (bodySize.h * 0.52) - (handHeight / 2),
+        zIndex: 2
       })
 
       titleContainer.addChild(bg1Image, logoImage, oneTitle, oneClock, oneHand, onePoint)
@@ -108,12 +112,24 @@
         const touchY = e.originalEvent.targetTouches[0].clientY
         const touchXRange = touchX / bodySize.w
         const touchYRange = touchY / bodySize.h
-        console.log(touchXRange, touchYRange)
+        // console.log(touchXRange, touchYRange)
         if (touchXRange > 0.43 && touchXRange < 0.46 && touchYRange > 0.47 && touchYRange < 0.55) {
           console.log('范围内了')
+          // 触摸松开事件
+          $("#main").on("touchend",(e) => {
+            // 取消触摸移动的监听
+            $("#main").off("touchmove")
+          })
           $("#main").on("touchmove",(e) => {
-            console.log(e.originalEvent.targetTouches[0])
-            onePoint.rotation += 0.1
+            // 计算出比例
+            let proportion = (e.originalEvent.targetTouches[0].clientX - 460) / 50
+            // console.log((e.originalEvent.targetTouches[0].clientX - 460) / 50)
+            // 锁定在合适的区间内
+            if (proportion > 1) proportion = 1
+            if (proportion < 0) proportion = 0
+            // 设置指针的幅度
+            onePoint.rotation = 0.6 * proportion
+            
           })
         }
       })
