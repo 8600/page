@@ -28,3 +28,32 @@ body {
 .horizontal {
   transform: translate3d(0, 0, 0) rotate(90deg);
 }
+.ox-voice .loading-box {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #01021a;
+}
+
+.ox-voice .loading-box .loading {
+  width: 200px;
+  height: 168px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.ox-voice .loading-box img {
+  display: block;
+}
+
+.ox-voice .loading-box p {
+  color: white;
+  text-align: center;
+  line-height: 30px;
+}

@@ -1,4 +1,10 @@
 <template>
+  <div class="loading-box" id="loadingBox">
+    <div class="loading">
+      <img src="./images/loading.gif"/>
+      <p id="loadingText">0%</p>
+    </div>
+  </div>
   <div class="main-box" id="main">
 
   </div>
@@ -10,13 +16,14 @@
       app: null,
       loader: null,
       container: null,
-      titleContainer: null,
       titleStart: null,
       imgArr: [
         './images/1-title.png'
       ]
     },
     created: function () {
+      // 获取到进度条Dom
+      const loadingTextDom =  $('#loadingText')[0]
       // 创建画板区域并获取设备屏幕宽高
       let bodySize = this.methods.calculationScene(this)
       // 预加载资源
@@ -26,17 +33,35 @@
         .add("dida","audio/dida.mp3")
         .add(this.data.imgArr)
         .onProgress.add((e) => {
-          console.log(e)
+          // 资源加载完毕后显示one
+          loadingTextDom.innerText = e.progress + '%'
+          if (e.progress === 100) {
+            // 显示one
+            // 小手滑动动画
+            let titleHandTween = TweenMax.fromTo(oneHand, 1.5, {x: (bodySize.w * 0.44)},{x: (bodySize.w * 0.49), ease:Linear.easeNone}).repeat(-1)
+            titleHandTween.play()
+            // 蝴蝶飞舞动画
+            let oneButterflyAnimation = TweenMax.fromTo(oneButterfly, 0.8, {y: 0},{y: -1, ease:Linear.easeNone}).repeat(-1)
+            oneButterflyAnimation.play()
+            this.data.app.stage.addChild(one)
+
+            // 隐藏掉加载页面
+            $('#loadingBox').remove()
+            // 播放音乐
+            this.data.loader.resources.bgm.data.loop = true
+            this.data.loader.resources.bgm.data.autoplay = true
+            this.data.loader.resources.bgm.data.play()
+            
+          }
         }
       )
       this.data.container = new PIXI.Container()
       this.data.container.interactive = true
       
       // 创建一个容器
-      const titleContainer = new PIXI.Container()
-      titleContainer.x = 0
-      titleContainer.y = 0
-      // titleContainer.interactive = true;
+      const one = new PIXI.Container()
+      one.x = 0
+      one.y = 0
       // 加载背景
       const bg1Image = this.methods.createSprite("./images/1.png", {
         width: bodySize.w,
@@ -76,14 +101,15 @@
         height: clockHeight,
         // 位置中间偏下10像素
         x: (bodySize.w / 2) - (clockWidth / 2),
-        y: (bodySize.h * 0.55) - (clockHeight / 2)
+        y: (bodySize.h * 0.55) - (clockHeight / 2),
+        zIndex: 9
       })
       
       
       // 加载指针1-point 图片宽度235px
       const pointHeight = bodySize.h / 4
       // 保持图片比例
-      console.log((bodySize.w / 2), (clockWidth / 2))
+      // console.log((bodySize.w / 2), (clockWidth / 2))
       const onePoint = this.methods.createSprite("./images/1-point.png", {
         width: pointHeight,
         height: pointHeight,
@@ -119,7 +145,9 @@
         zIndex: 1
       })
 
-      titleContainer.addChild(bg1Image, logoImage, oneTitle, oneClock, oneHand, onePoint, oneButterfly)
+      one.addChild(bg1Image, logoImage, oneTitle, oneClock, oneHand, onePoint, oneButterfly)
+      
+
       // 触摸事件
       $("#main").on("touchstart",(e) => {
         const touchX = e.originalEvent.targetTouches[0].clientX
@@ -148,22 +176,10 @@
         }
       })
       // 点击事件
-      $("body").on("click",() => {
-        // 加载资源
-        this.data.loader.load((loader) => {
-          // 设置音乐播放模式
-          // console.log(loader.resources.bgm.data)
-          loader.resources.bgm.data.loop = true
-          loader.resources.bgm.data.autoplay = true
-          loader.resources.bgm.data.play()
-          // 小手滑动动画
-          let titleHandTween = TweenMax.fromTo(oneHand, 1.5, {x: (bodySize.w * 0.44)},{x: (bodySize.w * 0.49), ease:Linear.easeNone}).repeat(-1)
-          titleHandTween.play()
-          // 蝴蝶飞舞动画
-          let oneButterflyAnimation = TweenMax.fromTo(oneButterfly, 0.8, {y: 0},{y: -1, ease:Linear.easeNone}).repeat(-1)
-          oneButterflyAnimation.play()
-          this.data.app.stage.addChild(titleContainer)
-        })
+      // 加载资源
+      this.data.loader.load((loader) => {
+        // 设置音乐播放模式
+        // console.log(loader)
       })
       
     },
@@ -229,4 +245,31 @@
 </script>
 
 <style lang="less">
+  .loading-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #01021a;
+    .loading {
+      width: 200px;
+      height: 168px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    img {
+      display: block;
+    }
+    p {
+      color: white;
+      text-align: center;
+      line-height: 30px;
+    }
+  }
+  
 </style>
