@@ -17,6 +17,8 @@
       loader: null,
       container: null,
       titleStart: null,
+      scroller: null,
+      twoContainer: null,
       imgArr: [
         './images/1-title.png'
       ],
@@ -155,7 +157,7 @@
       // 触摸事件
       $("#main").on("touchstart",(e) => {
         const touchInfo = this.calculationTouch(e)
-        console.log(touchInfo)
+        // console.log(touchInfo)
         // 针对横向和纵向
         if (touchInfo.xRatio > 0.43 && touchInfo.xRatio < 0.46 && touchInfo.yRatio > 0.42 && touchInfo.yRatio < 0.48) {
           // console.log('范围内了')
@@ -176,7 +178,6 @@
             // 如果旋转到指定角度放大钟表
             if (proportion === 1) {
               $("#main").off("touchmove")
-              console.log('sd')
               // 销毁蝴蝶
               // 停止蝴蝶动画
               this.data.animationList.oneButterfly.kill()
@@ -190,7 +191,15 @@
                 // 动画完毕销毁首页logo和背景
                 logoImage.destroy()
                 bg1Image.destroy()
+                
+                setTimeout(() => {
+                  this.data.app.stage.removeChild(one)
+                }, 0)
+                // 销毁tocuh监听
+                $("#main").off("touchstart")
                 console.log('首页已销毁')
+                // 开启第二部分
+                this.two()
               }})
               // oneClockAnimation.play()
             }
@@ -216,10 +225,7 @@
           }
         }
         return newSprite;
-      },
-      
-      
-      
+      }
     },
     // 注册画板区域并返回设备屏幕信息
     calculationScene: function() {
@@ -290,6 +296,67 @@
         }
       }
       
+    },
+    two: function () {
+      console.log('第二部分!')
+      
+      this.data.twoContainer = new PIXI.Container()
+      this.data.twoContainer.x = 0
+      this.data.twoContainer.y = 0
+      this.data.twoContainer.width = this.data.screenInfo.w
+
+      const bg2Image = this.methods.createSprite("./images/2.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x:0,
+        y:0
+      })
+      console.log(this.data.app.stage)
+      this.data.twoContainer.addChild(bg2Image)
+      this.data.app.stage.addChild(this.data.twoContainer)
+
+      this.scrollBegin()
+    },
+    scrollBegin: function () {
+      console.log('注册scroll!')
+      let mousedown = false
+      let scrollNumber = 0
+      let scroller = new Scroller((left, top, zoom) => {
+        console.log(left, top, zoom)
+        // 滚动回调
+        // scrollPro = left > top ? left : top;
+        scrollNumber -= left / 5
+        // if (scrollNumber > 0) scrollNumber = 0
+        // console.log(scrollNumber)
+        this.data.twoContainer.x = -left * 2
+      }, {
+        zooming: true
+      })
+      // 设置滚动区域
+      scroller.setDimensions(this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w * 2, this.data.screenInfo.h)
+      // 触摸事件监听
+      
+      document.addEventListener("touchstart", (e) => {
+        scroller.doTouchStart(e.touches, e.timeStamp);
+        mousedown = true;
+      }, false);
+
+      document.addEventListener("touchmove", (e) => {
+        if (!mousedown) {
+          return
+        }
+        // console.log(e.touches, e.timeStamp)
+        scroller.doTouchMove(e.touches, e.timeStamp);
+        mousedown = true;
+      }, false);
+
+      document.addEventListener("touchend", (e) => {
+        if (!mousedown) {
+          return;
+        }
+        scroller.doTouchEnd(e.timeStamp)
+        mousedown = false
+      }, false)
     }
   }
 </script>
