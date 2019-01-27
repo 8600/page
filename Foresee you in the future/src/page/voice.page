@@ -107,7 +107,19 @@
         zIndex: 2
       })
 
-      titleContainer.addChild(bg1Image, logoImage, oneTitle, oneClock, oneHand, onePoint)
+      // 加载蝴蝶 图片宽度:1347px 高度:730px 比例1.8452
+      const butterflyHeight = bodySize.h / 1
+      const butterflyWidth = bodySize.w
+      const oneButterfly = this.methods.createSprite("./images/1-butterfly.png", {
+        width: butterflyWidth,
+        height: butterflyHeight,
+        // 位置中间偏下10像素
+        x: 0,
+        y: 0,
+        zIndex: 1
+      })
+
+      titleContainer.addChild(bg1Image, logoImage, oneTitle, oneClock, oneHand, onePoint, oneButterfly)
       // 触摸事件
       $("#main").on("touchstart",(e) => {
         const touchX = e.originalEvent.targetTouches[0].clientX
@@ -147,6 +159,9 @@
           // 小手滑动动画
           let titleHandTween = TweenMax.fromTo(oneHand, 1.5, {x: (bodySize.w * 0.44)},{x: (bodySize.w * 0.49), ease:Linear.easeNone}).repeat(-1)
           titleHandTween.play()
+          // 蝴蝶飞舞动画
+          let oneButterflyAnimation = TweenMax.fromTo(oneButterfly, 0.8, {y: 0},{y: -1, ease:Linear.easeNone}).repeat(-1)
+          oneButterflyAnimation.play()
           this.data.app.stage.addChild(titleContainer)
         })
       })
