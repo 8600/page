@@ -19,13 +19,14 @@
       titleStart: null,
       imgArr: [
         './images/1-title.png'
-      ]
+      ],
+      animationList: {}
     },
     created: function () {
       // 获取到进度条Dom
       const loadingTextDom =  $('#loadingText')[0]
       // 创建画板区域并获取设备屏幕宽高
-      let bodySize = this.methods.calculationScene(this)
+      let bodySize = this.calculationScene(this)
       // 预加载资源
       this.data.loader = new PIXI.loaders.Loader()
       this.data.loader.add("bgm","audio/bgm.mp3")
@@ -38,19 +39,19 @@
           if (e.progress === 100) {
             // 显示one
             // 小手滑动动画
-            let titleHandTween = TweenMax.fromTo(oneHand, 1.5, {x: (bodySize.w * 0.44)},{x: (bodySize.w * 0.49), ease:Linear.easeNone}).repeat(-1)
-            titleHandTween.play()
+            this.data.animationList.oneHand = TweenMax.fromTo(oneHand, 1.5, {x: (bodySize.w * 0.44)},{x: (bodySize.w * 0.49), ease:Linear.easeNone}).repeat(-1)
+            this.data.animationList.oneHand.play()
             // 蝴蝶飞舞动画
-            let oneButterflyAnimation = TweenMax.fromTo(oneButterfly, 0.8, {y: 0},{y: -1, ease:Linear.easeNone}).repeat(-1)
-            oneButterflyAnimation.play()
+            this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {y: 0},{y: -1, ease:Linear.easeNone}).repeat(-1)
+            this.data.animationList.oneButterfly.play()
             this.data.app.stage.addChild(one)
 
             // 隐藏掉加载页面
             $('#loadingBox').remove()
             // 播放音乐
-            this.data.loader.resources.bgm.data.loop = true
-            this.data.loader.resources.bgm.data.autoplay = true
-            this.data.loader.resources.bgm.data.play()
+            // this.data.loader.resources.bgm.data.loop = true
+            // this.data.loader.resources.bgm.data.autoplay = true
+            // this.data.loader.resources.bgm.data.play()
             
           }
         }
@@ -100,10 +101,13 @@
         width: clockWidth,
         height: clockHeight,
         // 位置中间偏下10像素
-        x: (bodySize.w / 2) - (clockWidth / 2),
-        y: (bodySize.h * 0.55) - (clockHeight / 2),
+        x: (bodySize.w / 2),
+        y: (bodySize.h * 0.55),
         zIndex: 9
       })
+      // 设置锚点
+      oneClock.anchor.x = 0.5
+      oneClock.anchor.y = 0.5
       
       
       // 加载指针1-point 图片宽度235px
@@ -118,7 +122,7 @@
         y: (bodySize.h * 0.55) - (clockHeight / 2) + clockHeight * 0.5 - 2,
         zIndex: 999
       })
-      // 设置旋转点
+      // 设置锚点
       onePoint.anchor.x = 0.5
       onePoint.anchor.y = 0.5
 
@@ -142,7 +146,7 @@
         // 位置中间偏下10像素
         x: 0,
         y: 0,
-        zIndex: 1
+        z: -1
       })
 
       one.addChild(bg1Image, logoImage, oneTitle, oneClock, oneHand, onePoint, oneButterfly)
@@ -150,12 +154,10 @@
 
       // 触摸事件
       $("#main").on("touchstart",(e) => {
-        const touchX = e.originalEvent.targetTouches[0].clientX
-        const touchY = e.originalEvent.targetTouches[0].clientY
-        const touchXRange = touchX / bodySize.w
-        const touchYRange = touchY / bodySize.h
-        // console.log(touchXRange, touchYRange)
-        if (touchXRange > 0.43 && touchXRange < 0.46 && touchYRange > 0.42 && touchYRange < 0.48) {
+        const touchInfo = this.calculationTouch(e)
+        console.log(touchInfo)
+        // 针对横向和纵向
+        if (touchInfo.xRatio > 0.43 && touchInfo.xRatio < 0.46 && touchInfo.yRatio > 0.42 && touchInfo.yRatio < 0.48) {
           // console.log('范围内了')
           // 触摸松开事件
           $("#main").on("touchend",(e) => {
@@ -164,13 +166,34 @@
           })
           $("#main").on("touchmove",(e) => {
             // 计算出比例
-            let proportion = e.originalEvent.targetTouches[0].clientX / bodySize.w
-            proportion = (proportion - 0.438) / 0.06
+            let proportion = this.calculationTouch(e)
+            proportion = (proportion.xRatio - 0.438) / 0.06
             // 锁定在合适的区间内
             if (proportion > 1) proportion = 1
             if (proportion < 0) proportion = 0
             // 设置指针的幅度
             onePoint.rotation = 0.6 * proportion
+            // 如果旋转到指定角度放大钟表
+            if (proportion === 1) {
+              $("#main").off("touchmove")
+              console.log('sd')
+              // 销毁蝴蝶
+              // 停止蝴蝶动画
+              this.data.animationList.oneButterfly.kill()
+              oneButterfly.destroy()
+              // 销毁小手
+              this.data.animationList.oneHand.kill()
+              oneHand.destroy()
+              // 销毁指针
+              onePoint.destroy()
+              let oneClockAnimation = TweenMax.fromTo(oneClock.scale, 2 ,{x: 1, y: 1},{x: 5, y: 5, onComplete: () => {
+                // 动画完毕销毁首页logo和背景
+                logoImage.destroy()
+                bg1Image.destroy()
+                console.log('首页已销毁')
+              }})
+              // oneClockAnimation.play()
+            }
             
           })
         }
@@ -194,52 +217,79 @@
         }
         return newSprite;
       },
-      // 注册画板区域并返回设备屏幕信息
-      calculationScene: function(_this) {
-        // 获取屏幕宽高
-        const ww = $(window).width()
-        const wh = $(window).height()
-
-        // 判断是否为微信
-        if (false) {
-          if (window.orientation !== 90 && window.orientation !== -90){
-            window.document.body.classList.add('horizontal')
-            window.document.body.style.width = `${wh}px`
-            window.document.body.style.height = `${ww}px`
-            window.document.body.style.left = `calc(50% - ${wh / 2}px)`
-            window.document.body.style.top = `calc(50% - ${ww / 2}px)`
-            // 创建画布
-            _this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
-              backgroundColor: '0xffffff'
-            })
-            $('#main').append(_this.data.app.view)
-            _this.data.app.stage.displayList = new PIXI.display.Stage()
-            return {w: wh, h: ww}
-          }
-        } else {
-          if (ww < wh){
-            window.document.body.classList.add('horizontal')
-            window.document.body.style.width = `${wh}px`
-            window.document.body.style.height = `${ww}px`
-            window.document.body.style.left = `calc(50% - ${wh / 2}px)`
-            window.document.body.style.top = `calc(50% - ${ww / 2}px)`
-            // 创建画布
-            _this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
-              backgroundColor: '0xffffff'
-            })
-            $('#main').append(_this.data.app.view)
-            _this.data.app.stage.displayList = new PIXI.display.Stage()
-            return {w: wh, h: ww}
-          }
+      
+      
+      
+    },
+    // 注册画板区域并返回设备屏幕信息
+    calculationScene: function() {
+      // 获取屏幕宽高
+      const ww = $(window).width()
+      const wh = $(window).height()
+      console.log(`可视宽度:${ww}, 可视高度:${wh}`)
+      // 判断是否为微信
+      if (false) {
+        if (window.orientation !== 90 && window.orientation !== -90){
+          window.document.body.classList.add('horizontal')
+          window.document.body.style.width = `${wh}px`
+          window.document.body.style.height = `${ww}px`
+          window.document.body.style.left = `calc(50% - ${wh / 2}px)`
+          window.document.body.style.top = `calc(50% - ${ww / 2}px)`
+          // 创建画布
+          this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
+            backgroundColor: '0xffffff'
+          })
+          $('#main').append(this.data.app.view)
+          this.data.app.stage.displayList = new PIXI.display.Stage()
+          this.data.screenInfo = {w: wh, h: ww, transverse: false}
+          return {w: wh, h: ww, transverse: false}
         }
-        // 创建画布
-        _this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
-          backgroundColor: '0xffffff'
-        })
-        $('#main').append(_this.data.app.view)
-        _this.data.app.stage.displayList = new PIXI.display.Stage()
-        return {w: ww, h: wh}
+      } else {
+        if (ww < wh){
+          window.document.body.classList.add('horizontal')
+          window.document.body.style.width = `${wh}px`
+          window.document.body.style.height = `${ww}px`
+          window.document.body.style.left = `calc(50% - ${wh / 2}px)`
+          window.document.body.style.top = `calc(50% - ${ww / 2}px)`
+          // 创建画布
+          this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
+            backgroundColor: '0xffffff'
+          })
+          $('#main').append(this.data.app.view)
+          this.data.app.stage.displayList = new PIXI.display.Stage()
+          this.data.screenInfo = {w: wh, h: ww, transverse: false}
+          return {w: wh, h: ww, transverse: false}
+        }
       }
+      // 创建画布
+      this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
+        backgroundColor: '0xffffff'
+      })
+      $('#main').append(this.data.app.view)
+      this.data.app.stage.displayList = new PIXI.display.Stage()
+      this.data.transverse = true
+      this.data.screenInfo = {w: ww, h: wh, transverse: true}
+      return {w: ww, h: wh, transverse: true}
+    },
+    // 计算出鼠标点击位置
+    calculationTouch: function (e) {
+      if (this.data.screenInfo.transverse) {
+        // console.log(e.originalEvent.targetTouches[0].pageX, e.originalEvent.targetTouches[0].pageY)
+        return {
+          x: e.originalEvent.targetTouches[0].pageX,
+          y: e.originalEvent.targetTouches[0].pageY,
+          xRatio: e.originalEvent.targetTouches[0].pageX / this.data.screenInfo.w,
+          yRatio: e.originalEvent.targetTouches[0].pageY / this.data.screenInfo.h
+        }
+      } else {
+        return {
+          x: e.originalEvent.targetTouches[0].pageY,
+          y: this.data.screenInfo.h - e.originalEvent.targetTouches[0].pageX,
+          xRatio: e.originalEvent.targetTouches[0].pageY / this.data.screenInfo.w,
+          yRatio: (this.data.screenInfo.h - e.originalEvent.targetTouches[0].pageX) / this.data.screenInfo.h
+        }
+      }
+      
     }
   }
 </script>
