@@ -19,8 +19,30 @@
       titleStart: null,
       scroller: null,
       twoContainer: null,
+      // 小人
+      people: null,
       imgArr: [
-        './images/1-title.png'
+        './images/1-title.png',
+        './images/1.png',
+        './images/logo.png',
+        './images/3-colour.png',
+        "./images/1-clock.png",
+        "./images/1-point.png",
+        "./images/1-hand.png",
+        "./images/1-butterfly.png",
+        "./images/people.png",
+        "./images/2.png",
+        "./images/3.png",
+        "./images/3-light.png",
+        "./images/4.png",
+        "./images/5.png",
+        "./images/6.png",
+        "./images/7.png",
+        "./images/8.png",
+        "./images/9.png",
+        "./images/10.png",
+        "./images/11.png",
+        "./images/share.png",
       ],
       animationList: {}
     },
@@ -38,7 +60,7 @@
         .onProgress.add((e) => {
           // 资源加载完毕后显示one
           loadingTextDom.innerText = e.progress + '%'
-          if (e.progress === 100) {
+          if (e.progress >= 100) {
             // 显示one
             // 小手滑动动画
             this.data.animationList.oneHand = TweenMax.fromTo(oneHand, 1.5, {x: (bodySize.w * 0.44)},{x: (bodySize.w * 0.49), ease:Linear.easeNone}).repeat(-1)
@@ -218,7 +240,7 @@
     methods: {
       // 创建sprite对象
       createSprite: function(name, opt){
-        var newSprite = new PIXI.Sprite.from(name);
+        const newSprite = new PIXI.Sprite.from(name)
         if (opt) {
           for (let key in opt) {
             newSprite[key] = opt[key]
@@ -269,7 +291,7 @@
       }
       // 创建画布
       this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
-        backgroundColor: '0xffffff'
+        backgroundColor: '0xc8c9c9'
       })
       $('#main').append(this.data.app.view)
       this.data.app.stage.displayList = new PIXI.display.Stage()
@@ -298,48 +320,168 @@
       
     },
     two: function () {
+      const bodySize = this.data.screenInfo
       console.log('第二部分!')
       
       this.data.twoContainer = new PIXI.Container()
       this.data.twoContainer.x = 0
       this.data.twoContainer.y = 0
       this.data.twoContainer.width = this.data.screenInfo.w
-
-      const bg2Image = this.methods.createSprite("./images/2.png",{
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
+      // 加载小人
+      this.data.people = this.methods.createSprite("./images/people.png",{
+        width: 50,
+        height: 120,
         x:0,
         y:0
       })
-      console.log(this.data.app.stage)
-      this.data.twoContainer.addChild(bg2Image)
+      // 第二张背景图
+      const bg2Image = this.methods.createSprite("./images/2.png",{
+        width: this.data.screenInfo.w + 1,
+        height: this.data.screenInfo.h,
+        x: -1,
+        y: 0
+      })
+      
+      // 第三张背景图
+      const bg3Image = this.methods.createSprite("./images/3.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w,
+        y: 1
+      })
+      // 第三张光 比例1
+      const threeLightHeight = bodySize.h / 3
+      const threeLight = this.methods.createSprite("./images/3-light.png", {
+        width: threeLightHeight,
+        height: threeLightHeight,
+        // 位置中间靠上
+        x: bodySize.w + (bodySize.w * 0.62) - (threeLightHeight / 2),
+        y: bodySize.h * 0.1
+      })
+      
+      // 第四章背景图
+      const bg4Image = this.methods.createSprite("./images/4.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 2,
+        y: -1
+      })
+
+      // 第五张背景图
+      const bg5Image = this.methods.createSprite("./images/5.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 3,
+        y: 2
+      })
+
+      // 第五张背景图
+      const bg6Image = this.methods.createSprite("./images/6.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 4,
+        y: 0
+      })
+
+      const bg7Image = this.methods.createSprite("./images/7.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 5,
+        y: 1
+      })
+      const bg8Image = this.methods.createSprite("./images/8.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 6,
+        y: -4
+      })
+      const bg9Image = this.methods.createSprite("./images/9.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 7,
+        y: 0
+      })
+      const bg10Image = this.methods.createSprite("./images/10.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 8,
+        y: 0
+      })
+
+      const bg11Image = this.methods.createSprite("./images/11.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 9,
+        y: 0
+      })
+
+      const bgshare = this.methods.createSprite("./images/share.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 10,
+        y: 0
+      })
+
+      // 设置可交互
+      threeLight.interactive = true;
+      threeLight.buttonMode = true
+      // 第三张图 亮光触摸事件
+      threeLight.on('pointerdown', () => {
+        const texture = PIXI.Texture.fromFrame('./images/3-colour.png')
+        bg3Image.setTexture(texture)
+        // 销毁动画
+        threeLightAnimationList.kill()
+        // 销毁掉亮光
+        threeLight.destroy()
+        console.log(bg3Image)
+      })
+
+      this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare)
       this.data.app.stage.addChild(this.data.twoContainer)
+      
+      // 三-亮光闪烁
+      const threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {alpha: 0},{alpha: 1}).repeat(-1)
+      threeLightAnimationList.play()
 
       this.scrollBegin()
     },
     scrollBegin: function () {
+      const peoplePathList = [0.26]
       console.log('注册scroll!')
+      const transverse = this.data.screenInfo.transverse
       let mousedown = false
-      let scrollNumber = 0
       let scroller = new Scroller((left, top, zoom) => {
-        console.log(left, top, zoom)
+        // console.log(transverse ? left: top)
+        // console.log(left, top, zoom)
         // 滚动回调
         // scrollPro = left > top ? left : top;
-        scrollNumber -= left / 5
+        const scrollNumber = transverse ? left: top
         // if (scrollNumber > 0) scrollNumber = 0
         // console.log(scrollNumber)
-        this.data.twoContainer.x = -left * 2
+        this.data.twoContainer.x = -scrollNumber
+        // 移动小人
+        this.data.people.x = scrollNumber
+        if (peoplePathList[scrollNumber]) {
+          this.data.people.y = this.data.screenInfo.h * peoplePathList[scrollNumber]
+        }
       }, {
-        zooming: true
+        zooming: true,
+        bouncing: false
       })
-      // 设置滚动区域
-      scroller.setDimensions(this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w * 2, this.data.screenInfo.h)
+      // 根据横屏还是竖屏 设置滚动区域
+      if (transverse) {
+        scroller.setDimensions(this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w * 11, this.data.screenInfo.h)
+      } else {
+        scroller.setDimensions(this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w, this.data.screenInfo.h * 11)
+        
+      }
+      
       // 触摸事件监听
       
       document.addEventListener("touchstart", (e) => {
-        scroller.doTouchStart(e.touches, e.timeStamp);
-        mousedown = true;
-      }, false);
+        scroller.doTouchStart(e.touches, e.timeStamp)
+        mousedown = true
+      }, false)
 
       document.addEventListener("touchmove", (e) => {
         if (!mousedown) {
@@ -347,12 +489,12 @@
         }
         // console.log(e.touches, e.timeStamp)
         scroller.doTouchMove(e.touches, e.timeStamp);
-        mousedown = true;
+        mousedown = true
       }, false);
 
       document.addEventListener("touchend", (e) => {
         if (!mousedown) {
-          return;
+          return
         }
         scroller.doTouchEnd(e.timeStamp)
         mousedown = false
