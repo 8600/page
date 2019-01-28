@@ -446,7 +446,7 @@
       this.scrollBegin()
     },
     scrollBegin: function () {
-      const peoplePathList = [0.26]
+      const peoplePathList = [0.26, 0.264, 0.268, 0.272]
       console.log('注册scroll!')
       const transverse = this.data.screenInfo.transverse
       let mousedown = false
