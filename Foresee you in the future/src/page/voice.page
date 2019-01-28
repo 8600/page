@@ -247,6 +247,10 @@
           }
         }
         return newSprite;
+      },
+      smooth: function (baseValue, minValue, nowValue, step) {
+        // console.log(nowValue, baseValue + (nowValue - minValue) * step)
+        return baseValue + (nowValue - minValue) * step
       }
     },
     // 注册画板区域并返回设备屏幕信息
@@ -331,8 +335,8 @@
       this.data.people = this.methods.createSprite("./images/people.png",{
         width: 50,
         height: 120,
-        x:0,
-        y:0
+        x: 50,
+        y: 0
       })
       // 第二张背景图
       const bg2Image = this.methods.createSprite("./images/2.png",{
@@ -446,7 +450,6 @@
       this.scrollBegin()
     },
     scrollBegin: function () {
-      const peoplePathList = [0.26, 0.264, 0.268, 0.272]
       console.log('注册scroll!')
       const transverse = this.data.screenInfo.transverse
       let mousedown = false
@@ -459,10 +462,75 @@
         // if (scrollNumber > 0) scrollNumber = 0
         // console.log(scrollNumber)
         this.data.twoContainer.x = -scrollNumber
+        const peopleX = scrollNumber + 50
         // 移动小人
-        this.data.people.x = scrollNumber
-        if (peoplePathList[scrollNumber]) {
-          this.data.people.y = this.data.screenInfo.h * peoplePathList[scrollNumber]
+        this.data.people.x = peopleX
+        // console.log(scrollNumber)
+        // 小球移动轨迹
+        if (peopleX < 188) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.25, 0, peopleX, 0.001)
+        } else if (peopleX < 390) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.438, 188, peopleX, 0.0007)
+        } else if (peopleX < 560) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5794, 390, peopleX, 0.00025)
+        } else if (peopleX < 687) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6219, 560, peopleX, -0.0003)
+        } else if (peopleX < 966) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5838, 687, peopleX, -0.0011)
+        } else if (peopleX < 1125) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2769, 966, peopleX, -0.0004)
+        } else if (peopleX < 1167) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2133, 1125, peopleX, -0.00005)
+        } else if (peopleX < 1412) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2112, 1167, peopleX, 0.0005)
+        } else if (peopleX < 1591) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3337, 1412, peopleX, 0.001)
+        } else if (peopleX < 1744) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5136, 1591, peopleX, 0.0006)
+        } else if (peopleX < 1844) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6054, 1744, peopleX, 0.0001)
+        } else if (peopleX < 2017) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6122, 1844, peopleX, -0.0006)
+        } else if (peopleX < 2238) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5081, 2017, peopleX, -0.001)
+        } else if (peopleX < 2386) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2864, 2238, peopleX, -0.0006)
+        } else if (peopleX < 2530) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1980, 2386, peopleX, -0.0002)
+        } else if (peopleX < 2679) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1690, 2530, peopleX, 0.00015)
+        } else if (peopleX < 3299) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1911, 2679, peopleX, 0.0006)
+        } else if (peopleX < 3777) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5635, 3299, peopleX, -0.0005)
+        } else if (peopleX < 3969) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3243, 3777, peopleX, -0.0001)
+        } else if (peopleX < 4317) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3050, 3969, peopleX, 0.0003)
+        } else if (peopleX < 4614) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4096, 4317, peopleX, 0.0005)
+        } else if (peopleX < 4944) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5582, 4614, peopleX, 0.0003)
+        } else if (peopleX < 5352) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6572, 4944, peopleX, -0.0007)
+        } else if (peopleX < 5638) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3714, 5352, peopleX, -0.0003)
+        } else if (peopleX < 5946) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2854, 5638, peopleX, 0.0004)
+        } else if (peopleX < 6443) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4089, 5946, peopleX, 0.0006)
+        } else if (peopleX < 7042) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7080, 6443, peopleX, 0.00001)
+        } else if (peopleX < 7723) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7139, 7042, peopleX, -0.0004)
+        } else if (peopleX < 8383) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4412, 7723, peopleX, 0.0001)
+        } else if (peopleX < 9303) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5072, 8383, peopleX, -0.00026)
+        } else if (peopleX < 10025) {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2677, 9303, peopleX, 0.0003)
+        } else {
+          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4844, 10025, peopleX, -0.0004)
         }
       }, {
         zooming: true,
@@ -499,7 +567,8 @@
         scroller.doTouchEnd(e.timeStamp)
         mousedown = false
       }, false)
-    }
+    },
+    
   }
 </script>
 
