@@ -21,6 +21,8 @@
       twoContainer: null,
       // 小人
       people: null,
+      // 小人图片
+      peopleImgID: 1,
       imgArr: [
         './images/1-title.png',
         './images/1.png',
@@ -30,7 +32,17 @@
         "./images/1-point.png",
         "./images/1-hand.png",
         "./images/1-butterfly.png",
-        "./images/people.png",
+        "./images/people-1.png",
+        "./images/people-2.png",
+        "./images/people-3.png",
+        "./images/people-4.png",
+        "./images/people-5.png",
+        "./images/people-6.png",
+        "./images/people-7.png",
+        "./images/people-8.png",
+        "./images/people-9.png",
+        "./images/people-10.png",
+        "./images/people-11.png",
         "./images/2.png",
         "./images/3.png",
         "./images/3-light.png",
@@ -224,7 +236,7 @@
               oneHand.destroy()
               // 销毁指针
               onePoint.destroy()
-              let oneClockAnimation = TweenMax.fromTo(oneClock.scale, 2 ,{x: 1, y: 1},{x: 5, y: 5, onComplete: () => {
+              let oneClockAnimation = TweenMax.fromTo(oneClock.scale, 1 ,{x: 1, y: 1},{x: 8, y: 8, onComplete: () => {
                 // 动画完毕销毁首页logo和背景
                 logoImage.destroy()
                 bg1Image.destroy()
@@ -347,7 +359,7 @@
       this.data.twoContainer.y = 0
       this.data.twoContainer.width = this.data.screenInfo.w
       // 加载小人
-      this.data.people = this.methods.createSprite("./images/people.png",{
+      this.data.people = this.methods.createSprite("./images/people-1.png",{
         width: 50 * (this.data.screenInfo.w / 1024),
         height: 120 * (this.data.screenInfo.h / 768),
         x: 50,
@@ -610,7 +622,6 @@
       threeLight.buttonMode = true
       // 第三张图 亮光触摸事件
       threeLight.on('tap', () => {
-        console.log('sdsd')
         const texture = PIXI.Texture.fromFrame('./images/3-colour.png')
         bg3Image.setTexture(texture)
         // 销毁动画
@@ -766,6 +777,8 @@
         const peopleX = scrollNumber + 50 * (1024 / this.data.screenInfo.w)
         // 移动小人
         this.data.people.x = peopleX
+        // 设置小人的图片
+        this.setPeopleImg(peopleX)
         // console.log(scrollNumber)
         // 小球移动轨迹
         this.setPeopleY(peopleX)
@@ -864,6 +877,14 @@
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2677, 9303, peopleX, 0.0003)
       } else {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4844, 10025, peopleX, -0.0004)
+      }
+    },
+    setPeopleImg: function (peopleX) {
+      const peopleID = Math.ceil(peopleX / this.data.screenInfo.w)
+      if (this.data.peopleImgID !== peopleID) {
+        const texture = PIXI.Texture.fromFrame('./images/people-' + peopleID +'.png')
+        this.data.people.setTexture(texture)
+        this.data.peopleImgID = peopleID
       }
     },
     // 移动屏幕鼠标事件
