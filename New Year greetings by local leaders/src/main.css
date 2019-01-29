@@ -26,6 +26,13 @@ a{text-decoration:none}
   top:50%;
 }
 
+.play .main-box .shelter {
+  filter: none !important;
+}
+.play  .back {
+  display: none;
+}
+
 .particle-box{
   position: absolute;
   bottom: 0;

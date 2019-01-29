@@ -43,7 +43,12 @@
         "./images/10.png",
         "./images/11.png",
         "./images/share.png",
-        "./images/5-colour.png"
+        "./images/5-colour.png",
+        "./images/7-light.png",
+        './images/7-colour.png',
+        './images/9-colour.png',
+        "./images/11-light.png",
+        './images/11-colour.png'
       ],
       animationList: {}
     },
@@ -61,7 +66,7 @@
         .onProgress.add((e) => {
           // 资源加载完毕后显示one
           loadingTextDom.innerText = parseInt(e.progress) + '%'
-          if (e.progress >= 100) {
+          if (Math.ceil(e.progress) >= 100) {
             // 显示one
             // 小手滑动动画
             this.data.animationList.oneHand = TweenMax.fromTo(oneHand, 1.5, {x: (bodySize.w * 0.44)},{x: (bodySize.w * 0.49), ease:Linear.easeNone}).repeat(-1)
@@ -448,13 +453,13 @@
         width: fiveLightHeight * 2.0581,
         height: fiveLightHeight,
         // 位置中间靠上
-        x: bodySize.w * 3 + (bodySize.w * 0.583) - (fiveLightHeight / 2),
-        y: bodySize.h * 0.581
+        x: bodySize.w * 3 + (bodySize.w * 0.575) - (fiveLightHeight / 2),
+        y: bodySize.h * 0.58
       })
       // 设置可交互
       fiveLight.interactive = true;
       fiveLight.buttonMode = true
-      // 第三张图 亮光触摸事件
+      // 第五张光 亮光触摸事件
       fiveLight.on('pointerdown', () => {
         const texture = PIXI.Texture.fromFrame('./images/5-colour.png')
         bg5Image.setTexture(texture)
@@ -466,7 +471,80 @@
         this.setShowPageNumber(6)
       })
 
-      this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, fiveLight)
+      // 第七张图 比例:0.7421
+      const sevenLightHeight = bodySize.h / 5
+      const sevenLight = this.methods.createSprite("./images/7-light.png", {
+        width: sevenLightHeight * 0.7421,
+        height: sevenLightHeight,
+        // 位置中间靠上
+        x: bodySize.w * 5 + (bodySize.w * 0.34) - (sevenLightHeight / 2),
+        y: bodySize.h * 0.57
+      })
+      // 设置可交互
+      sevenLight.interactive = true;
+      sevenLight.buttonMode = true
+      // 第五张光 亮光触摸事件
+      sevenLight.on('pointerdown', () => {
+        const texture = PIXI.Texture.fromFrame('./images/7-colour.png')
+        bg7Image.setTexture(texture)
+        // 销毁动画
+        sevenLightHeightAnimationList.kill()
+        // 销毁掉亮光
+        sevenLight.destroy()
+        // 设置可滚动的区域
+        this.setShowPageNumber(8)
+      })
+
+      // 第九张图 比例:1
+      const Light9Height = bodySize.h / 5
+      const Light9 = this.methods.createSprite("./images/9-light.png", {
+        width: Light9Height,
+        height: Light9Height,
+        // 位置中间靠上
+        x: bodySize.w * 7 + (bodySize.w * 0.57) - (sevenLightHeight / 2),
+        y: bodySize.h * 0.065
+      })
+
+      // 设置可交互
+      Light9.interactive = true;
+      Light9.buttonMode = true
+      // 第五张光 亮光触摸事件
+      Light9.on('pointerdown', () => {
+        const texture = PIXI.Texture.fromFrame('./images/9-colour.png')
+        bg9Image.setTexture(texture)
+        // 销毁动画
+        Light9AnimationList.kill()
+        // 销毁掉亮光
+        Light9.destroy()
+        // 设置可滚动的区域
+        this.setShowPageNumber(10)
+      })
+
+      // 第11张图 比例:1
+      const Light11Height = bodySize.h / 1.3
+      const Light11 = this.methods.createSprite("./images/11-light.png", {
+        width: Light11Height,
+        height: Light11Height,
+        // 位置中间靠上
+        x: bodySize.w * 9 + (bodySize.w * 0.34) - (sevenLightHeight / 2),
+        y: bodySize.h * 0.065
+      })
+      // 设置可交互
+      Light11.interactive = true;
+      Light11.buttonMode = true
+      // 第五张光 亮光触摸事件
+      Light11.on('pointerdown', () => {
+        const texture = PIXI.Texture.fromFrame('./images/11-colour.png')
+        bg11Image.setTexture(texture)
+        // 销毁动画
+        Light11AnimationList.kill()
+        // 销毁掉亮光
+        Light11.destroy()
+        // 设置可滚动的区域
+        this.setShowPageNumber(11)
+      })
+
+      this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, fiveLight, sevenLight, Light9, Light11)
       this.data.app.stage.addChild(this.data.twoContainer)
       
       // 三-亮光闪烁
@@ -476,6 +554,18 @@
       // 五-亮光闪烁
       const fiveLightHeightAnimationList = TweenMax.fromTo(fiveLight, 1, {alpha: 0},{alpha: 1}).repeat(-1)
       fiveLightHeightAnimationList.play()
+
+      // 七-亮光闪烁
+      const sevenLightHeightAnimationList = TweenMax.fromTo(sevenLight, 1, {alpha: 0},{alpha: 1}).repeat(-1)
+      sevenLightHeightAnimationList.play()
+
+      // 九-亮光闪烁
+      const Light9AnimationList = TweenMax.fromTo(Light9, 1, {alpha: 0},{alpha: 1}).repeat(-1)
+      Light9AnimationList.play()
+
+      // 十一-亮光闪烁
+      const Light11AnimationList = TweenMax.fromTo(Light11, 1, {alpha: 0},{alpha: 1}).repeat(-1)
+      Light11AnimationList.play()
 
       this.scrollBegin()
     },
@@ -499,7 +589,7 @@
         bouncing: false
       })
       // 设置可滚动的区域
-      this.setShowPageNumber(11)
+      this.setShowPageNumber(2)
       // 监听鼠标事件
       this.mouseEvent()
       
