@@ -711,13 +711,13 @@
         this.setShowPageNumber(10)
       })
 
-      // 第11张图 比例:1
+      // 第11张图 大柚子 比例:1
       const Light11Height = bodySize.h / 1.3
       const Light11 = this.methods.createSprite("./images/11-light.png", {
-        width: Light11Height,
+        width: Light11Height * (bodySize.h / bodySize.w),
         height: Light11Height,
         // 位置中间靠上
-        x: bodySize.w * 9 + (bodySize.w * 0.34) - (sevenLightHeight / 2),
+        x: bodySize.w * 9 + (bodySize.w * 0.36) - (sevenLightHeight / 2),
         y: bodySize.h * 0.065
       })
       // 设置可交互
@@ -738,7 +738,7 @@
         this.setShowPageNumber(11)
       })
       // 添加背景
-      this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, fiveLight, sevenLight, Light9, Light11)
+      this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, Light11, bg11Image, bgshare, fiveLight, sevenLight, Light9)
       // 添加云
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12)
       this.data.app.stage.addChild(this.data.twoContainer)
