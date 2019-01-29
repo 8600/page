@@ -43,6 +43,7 @@
         "./images/10.png",
         "./images/11.png",
         "./images/share.png",
+        "./images/5-colour.png"
       ],
       animationList: {}
     },
@@ -59,7 +60,7 @@
         .add(this.data.imgArr)
         .onProgress.add((e) => {
           // 资源加载完毕后显示one
-          loadingTextDom.innerText = e.progress + '%'
+          loadingTextDom.innerText = parseInt(e.progress) + '%'
           if (e.progress >= 100) {
             // 显示one
             // 小手滑动动画
@@ -333,8 +334,8 @@
       this.data.twoContainer.width = this.data.screenInfo.w
       // 加载小人
       this.data.people = this.methods.createSprite("./images/people.png",{
-        width: 50,
-        height: 120,
+        width: 50 * (this.data.screenInfo.w / 1024),
+        height: 120 * (this.data.screenInfo.h / 768),
         x: 50,
         y: 0
       })
@@ -353,15 +354,6 @@
         x: this.data.screenInfo.w,
         y: 1
       })
-      // 第三张光 比例1
-      const threeLightHeight = bodySize.h / 3
-      const threeLight = this.methods.createSprite("./images/3-light.png", {
-        width: threeLightHeight,
-        height: threeLightHeight,
-        // 位置中间靠上
-        x: bodySize.w + (bodySize.w * 0.62) - (threeLightHeight / 2),
-        y: bodySize.h * 0.1
-      })
       
       // 第四章背景图
       const bg4Image = this.methods.createSprite("./images/4.png",{
@@ -376,7 +368,7 @@
         width: this.data.screenInfo.w,
         height: this.data.screenInfo.h,
         x: this.data.screenInfo.w * 3,
-        y: 2
+        y: 0
       })
 
       // 第五张背景图
@@ -425,7 +417,16 @@
         x: this.data.screenInfo.w * 10,
         y: 0
       })
-
+      //  ------------------------------------------- 亮光 -------------------------------------------
+      // 第三张光 比例1
+      const threeLightHeight = bodySize.h / 3
+      const threeLight = this.methods.createSprite("./images/3-light.png", {
+        width: threeLightHeight,
+        height: threeLightHeight,
+        // 位置中间靠上
+        x: bodySize.w + (bodySize.w * 0.62) - (threeLightHeight / 2),
+        y: bodySize.h * 0.1
+      })
       // 设置可交互
       threeLight.interactive = true;
       threeLight.buttonMode = true
@@ -437,117 +438,157 @@
         threeLightAnimationList.kill()
         // 销毁掉亮光
         threeLight.destroy()
-        console.log(bg3Image)
+        // 设置可滚动的区域
+        this.setShowPageNumber(4)
       })
 
-      this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare)
+      // 第五张光 比例2.0581
+      const fiveLightHeight = bodySize.h / 10
+      const fiveLight = this.methods.createSprite("./images/5-light.png", {
+        width: fiveLightHeight * 2.0581,
+        height: fiveLightHeight,
+        // 位置中间靠上
+        x: bodySize.w * 3 + (bodySize.w * 0.583) - (fiveLightHeight / 2),
+        y: bodySize.h * 0.581
+      })
+      // 设置可交互
+      fiveLight.interactive = true;
+      fiveLight.buttonMode = true
+      // 第三张图 亮光触摸事件
+      fiveLight.on('pointerdown', () => {
+        const texture = PIXI.Texture.fromFrame('./images/5-colour.png')
+        bg5Image.setTexture(texture)
+        // 销毁动画
+        fiveLightHeightAnimationList.kill()
+        // 销毁掉亮光
+        fiveLight.destroy()
+        // 设置可滚动的区域
+        this.setShowPageNumber(6)
+      })
+
+      this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, fiveLight)
       this.data.app.stage.addChild(this.data.twoContainer)
       
       // 三-亮光闪烁
       const threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {alpha: 0},{alpha: 1}).repeat(-1)
       threeLightAnimationList.play()
 
+      // 五-亮光闪烁
+      const fiveLightHeightAnimationList = TweenMax.fromTo(fiveLight, 1, {alpha: 0},{alpha: 1}).repeat(-1)
+      fiveLightHeightAnimationList.play()
+
       this.scrollBegin()
     },
     scrollBegin: function () {
       console.log('注册scroll!')
       const transverse = this.data.screenInfo.transverse
-      let mousedown = false
-      let scroller = new Scroller((left, top, zoom) => {
-        // console.log(transverse ? left: top)
-        // console.log(left, top, zoom)
-        // 滚动回调
-        // scrollPro = left > top ? left : top;
+      
+      this.data.scroller = new Scroller((left, top, zoom) => {
+
         const scrollNumber = transverse ? left: top
-        // if (scrollNumber > 0) scrollNumber = 0
-        // console.log(scrollNumber)
+        // 设置整个页面的x
         this.data.twoContainer.x = -scrollNumber
-        const peopleX = scrollNumber + 50
+        const peopleX = scrollNumber + 50 * (1024 / this.data.screenInfo.w)
         // 移动小人
         this.data.people.x = peopleX
         // console.log(scrollNumber)
         // 小球移动轨迹
-        if (peopleX < 188) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.25, 0, peopleX, 0.001)
-        } else if (peopleX < 390) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.438, 188, peopleX, 0.0007)
-        } else if (peopleX < 560) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5794, 390, peopleX, 0.00025)
-        } else if (peopleX < 687) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6219, 560, peopleX, -0.0003)
-        } else if (peopleX < 966) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5838, 687, peopleX, -0.0011)
-        } else if (peopleX < 1125) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2769, 966, peopleX, -0.0004)
-        } else if (peopleX < 1167) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2133, 1125, peopleX, -0.00005)
-        } else if (peopleX < 1412) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2112, 1167, peopleX, 0.0005)
-        } else if (peopleX < 1591) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3337, 1412, peopleX, 0.001)
-        } else if (peopleX < 1744) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5136, 1591, peopleX, 0.0006)
-        } else if (peopleX < 1844) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6054, 1744, peopleX, 0.0001)
-        } else if (peopleX < 2017) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6122, 1844, peopleX, -0.0006)
-        } else if (peopleX < 2238) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5081, 2017, peopleX, -0.001)
-        } else if (peopleX < 2386) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2864, 2238, peopleX, -0.0006)
-        } else if (peopleX < 2530) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1980, 2386, peopleX, -0.0002)
-        } else if (peopleX < 2679) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1690, 2530, peopleX, 0.00015)
-        } else if (peopleX < 3299) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1911, 2679, peopleX, 0.0006)
-        } else if (peopleX < 3777) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5635, 3299, peopleX, -0.0005)
-        } else if (peopleX < 3969) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3243, 3777, peopleX, -0.0001)
-        } else if (peopleX < 4317) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3050, 3969, peopleX, 0.0003)
-        } else if (peopleX < 4614) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4096, 4317, peopleX, 0.0005)
-        } else if (peopleX < 4944) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5582, 4614, peopleX, 0.0003)
-        } else if (peopleX < 5352) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6572, 4944, peopleX, -0.0007)
-        } else if (peopleX < 5638) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3714, 5352, peopleX, -0.0003)
-        } else if (peopleX < 5946) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2854, 5638, peopleX, 0.0004)
-        } else if (peopleX < 6443) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4089, 5946, peopleX, 0.0006)
-        } else if (peopleX < 7042) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7080, 6443, peopleX, 0.00001)
-        } else if (peopleX < 7723) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7139, 7042, peopleX, -0.0004)
-        } else if (peopleX < 8383) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4412, 7723, peopleX, 0.0001)
-        } else if (peopleX < 9303) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5072, 8383, peopleX, -0.00026)
-        } else if (peopleX < 10025) {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2677, 9303, peopleX, 0.0003)
-        } else {
-          this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4844, 10025, peopleX, -0.0004)
-        }
+        this.setPeopleY(peopleX)
       }, {
         zooming: true,
         bouncing: false
       })
+      // 设置可滚动的区域
+      this.setShowPageNumber(11)
+      // 监听鼠标事件
+      this.mouseEvent()
+      
+    },
+    // 设置可以拖动的屏幕数量
+    setShowPageNumber: function (number) {
+      const transverse = this.data.screenInfo.transverse
       // 根据横屏还是竖屏 设置滚动区域
       if (transverse) {
-        scroller.setDimensions(this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w * 11, this.data.screenInfo.h)
+        this.data.scroller.setDimensions(this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w * number, this.data.screenInfo.h)
       } else {
-        scroller.setDimensions(this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w, this.data.screenInfo.h * 11)
-        
+        this.data.scroller.setDimensions(this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w, this.data.screenInfo.h * number)
       }
-      
-      // 触摸事件监听
-      
+    },
+    // 计算并设置小人Y坐标
+    setPeopleY: function (peopleX) {
+      // 当时是在屏幕分辨率为1024*768做的 所以要计算换算为真实屏幕
+      peopleX = peopleX * (1024 / this.data.screenInfo.w)
+      if (peopleX < 188) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.25, 0, peopleX, 0.001)
+      } else if (peopleX < 390) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.438, 188, peopleX, 0.0007)
+      } else if (peopleX < 560) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5794, 390, peopleX, 0.00025)
+      } else if (peopleX < 687) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6219, 560, peopleX, -0.0003)
+      } else if (peopleX < 966) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5838, 687, peopleX, -0.0011)
+      } else if (peopleX < 1125) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2769, 966, peopleX, -0.0004)
+      } else if (peopleX < 1167) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2133, 1125, peopleX, -0.00005)
+      } else if (peopleX < 1412) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2112, 1167, peopleX, 0.0005)
+      } else if (peopleX < 1591) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3337, 1412, peopleX, 0.001)
+      } else if (peopleX < 1744) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5136, 1591, peopleX, 0.0006)
+      } else if (peopleX < 1844) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6054, 1744, peopleX, 0.0001)
+      } else if (peopleX < 2017) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6122, 1844, peopleX, -0.0006)
+      } else if (peopleX < 2238) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5081, 2017, peopleX, -0.001)
+      } else if (peopleX < 2386) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2864, 2238, peopleX, -0.0006)
+      } else if (peopleX < 2530) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1980, 2386, peopleX, -0.0002)
+      } else if (peopleX < 2679) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1690, 2530, peopleX, 0.00015)
+      } else if (peopleX < 3299) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1911, 2679, peopleX, 0.0006)
+      } else if (peopleX < 3777) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5635, 3299, peopleX, -0.0005)
+      } else if (peopleX < 3969) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3243, 3777, peopleX, -0.0001)
+      } else if (peopleX < 4317) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3050, 3969, peopleX, 0.0003)
+      } else if (peopleX < 4614) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4096, 4317, peopleX, 0.0005)
+      } else if (peopleX < 4944) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5582, 4614, peopleX, 0.0003)
+      } else if (peopleX < 5352) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6572, 4944, peopleX, -0.0007)
+      } else if (peopleX < 5638) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3714, 5352, peopleX, -0.0003)
+      } else if (peopleX < 5946) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2854, 5638, peopleX, 0.0004)
+      } else if (peopleX < 6443) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4089, 5946, peopleX, 0.0006)
+      } else if (peopleX < 7042) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7080, 6443, peopleX, 0.00001)
+      } else if (peopleX < 7723) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7139, 7042, peopleX, -0.0004)
+      } else if (peopleX < 8383) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4412, 7723, peopleX, 0.0001)
+      } else if (peopleX < 9303) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5072, 8383, peopleX, -0.00026)
+      } else if (peopleX < 10025) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2677, 9303, peopleX, 0.0003)
+      } else {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4844, 10025, peopleX, -0.0004)
+      }
+    },
+    // 移动屏幕鼠标事件
+    mouseEvent: function () {
+      let mousedown = false
       document.addEventListener("touchstart", (e) => {
-        scroller.doTouchStart(e.touches, e.timeStamp)
+        this.data.scroller.doTouchStart(e.touches, e.timeStamp)
         mousedown = true
       }, false)
 
@@ -556,7 +597,7 @@
           return
         }
         // console.log(e.touches, e.timeStamp)
-        scroller.doTouchMove(e.touches, e.timeStamp);
+        this.data.scroller.doTouchMove(e.touches, e.timeStamp);
         mousedown = true
       }, false);
 
@@ -564,11 +605,10 @@
         if (!mousedown) {
           return
         }
-        scroller.doTouchEnd(e.timeStamp)
+        this.data.scroller.doTouchEnd(e.timeStamp)
         mousedown = false
       }, false)
-    },
-    
+    }
   }
 </script>
 
