@@ -48,7 +48,16 @@
         './images/7-colour.png',
         './images/9-colour.png',
         "./images/11-light.png",
-        './images/11-colour.png'
+        './images/11-colour.png',
+        "./images/3-cloud.png",
+        "./images/4-cloud.png",
+        "./images/5-cloud.png",
+        "./images/6-cloud.png",
+        "./images/7-cloud.png",
+        "./images/8-cloud.png",
+        "./images/9-cloud.png",
+        "./images/10-cloud.png",
+        './images/11-petal-colour.png'
       ],
       animationList: {}
     },
@@ -422,7 +431,171 @@
         x: this.data.screenInfo.w * 10,
         y: 0
       })
-      //  ------------------------------------------- 亮光 -------------------------------------------
+
+      // ------------------------------------------- 云 -------------------------------------------
+      // 3云 比例6.397
+      const cloud3H = bodySize.h * 0.25
+      const cloud3 = this.methods.createSprite("./images/3-cloud.png", {
+        width: cloud3H * 6.397,
+        height: cloud3H,
+        // 位置中间靠上
+        x: bodySize.w + (bodySize.w * 0.05),
+        y: bodySize.h * 0.1
+      })
+      const cloud3AnimationList = new TweenMax(cloud3, 2, {
+        x: bodySize.w + (bodySize.w * 0.05) + 10,
+        repeat:-1,
+        yoyo:true,
+      })
+      cloud3AnimationList.play()
+
+      // 4云 比例2.1159
+      const cloud4H = bodySize.h * 0.8
+      const cloud4 = this.methods.createSprite("./images/4-cloud.png", {
+        width: cloud4H * 2.1159,
+        height: cloud4H,
+        // 位置中间靠上
+        x: bodySize.w * 2,
+        y: 0
+      })
+      const cloud4AnimationList = new TweenMax(cloud4, 2, {
+        x: bodySize.w * 2 + 15,
+        repeat:-1,
+        yoyo:true,
+      })
+      cloud4AnimationList.play()
+
+      // cloud5 比例4.7467
+      const cloud5H = bodySize.h * 0.3
+      const cloud5 = this.methods.createSprite("./images/5-cloud.png", {
+        width: cloud5H * 4.7467,
+        height: cloud5H,
+        x: bodySize.w * 3 + (bodySize.w * 0.05),
+        y: bodySize.h * 0.1
+      })
+      const cloud5AnimationList = new TweenMax(cloud5, 2, {
+        x: bodySize.w * 3 + (bodySize.w * 0.05) + 10,
+        repeat:-1,
+        yoyo:true,
+      })
+      cloud5AnimationList.play()
+
+      // 6云 比例2.0727
+      const cloud6H = bodySize.h * 0.7
+      const cloud6 = this.methods.createSprite("./images/6-cloud.png", {
+        width: cloud6H * 2.0727,
+        height: cloud6H,
+        // 位置中间靠上
+        x: bodySize.w * 4 + (bodySize.w * 0.05),
+        y: 0
+      })
+      const cloud6AnimationList = new TweenMax(cloud6, 2, {
+        x: bodySize.w * 4 + 15,
+        repeat:-1,
+        yoyo:true,
+      })
+      cloud6AnimationList.play()
+
+      // cloud7 比例5.0339
+      const cloud7H = bodySize.h * 0.3
+      const cloud7 = this.methods.createSprite("./images/7-cloud.png", {
+        width: cloud7H * 5.0339,
+        height: cloud7H,
+        x: bodySize.w * 5 + (bodySize.w * 0.05),
+        y: 0
+      })
+      const cloud7AnimationList = new TweenMax(cloud7, 2, {
+        x: bodySize.w * 5 + (bodySize.w * 0.05) + 10,
+        repeat:-1,
+        yoyo:true,
+      })
+      cloud7AnimationList.play()
+
+      // cloud8 比例2.5685
+      const cloud8H = bodySize.h * 0.6
+      const cloud8 = this.methods.createSprite("./images/8-cloud.png", {
+        width: cloud8H * 2.5685,
+        height: cloud8H,
+        // 位置中间靠上
+        x: bodySize.w * 6 + (bodySize.w * 0.05),
+        y: bodySize.h * 0.05
+      })
+      const cloud8AnimationList = new TweenMax(cloud8, 2, {
+        x: bodySize.w * 6  + (bodySize.w * 0.05) + 10,
+        repeat:-1,
+        yoyo:true,
+      })
+      cloud8AnimationList.play()
+
+      // cloud9 比例3.8078
+      const cloud9H = bodySize.h * 0.45
+      const cloud9 = this.methods.createSprite("./images/9-cloud.png", {
+        width: cloud9H * 3.8078,
+        height: cloud9H,
+        // 位置中间靠上
+        x: bodySize.w * 7 + (bodySize.w * 0.05),
+        y: bodySize.h * 0.15
+      })
+      const cloud9AnimationList = new TweenMax(cloud9, 2, {
+        x: bodySize.w * 7  + (bodySize.w * 0.05) + 10,
+        repeat:-1,
+        yoyo:true,
+      })
+      cloud9AnimationList.play()
+
+      // cloud10 比例2.1029
+      const cloud10H = bodySize.h * 0.6
+      const cloud10 = this.methods.createSprite("./images/10-cloud.png", {
+        width: cloud10H * 2.1029,
+        height: cloud10H,
+        // 位置中间靠上
+        x: bodySize.w * 8 + (bodySize.w * 0.2),
+        y: bodySize.h * 0.15
+      })
+      const cloud10AnimationList = new TweenMax(cloud10, 2, {
+        x: bodySize.w * 8  + (bodySize.w * 0.2) + 10,
+        repeat:-1,
+        yoyo:true,
+      })
+      cloud10AnimationList.play()
+
+      // 飘散的花瓣 比例1.7130
+      const petal11H = bodySize.h * 0.8
+      const petal11 = this.methods.createSprite("./images/11-petal.png", {
+        width: petal11H * 1.7130,
+        height: petal11H,
+        // 位置中间靠上
+        x: bodySize.w * 9 + (bodySize.w * 0.2),
+        y: bodySize.h * 0.15
+      })
+      const petal11AnimationList = TweenMax.fromTo(petal11, 8, {
+          x: bodySize.w * 9  + (bodySize.w * 0.2) - 20,
+          y: bodySize.h * 0.15 - 20,
+        },{
+          x: bodySize.w * 9  + (bodySize.w * 0.2) + 20,
+          y: bodySize.h * 0.15 + 40,
+        }).repeat(-1)
+      petal11AnimationList.play()
+
+      // 分享页花瓣 比例1.8293
+      const petal12H = bodySize.h * 0.8
+      const petal12 = this.methods.createSprite("./images/share-petal-colour.png", {
+        width: petal12H * 1.8293,
+        height: petal12H,
+        // 位置中间靠上
+        x: bodySize.w * 10 + (bodySize.w * 0.1),
+        y: bodySize.h * 0.15
+      })
+      const petal12AnimationList = TweenMax.fromTo(petal12, 8, {
+          x: bodySize.w * 10  + (bodySize.w * 0.1) - 20,
+          y: bodySize.h * 0.15 - 20,
+        },{
+          x: bodySize.w * 10  + (bodySize.w * 0.1) + 20,
+          y: bodySize.h * 0.15 + 40,
+        }).repeat(-1)
+      petal12AnimationList.play()
+
+      // ------------------------------------------- 亮光 -------------------------------------------
       // 第三张光 比例1
       const threeLightHeight = bodySize.h / 3
       const threeLight = this.methods.createSprite("./images/3-light.png", {
@@ -436,13 +609,17 @@
       threeLight.interactive = true;
       threeLight.buttonMode = true
       // 第三张图 亮光触摸事件
-      threeLight.on('pointerdown', () => {
+      threeLight.on('tap', () => {
+        console.log('sdsd')
         const texture = PIXI.Texture.fromFrame('./images/3-colour.png')
         bg3Image.setTexture(texture)
         // 销毁动画
         threeLightAnimationList.kill()
         // 销毁掉亮光
         threeLight.destroy()
+        // 销毁掉云
+        cloud3.destroy()
+        cloud3AnimationList.kill()
         // 设置可滚动的区域
         this.setShowPageNumber(4)
       })
@@ -460,13 +637,16 @@
       fiveLight.interactive = true;
       fiveLight.buttonMode = true
       // 第五张光 亮光触摸事件
-      fiveLight.on('pointerdown', () => {
+      fiveLight.on('tap', () => {
         const texture = PIXI.Texture.fromFrame('./images/5-colour.png')
         bg5Image.setTexture(texture)
         // 销毁动画
         fiveLightHeightAnimationList.kill()
         // 销毁掉亮光
         fiveLight.destroy()
+        // 销毁云
+        cloud5.destroy()
+        cloud5AnimationList.kill()
         // 设置可滚动的区域
         this.setShowPageNumber(6)
       })
@@ -484,7 +664,7 @@
       sevenLight.interactive = true;
       sevenLight.buttonMode = true
       // 第五张光 亮光触摸事件
-      sevenLight.on('pointerdown', () => {
+      sevenLight.on('tap', () => {
         const texture = PIXI.Texture.fromFrame('./images/7-colour.png')
         bg7Image.setTexture(texture)
         // 销毁动画
@@ -509,7 +689,7 @@
       Light9.interactive = true;
       Light9.buttonMode = true
       // 第五张光 亮光触摸事件
-      Light9.on('pointerdown', () => {
+      Light9.on('tap', () => {
         const texture = PIXI.Texture.fromFrame('./images/9-colour.png')
         bg9Image.setTexture(texture)
         // 销毁动画
@@ -533,9 +713,12 @@
       Light11.interactive = true;
       Light11.buttonMode = true
       // 第五张光 亮光触摸事件
-      Light11.on('pointerdown', () => {
+      Light11.on('tap', () => {
         const texture = PIXI.Texture.fromFrame('./images/11-colour.png')
         bg11Image.setTexture(texture)
+        // 替换彩色花瓣材质
+        const petalTexture = PIXI.Texture.fromFrame('./images/11-petal-colour.png')
+        petal11.setTexture(petalTexture)
         // 销毁动画
         Light11AnimationList.kill()
         // 销毁掉亮光
@@ -543,8 +726,10 @@
         // 设置可滚动的区域
         this.setShowPageNumber(11)
       })
-
+      // 添加背景
       this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, fiveLight, sevenLight, Light9, Light11)
+      // 添加云
+      this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12)
       this.data.app.stage.addChild(this.data.twoContainer)
       
       // 三-亮光闪烁
@@ -564,7 +749,7 @@
       Light9AnimationList.play()
 
       // 十一-亮光闪烁
-      const Light11AnimationList = TweenMax.fromTo(Light11, 1, {alpha: 0},{alpha: 1}).repeat(-1)
+      const Light11AnimationList = TweenMax.fromTo(Light11, 2, {alpha: 0},{alpha: 1}).repeat(-1)
       Light11AnimationList.play()
 
       this.scrollBegin()
@@ -599,8 +784,15 @@
       const transverse = this.data.screenInfo.transverse
       // 根据横屏还是竖屏 设置滚动区域
       if (transverse) {
+        // 横屏
         this.data.scroller.setDimensions(this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w * number, this.data.screenInfo.h)
       } else {
+        
+        // this.data.twoContainer.rotation = 0.1
+        // this.data.twoContainer.updateTransform()
+        // console.log(this.data.twoContainer)
+        // const transformTool = new TransformTool({canvas: canvasElement})
+        // this.data.app.stage.addChild(transformTool)
         this.data.scroller.setDimensions(this.data.screenInfo.h, this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w * number)
       }
     },
