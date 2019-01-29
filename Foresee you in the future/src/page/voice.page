@@ -511,7 +511,7 @@
       if (transverse) {
         this.data.scroller.setDimensions(this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w * number, this.data.screenInfo.h)
       } else {
-        this.data.scroller.setDimensions(this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w, this.data.screenInfo.h * number)
+        this.data.scroller.setDimensions(this.data.screenInfo.h, this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w * number)
       }
     },
     // 计算并设置小人Y坐标
