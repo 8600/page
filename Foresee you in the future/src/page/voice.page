@@ -80,6 +80,10 @@
       animationList: {}
     },
     created: function () {
+      // 阻止页面滚动
+      document.body.addEventListener('touchmove' , (e) =>{
+        return
+      })
       // 获取到进度条Dom
       const loadingTextDom =  $('#loadingText')[0]
       // 创建画板区域并获取设备屏幕宽高
@@ -94,12 +98,6 @@
           // 资源加载完毕后显示one
           loadingTextDom.innerText = parseInt(e.progress) + '%'
           if (Math.ceil(e.progress) >= 100) {
-            // 显示one
-            // 小手滑动动画
-            // console.log($('#oneHand')[0].style)
-            // $('#oneHand')[0].style.left = ''
-            // this.data.animationList.oneHand = TweenMax.fromTo($('#oneHand')[0].style, 1.5, {left: '45%'},{left: '49%', ease:Linear.easeNone}).repeat(-1)
-            // this.data.animationList.oneHand.play()
             // 蝴蝶飞舞动画
             this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {y: 0},{y: -1, ease:Linear.easeNone}).repeat(-1)
             this.data.animationList.oneButterfly.play()
@@ -110,13 +108,6 @@
 
             // 显示时钟页面
             $('#clock')[0].style.display = 'block'
-            // $('#clockDial')[0].style.height = clock.offsetHeight * 0.3 + 'px'
-            // $('#clockDial')[0].style.left = this.data.screenInfo.w * 0.2 + 'px'
-            // $('#clockDial')[0].style.height = this.data.screenInfo.h * 0.8 + 'px'
-            // 播放音乐
-            // this.data.loader.resources.bgm.data.loop = true
-            // this.data.loader.resources.bgm.data.autoplay = true
-            // this.data.loader.resources.bgm.data.play()
             
           }
         }
@@ -255,7 +246,7 @@
             newSprite[key] = opt[key]
           }
         }
-        return newSprite;
+        return newSprite
       },
       smooth: function (baseValue, minValue, nowValue, step) {
         // console.log(nowValue, baseValue + (nowValue - minValue) * step)
@@ -605,7 +596,9 @@
       // 第三张图 亮光触摸事件
       threeLight.on('tap', () => {
         // 修改背景颜色
-        this.data.app.renderer.backgroundColor = "0x2a99a5"
+        // this.data.app.renderer.backgroundColor = "0x2a99a5"
+        gradientColor(this.data.app.renderer,'#c8c9c9','#2a99a5',10)
+        console.log(this.data.app.renderer)
         this.data.progress = 3
         const texture = PIXI.Texture.fromFrame('./images/3-colour.png')
         bg3Image.setTexture(texture)
@@ -636,7 +629,8 @@
       fiveLight.on('tap', () => {
         const texture = PIXI.Texture.fromFrame('./images/5-colour.png')
         // 修改背景颜色
-        this.data.app.renderer.backgroundColor = "0x59d3cb"
+        gradientColor(this.data.app.renderer,'#c8c9c9','#59d3cb',10)
+        // this.data.app.renderer.backgroundColor = "0x59d3cb"
         this.data.progress = 5
         bg5Image.setTexture(texture)
         // 销毁动画
@@ -665,7 +659,8 @@
       // 第五张光 亮光触摸事件
       sevenLight.on('tap', () => {
         // 修改背景颜色
-        this.data.app.renderer.backgroundColor = "0xdccfbc"
+        gradientColor(this.data.app.renderer,'#c8c9c9','#dccfbc',10)
+        // this.data.app.renderer.backgroundColor = "0xdccfbc"
         this.data.progress = 7
         const texture = PIXI.Texture.fromFrame('./images/7-colour.png')
         bg7Image.setTexture(texture)
@@ -693,7 +688,8 @@
       // 第五张光 亮光触摸事件
       Light9.on('tap', () => {
         // 修改背景颜色
-        this.data.app.renderer.backgroundColor = "0xfae768"
+        gradientColor(this.data.app.renderer,'#c8c9c9','#fae768',10)
+        // this.data.app.renderer.backgroundColor = "0xfae768"
         this.data.progress = 9
         const texture = PIXI.Texture.fromFrame('./images/9-colour.png')
         bg9Image.setTexture(texture)
@@ -891,6 +887,8 @@
       const progressID = Math.ceil(peopleX / this.data.screenInfo.w)
       if (this.data.progress < progressID) {
         this.data.progress = progressID
+        
+        // gradientColor(this.data.app.renderer,'#fae768','#c8c9c9',10)
         this.data.app.renderer.backgroundColor = '0xc8c9c9'
       }
     },
@@ -903,6 +901,7 @@
       }, false)
 
       document.addEventListener("touchmove", (e) => {
+        e.preventDefault()
         if (!mousedown) {
           return
         }

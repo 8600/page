@@ -395,13 +395,10 @@ color: rgb(133, 21, 118);
   color: white;
   background-position: right;
   background-image: url(./images/top-icon.png);
-}.ox-voice .main-box .back {
+}.ox-voice .main-box {
   width: 100%;
   height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: -2;
+  overflow: hidden;
 }
 
 .ox-voice .main-box .shelter {
@@ -449,21 +446,22 @@ color: rgb(133, 21, 118);
 
 .ox-voice .main-box .video-play .image-box {
   width: 140px;
-}
-
-.ox-voice .main-box .video-play .people-name {
-  line-height: 2.8em;
-  font-size: 1.6em;
+  margin: 0 auto;
 }
 
 .ox-voice .main-box .video-play .video {
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 160px;
+  margin: 0 auto;
 }
 
 .ox-voice .main-box .video-play .people-name {
   display: block;
-  font-size: 1.2em;
-  line-height: 1.8em;
+  font-size: 1.4em;
+  line-height: 2.4em;
 }
 
 .ox-voice .main-box .video-play .state {
@@ -592,7 +590,7 @@ color: rgb(133, 21, 118);
   display: none;
   position: fixed;
   bottom: 9em;
-  width: 80px;
+  width: 8em;
   color: white;
   text-align: center;
   margin: 0 auto;

@@ -1,6 +1,5 @@
 <template>
   <div class="main-box">
-    <img class="back" src="./images/background.jpg"/>
     <div class="shelter"></div>
     
     <!-- 音频播放 -->
@@ -55,7 +54,11 @@
     </div>
     <div class="bottom-bar" @name="bottomBar"></div>
     <!-- 背景音乐 -->
-    <audio @name="autoplayAudio" preload="auto" src="./assets/back.mp3">
+    <audio @name="ringTone" preload="auto" src="http://flv4.people.com.cn/videofile6//pvmsvideo/2019/1/30/DiFangBuWangBaiYi_93bfbdf27f2f889445a35092d2243574.mp3">
+      您的浏览器不支持 audio 标签。
+    </audio>
+    <!-- 接听音乐 -->
+    <audio @name="bgMusic" id="bgMusic" preload="auto" src="./assets/back.mp3">
       您的浏览器不支持 audio 标签。
     </audio>
   </div>
@@ -71,9 +74,10 @@
       likeNumber: 0
     },
     created: function () {
+      console.log('sd')
       // 微信自动播放音频
       document.addEventListener('WeixinJSBridgeReady', () => {
-        this.domList.autoplayAudio.play()
+        this.domList.ringTone.play()
       })
       // 初始化页面
       if (this.data.clock !== null) {
@@ -82,7 +86,7 @@
       }
       // 判断是否为视频
       if (this.domList.videoPlay && this.domList.videoPlay.src && this.domList.videoPlay.src.indexOf('mp4') != -1) {
-        this.domList.audioPeopleBox.style.display = 'flex'
+        this.domList.audioPeopleBox.style.display = ''
         this.domList.audioPeopleBox.classList.add("video-play")
         this.domList.speechStateBox.classList.add("video-play")
       } else {
@@ -98,12 +102,14 @@
       this.domList.bottomBar.style.display = ''
       // 隐藏通话时间
       this.domList.speechStateBox.style.display = ''
-      // 播放自动播放音频
-      console.log(this.domList.autoplayAudio)
       
     },
     methods: {
       answerSpeech: function () {
+        // 暂停播放背景音乐
+        this.domList.ringTone.pause()
+        // 开始播放接听背景音乐
+        this.domList.bgMusic.play()
         document.getElementById('ox-voice').classList.add('play')
         // 开始播放音乐或者视频
         // 如果音频和视频同时存在，优先播放视频
@@ -204,14 +210,9 @@
 <style lang="less">
 
 .main-box {
-  .back {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: -2;
-  }
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   .shelter {
     width: 100%;
     height: 100%;
@@ -253,18 +254,20 @@
   .video-play {
     .image-box {
       width: 140px;
-    }
-    .people-name {
-      line-height: 2.8em;
-      font-size: 1.6em;
+      margin: 0 auto;
     }
     .video {
       display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 160px;
+      margin: 0 auto;
     }
     .people-name {
       display: block;
-      font-size: 1.2em;
-      line-height: 1.8em;
+      font-size: 1.4em;
+      line-height: 2.4em;
     }
     .state {
       display: none;
@@ -377,7 +380,7 @@
   display: none;
   position: fixed;
   bottom: 9em;
-  width: 80px;
+  width: 8em;
   color: white;
   text-align: center;
   margin: 0 auto;

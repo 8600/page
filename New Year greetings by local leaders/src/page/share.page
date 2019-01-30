@@ -14,6 +14,7 @@
 
     methods: {
       returnPage: function () {
+        document.getElementById('bgMusic').pause()
         window.location.href = '#voice&in=moveToBottom&out=moveFromTop'
       }
     }

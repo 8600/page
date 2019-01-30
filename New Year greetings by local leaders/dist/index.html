@@ -1,113 +1,109 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
- <head> 
-  <title>{TAG_14226_TAG}</title> 
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-  <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1" /> 
-  <meta name="format-detection" content="telephone=no, email=no" /> 
-  <meta name="apple-mobile-web-app-capable" content="yes" /> 
-  <meta name="apple-mobile-web-app-status-bar-style" content="white" /> 
-  <meta name="renderer" content="webkit" /> 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
-  <meta name="keywords" content="{TAG_59446_TAG}" /> 
-  <meta name="description" content="{TAG_59447_TAG}" /> 
-  <meta name="catalogs" content="{TAG_83943_TAG}" /> 
-  <meta name="filetype" content="1" /> 
-  <meta name="publishedtype" content="1" /> 
-  <meta name="pagetype" content="2" /> 
-  <meta name="screen-orientation" content="portrait" /> 
-  <meta name="x5-orientation" content="portrait" /> 
-  <meta name="full-screen" content="yes" /> 
-  <meta name="x5-fullscreen" content="true" /> 
-  <meta name="browsermode" content="application" /> 
-  <meta name="x5-page-mode" content="app" /> 
-  <link rel="stylesheet" href="./main.css" /> 
- </head> 
- <body> 
-  <div class="ox-voice ox" id="ox-voice" style="display: none;">
-   <div class="main-box"> 
-    <img class="back" src="./images/background.jpg" /> 
-    <div class="shelter"></div> 
-    <!-- 音频播放 --> 
+  <head>
+    <title>{TAG_14226_TAG}</title>
+    
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1" />
+  <meta name="format-detection" content="telephone=no, email=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="white">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="keywords" content="{TAG_59446_TAG}" />
+  <meta name="description" content="{TAG_59447_TAG}" />
+  <meta name="catalogs" content="{TAG_83943_TAG}" />
+  <meta name="filetype" content="1" />
+  <meta name="publishedtype" content="1" />
+  <meta name="pagetype" content="2" />
+  <meta name="screen-orientation" content="portrait">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="browsermode" content="application">
+  <meta name="x5-page-mode" content="app">
+
+    <link rel="stylesheet" href="./main.css">
+  </head>
+  <body>
+    <div class="ox-voice ox" id="ox-voice" style="display: none;"><div class="main-box">
+    <div class="shelter"></div>
+    
+    <!-- 音频播放 -->
     <audio @name="audioPlay" src="./assets/test.mp3">
-      您的浏览器不支持 audio 标签。 
-    </audio> 
-    <!-- 视频播放 --> 
-    <!-- 如果同时设置了音频和视频，则会忽略音频播放视频 --> 
-    <!-- 视频仅支持mp4 --> 
+      您的浏览器不支持 audio 标签。
+    </audio>
+    <!-- 视频播放 -->
+    <!-- 如果同时设置了音频和视频，则会忽略音频播放视频 -->
+    <!-- 视频仅支持mp4 -->
     <video @name="videoPlay" webkit-playsinline="true" x5-video-player-type="h5" x5-video-orientation="portrait" x5-video-player-fullscreen="false" src="./assets/test.mp4">
-      您的浏览器不支持 video 标签。 
-    </video> 
-    <div class="ox-topBar">
-     <div class="top-bar"> 
-     </div> 
-    </div> 
-    <!-- 领导头像区域 --> 
-    <div class="people-box" @name="audioPeopleBox"> 
-     <div class="image-box"> 
-      <img src="./images/people.jpg" /> 
-     </div> 
-     <div> 
-      <p class="people-name">领导姓名</p> 
-      <p class="video-text audio">邀请你语音通话</p> 
-      <p class="video-text video">邀请你视频通话</p> 
-     </div> 
-    </div> 
-    <div class="answer-box" @name="answerBox" @click="answerSpeech"> 
-     <div class="answer"></div> 
-     <p>接听</p> 
-    </div> 
-    <!-- 语音/视频状态 --> 
-    <div class="speech-state-box" @name="speechStateBox"> 
-     <div class="people-name">
-      领导姓名
-     </div> 
-     <div class="state">
-      已接通
-     </div> 
-     <p @name="talkTime">00:00</p> 
-    </div> 
-    <div class="hang-up-box" @name="hangUpBox"> 
-     <div class="hang-up-item" @click="stopPlaying"> 
-      <img src="./images/share.png" /> 
-      <p>分享</p> 
-     </div> 
-     <div class="hang-up-item" @click="stopPlaying"> 
-      <img src="./images/hangUp.png" /> 
-      <p>挂断</p> 
-     </div> 
-     <div class="hang-up-item" @click="like"> 
-      <div class="number" @name="likeNumberBar">
-       +1
-      </div> 
-      <div class="circle-box"> 
-       <div class="circle-opacity" @name="circle"></div> 
-      </div> 
-      <p class="icon"></p> 
-      <p>点赞</p> 
-     </div> 
-    </div> 
-    <div class="bottom-bar" @name="bottomBar"></div> 
-    <!-- 背景音乐 --> 
-    <audio @name="autoplayAudio" preload="auto" src="./assets/back.mp3">
-      您的浏览器不支持 audio 标签。 
-    </audio> 
-   </div> 
-  </div> 
-  <div class="ox-share ox" id="ox-share" style="display: none;">
-   <div class="share-box"> 
-    <div class="share"> 
-     <p class="share-text">点击右上角，分享祝福</p> 
-     <img class="qr-code" src="./images/qr.jpg" /> 
-     <p class="qr-text">扫二维码 关注公众号</p> 
-     <div class="back" @click="returnPage">
-      返回
-     </div> 
-    </div> 
-   </div> 
-  </div> 
-  <script src="./main.js" type="text/javascript"></script> 
-  <script charset="utf-8" src="http://tools.people.com.cn/libs/jquery/3.0.0/jquery-3.0.0.min.js"></script> 
-  <!--微信分享-->  
- </body>
+      您的浏览器不支持 video 标签。
+    </video>
+    <div class="ox-topBar"><div class="top-bar">
+    
+  </div>
+</div>
+    <!-- 领导头像区域 -->
+    <div class="people-box" @name="audioPeopleBox">
+      <div class="image-box">
+        <img src="./images/people.jpg">
+      </div>
+      <div>
+        <p class="people-name">领导姓名</p>
+        <p class="video-text audio">邀请你语音通话</p>
+        <p class="video-text video">邀请你视频通话</p>
+      </div>
+    </div>
+    <div class="answer-box" @name="answerBox" @click="answerSpeech">
+      <div class="answer"></div>
+      <p>接听</p>
+    </div>
+    <!-- 语音/视频状态 -->
+    <div class="speech-state-box" @name="speechStateBox">
+      <div class="people-name">领导姓名</div>
+      <div class="state">已接通</div>
+      <p @name="talkTime">00:00</p>
+    </div>
+    <div class="hang-up-box" @name="hangUpBox">
+      <div class="hang-up-item" @click="stopPlaying">
+        <img src="./images/share.png">
+        <p>分享</p>
+      </div>
+      <div class="hang-up-item" @click="stopPlaying">
+        <img src="./images/hangUp.png">
+        <p>挂断</p>
+      </div>
+      <div class="hang-up-item" @click="like">
+        <div class="number" @name="likeNumberBar">+1</div>
+        <div class="circle-box">
+          <div class="circle-opacity" @name="circle"></div>
+        </div>
+        <p class="icon"></p>
+        <p>点赞</p>
+      </div>
+    </div>
+    <div class="bottom-bar" @name="bottomBar"></div>
+    <!-- 背景音乐 -->
+    <audio @name="ringTone" preload="auto" src="http://flv4.people.com.cn/videofile6//pvmsvideo/2019/1/30/DiFangBuWangBaiYi_93bfbdf27f2f889445a35092d2243574.mp3">
+      您的浏览器不支持 audio 标签。
+    </audio>
+    <!-- 接听音乐 -->
+    <audio @name="bgMusic" id="bgMusic" preload="auto" src="./assets/back.mp3">
+      您的浏览器不支持 audio 标签。
+    </audio>
+  </div>
+</div>
+    <div class="ox-share ox" id="ox-share" style="display: none;"><div class="share-box">
+    <div class="share">
+      <p class="share-text">点击右上角，分享祝福</p>
+      <img class="qr-code" src="./images/qr.jpg">
+      <p class="qr-text">扫二维码 关注公众号</p>
+      <div class="back" @click="returnPage">返回</div>
+    </div>
+  </div>
+</div>
+    <script src="./main.js" type="text/javascript"></script>
+    <script charset="utf-8" src="http://tools.people.com.cn/libs/jquery/3.0.0/jquery-3.0.0.min.js"></script>
+    <!--微信分享-->
+  </body>
 </html>
