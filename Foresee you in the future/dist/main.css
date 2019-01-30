@@ -57,3 +57,100 @@ body {
   text-align: center;
   line-height: 30px;
 }
+
+.ox-voice .clock {
+  width: 80%;
+  height: 80%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  left: 8%;
+  top: 10%;
+  position: fixed;
+  display: none;
+  background-image: url(./images/1-clock.png);
+}
+
+.ox-voice .dial {
+  width: 30%;
+  height: 54%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  left: 35%;
+  top: 24%;
+  transform-origin: 0 50%;
+  background-image: url(./images/1-clock-dial.png);
+}
+
+.ox-voice .flip-play {
+  animation-name: flip;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}
+
+.ox-voice .scale-play {
+  animation-name: scale;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateY(120deg);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(8);
+  }
+}
+
+.ox-voice .point {
+  width: 45%;
+  height: 51%;
+  left: 27%;
+  top: 24%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  background-image: url(./images/1-point.png);
+  transform-origin: 50% 50%;
+}
+
+@keyframes around {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(20px);
+  }
+}
+
+.ox-voice .hand {
+  width: 10%;
+  height: 10%;
+  left: 34%;
+  top: 25%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  background-image: url(./images/1-hand.png);
+  animation-name: around;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}

@@ -5,8 +5,12 @@
       <p id="loadingText">0%</p>
     </div>
   </div>
-  <div class="main-box" id="main">
-
+  <div class="main-box" id="main"></div>
+  <div class="clock" id="clock">
+    <div class="dial" id="clockDial">
+      <div class="point" id="onePoint"></div>
+      <div class="hand" id="oneHand"></div>
+    </div>
   </div>
 </template>
 
@@ -19,6 +23,8 @@
       titleStart: null,
       scroller: null,
       twoContainer: null,
+      // 小人所走的进程
+      progress: 3,
       // 小人
       people: null,
       // 小人图片
@@ -90,8 +96,10 @@
           if (Math.ceil(e.progress) >= 100) {
             // 显示one
             // 小手滑动动画
-            this.data.animationList.oneHand = TweenMax.fromTo(oneHand, 1.5, {x: (bodySize.w * 0.44)},{x: (bodySize.w * 0.49), ease:Linear.easeNone}).repeat(-1)
-            this.data.animationList.oneHand.play()
+            // console.log($('#oneHand')[0].style)
+            // $('#oneHand')[0].style.left = ''
+            // this.data.animationList.oneHand = TweenMax.fromTo($('#oneHand')[0].style, 1.5, {left: '45%'},{left: '49%', ease:Linear.easeNone}).repeat(-1)
+            // this.data.animationList.oneHand.play()
             // 蝴蝶飞舞动画
             this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {y: 0},{y: -1, ease:Linear.easeNone}).repeat(-1)
             this.data.animationList.oneButterfly.play()
@@ -99,6 +107,12 @@
 
             // 隐藏掉加载页面
             $('#loadingBox').remove()
+
+            // 显示时钟页面
+            $('#clock')[0].style.display = 'block'
+            // $('#clockDial')[0].style.height = clock.offsetHeight * 0.3 + 'px'
+            // $('#clockDial')[0].style.left = this.data.screenInfo.w * 0.2 + 'px'
+            // $('#clockDial')[0].style.height = this.data.screenInfo.h * 0.8 + 'px'
             // 播放音乐
             // this.data.loader.resources.bgm.data.loop = true
             // this.data.loader.resources.bgm.data.autoplay = true
@@ -144,49 +158,15 @@
         y: bodySize.h * 0.1
       })
 
-      // 加载时钟
+      // // 加载时钟
       const clockHeight = bodySize.h / 1.2
-      // 保持图片比例
+      // // 保持图片比例
       const clockWidth = clockHeight * 1.7801
-      const oneClock = this.methods.createSprite("./images/1-clock.png", {
-        width: clockWidth,
-        height: clockHeight,
-        // 位置中间偏下10像素
-        x: (bodySize.w / 2),
-        y: (bodySize.h * 0.55),
-        zIndex: 9
-      })
-      // 设置锚点
-      oneClock.anchor.x = 0.5
-      oneClock.anchor.y = 0.5
       
       
       // 加载指针1-point 图片宽度235px
       const pointHeight = bodySize.h / 4
-      // 保持图片比例
-      // console.log((bodySize.w / 2), (clockWidth / 2))
-      const onePoint = this.methods.createSprite("./images/1-point.png", {
-        width: pointHeight,
-        height: pointHeight,
-        // 位置中间偏下10像素
-        x: (bodySize.w / 2) - (clockWidth / 2) + clockWidth * 0.5 - 2,
-        y: (bodySize.h * 0.55) - (clockHeight / 2) + clockHeight * 0.5 - 2,
-        zIndex: 999
-      })
-      // 设置锚点
-      onePoint.anchor.x = 0.5
-      onePoint.anchor.y = 0.5
 
-      // 加载小手
-      const handHeight = bodySize.h / 20
-      const oneHand = this.methods.createSprite("./images/1-hand.png", {
-        width: handHeight,
-        height: handHeight,
-        // 位置中间偏下10像素
-        x: bodySize.w * 0.4,
-        y: (bodySize.h * 0.46) - (handHeight / 2),
-        zIndex: 2
-      })
 
       // 加载蝴蝶 图片宽度:1347px 高度:730px 比例1.8452
       const butterflyHeight = bodySize.h / 1
@@ -200,59 +180,61 @@
         z: -1
       })
 
-      one.addChild(bg1Image, logoImage, oneTitle, oneClock, oneHand, onePoint, oneButterfly)
+      one.addChild(bg1Image, logoImage, oneTitle, oneButterfly)
       
 
       // 触摸事件
-      $("#main").on("touchstart",(e) => {
+      $("#clock").on("touchstart",(e) => {
         const touchInfo = this.calculationTouch(e)
-        // console.log(touchInfo)
+        console.log(touchInfo)
         // 针对横向和纵向
-        if (touchInfo.xRatio > 0.43 && touchInfo.xRatio < 0.46 && touchInfo.yRatio > 0.42 && touchInfo.yRatio < 0.48) {
-          // console.log('范围内了')
+        if (touchInfo.xRatio > 0.41 && touchInfo.xRatio < 0.46 && touchInfo.yRatio > 0.41 && touchInfo.yRatio < 0.48) {
+          console.log('范围内了')
           // 触摸松开事件
-          $("#main").on("touchend",(e) => {
+          $("#clock").on("touchend",(e) => {
             // 取消触摸移动的监听
-            $("#main").off("touchmove")
+            $("#clock").off("touchmove")
           })
-          $("#main").on("touchmove",(e) => {
+          $("#clock").on("touchmove",(e) => {
             // 计算出比例
             let proportion = this.calculationTouch(e)
             proportion = (proportion.xRatio - 0.438) / 0.06
             // 锁定在合适的区间内
-            if (proportion > 1) proportion = 1
+            if (proportion > 0.6) proportion = 0.6
             if (proportion < 0) proportion = 0
             // 设置指针的幅度
-            onePoint.rotation = 0.6 * proportion
+            // console.log($('#onePoint'))
+            $('#onePoint')[0].style.transform = `rotate(${50 * proportion}deg)`
+            
             // 如果旋转到指定角度放大钟表
-            if (proportion === 1) {
-              $("#main").off("touchmove")
+            if (proportion >= 0.6) {
+              $('#clockDial')[0].classList.add(`flip-play`)
+              $("#clock").off("touchmove")
               // 销毁蝴蝶
               // 停止蝴蝶动画
               this.data.animationList.oneButterfly.kill()
+              // 销毁蝴蝶
               oneButterfly.destroy()
-              // 销毁小手
-              this.data.animationList.oneHand.kill()
-              oneHand.destroy()
-              // 销毁指针
-              onePoint.destroy()
-              let oneClockAnimation = TweenMax.fromTo(oneClock.scale, 1 ,{x: 1, y: 1},{x: 8, y: 8, onComplete: () => {
-                // 动画完毕销毁首页logo和背景
-                logoImage.destroy()
-                bg1Image.destroy()
-                
+              setTimeout(() => {
+                $('#clock')[0].classList.add('scale-play')
+                // 销毁指针
                 setTimeout(() => {
-                  this.data.app.stage.removeChild(one)
-                }, 0)
-                // 销毁tocuh监听
-                $("#main").off("touchstart")
-                console.log('首页已销毁')
-                // 开启第二部分
-                this.two()
-              }})
-              // oneClockAnimation.play()
+                  // 动画完毕销毁首页logo和背景
+                  logoImage.destroy()
+                  bg1Image.destroy()
+                  
+                  setTimeout(() => {
+                    this.data.app.stage.removeChild(one)
+                  }, 0)
+                  // 销毁tocuh监听
+                  $("#clock").off("touchstart")
+                  $('#clock')[0].style.display = 'none'
+                  console.log('首页已销毁')
+                  // 开启第二部分
+                  this.two()
+                }, 1000)
+              }, 1000)
             }
-            
           })
         }
       })
@@ -296,7 +278,7 @@
           window.document.body.style.top = `calc(50% - ${ww / 2}px)`
           // 创建画布
           this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
-            backgroundColor: '0xffffff'
+            backgroundColor: '0xc8c9c9'
           })
           $('#main').append(this.data.app.view)
           this.data.app.stage.displayList = new PIXI.display.Stage()
@@ -312,7 +294,7 @@
           window.document.body.style.top = `calc(50% - ${ww / 2}px)`
           // 创建画布
           this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
-            backgroundColor: '0xffffff'
+            backgroundColor: '0xc8c9c9'
           })
           $('#main').append(this.data.app.view)
           this.data.app.stage.displayList = new PIXI.display.Stage()
@@ -622,6 +604,9 @@
       threeLight.buttonMode = true
       // 第三张图 亮光触摸事件
       threeLight.on('tap', () => {
+        // 修改背景颜色
+        this.data.app.renderer.backgroundColor = "0x2a99a5"
+        this.data.progress = 3
         const texture = PIXI.Texture.fromFrame('./images/3-colour.png')
         bg3Image.setTexture(texture)
         // 销毁动画
@@ -650,6 +635,9 @@
       // 第五张光 亮光触摸事件
       fiveLight.on('tap', () => {
         const texture = PIXI.Texture.fromFrame('./images/5-colour.png')
+        // 修改背景颜色
+        this.data.app.renderer.backgroundColor = "0x59d3cb"
+        this.data.progress = 5
         bg5Image.setTexture(texture)
         // 销毁动画
         fiveLightHeightAnimationList.kill()
@@ -676,6 +664,9 @@
       sevenLight.buttonMode = true
       // 第五张光 亮光触摸事件
       sevenLight.on('tap', () => {
+        // 修改背景颜色
+        this.data.app.renderer.backgroundColor = "0xdccfbc"
+        this.data.progress = 7
         const texture = PIXI.Texture.fromFrame('./images/7-colour.png')
         bg7Image.setTexture(texture)
         // 销毁动画
@@ -701,6 +692,9 @@
       Light9.buttonMode = true
       // 第五张光 亮光触摸事件
       Light9.on('tap', () => {
+        // 修改背景颜色
+        this.data.app.renderer.backgroundColor = "0xfae768"
+        this.data.progress = 9
         const texture = PIXI.Texture.fromFrame('./images/9-colour.png')
         bg9Image.setTexture(texture)
         // 销毁动画
@@ -718,7 +712,7 @@
         width: bodySize.w * 0.42,
         height: Light11Height,
         // 位置中间靠上
-        x: bodySize.w * 9 + (bodySize.w * 0.36) - (sevenLightHeight / 2),
+        x: bodySize.w * 9 + (bodySize.w * 0.362) - (sevenLightHeight / 2),
         y: bodySize.h * 0.065
       })
       // 设置可交互
@@ -726,6 +720,9 @@
       Light11.buttonMode = true
       // 第五张光 亮光触摸事件
       Light11.on('tap', () => {
+        // 修改背景颜色
+        this.data.app.renderer.backgroundColor = "0xcfdee5"
+        this.data.progress = 11
         const texture = PIXI.Texture.fromFrame('./images/11-colour.png')
         bg11Image.setTexture(texture)
         // 替换彩色花瓣材质
@@ -780,6 +777,8 @@
         this.data.people.x = peopleX
         // 设置小人的图片
         this.setPeopleImg(peopleX)
+        // 设置背景颜色
+        this.setBGC(peopleX)
         // console.log(scrollNumber)
         // 小球移动轨迹
         this.setPeopleY(peopleX)
@@ -888,6 +887,13 @@
         this.data.peopleImgID = peopleID
       }
     },
+    setBGC: function (peopleX) {
+      const progressID = Math.ceil(peopleX / this.data.screenInfo.w)
+      if (this.data.progress < progressID) {
+        this.data.progress = progressID
+        this.data.app.renderer.backgroundColor = '0xc8c9c9'
+      }
+    },
     // 移动屏幕鼠标事件
     mouseEvent: function () {
       let mousedown = false
@@ -943,5 +949,89 @@
       line-height: 30px;
     }
   }
-  
+  .clock {
+    width: 80%;
+    height: 80%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    left: 8%;
+    top: 10%;
+    position: fixed;
+    display: none;
+    background-image: url(./images/1-clock.png);
+  }
+  .dial {
+    width: 30%;
+    height: 54%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 35%;
+    top: 24%;
+    transform-origin: 0 50%;
+    background-image: url(./images/1-clock-dial.png);
+  }
+  .flip-play {
+    animation-name: flip;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+  }
+  .scale-play {
+    animation-name: scale;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+  }
+  @keyframes flip {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(120deg);
+    }
+  }
+  @keyframes scale {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(8);
+    }
+  }
+  .point {
+    width: 45%;
+    height: 51%;
+    left: 27%;
+    top: 24%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    background-image: url(./images/1-point.png);
+    transform-origin: 50% 50%;
+  }
+  @keyframes around {
+    0%{
+      transform: translateX(0);
+    }
+    100%{
+      transform: translateX(20px);
+    }
+  }
+  .hand {
+    width: 10%;
+    height: 10%;
+    left: 34%;
+    top: 25%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    background-image: url(./images/1-hand.png);
+    animation-name: around;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
 </style>
