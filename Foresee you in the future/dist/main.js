@@ -232,42 +232,36 @@ window.ozzx.script = {
         z: -1
       });
       one.addChild(bg1Image, logoImage, oneTitle, oneButterfly);
-      $("#clock").on("touchstart", function(e) {
-        var touchInfo = _this.calculationTouch(e);
-        console.log(touchInfo);
-        if (touchInfo.xRatio > 0.41 && touchInfo.xRatio < 0.46 && touchInfo.yRatio > 0.41 && touchInfo.yRatio < 0.48) {
-          console.log('范围内了');
-          $("#clock").on("touchend", function(e) {
-            $("#clock").off("touchmove");
-          });
-          $("#clock").on("touchmove", function(e) {
-            var proportion = _this.calculationTouch(e);
-            proportion = (proportion.xRatio - 0.438) / 0.06;
-            if (proportion > 0.6) proportion = 0.6;
-            if (proportion < 0) proportion = 0;
-            $('#onePoint')[0].style.transform = "rotate(".concat(50 * proportion, "deg)");
-            if (proportion >= 0.6) {
-              $('#clockDial')[0].classList.add("flip-play");
-              $("#clock").off("touchmove");
-              _this.data.animationList.oneButterfly.kill();
-              oneButterfly.destroy();
-              setTimeout(function() {
-                $('#clock')[0].classList.add('scale-play');
-                setTimeout(function() {
-                  logoImage.destroy();
-                  bg1Image.destroy();
-                  setTimeout(function() {
-                    _this.data.app.stage.removeChild(one);
-                  }, 0);
-                  $("#clock").off("touchstart");
-                  $('#clock')[0].style.display = 'none';
-                  console.log('首页已销毁');
-                  _this.two();
-                }, 1000);
-              }, 1000);
-            }
-          });
+      $("#clock").on("click", function(e) {
+        var _loop = function _loop(i) {
+          setTimeout(function() {
+            console.log('sd');
+            $('#onePoint')[0].style.transform = "rotate(".concat(1 * i, "deg)");
+          }, i * 10);
+        };
+        for (var i = 0; i < 35; i++) {
+          _loop(i);
         }
+        setTimeout(function() {
+          $('#clockDial')[0].classList.add("flip-play");
+          $("#clock").off("touchmove");
+          _this.data.animationList.oneButterfly.kill();
+          oneButterfly.destroy();
+          setTimeout(function() {
+            $('#clock')[0].classList.add('scale-play');
+            setTimeout(function() {
+              logoImage.destroy();
+              bg1Image.destroy();
+              setTimeout(function() {
+                _this.data.app.stage.removeChild(one);
+              }, 0);
+              $("#clock").off("touchstart");
+              $('#clock')[0].style.display = 'none';
+              console.log('首页已销毁');
+              _this.two();
+            }, 1000);
+          }, 1000);
+        }, 500);
       });
       this.data.loader.load(function(loader) {});
       var shareDom = document.getElementById("shareBox");

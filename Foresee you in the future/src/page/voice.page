@@ -185,60 +185,72 @@
       
 
       // 触摸事件
-      $("#clock").on("touchstart",(e) => {
-        const touchInfo = this.calculationTouch(e)
-        console.log(touchInfo)
-        // 针对横向和纵向
-        if (touchInfo.xRatio > 0.41 && touchInfo.xRatio < 0.46 && touchInfo.yRatio > 0.41 && touchInfo.yRatio < 0.48) {
-          console.log('范围内了')
-          // 触摸松开事件
-          $("#clock").on("touchend",(e) => {
-            // 取消触摸移动的监听
-            $("#clock").off("touchmove")
-          })
-          $("#clock").on("touchmove",(e) => {
-            // 计算出比例
-            let proportion = this.calculationTouch(e)
-            proportion = (proportion.xRatio - 0.438) / 0.06
-            // 锁定在合适的区间内
-            if (proportion > 0.6) proportion = 0.6
-            if (proportion < 0) proportion = 0
-            // 设置指针的幅度
-            // console.log($('#onePoint'))
-            $('#onePoint')[0].style.transform = `rotate(${50 * proportion}deg)`
-            
-            // 如果旋转到指定角度放大钟表
-            if (proportion >= 0.6) {
-              $('#clockDial')[0].classList.add(`flip-play`)
-              $("#clock").off("touchmove")
-              // 销毁蝴蝶
-              // 停止蝴蝶动画
-              this.data.animationList.oneButterfly.kill()
-              // 销毁蝴蝶
-              oneButterfly.destroy()
-              setTimeout(() => {
-                $('#clock')[0].classList.add('scale-play')
-                // 销毁指针
-                setTimeout(() => {
-                  // 动画完毕销毁首页logo和背景
-                  logoImage.destroy()
-                  bg1Image.destroy()
-                  
-                  setTimeout(() => {
-                    this.data.app.stage.removeChild(one)
-                  }, 0)
-                  // 销毁tocuh监听
-                  $("#clock").off("touchstart")
-                  $('#clock')[0].style.display = 'none'
-                  console.log('首页已销毁')
-                  // 开启第二部分
-                  this.two()
-                }, 1000)
-              }, 1000)
-            }
-          })
+      $("#clock").on("click",(e) => {
+        for( let i = 0 ; i < 35; i++) {
+          setTimeout(() => {
+            console.log('sd')
+            $('#onePoint')[0].style.transform = `rotate(${1 * i}deg)`
+          }, i * 10)
         }
+        setTimeout(() => {
+          $('#clockDial')[0].classList.add(`flip-play`)
+          $("#clock").off("touchmove")
+          // 销毁蝴蝶
+          // 停止蝴蝶动画
+          this.data.animationList.oneButterfly.kill()
+          // 销毁蝴蝶
+          oneButterfly.destroy()
+          setTimeout(() => {
+            $('#clock')[0].classList.add('scale-play')
+            // 销毁指针
+            setTimeout(() => {
+              // 动画完毕销毁首页logo和背景
+              logoImage.destroy()
+              bg1Image.destroy()
+              
+              setTimeout(() => {
+                this.data.app.stage.removeChild(one)
+              }, 0)
+              // 销毁tocuh监听
+              $("#clock").off("touchstart")
+              $('#clock')[0].style.display = 'none'
+              console.log('首页已销毁')
+              // 开启第二部分
+              this.two()
+            }, 1000)
+          }, 1000)
+        }, 500)
+        
       })
+      // $("#clock").on("touchstart",(e) => {
+      //   const touchInfo = this.calculationTouch(e)
+      //   console.log(touchInfo)
+      //   // 针对横向和纵向
+      //   if (touchInfo.xRatio > 0.41 && touchInfo.xRatio < 0.46 && touchInfo.yRatio > 0.41 && touchInfo.yRatio < 0.48) {
+      //     console.log('范围内了')
+      //     // 触摸松开事件
+      //     $("#clock").on("touchend",(e) => {
+      //       // 取消触摸移动的监听
+      //       $("#clock").off("touchmove")
+      //     })
+      //     $("#clock").on("touchmove",(e) => {
+      //       // 计算出比例
+      //       let proportion = this.calculationTouch(e)
+      //       proportion = (proportion.xRatio - 0.438) / 0.06
+      //       // 锁定在合适的区间内
+      //       if (proportion > 0.6) proportion = 0.6
+      //       if (proportion < 0) proportion = 0
+      //       // 设置指针的幅度
+      //       // console.log($('#onePoint'))
+      //       $('#onePoint')[0].style.transform = `rotate(${50 * proportion}deg)`
+            
+      //       // 如果旋转到指定角度放大钟表
+      //       if (proportion >= 0.6) {
+              
+      //       }
+      //     })
+      //   }
+      // })
       // 点击事件
       // 加载资源
       this.data.loader.load((loader) => {
