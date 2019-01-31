@@ -190,10 +190,10 @@
       
 
       // 触摸事件
-      $("#clock").on("click",(e) => {
+      $("#clockDial").on("click",(e) => {
         this.openClock(one, oneButterfly, logoImage, bg1Image)
       })
-      $("#clock").on("touchmove",(e) => {
+      $("#clockDial").on("touchmove",(e) => {
         this.openClock(one, oneButterfly, logoImage, bg1Image)
       })
       // 点击事件
@@ -298,7 +298,7 @@
     // 打开时钟并进入第二部分
     openClock: function (one, oneButterfly, logoImage, bg1Image) {
       // 移除对时钟的所有事件监听
-      $("#clock").unbind()
+      $("#clockDial").unbind()
       for( let i = 0 ; i < 35; i++) {
           setTimeout(() => {
             $('#onePoint')[0].style.transform = `rotate(${1 * i}deg)`
@@ -431,7 +431,7 @@
       })
 
       // 呼唤朋友按钮 3.9275
-      const shareBTH = this.data.screenInfo.h * 0.08
+      const shareBTH = this.data.screenInfo.h * 0.1
       const shareBT = this.methods.createSprite("./images/share-button.png",{
         width: shareBTH * 3.9275,
         height: shareBTH,
@@ -441,7 +441,7 @@
       // 设置可交互
       shareBT.interactive = true;
       shareBT.buttonMode = true
-      shareBT.on('tap', (e) => {
+      shareBT.on('click', (e) => {
         console.log(e)
         $('#shareBox')[0].style.display = 'block'
         e.stopped = true
@@ -449,17 +449,17 @@
       })
       
       // 期待2019按钮 3.9275
-      const BTH2019 = this.data.screenInfo.h * 0.08
+      const BTH2019 = this.data.screenInfo.h * 0.1
       const BT2019 = this.methods.createSprite("./images/2019.png",{
         width: BTH2019 * 3.9275,
         height: BTH2019,
-        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.58,
+        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.54,
         y: this.data.screenInfo.h * 0.7
       })
       // 设置可交互
       BT2019.interactive = true;
       BT2019.buttonMode = true
-      BT2019.on('tap', () => {
+      BT2019.on('click', () => {
         window.open('http://www.people.com.cn/32306/422743/index.html')
       })
 
@@ -641,7 +641,7 @@
       threeLight.interactive = true;
       threeLight.buttonMode = true
       // 第三张图 亮光触摸事件
-      threeLight.on('tap', () => {
+      threeLight.on('click', () => {
         // 修改背景颜色
         // this.data.app.renderer.backgroundColor = "0x2a99a5"
         gradientColor(this.data.app.renderer,'#c8c9c9','#2a99a5',10)
@@ -707,7 +707,7 @@
       fiveLight.interactive = true;
       fiveLight.buttonMode = true
       // 第五张光 亮光触摸事件
-      fiveLight.on('tap', () => {
+      fiveLight.on('click', () => {
         const texture = PIXI.Texture.fromFrame('./images/5-colour.png')
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#59d3cb',10)
@@ -738,7 +738,7 @@
       sevenLight.interactive = true;
       sevenLight.buttonMode = true
       // 第五张光 亮光触摸事件
-      sevenLight.on('tap', () => {
+      sevenLight.on('click', () => {
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#dccfbc',10)
         // this.data.app.renderer.backgroundColor = "0xdccfbc"
@@ -767,7 +767,7 @@
       Light9.interactive = true;
       Light9.buttonMode = true
       // 第五张光 亮光触摸事件
-      Light9.on('tap', () => {
+      Light9.on('click', () => {
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#fae768',10)
         // this.data.app.renderer.backgroundColor = "0xfae768"
@@ -796,7 +796,7 @@
       Light11.interactive = true;
       Light11.buttonMode = true
       // 第五张光 亮光触摸事件
-      Light11.on('tap', () => {
+      Light11.on('click', () => {
         // 修改背景颜色
         this.data.app.renderer.backgroundColor = "0xcfdee5"
         this.data.progress = 11
@@ -976,7 +976,6 @@
     // 移动屏幕鼠标事件
     mouseEvent: function () {
       let mousedown = false
-      // 待优化 监听canvas就行
       $('canvas')[0].addEventListener("touchstart", (e) => {
         this.data.scroller.doTouchStart(e.touches, e.timeStamp)
         mousedown = true
@@ -992,6 +991,28 @@
       }, false);
 
       $('canvas')[0].addEventListener("touchend", (e) => {
+        if (!mousedown) {
+          return
+        }
+        this.data.scroller.doTouchEnd(e.timeStamp)
+        mousedown = false
+      }, false)
+      $('canvas')[0].addEventListener("mousedown", (e) => {
+        console.log(e)
+        this.data.scroller.doTouchStart([e], e.timeStamp)
+        mousedown = true
+      }, false)
+
+      $('canvas')[0].addEventListener("mousemove", (e) => {
+        if (!mousedown) {
+          return
+        }
+        // console.log(e.touches, e.timeStamp)
+        this.data.scroller.doTouchMove([e], e.timeStamp);
+        mousedown = true
+      }, false);
+
+      $('canvas')[0].addEventListener("mouseup", (e) => {
         if (!mousedown) {
           return
         }
