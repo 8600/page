@@ -19,8 +19,8 @@ function gradientColor(objs, startColor, endColor, step){
         //计算每一步的hex值
         setTimeout(() => {
             objs.backgroundColor = color
-            console.log(objs)
-            console.log(color)
+            // console.log(objs)
+            // console.log(color)
         }, i * 50)
         
     }

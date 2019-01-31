@@ -13,7 +13,7 @@
     </div>
   </div>
   <!-- 背景音乐 -->
-  <audio src="./audio/bgm.mp3" id="bgm">
+  <audio src="./audio/bgm.mp3" id="bgm" loop>
     您的浏览器不支持 audio 标签。
   </audio>
   <!-- 分享遮蔽罩子 -->
@@ -59,6 +59,7 @@
         "./images/people-11.png",
         "./images/2.png",
         "./images/3.png",
+        "./images/3-thought.png",
         "./images/3-light.png",
         "./images/4.png",
         "./images/5.png",
@@ -93,10 +94,9 @@
         e.preventDefault()
       })
       // 微信自动播放音频
-      document.addEventListener('WeixinJSBridgeReady', () => {
-        // 播放音乐
-        $('#bgm')[0].play()
-      })
+      // document.addEventListener('WeixinJSBridgeReady', () => {
+        
+      // })
       // 获取到进度条Dom
       const loadingTextDom =  $('#loadingText')[0]
       // 创建画板区域并获取设备屏幕宽高
@@ -182,7 +182,7 @@
         height: butterflyHeight,
         // 位置中间偏下10像素
         x: 0,
-        y: bodySize.h * 0.8,
+        y: bodySize.h * 0.05,
         z: -1
       })
 
@@ -191,41 +191,10 @@
 
       // 触摸事件
       $("#clock").on("click",(e) => {
-        for( let i = 0 ; i < 35; i++) {
-          setTimeout(() => {
-            console.log('sd')
-            $('#onePoint')[0].style.transform = `rotate(${1 * i}deg)`
-          }, i * 10)
-        }
-        setTimeout(() => {
-          $('#clockDial')[0].classList.add(`flip-play`)
-          $("#clock").off("touchmove")
-          // 销毁蝴蝶
-          // 停止蝴蝶动画
-          this.data.animationList.oneButterfly.kill()
-          // 销毁蝴蝶
-          oneButterfly.destroy()
-          setTimeout(() => {
-            $('#clock')[0].classList.add('scale-play')
-            // 销毁指针
-            setTimeout(() => {
-              // 动画完毕销毁首页logo和背景
-              logoImage.destroy()
-              bg1Image.destroy()
-              
-              setTimeout(() => {
-                this.data.app.stage.removeChild(one)
-              }, 0)
-              // 销毁tocuh监听
-              $("#clock").off("touchstart")
-              $('#clock')[0].style.display = 'none'
-              console.log('首页已销毁')
-              // 开启第二部分
-              this.two()
-            }, 1000)
-          }, 1000)
-        }, 500)
-        
+        this.openClock(one, oneButterfly, logoImage, bg1Image)
+      })
+      $("#clock").on("touchmove",(e) => {
+        this.openClock(one, oneButterfly, logoImage, bg1Image)
       })
       // 点击事件
       // 加载资源
@@ -326,7 +295,47 @@
       }
       
     },
+    // 打开时钟并进入第二部分
+    openClock: function (one, oneButterfly, logoImage, bg1Image) {
+      // 移除对时钟的所有事件监听
+      $("#clock").unbind()
+      for( let i = 0 ; i < 35; i++) {
+          setTimeout(() => {
+            $('#onePoint')[0].style.transform = `rotate(${1 * i}deg)`
+          }, i * 10)
+        }
+        setTimeout(() => {
+          $('#clockDial')[0].classList.add(`flip-play`)
+          $("#clock").off("touchmove")
+          // 销毁蝴蝶
+          // 停止蝴蝶动画
+          this.data.animationList.oneButterfly.kill()
+          // 销毁蝴蝶
+          oneButterfly.destroy()
+          setTimeout(() => {
+            $('#clock')[0].classList.add('scale-play')
+            // 销毁指针
+            setTimeout(() => {
+              // 动画完毕销毁首页logo和背景
+              logoImage.destroy()
+              bg1Image.destroy()
+              
+              setTimeout(() => {
+                this.data.app.stage.removeChild(one)
+              }, 0)
+              // 销毁tocuh监听
+              $("#clock").off("touchstart")
+              $('#clock')[0].style.display = 'none'
+              console.log('首页已销毁')
+              // 开启第二部分
+              this.two()
+            }, 1000)
+          }, 1000)
+        }, 500)
+    },
     two: function () {
+      // 播放音乐
+      $('#bgm')[0].play()
       const bodySize = this.data.screenInfo
       console.log('第二部分!')
       
@@ -345,7 +354,7 @@
       const bg2Image = this.methods.createSprite("./images/2.png",{
         width: this.data.screenInfo.w + 1,
         height: this.data.screenInfo.h,
-        x: -1,
+        x: 0,
         y: 0
       })
       
@@ -354,15 +363,16 @@
         width: this.data.screenInfo.w,
         height: this.data.screenInfo.h,
         x: this.data.screenInfo.w,
-        y: 1
+        y: 0
       })
+
       
       // 第四章背景图
       const bg4Image = this.methods.createSprite("./images/4.png",{
         width: this.data.screenInfo.w,
         height: this.data.screenInfo.h,
         x: this.data.screenInfo.w * 2,
-        y: -1
+        y: 0
       })
 
       // 第五张背景图
@@ -385,13 +395,13 @@
         width: this.data.screenInfo.w,
         height: this.data.screenInfo.h,
         x: this.data.screenInfo.w * 5,
-        y: 1
+        y: 0
       })
       const bg8Image = this.methods.createSprite("./images/8.png",{
         width: this.data.screenInfo.w,
         height: this.data.screenInfo.h,
         x: this.data.screenInfo.w * 6,
-        y: -4
+        y: 0
       })
       const bg9Image = this.methods.createSprite("./images/9.png",{
         width: this.data.screenInfo.w,
@@ -650,6 +660,23 @@
         // 销毁掉云
         cloud3.destroy()
         cloud3AnimationList.kill()
+
+        // 小男孩想象的东西 2.5459
+        const thoughtH = bodySize.h * 0.45
+        const thought = this.methods.createSprite("./images/3-thought.png",{
+          width: thoughtH * 2.5459,
+          height: thoughtH,
+          x: bodySize.w + bodySize.w * 0.3,
+          y: bodySize.h * 0.05
+        })
+        this.data.twoContainer.addChild(thought)
+        const thoughtAnimationList = new TweenMax(thought, 2, {
+          x: bodySize.w + bodySize.w * 0.3 + 2,
+          y: bodySize.h * 0.05 + 5,
+          repeat:-1,
+          yoyo:true,
+        })
+        thoughtAnimationList.play()
         // 设置可滚动的区域
         this.setShowPageNumber(4)
       })
