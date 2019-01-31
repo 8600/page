@@ -169,7 +169,7 @@ window.ozzx.script = {
     "created": function created() {
       var _this = this;
       document.body.addEventListener('touchmove', function(e) {
-        return;
+        e.preventDefault();
       });
       document.addEventListener('WeixinJSBridgeReady', function() {
         $('#bgm')[0].play();
