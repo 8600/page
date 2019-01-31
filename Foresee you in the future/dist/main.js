@@ -171,6 +171,9 @@ window.ozzx.script = {
       document.body.addEventListener('touchmove', function(e) {
         return;
       });
+      document.addEventListener('WeixinJSBridgeReady', function() {
+        $('#bgm')[0].play();
+      });
       var loadingTextDom = $('#loadingText')[0];
       var bodySize = this.calculationScene(this);
       this.data.loader = new PIXI.loaders.Loader();
@@ -377,8 +380,6 @@ window.ozzx.script = {
       var _this2 = this;
       var bodySize = this.data.screenInfo;
       console.log('第二部分!');
-      console.log($('#bgm')[0]);
-      $('#bgm')[0].play();
       this.data.twoContainer = new PIXI.Container();
       this.data.twoContainer.x = 0;
       this.data.twoContainer.y = 0;
@@ -632,11 +633,26 @@ window.ozzx.script = {
         var texture = PIXI.Texture.fromFrame('./images/3-colour.png');
         bg3Image.setTexture(texture);
         threeLightAnimationList.kill();
+        threeHandAnimation.kill();
         threeLight.destroy();
+        threeHand.destroy();
         cloud3.destroy();
         cloud3AnimationList.kill();
         _this2.setShowPageNumber(4);
       });
+      var threeHandHeight = bodySize.h / 10;
+      var threeHand = this.methods.createSprite("./images/1-hand.png", {
+        width: threeHandHeight,
+        height: threeHandHeight,
+        x: bodySize.w + bodySize.w * 0.67 - threeHandHeight / 2,
+        y: bodySize.h * 0.28
+      });
+      var threeHandAnimation = TweenMax.fromTo(threeHand, 1, {
+        alpha: 0
+      }, {
+        alpha: 1
+      }).repeat(-1);
+      threeHandAnimation.play();
       var fiveLightHeight = bodySize.h / 10;
       var fiveLight = this.methods.createSprite("./images/5-light.png", {
         width: fiveLightHeight * 2.0581,
@@ -714,7 +730,7 @@ window.ozzx.script = {
         Light11.destroy();
         _this2.setShowPageNumber(11);
       });
-      this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, Light11, bg11Image, bgshare, fiveLight, sevenLight, Light9, shareBT, BT2019);
+      this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, threeHand, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, Light11, bg11Image, bgshare, fiveLight, sevenLight, Light9, shareBT, BT2019);
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12);
       this.data.app.stage.addChild(this.data.twoContainer);
       var threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {
@@ -862,18 +878,18 @@ window.ozzx.script = {
     "mouseEvent": function mouseEvent() {
       var _this4 = this;
       var mousedown = false;
-      document.addEventListener("touchstart", function(e) {
+      $('canvas')[0].addEventListener("touchstart", function(e) {
         _this4.data.scroller.doTouchStart(e.touches, e.timeStamp);
         mousedown = true;
       }, false);
-      document.addEventListener("touchmove", function(e) {
+      $('canvas')[0].addEventListener("touchmove", function(e) {
         if (!mousedown) {
           return;
         }
         _this4.data.scroller.doTouchMove(e.touches, e.timeStamp);
         mousedown = true;
       }, false);
-      document.addEventListener("touchend", function(e) {
+      $('canvas')[0].addEventListener("touchend", function(e) {
         if (!mousedown) {
           return;
         }

@@ -167,6 +167,6 @@ body {
 
 .ox-voice .share-box img {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 10px;
 }
