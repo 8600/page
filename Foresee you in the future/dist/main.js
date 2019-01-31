@@ -226,13 +226,13 @@ window.ozzx.script = {
       var clockHeight = bodySize.h / 1.2;
       var clockWidth = clockHeight * 1.7801;
       var pointHeight = bodySize.h / 4;
-      var butterflyHeight = bodySize.h / 1;
+      var butterflyHeight = bodySize.h / 1.2;
       var butterflyWidth = bodySize.w;
       var oneButterfly = this.methods.createSprite("./images/1-butterfly.png", {
         width: butterflyWidth,
         height: butterflyHeight,
         x: 0,
-        y: 0,
+        y: bodySize.h * 0.8,
         z: -1
       });
       one.addChild(bg1Image, logoImage, oneTitle, oneButterfly);
