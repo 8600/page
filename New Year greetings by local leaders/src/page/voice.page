@@ -161,9 +161,9 @@
         this.domList.circle.classList.add('circle-play')
         this.domList.likeNumberBar.classList.add('active')
         this.domList.likeNumberBar.innerText = '+' + this.data.likeNumber
-        // 如果点赞数量小于20一次涨一点
-        if (this.data.likeNumber <= 20) {
-          this.domList.circle.style.top = (100 - this.data.likeNumber * 5) + '%'
+        // 如果点赞数量小于8一次涨一点
+        if (this.data.likeNumber <= 8) {
+          this.domList.circle.style.top = (100 - this.data.likeNumber * 12.5) + '%'
         }
         setTimeout(() => {
           this.domList.likeNumberBar.classList.remove('active')
@@ -172,8 +172,8 @@
         var rand = Math.floor((Math.random() * 100) + 1);
         var colors = ["like-1", "like-2", "like-3", "like-4", "like-5", "like-6"];
         
-        // 点赞数小于20掉小心心
-        if (this.data.likeNumber <= 20) {
+        // 点赞数小于8掉小心心
+        if (this.data.likeNumber <= 8) {
           var flows = ["flowOneHeart", "flowTwoHeart", "flowThreeHeart", "flowFourHeart", "flowFiveHeart", "flowSixHeart"];
           // 创建小心心
           for (let i = 0; i < 6; i ++) {

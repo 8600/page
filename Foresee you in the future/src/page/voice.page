@@ -12,6 +12,14 @@
       <div class="hand" id="oneHand"></div>
     </div>
   </div>
+  <!-- 背景音乐 -->
+  <audio src="./audio/bgm.mp3" id="bgm">
+    您的浏览器不支持 audio 标签。
+  </audio>
+  <!-- 分享遮蔽罩子 -->
+  <div class="share-box" id="shareBox">
+    <img src="./images/share-text.png"/>
+  </div>
 </template>
 
 <script>
@@ -84,16 +92,14 @@
       document.body.addEventListener('touchmove' , (e) =>{
         return
       })
+      
       // 获取到进度条Dom
       const loadingTextDom =  $('#loadingText')[0]
       // 创建画板区域并获取设备屏幕宽高
       let bodySize = this.calculationScene(this)
       // 预加载资源
       this.data.loader = new PIXI.loaders.Loader()
-      this.data.loader.add("bgm","audio/bgm.mp3")
-        .add("nishuo1","audio/1nishuo.mp3")
-        .add("dida","audio/dida.mp3")
-        .add(this.data.imgArr)
+      this.data.loader.add(this.data.imgArr)
         .onProgress.add((e) => {
           // 资源加载完毕后显示one
           loadingTextDom.innerText = parseInt(e.progress) + '%'
@@ -127,14 +133,14 @@
         y: 0
       })
       // 加载首页logo
-      const logoImageHeight = bodySize.h / 8
-      const logoImageWidth = logoImageHeight * 2.75
+      const logoImageHeight = bodySize.h / 10
+      const logoImageWidth = logoImageHeight * 3.6451
       const logoImage = this.methods.createSprite("./images/logo.png", {
         width: logoImageWidth,
         height: logoImageHeight,
         // 位置左下角
-        x: 0,
-        y: bodySize.h - logoImageHeight
+        x: (bodySize.w / 2) - (logoImageWidth / 2),
+        y: bodySize.h - logoImageHeight - 10
       })
 
       // 加载顶部标题
@@ -233,9 +239,14 @@
       // 加载资源
       this.data.loader.load((loader) => {
         // 设置音乐播放模式
-        // console.log(loader)
+        
       })
-      
+      const shareDom = document.getElementById("shareBox")
+      shareDom.ontouchend = function() {
+        console.log(shareDom)
+        shareDom.style.display = 'none'
+        return false
+      }
     },
     methods: {
       // 创建sprite对象
@@ -326,7 +337,9 @@
     two: function () {
       const bodySize = this.data.screenInfo
       console.log('第二部分!')
-      
+      // 播放音乐
+      console.log($('#bgm')[0])
+      $('#bgm')[0].play()
       this.data.twoContainer = new PIXI.Container()
       this.data.twoContainer.x = 0
       this.data.twoContainer.y = 0
@@ -415,6 +428,39 @@
         height: this.data.screenInfo.h,
         x: this.data.screenInfo.w * 10,
         y: 0
+      })
+
+      // 呼唤朋友按钮 3.9275
+      const shareBTH = this.data.screenInfo.h * 0.08
+      const shareBT = this.methods.createSprite("./images/share-button.png",{
+        width: shareBTH * 3.9275,
+        height: shareBTH,
+        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.2,
+        y: this.data.screenInfo.h * 0.7
+      })
+      // 设置可交互
+      shareBT.interactive = true;
+      shareBT.buttonMode = true
+      shareBT.on('tap', (e) => {
+        console.log(e)
+        $('#shareBox')[0].style.display = 'block'
+        e.stopped = true
+        return false
+      })
+      
+      // 期待2019按钮 3.9275
+      const BTH2019 = this.data.screenInfo.h * 0.08
+      const BT2019 = this.methods.createSprite("./images/2019.png",{
+        width: BTH2019 * 3.9275,
+        height: BTH2019,
+        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.58,
+        y: this.data.screenInfo.h * 0.7
+      })
+      // 设置可交互
+      BT2019.interactive = true;
+      BT2019.buttonMode = true
+      BT2019.on('tap', () => {
+        window.open('http://www.people.com.cn/32306/422743/index.html')
       })
 
       // ------------------------------------------- 云 -------------------------------------------
@@ -732,7 +778,7 @@
         this.setShowPageNumber(11)
       })
       // 添加背景
-      this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, Light11, bg11Image, bgshare, fiveLight, sevenLight, Light9)
+      this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, Light11, bg11Image, bgshare, fiveLight, sevenLight, Light9, shareBT, BT2019)
       // 添加云
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12)
       this.data.app.stage.addChild(this.data.twoContainer)
@@ -895,13 +941,13 @@
     // 移动屏幕鼠标事件
     mouseEvent: function () {
       let mousedown = false
+      // 待优化 监听canvas就行
       document.addEventListener("touchstart", (e) => {
         this.data.scroller.doTouchStart(e.touches, e.timeStamp)
         mousedown = true
       }, false)
 
       document.addEventListener("touchmove", (e) => {
-        e.preventDefault()
         if (!mousedown) {
           return
         }
@@ -1012,7 +1058,7 @@
     transform-origin: 50% 50%;
   }
   @keyframes around {
-    0%{
+    0% {
       transform: translateX(0);
     }
     100%{
@@ -1032,5 +1078,19 @@
     animation-duration: 2s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
+  }
+  .share-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.50);
+    img {
+      position: absolute;
+      right: 0;
+      top: 10px;
+    }
   }
 </style>

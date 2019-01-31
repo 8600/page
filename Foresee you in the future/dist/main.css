@@ -154,3 +154,19 @@ body {
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
+
+.ox-voice .share-box {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ox-voice .share-box img {
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
