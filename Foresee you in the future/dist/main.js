@@ -189,7 +189,11 @@ window.ozzx.script = {
           _this.data.animationList.oneButterfly.play();
           _this.data.app.stage.addChild(one);
           $('#loadingBox').remove();
-          $('#clock')[0].style.display = 'block';
+          var clockDom = $('#clock')[0];
+          var clockDomWidth = _this.data.screenInfo.w * 0.8;
+          clockDom.style.display = 'block';
+          clockDom.style.width = clockDomWidth + 'px';
+          clockDom.style.height = clockDomWidth / 1.7786 + 'px';
         }
       });
       this.data.container = new PIXI.Container();

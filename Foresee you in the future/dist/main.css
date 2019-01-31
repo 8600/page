@@ -63,8 +63,11 @@ body {
   height: 80%;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  left: 8%;
-  top: 10%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
   position: fixed;
   display: none;
   background-image: url(./images/1-clock.png);

@@ -116,8 +116,13 @@
             // 隐藏掉加载页面
             $('#loadingBox').remove()
 
-            // 显示时钟页面
-            $('#clock')[0].style.display = 'block'
+            // 显示时钟页面 1.7786
+            const clockDom = $('#clock')[0]
+            const clockDomWidth = this.data.screenInfo.w * 0.8
+            clockDom.style.display = 'block'
+            // 根据比例计算时钟合适高度
+            clockDom.style.width = clockDomWidth + 'px'
+            clockDom.style.height = clockDomWidth / 1.7786 + 'px'
             
           }
         }
@@ -1031,8 +1036,11 @@
     height: 80%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    left: 8%;
-    top: 10%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
     position: fixed;
     display: none;
     background-image: url(./images/1-clock.png);
