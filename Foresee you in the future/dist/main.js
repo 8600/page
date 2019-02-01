@@ -163,21 +163,28 @@ window.ozzx.script = {
       "progress": 3,
       "people": null,
       "peopleImgID": 1,
-      "imgArr": ["./images/1.png", "./images/logo.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/people-1.png", "./images/people-2.png", "./images/people-3.png", "./images/people-4.png", "./images/people-5.png", "./images/people-6.png", "./images/people-7.png", "./images/people-8.png", "./images/people-9.png", "./images/people-10.png", "./images/people-11.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-light.png", "./images/4.png", "./images/5.png", "./images/6.png", "./images/7.png", "./images/8.png", "./images/9.png", "./images/10.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png"],
+      "imgArr": ["./images/1.png", "./images/logo.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/people-1.png", "./images/people-2.png", "./images/people-3.png", "./images/people-4.png", "./images/people-5.png", "./images/people-6.png", "./images/people-7.png", "./images/people-8.png", "./images/people-9.png", "./images/people-10.png", "./images/people-11.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/4.png", "./images/5.png", "./images/6.png", "./images/7.png", "./images/8.png", "./images/9.png", "./images/10.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/10/1.png", "./images/10/2.png", "./images/10/3.png", "./images/10/4.png", "./images/10/5.png", "./images/10/6.png", "./images/10/7.png", "./images/10/8.png", "./images/10/9.png", "./images/10/10.png", "./images/10/11.png", "./images/10/12.png", "./images/10/13.png", "./images/10/14.png", "./images/10/15.png", "./images/10/16.png", "./images/grass1.png"],
       "animationList": {}
     },
     "created": function created() {
       var _this = this;
-      var loadingTextDom = $('#loadingText')[0];
-      window.addEventListener("orientationchange", function() {
+      var loadingColorDom = $('#color')[0];
+      var ww = $(window).width();
+      var wh = $(window).height();
+      window.onresize = function() {
         setTimeout(function() {
+          var ww = $(window).width();
+          var wh = $(window).height();
+          if (_this.data.twoContainer) {
+            _this.scrollBegin();
+          }
           bodySize = _this.calculationScene(_this);
-        }, 100);
-      });
+        }, 1000);
+      };
       var bodySize = this.calculationScene(this);
       this.data.loader = new PIXI.loaders.Loader();
       this.data.loader.add(this.data.imgArr).onProgress.add(function(e) {
-        loadingTextDom.innerText = parseInt(e.progress) + '%';
+        loadingColorDom.style.width = parseInt(e.progress) + '%';
         if (Math.ceil(e.progress) >= 100) {
           _this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {
             y: 0
@@ -259,14 +266,15 @@ window.ozzx.script = {
       var ww = $(window).width();
       var wh = $(window).height();
       console.log("\\u53EF\\u89C6\\u5BBD\\u5EA6:".concat(ww, ", \\u53EF\\u89C6\\u9AD8\\u5EA6:").concat(wh));
-      if (false) {
-        if (window.orientation !== 90 && window.orientation !== -90) {
-          window.document.body.classList.add('horizontal');
-          window.document.body.style.width = "".concat(wh, "px");
-          window.document.body.style.height = "".concat(ww, "px");
-          window.document.body.style.left = "calc(50% - ".concat(wh / 2, "px)");
-          window.document.body.style.top = "calc(50% - ".concat(ww / 2, "px)");
-          this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
+      if (ww < wh) {
+        console.log('竖屏');
+        window.document.body.style.width = "".concat(wh, "px");
+        window.document.body.style.height = "".concat(ww, "px");
+        window.document.body.classList.add('horizontal');
+        window.document.body.style.left = "calc(50% - ".concat(wh / 2, "px)");
+        window.document.body.style.top = "calc(50% - ".concat(ww / 2, "px)");
+        if (!this.data.app) {
+          this.data.app = new PIXI.Application($(window).height() * 2, $(window).width() * 2, {
             backgroundColor: '0xc8c9c9'
           });
           $('#main').append(this.data.app.view);
@@ -283,83 +291,29 @@ window.ozzx.script = {
           };
         }
       } else {
-        window.document.body.style.width = "".concat(wh, "px");
-        window.document.body.style.height = "".concat(ww, "px");
-        if (ww < wh) {
-          window.document.body.classList.add('horizontal');
-          window.document.body.style.left = "calc(50% - ".concat(wh / 2, "px)");
-          window.document.body.style.top = "calc(50% - ".concat(ww / 2, "px)");
-          if (!this.data.app) {
-            this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
-              backgroundColor: '0xc8c9c9'
-            });
-            $('#main').append(this.data.app.view);
-            this.data.app.stage.displayList = new PIXI.display.Stage();
-            this.data.screenInfo = {
-              w: wh,
-              h: ww,
-              transverse: false
-            };
-            return {
-              w: wh,
-              h: ww,
-              transverse: false
-            };
-          }
-        } else {
-          window.document.body.classList.remove('horizontal');
-          window.document.body.style.left = 0;
-          window.document.body.style.top = 0;
-          if (!this.data.app) {
-            this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
-              backgroundColor: '0xc8c9c9'
-            });
-            $('#main').append(this.data.app.view);
-            this.data.app.stage.displayList = new PIXI.display.Stage();
-            this.data.screenInfo = {
-              w: wh,
-              h: ww,
-              transverse: false
-            };
-            return {
-              w: wh,
-              h: ww,
-              transverse: false
-            };
-          }
+        console.log('横屏');
+        window.document.body.classList.remove('horizontal');
+        window.document.body.style.width = "".concat(ww, "px");
+        window.document.body.style.height = "".concat(wh, "px");
+        window.document.body.style.left = '';
+        window.document.body.style.top = '';
+        if (!this.data.app) {
+          this.data.app = new PIXI.Application($(window).width() * 2, $(window).height() * 2, {
+            backgroundColor: '0xc8c9c9'
+          });
+          $('#main').append(this.data.app.view);
+          this.data.app.stage.displayList = new PIXI.display.Stage();
+          this.data.transverse = true;
+          this.data.screenInfo = {
+            w: ww,
+            h: wh,
+            transverse: true
+          };
         }
-      }
-      this.data.app = new PIXI.Application($(window).width() * 2, $(window).height() * 2, {
-        backgroundColor: '0xc8c9c9'
-      });
-      $('#main').append(this.data.app.view);
-      this.data.app.stage.displayList = new PIXI.display.Stage();
-      this.data.transverse = true;
-      this.data.screenInfo = {
-        w: ww,
-        h: wh,
-        transverse: true
-      };
-      return {
-        w: ww,
-        h: wh,
-        transverse: true
-      };
-    },
-    "calculationTouch": function calculationTouch(e) {
-      if (this.data.screenInfo.transverse) {
         return {
-          x: e.originalEvent.targetTouches[0].pageX,
-          y: e.originalEvent.targetTouches[0].pageY,
-          xRatio: e.originalEvent.targetTouches[0].pageX / this.data.screenInfo.w,
-          yRatio: e.originalEvent.targetTouches[0].pageY / this.data.screenInfo.h
-        };
-      } else {
-        return {
-          x: e.originalEvent.targetTouches[0].pageY,
-          y: this.data.screenInfo.h - e.originalEvent.targetTouches[0].pageX,
-          xRatio: e.originalEvent.targetTouches[0].pageY / this.data.screenInfo.w,
-          yRatio: (this.data.screenInfo.h - e.originalEvent.targetTouches[0].pageX) / this.data.screenInfo.h
+          w: ww,
+          h: wh,
+          transverse: true
         };
       }
     },
@@ -404,18 +358,41 @@ window.ozzx.script = {
       this.data.twoContainer.x = 0;
       this.data.twoContainer.y = 0;
       this.data.twoContainer.width = this.data.screenInfo.w;
-      this.data.people = this.methods.createSprite("./images/people-1.png", {
-        width: 50 * (this.data.screenInfo.w / 1024),
+      var peopleH = this.data.screenInfo.h * 0.2;
+      this.data.people = this.methods.createSprite("./images/1/1.png", {
+        width: 30 * (this.data.screenInfo.w / 1024),
         height: 120 * (this.data.screenInfo.h / 768),
         x: 50,
         y: 0
       });
+      var peopleIndex = 16;
+      setInterval(function() {
+        if (peopleIndex <= 0) {
+          peopleIndex = 16;
+        }
+        var texture = PIXI.Texture.fromFrame("./images/".concat(_this3.data.peopleImgID, "/").concat(peopleIndex, ".png"));
+        peopleIndex--;
+        _this3.data.people.setTexture(texture);
+      }, 100);
       var bg2Image = this.methods.createSprite("./images/2.png", {
         width: this.data.screenInfo.w + 1,
         height: this.data.screenInfo.h,
         x: 0,
         y: 0
       });
+      var tipsH = this.data.screenInfo.h * 0.2;
+      var tips = this.methods.createSprite("./images/tips.png", {
+        width: tipsH * 1.7111,
+        height: tipsH,
+        x: this.data.screenInfo.w * 0.8,
+        y: this.data.screenInfo.h * 0.25
+      });
+      var tipsA = TweenMax.fromTo(tips, 2, {
+        alpha: 0
+      }, {
+        alpha: 1
+      }).repeat(-1);
+      tipsA.play();
       var bg3Image = this.methods.createSprite("./images/3.png", {
         width: this.data.screenInfo.w,
         height: this.data.screenInfo.h,
@@ -476,31 +453,20 @@ window.ozzx.script = {
         x: this.data.screenInfo.w * 10,
         y: 0
       });
-      var shareBTH = this.data.screenInfo.h * 0.1;
+      bgshare.interactive = true;
+      bgshare.buttonMode = true;
+      var shareBTH = this.data.screenInfo.h * 0.2;
       var shareBT = this.methods.createSprite("./images/share-button.png", {
-        width: shareBTH * 3.9275,
+        width: shareBTH,
         height: shareBTH,
-        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.2,
-        y: this.data.screenInfo.h * 0.7
+        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.85,
+        y: this.data.screenInfo.h * 0.05
       });
       shareBT.interactive = true;
       shareBT.buttonMode = true;
       this.addBind(shareBT, function() {
         $('#shareBox')[0].style.display = 'block';
-        e.stopped = true;
         return false;
-      });
-      var BTH2019 = this.data.screenInfo.h * 0.1;
-      var BT2019 = this.methods.createSprite("./images/2019.png", {
-        width: BTH2019 * 3.9275,
-        height: BTH2019,
-        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.54,
-        y: this.data.screenInfo.h * 0.7
-      });
-      BT2019.interactive = true;
-      BT2019.buttonMode = true;
-      this.addBind(BT2019, function() {
-        window.open('http://www.people.com.cn/32306/422743/index.html');
       });
       var cloud3H = bodySize.h * 0.25;
       var cloud3 = this.methods.createSprite("./images/3-cloud.png", {
@@ -510,7 +476,7 @@ window.ozzx.script = {
         y: bodySize.h * 0.1
       });
       var cloud3AnimationList = new TweenMax(cloud3, 2, {
-        x: bodySize.w + bodySize.w * 0.05 + 10,
+        x: bodySize.w + bodySize.w * 0.05 + 20,
         repeat: -1,
         yoyo: true
       });
@@ -523,7 +489,7 @@ window.ozzx.script = {
         y: 0
       });
       var cloud4AnimationList = new TweenMax(cloud4, 2, {
-        x: bodySize.w * 2 + 15,
+        x: bodySize.w * 2 + 20,
         repeat: -1,
         yoyo: true
       });
@@ -536,12 +502,12 @@ window.ozzx.script = {
         y: bodySize.h * 0.1
       });
       var cloud5AnimationList = new TweenMax(cloud5, 2, {
-        x: bodySize.w * 3 + bodySize.w * 0.05 + 10,
+        x: bodySize.w * 3 + bodySize.w * 0.05 + 20,
         repeat: -1,
         yoyo: true
       });
       cloud5AnimationList.play();
-      var cloud6H = bodySize.h * 0.7;
+      var cloud6H = bodySize.h * 0.6;
       var cloud6 = this.methods.createSprite("./images/6-cloud.png", {
         width: cloud6H * 2.0727,
         height: cloud6H,
@@ -549,7 +515,7 @@ window.ozzx.script = {
         y: 0
       });
       var cloud6AnimationList = new TweenMax(cloud6, 2, {
-        x: bodySize.w * 4 + 15,
+        x: bodySize.w * 4 + 20,
         repeat: -1,
         yoyo: true
       });
@@ -561,12 +527,6 @@ window.ozzx.script = {
         x: bodySize.w * 5 + bodySize.w * 0.05,
         y: 0
       });
-      var cloud7AnimationList = new TweenMax(cloud7, 2, {
-        x: bodySize.w * 5 + bodySize.w * 0.05 + 10,
-        repeat: -1,
-        yoyo: true
-      });
-      cloud7AnimationList.play();
       var cloud8H = bodySize.h * 0.6;
       var cloud8 = this.methods.createSprite("./images/8-cloud.png", {
         width: cloud8H * 2.5685,
@@ -575,7 +535,7 @@ window.ozzx.script = {
         y: bodySize.h * 0.05
       });
       var cloud8AnimationList = new TweenMax(cloud8, 2, {
-        x: bodySize.w * 6 + bodySize.w * 0.05 + 10,
+        x: bodySize.w * 6 + bodySize.w * 0.05 + 20,
         repeat: -1,
         yoyo: true
       });
@@ -587,12 +547,6 @@ window.ozzx.script = {
         x: bodySize.w * 7 + bodySize.w * 0.05,
         y: bodySize.h * 0.15
       });
-      var cloud9AnimationList = new TweenMax(cloud9, 2, {
-        x: bodySize.w * 7 + bodySize.w * 0.05 + 10,
-        repeat: -1,
-        yoyo: true
-      });
-      cloud9AnimationList.play();
       var cloud10H = bodySize.h * 0.6;
       var cloud10 = this.methods.createSprite("./images/10-cloud.png", {
         width: cloud10H * 2.1029,
@@ -601,7 +555,7 @@ window.ozzx.script = {
         y: bodySize.h * 0.15
       });
       var cloud10AnimationList = new TweenMax(cloud10, 2, {
-        x: bodySize.w * 8 + bodySize.w * 0.2 + 10,
+        x: bodySize.w * 8 + bodySize.w * 0.2 + 20,
         repeat: -1,
         yoyo: true
       });
@@ -613,14 +567,6 @@ window.ozzx.script = {
         x: bodySize.w * 9 + bodySize.w * 0.2,
         y: bodySize.h * 0.15
       });
-      var petal11AnimationList = TweenMax.fromTo(petal11, 8, {
-        x: bodySize.w * 9 + bodySize.w * 0.2 - 20,
-        y: bodySize.h * 0.15 - 20
-      }, {
-        x: bodySize.w * 9 + bodySize.w * 0.2 + 20,
-        y: bodySize.h * 0.15 + 40
-      }).repeat(-1);
-      petal11AnimationList.play();
       var petal12H = bodySize.h * 0.8;
       var petal12 = this.methods.createSprite("./images/share-petal-colour.png", {
         width: petal12H * 1.8293,
@@ -657,21 +603,84 @@ window.ozzx.script = {
         threeHand.destroy();
         cloud3.destroy();
         cloud3AnimationList.kill();
-        var thoughtH = bodySize.h * 0.45;
+        var thoughtH = bodySize.h * 1;
         var thought = _this3.methods.createSprite("./images/3-thought.png", {
-          width: thoughtH * 2.5459,
+          width: thoughtH * 1.7756,
           height: thoughtH,
-          x: bodySize.w + bodySize.w * 0.3,
-          y: bodySize.h * 0.05
+          x: bodySize.w,
+          y: 0
         });
-        _this3.data.twoContainer.addChild(thought);
         var thoughtAnimationList = new TweenMax(thought, 2, {
-          x: bodySize.w + bodySize.w * 0.3 + 2,
-          y: bodySize.h * 0.05 + 5,
+          x: bodySize.w + 2,
+          y: 5,
           repeat: -1,
           yoyo: true
         });
         thoughtAnimationList.play();
+        _this3.setShowPageNumber(4);
+        var startH = bodySize.h * 0.45;
+        var start = _this3.methods.createSprite("./images/3-start.png", {
+          width: startH * 2.5459,
+          height: startH,
+          x: bodySize.w + bodySize.w * 0.3,
+          y: bodySize.h * 0.05
+        });
+        var startAnimationList = TweenMax.fromTo(start, 1, {
+          alpha: 0
+        }, {
+          alpha: 1
+        }).repeat(-1);
+        startAnimationList.play();
+        var atomH = bodySize.h * 0.1;
+        var atom = _this3.methods.createSprite("./images/3-atom.png", {
+          width: atomH,
+          height: atomH,
+          x: bodySize.w + bodySize.w * 0.42,
+          y: bodySize.h * 0.18
+        });
+        atom.anchor.x = 0.5;
+        atom.anchor.y = 0.5;
+        var atomAnimationList = TweenMax.fromTo(atom.scale, 1, {
+          x: 0.4,
+          y: 0.4
+        }, {
+          x: 0.5,
+          y: 0.5
+        }).repeat(-1);
+        atomAnimationList.play();
+        var flaskH = bodySize.h * 0.12;
+        var flask = _this3.methods.createSprite("./images/3-flask.png", {
+          width: flaskH * 0.7356,
+          height: flaskH,
+          x: bodySize.w + bodySize.w * 0.58,
+          y: bodySize.h * 0.43
+        });
+        flask.anchor.x = 0.5;
+        flask.anchor.y = 1;
+        var flaskAnimationList = new TweenMax(flask, 2, {
+          rotation: 0.5,
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
+        });
+        flaskAnimationList.play();
+        var textH = bodySize.h * 0.08;
+        var text = _this3.methods.createSprite("./images/3-text.png", {
+          width: textH * 6.2666,
+          height: textH,
+          x: bodySize.w + bodySize.w * 0.06,
+          y: bodySize.h * 0.69
+        });
+        text.anchor.x = 0;
+        text.anchor.y = 1;
+        var textAnimationList = new TweenMax(text, 1.5, {
+          alpha: 0,
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
+        });
+        textAnimationList.play();
+        _this3.data.twoContainer.addChild(thought, start, atom, flask, text);
         _this3.setShowPageNumber(4);
       });
       var threeHandHeight = bodySize.h / 10;
@@ -687,12 +696,12 @@ window.ozzx.script = {
         alpha: 1
       }).repeat(-1);
       threeHandAnimation.play();
-      var fiveLightHeight = bodySize.h / 10;
+      var fiveLightHeight = bodySize.h / 8;
       var fiveLight = this.methods.createSprite("./images/5-light.png", {
-        width: fiveLightHeight * 2.0581,
+        width: fiveLightHeight * 1.6582,
         height: fiveLightHeight,
-        x: bodySize.w * 3 + bodySize.w * 0.575 - fiveLightHeight / 2,
-        y: bodySize.h * 0.58
+        x: bodySize.w * 3 + bodySize.w * 0.585 - fiveLightHeight / 2,
+        y: bodySize.h * 0.57
       });
       fiveLight.interactive = true;
       fiveLight.buttonMode = true;
@@ -724,6 +733,12 @@ window.ozzx.script = {
         sevenLightHeightAnimationList.kill();
         sevenLight.destroy();
         _this3.setShowPageNumber(8);
+        var cloud7AnimationList = new TweenMax(cloud7, 2, {
+          x: bodySize.w * 5 + bodySize.w * 0.05 + 20,
+          repeat: -1,
+          yoyo: true
+        });
+        cloud7AnimationList.play();
       });
       var Light9Height = bodySize.h / 5;
       var Light9 = this.methods.createSprite("./images/9-light.png", {
@@ -742,13 +757,26 @@ window.ozzx.script = {
         Light9AnimationList.kill();
         Light9.destroy();
         _this3.setShowPageNumber(10);
+        var cloud9AnimationList = new TweenMax(cloud9, 2, {
+          x: bodySize.w * 7 + bodySize.w * 0.05 + 20,
+          repeat: -1,
+          yoyo: true
+        });
+        cloud9AnimationList.play();
       });
-      var Light11Height = bodySize.h / 1.3;
+      var Light11Height = bodySize.h / 1.5;
       console.log(bodySize.h / bodySize.w);
       var Light11 = this.methods.createSprite("./images/11-light.png", {
-        width: bodySize.w * 0.42,
+        width: Light11Height,
         height: Light11Height,
-        x: bodySize.w * 9 + bodySize.w * 0.362 - sevenLightHeight / 2,
+        x: bodySize.w * 9 + bodySize.w * 0.34 - sevenLightHeight / 2,
+        y: bodySize.h * 0.09
+      });
+      var handH = bodySize.h / 1.3;
+      var hand = this.methods.createSprite("./images/hand.png", {
+        width: handH,
+        height: handH,
+        x: bodySize.w * 9 + bodySize.w * 0.3 - sevenLightHeight / 2,
         y: bodySize.h * 0.065
       });
       Light11.interactive = true;
@@ -762,9 +790,60 @@ window.ozzx.script = {
         petal11.setTexture(petalTexture);
         Light11AnimationList.kill();
         Light11.destroy();
+        hand.destroy();
         _this3.setShowPageNumber(11);
+        var grass1H = bodySize.h;
+        var grass1 = _this3.methods.createSprite("./images/grass1.png", {
+          width: grass1H * 0.8106,
+          height: grass1H,
+          x: bodySize.w * 9,
+          y: 0
+        });
+        var grass1AnimationList = TweenMax.fromTo(grass1, 1, {
+          x: bodySize.w * 9 - grass1H * 0.8106
+        }, {
+          x: bodySize.w * 9
+        });
+        grass1AnimationList.play();
+        var grass2H = bodySize.h * 0.4;
+        var grass2 = _this3.methods.createSprite("./images/grass2.png", {
+          width: grass2H * 2.4909,
+          height: grass2H,
+          x: bodySize.w * 10 - grass2H * 2.4909,
+          y: -grass2H
+        });
+        var grass2AnimationList = TweenMax.fromTo(grass2, 1, {
+          y: -grass2H
+        }, {
+          y: 0
+        });
+        grass2AnimationList.play();
+        var grass3H = bodySize.h * 0.2;
+        var grass3 = _this3.methods.createSprite("./images/grass3.png", {
+          width: grass3H * 1.5402,
+          height: grass3H,
+          x: bodySize.w * 10 - grass3H * 1.5402,
+          y: bodySize.h + grass3H
+        });
+        var grass3AnimationList = TweenMax.fromTo(grass3, 1, {
+          x: bodySize.w * 10,
+          y: bodySize.h
+        }, {
+          x: bodySize.w * 10 - grass3H * 1.5402,
+          y: bodySize.h - grass3H
+        });
+        grass3AnimationList.play();
+        _this3.data.twoContainer.addChild(grass1, grass2, grass3);
+        var petal11AnimationList = TweenMax.fromTo(petal11, 8, {
+          x: bodySize.w * 9 + bodySize.w * 0.2 - 20,
+          y: bodySize.h * 0.15 - 20
+        }, {
+          x: bodySize.w * 9 + bodySize.w * 0.2 + 20,
+          y: bodySize.h * 0.15 + 40
+        }).repeat(-1);
+        petal11AnimationList.play();
       });
-      this.data.twoContainer.addChild(bg2Image, bg3Image, this.data.people, threeLight, threeHand, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, Light11, bg11Image, bgshare, fiveLight, sevenLight, Light9, shareBT, BT2019);
+      this.data.twoContainer.addChild(bg2Image, tips, bg3Image, this.data.people, threeLight, threeHand, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT);
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12);
       this.data.app.stage.addChild(this.data.twoContainer);
       var threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {
@@ -897,8 +976,6 @@ window.ozzx.script = {
     "setPeopleImg": function setPeopleImg(peopleX) {
       var peopleID = Math.ceil(peopleX / this.data.screenInfo.w);
       if (this.data.peopleImgID !== peopleID) {
-        var texture = PIXI.Texture.fromFrame('./images/people-' + peopleID + '.png');
-        this.data.people.setTexture(texture);
         this.data.peopleImgID = peopleID;
       }
     },
@@ -931,7 +1008,6 @@ window.ozzx.script = {
         mousedown = false;
       }, false);
       $('canvas')[0].addEventListener("mousedown", function(e) {
-        console.log(e);
         _this5.data.scroller.doTouchStart([e], e.timeStamp);
         mousedown = true;
       }, false);
