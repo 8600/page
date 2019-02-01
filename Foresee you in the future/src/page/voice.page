@@ -234,7 +234,8 @@
         './images/9/16.png',
         "./images/grass1.png",
         "./images/sport/1.png",
-        "./images/sport/2.png"
+        "./images/sport/2.png",
+        "./images/support.png"
       ],
       animationList: {}
     },
@@ -915,6 +916,18 @@
           yoyo:true,
         })
         cloud7AnimationList.play()
+
+        // 从下面生出政府的手 0.9223
+        const supportH = bodySize.h * 0.8
+        const support = this.methods.createSprite("./images/support.png",{
+          width: supportH * 0.9223,
+          height: supportH,
+          x: bodySize.w * 5 - (supportH * 0.9223 / 2) + bodySize.w * 0.5,
+          y: bodySize.h
+        })
+        const supportAnimationList = TweenMax.fromTo(support, 1.5, {y: bodySize.h},{y: bodySize.h - supportH})
+        supportAnimationList.play()
+        this.data.twoContainer.addChild(support)
       })
 
       // 第九张图 比例:1
@@ -951,6 +964,7 @@
           yoyo:true,
         })
         cloud9AnimationList.play()
+
       })
 
       // 第11张图 大柚子 比例:1
