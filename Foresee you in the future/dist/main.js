@@ -955,7 +955,6 @@ window.ozzx.script = {
     "setPeopleY": function setPeopleY(peopleX) {
       var ratio = peopleX / this.data.screenInfo.w;
       peopleX = peopleX * (1024 / this.data.screenInfo.w);
-      console.log(peopleX);
       if (peopleX < 188) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.25, 0, peopleX, 0.001);
       } else if (peopleX < 390) {
@@ -1021,7 +1020,7 @@ window.ozzx.script = {
       } else {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4844, 10025, peopleX, -0.0004);
         var ratioB = ratio % 10 * 100;
-        if (ratioB > 5) {
+        if (ratioB > 2) {
           $('#qr')[0].style.display = 'block';
           $('#qr')[0].style.bottom = "".concat(ratio % 10 * 100 + 5, "%");
         } else {
