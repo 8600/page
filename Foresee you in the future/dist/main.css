@@ -74,13 +74,13 @@ body {
 }
 
 .ox-voice .dial {
-  width: 30%;
-  height: 54%;
+  width: 36.5%;
+  height: 64.8%;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: absolute;
-  left: 35%;
-  top: 24%;
+  left: 31.8%;
+  top: 22.4%;
   transform-origin: 0 50%;
   background-image: url(./images/1-clock-dial.png);
 }
@@ -122,10 +122,10 @@ body {
 }
 
 .ox-voice .point {
-  width: 45%;
-  height: 51%;
-  left: 27%;
-  top: 24%;
+  width: 64%;
+  height: 64%;
+  left: 17%;
+  top: 19%;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: absolute;
@@ -144,10 +144,10 @@ body {
 }
 
 .ox-voice .hand {
-  width: 10%;
-  height: 10%;
-  left: 34%;
-  top: 25%;
+  width: 15%;
+  height: 15%;
+  left: 22%;
+  top: 57%;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: absolute;

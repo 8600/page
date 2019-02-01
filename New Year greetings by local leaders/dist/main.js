@@ -322,11 +322,16 @@ window.ozzx.script = {
       "answerSpeech": function answerSpeech() {
         var _this2 = this;
         this.domList.ringTone.pause();
-        this.domList.bgMusic.play();
+        if (this.domList.bgMusic) {
+          this.domList.bgMusic.play();
+        } else {
+          console.log('没有背景音乐');
+        }
         document.getElementById('ox-voice').classList.add('play');
         if (this.domList.videoPlay && this.domList.videoPlay.src && this.domList.videoPlay.src.indexOf('mp4') != -1) {
           this.domList.videoPlay.style.display = 'block';
           this.domList.videoPlay.play();
+          this.domList.audioPeopleBox.style.display = 'none';
         } else if (this.domList.audioPlay && this.domList.audioPlay.src) {
           this.domList.audioPlay.currentTime = 0;
           this.domList.audioPlay.play();
@@ -334,7 +339,6 @@ window.ozzx.script = {
         var talkTime = 0;
         this.domList.answerBox.style.display = 'none';
         this.domList.hangUpBox.style.display = 'flex';
-        this.domList.audioPeopleBox.style.display = 'none';
         this.domList.bottomBar.style.display = 'none';
         this.domList.speechStateBox.style.display = 'block';
         this.data.clock = setInterval(function() {

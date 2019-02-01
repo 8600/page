@@ -38,7 +38,6 @@
       // 小人图片
       peopleImgID: 1,
       imgArr: [
-        './images/1-title.png',
         './images/1.png',
         './images/logo.png',
         './images/3-colour.png',
@@ -89,16 +88,13 @@
       animationList: {}
     },
     created: function () {
-      // 阻止页面滚动
-      document.body.addEventListener('touchmove' , function(e){
-        e.preventDefault()
-      })
-      // 微信自动播放音频
-      // document.addEventListener('WeixinJSBridgeReady', () => {
-        
-      // })
       // 获取到进度条Dom
       const loadingTextDom =  $('#loadingText')[0]
+      window.addEventListener("orientationchange",() => {
+        setTimeout(() => {
+          bodySize = this.calculationScene(this)
+        }, 100)
+      })
       // 创建画板区域并获取设备屏幕宽高
       let bodySize = this.calculationScene(this)
       // 预加载资源
@@ -118,7 +114,7 @@
 
             // 显示时钟页面 1.7786
             const clockDom = $('#clock')[0]
-            const clockDomWidth = this.data.screenInfo.w * 0.8
+            const clockDomWidth = this.data.screenInfo.w * 1
             clockDom.style.display = 'block'
             // 根据比例计算时钟合适高度
             clockDom.style.width = clockDomWidth + 'px'
@@ -141,32 +137,20 @@
         x: 0,
         y: 0
       })
-      // 加载首页logo
-      const logoImageHeight = bodySize.h / 10
-      const logoImageWidth = logoImageHeight * 3.6451
+      // 加载首页logo 比例3.3391
+      const logoImageHeight = bodySize.h / 14
+      const logoImageWidth = logoImageHeight * 3.3391
       const logoImage = this.methods.createSprite("./images/logo.png", {
         width: logoImageWidth,
         height: logoImageHeight,
         // 位置左下角
-        x: (bodySize.w / 2) - (logoImageWidth / 2),
-        y: bodySize.h - logoImageHeight - 10
+        x: bodySize.w * 0.05,
+        y: bodySize.h * 0.05
       })
 
-      // 加载顶部标题
-      const oneTitleHeight = bodySize.h / 20
-      // 保持图片比例
-      const oneTitleWidth = oneTitleHeight * 9.818
-      const oneTitle = this.methods.createSprite("./images/1-title.png", {
-        width: oneTitleWidth,
-        height: oneTitleHeight,
-        // 位置中间靠上
-        x: (bodySize.w / 2) - (oneTitleWidth / 2),
-        y: bodySize.h * 0.1
-      })
-
-      // // 加载时钟
+      // 加载时钟
       const clockHeight = bodySize.h / 1.2
-      // // 保持图片比例
+      // 保持图片比例
       const clockWidth = clockHeight * 1.7801
       
       
@@ -186,7 +170,7 @@
         z: -1
       })
 
-      one.addChild(bg1Image, logoImage, oneTitle, oneButterfly)
+      one.addChild(bg1Image, logoImage, oneButterfly)
       
 
       // 触摸事件
@@ -249,24 +233,41 @@
           return {w: wh, h: ww, transverse: false}
         }
       } else {
+        window.document.body.style.width = `${wh}px`
+        window.document.body.style.height = `${ww}px`
         if (ww < wh){
           window.document.body.classList.add('horizontal')
-          window.document.body.style.width = `${wh}px`
-          window.document.body.style.height = `${ww}px`
           window.document.body.style.left = `calc(50% - ${wh / 2}px)`
           window.document.body.style.top = `calc(50% - ${ww / 2}px)`
           // 创建画布
-          this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
-            backgroundColor: '0xc8c9c9'
-          })
-          $('#main').append(this.data.app.view)
-          this.data.app.stage.displayList = new PIXI.display.Stage()
-          this.data.screenInfo = {w: wh, h: ww, transverse: false}
-          return {w: wh, h: ww, transverse: false}
+          if (!this.data.app) {
+            this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
+              backgroundColor: '0xc8c9c9'
+            })
+            $('#main').append(this.data.app.view)
+            this.data.app.stage.displayList = new PIXI.display.Stage()
+            this.data.screenInfo = {w: wh, h: ww, transverse: false}
+            return {w: wh, h: ww, transverse: false}
+          }
+        } else {
+          window.document.body.classList.remove('horizontal')
+          window.document.body.style.left = 0
+          window.document.body.style.top = 0
+          // 创建画布
+          if (!this.data.app) {
+            this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
+              backgroundColor: '0xc8c9c9'
+            })
+            $('#main').append(this.data.app.view)
+            this.data.app.stage.displayList = new PIXI.display.Stage()
+            this.data.screenInfo = {w: wh, h: ww, transverse: false}
+            return {w: wh, h: ww, transverse: false}
+          }
         }
       }
+      
       // 创建画布
-      this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
+      this.data.app = new PIXI.Application($(window).width() * 2, $(window).height() * 2, {
         backgroundColor: '0xc8c9c9'
       })
       $('#main').append(this.data.app.view)
@@ -301,7 +302,7 @@
       $("#clockDial").unbind()
       for( let i = 0 ; i < 35; i++) {
           setTimeout(() => {
-            $('#onePoint')[0].style.transform = `rotate(${1 * i}deg)`
+            $('#onePoint')[0].style.transform = `rotate(${3 * i}deg)`
           }, i * 10)
         }
         setTimeout(() => {
@@ -329,7 +330,7 @@
               console.log('首页已销毁')
               // 开启第二部分
               this.two()
-            }, 1000)
+            }, 500)
           }, 1000)
         }, 500)
     },
@@ -441,8 +442,7 @@
       // 设置可交互
       shareBT.interactive = true;
       shareBT.buttonMode = true
-      shareBT.on('click', (e) => {
-        console.log(e)
+      this.addBind(shareBT, () => {
         $('#shareBox')[0].style.display = 'block'
         e.stopped = true
         return false
@@ -459,7 +459,8 @@
       // 设置可交互
       BT2019.interactive = true;
       BT2019.buttonMode = true
-      BT2019.on('click', () => {
+
+      this.addBind(BT2019, () => {
         window.open('http://www.people.com.cn/32306/422743/index.html')
       })
 
@@ -641,7 +642,7 @@
       threeLight.interactive = true;
       threeLight.buttonMode = true
       // 第三张图 亮光触摸事件
-      threeLight.on('click', () => {
+      this.addBind(threeLight, () => {
         // 修改背景颜色
         // this.data.app.renderer.backgroundColor = "0x2a99a5"
         gradientColor(this.data.app.renderer,'#c8c9c9','#2a99a5',10)
@@ -707,7 +708,7 @@
       fiveLight.interactive = true;
       fiveLight.buttonMode = true
       // 第五张光 亮光触摸事件
-      fiveLight.on('click', () => {
+      this.addBind(fiveLight, () => {
         const texture = PIXI.Texture.fromFrame('./images/5-colour.png')
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#59d3cb',10)
@@ -738,7 +739,7 @@
       sevenLight.interactive = true;
       sevenLight.buttonMode = true
       // 第五张光 亮光触摸事件
-      sevenLight.on('click', () => {
+      this.addBind(sevenLight, () => {
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#dccfbc',10)
         // this.data.app.renderer.backgroundColor = "0xdccfbc"
@@ -767,7 +768,7 @@
       Light9.interactive = true;
       Light9.buttonMode = true
       // 第五张光 亮光触摸事件
-      Light9.on('click', () => {
+      this.addBind(sevenLight, () => {
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#fae768',10)
         // this.data.app.renderer.backgroundColor = "0xfae768"
@@ -796,7 +797,7 @@
       Light11.interactive = true;
       Light11.buttonMode = true
       // 第五张光 亮光触摸事件
-      Light11.on('click', () => {
+      this.addBind(Light11, () => {
         // 修改背景颜色
         this.data.app.renderer.backgroundColor = "0xcfdee5"
         this.data.progress = 11
@@ -1019,6 +1020,10 @@
         this.data.scroller.doTouchEnd(e.timeStamp)
         mousedown = false
       }, false)
+    },
+    addBind: function (item, func) {
+      item.on('tap', func)
+      item.on('click', func)
     }
   }
 </script>
@@ -1065,13 +1070,13 @@
     background-image: url(./images/1-clock.png);
   }
   .dial {
-    width: 30%;
-    height: 54%;
+    width: 36.5%;
+    height: 64.8%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: absolute;
-    left: 35%;
-    top: 24%;
+    left: 31.8%;
+    top: 22.4%;
     transform-origin: 0 50%;
     background-image: url(./images/1-clock-dial.png);
   }
@@ -1106,10 +1111,10 @@
     }
   }
   .point {
-    width: 45%;
-    height: 51%;
-    left: 27%;
-    top: 24%;
+    width: 64%;
+    height: 64%;
+    left: 17%;
+    top: 19%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: absolute;
@@ -1125,10 +1130,10 @@
     }
   }
   .hand {
-    width: 10%;
-    height: 10%;
-    left: 34%;
-    top: 25%;
+    width: 15%;
+    height: 15%;
+    left: 22%;
+    top: 57%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: absolute;

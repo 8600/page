@@ -109,7 +109,12 @@
         // 暂停播放背景音乐
         this.domList.ringTone.pause()
         // 开始播放接听背景音乐
-        this.domList.bgMusic.play()
+        if (this.domList.bgMusic) {
+          this.domList.bgMusic.play()
+        } else {
+          console.log('没有背景音乐')
+        }
+        
         document.getElementById('ox-voice').classList.add('play')
         // 开始播放音乐或者视频
         // 如果音频和视频同时存在，优先播放视频
@@ -117,6 +122,7 @@
           this.domList.videoPlay.style.display = 'block'
           // this.domList.videoPlay.currentTime = 0
           this.domList.videoPlay.play()
+          this.domList.audioPeopleBox.style.display = 'none'
           
         } else if (this.domList.audioPlay && this.domList.audioPlay.src) {
           this.domList.audioPlay.currentTime = 0
@@ -129,7 +135,7 @@
         this.domList.answerBox.style.display = 'none'
         // 显示挂断选项条
         this.domList.hangUpBox.style.display = 'flex'
-        this.domList.audioPeopleBox.style.display = 'none'
+        
         // 隐藏底部条
         this.domList.bottomBar.style.display = 'none'
         // 显示通话时间
@@ -264,6 +270,9 @@
       width: 160px;
       margin: 0 auto;
     }
+    .audio {
+      display: none;
+    }
     .people-name {
       display: block;
       font-size: 1.4em;
@@ -301,9 +310,6 @@
     font-size: 1em;
   }
   .video {
-    display: none;
-  }
-  .audio {
     display: none;
   }
 }
