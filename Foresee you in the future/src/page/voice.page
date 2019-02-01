@@ -232,23 +232,9 @@
         './images/9/14.png',
         './images/9/15.png',
         './images/9/16.png',
-        './images/10/1.png',
-        './images/10/2.png',
-        './images/10/3.png',
-        './images/10/4.png',
-        './images/10/5.png',
-        './images/10/6.png',
-        './images/10/7.png',
-        './images/10/8.png',
-        './images/10/9.png',
-        './images/10/10.png',
-        './images/10/11.png',
-        './images/10/12.png',
-        './images/10/13.png',
-        './images/10/14.png',
-        './images/10/15.png',
-        './images/10/16.png',
-        "./images/grass1.png"
+        "./images/grass1.png",
+        "./images/sport/1.png",
+        "./images/sport/2.png"
       ],
       animationList: {}
     },
@@ -280,7 +266,7 @@
           loadingColorDom.style.width = parseInt(e.progress) + '%'
           if (Math.ceil(e.progress) >= 100) {
             // 蝴蝶飞舞动画
-            this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {y: 0},{y: -1, ease:Linear.easeNone}).repeat(-1)
+            this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {y: this.data.screenInfo.h*0.1},{y: this.data.screenInfo.h * 0.104, ease:Linear.easeNone}).repeat(-1)
             this.data.animationList.oneButterfly.play()
             this.data.app.stage.addChild(one)
 
@@ -313,14 +299,14 @@
         y: 0
       })
       // 加载首页logo 比例3.3391
-      const logoImageHeight = bodySize.h / 14
+      const logoImageHeight = bodySize.h / 10
       const logoImageWidth = logoImageHeight * 3.3391
       const logoImage = this.methods.createSprite("./images/logo.png", {
         width: logoImageWidth,
         height: logoImageHeight,
-        // 位置左下角
+        // 位置左上角
         x: bodySize.w * 0.05,
-        y: bodySize.h * 0.05
+        y: bodySize.h * 0.02
       })
 
       // 加载时钟
@@ -334,14 +320,14 @@
 
 
       // 加载蝴蝶 图片宽度:1347px 高度:730px 比例1.8452
-      const butterflyHeight = bodySize.h / 1.2
+      const butterflyHeight = bodySize.h / 1.3
       const butterflyWidth = bodySize.w
       const oneButterfly = this.methods.createSprite("./images/1-butterfly.png", {
         width: butterflyWidth,
         height: butterflyHeight,
         // 位置中间偏下10像素
         x: 0,
-        y: bodySize.h * 0.05,
+        y: bodySize.h * 0.1,
         z: -1
       })
 
@@ -349,10 +335,9 @@
       
 
       // 触摸事件
-      $("#clockDial").on("click",(e) => {
-        this.openClock(one, oneButterfly, logoImage, bg1Image)
-      })
-      $("#clockDial").on("touchmove",(e) => {
+      this.addBind($("#clockDial"), () => {
+        // 播放音乐
+        $('#bgm')[0].play()
         this.openClock(one, oneButterfly, logoImage, bg1Image)
       })
       // 点击事件
@@ -468,8 +453,7 @@
         }, 500)
     },
     two: function () {
-      // 播放音乐
-      $('#bgm')[0].play()
+      
       const bodySize = this.data.screenInfo
       console.log('第二部分!')
       this.data.twoContainer = new PIXI.Container()
@@ -490,8 +474,9 @@
         if (peopleIndex <= 0) {
           peopleIndex = 16
         }
-        const texture = PIXI.Texture.fromFrame(`./images/${this.data.peopleImgID}/${peopleIndex}.png`)
-        peopleIndex --
+        const groupID = this.data.peopleImgID > 9 ? 9 : this.data.peopleImgID
+        const texture = PIXI.Texture.fromFrame(`./images/${groupID}/${peopleIndex}.png`)
+        peopleIndex--
         this.data.people.setTexture(texture)
       }, 100)
       // 第二张背景图
@@ -507,8 +492,8 @@
       const tips = this.methods.createSprite("./images/tips.png",{
         width: tipsH * 1.7111,
         height: tipsH,
-        x: this.data.screenInfo.w * 0.8,
-        y: this.data.screenInfo.h * 0.25
+        x: this.data.screenInfo.w * 0.7,
+        y: this.data.screenInfo.h * 0.20
       })
       // 提示文字闪动
       const tipsA = TweenMax.fromTo(tips, 2, {alpha: 0},{alpha: 1}).repeat(-1)
@@ -774,12 +759,8 @@
         bg3Image.setTexture(texture)
         // 销毁动画
         threeLightAnimationList.kill()
-        // 小手动画
-        threeHandAnimation.kill()
         // 销毁掉亮光
         threeLight.destroy()
-        // 销毁掉小手
-        threeHand.destroy()
         // 销毁掉云
         cloud3.destroy()
         cloud3AnimationList.kill()
@@ -868,19 +849,6 @@
         this.setShowPageNumber(4)
       })
 
-      // 第三张图小手
-      const threeHandHeight = bodySize.h / 10
-      const threeHand = this.methods.createSprite("./images/1-hand.png", {
-        width: threeHandHeight,
-        height: threeHandHeight,
-        // 位置中间靠上
-        x: bodySize.w + (bodySize.w * 0.67) - (threeHandHeight / 2),
-        y: bodySize.h * 0.28
-      })
-      // 三-小手闪烁
-      const threeHandAnimation = TweenMax.fromTo(threeHand, 1, {alpha: 0},{alpha: 1}).repeat(-1)
-      threeHandAnimation.play()
-
       // 第五张光 比例1.6582
       const fiveLightHeight = bodySize.h / 8
       const fiveLight = this.methods.createSprite("./images/5-light.png", {
@@ -963,7 +931,7 @@
       Light9.interactive = true;
       Light9.buttonMode = true
       // 第五张光 亮光触摸事件
-      this.addBind(sevenLight, () => {
+      this.addBind(Light9, () => {
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#fae768',10)
         // this.data.app.renderer.backgroundColor = "0xfae768"
@@ -992,7 +960,7 @@
         width: Light11Height,
         height: Light11Height,
         // 位置中间靠上
-        x: bodySize.w * 9 + (bodySize.w * 0.34) - (sevenLightHeight / 2),
+        x: bodySize.w * 9 + (bodySize.w * 0.39) - (sevenLightHeight / 2),
         y: bodySize.h * 0.09
       })
       // 拖着的手
@@ -1001,7 +969,7 @@
         width: handH,
         height: handH,
         // 位置中间靠上
-        x: bodySize.w * 9 + (bodySize.w * 0.3) - (sevenLightHeight / 2),
+        x: bodySize.w * 9 + (bodySize.w * 0.35) - (sevenLightHeight / 2),
         y: bodySize.h * 0.065
       })
       // 设置可交互
@@ -1058,7 +1026,7 @@
         })
         const grass3AnimationList = TweenMax.fromTo(grass3, 1, {x: bodySize.w * 10, y: bodySize.h},{x: bodySize.w * 10 - grass3H * 1.5402, y: bodySize.h - grass3H})
         grass3AnimationList.play()
- 
+
         this.data.twoContainer.addChild(grass1, grass2, grass3)
 
 
@@ -1070,9 +1038,30 @@
             y: bodySize.h * 0.15 + 40,
           }).repeat(-1)
         petal11AnimationList.play()
+
+        
       })
+      // 小人跳舞
+      const sportH = bodySize.h * 0.1
+      const sport = this.methods.createSprite("./images/sport/1.png",{
+        width: sportH * 1.0775,
+        height: sportH,
+        x: bodySize.w * 10 + (bodySize.w * 0.68) - (sportH * 1.0775 / 2),
+        y: bodySize.h * 0.39 - (sportH / 2)
+      })
+      // 小人跳舞动画
+      let sportInd = 1
+      setInterval(() => {
+        const texture = PIXI.Texture.fromFrame(`./images/sport/${sportInd}.png`)
+        if (sportInd === 1) {
+          sportInd = 2
+        } else {
+          sportInd = 1
+        }
+        sport.setTexture(texture)
+      }, 100)
       // 添加背景
-      this.data.twoContainer.addChild(bg2Image, tips, bg3Image, this.data.people, threeLight, threeHand, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT)
+      this.data.twoContainer.addChild(bg2Image, tips, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport)
       // 添加云
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12)
       this.data.app.stage.addChild(this.data.twoContainer)
@@ -1143,8 +1132,10 @@
     // 计算并设置小人Y坐标
     setPeopleY: function (peopleX) {
       // 当时是在屏幕分辨率为1024*768做的 所以要计算换算为真实屏幕
+      // console.log(peopleX / this.data.screenInfo.w)
+      const ratio = peopleX / this.data.screenInfo.w
       peopleX = peopleX * (1024 / this.data.screenInfo.w)
-      // console.log(peopleX)
+      console.log(peopleX)
       if (peopleX < 188) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.25, 0, peopleX, 0.001)
       } else if (peopleX < 390) {
@@ -1209,9 +1200,15 @@
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2677, 9303, peopleX, 0.0003)
       } else {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4844, 10025, peopleX, -0.0004)
-        // $('#qr')[0].style.display = 'block'
-        // $('#qr')[0].style.opacity = 1
-        // $('#qr')[0].style.bottom = '15%'
+        // console.log(ratio % 10 * 100 + 5)
+        const ratioB = ratio % 10 * 100
+        if (ratioB > 5) {
+          $('#qr')[0].style.display = 'block'
+          // $('#qr')[0].style.left = 0 - peopleX % this.data.screenInfo.w + 'px'
+          $('#qr')[0].style.bottom = `${ratio % 10 * 100 + 5}%`
+        } else {
+          $('#qr')[0].style.display = 'none'
+        }
       }
     },
     setPeopleImg: function (peopleX) {
@@ -1429,7 +1426,6 @@
     bottom: 15%;
     margin: auto;
     height: 30%;
-    opacity: 0;
     display: none;
   }
 </style>
