@@ -599,15 +599,15 @@ window.ozzx.script = {
         threeLight.destroy();
         cloud3.destroy();
         cloud3AnimationList.kill();
-        var thoughtH = bodySize.h * 1;
+        var thoughtH = bodySize.h * 0.4;
         var thought = _this3.methods.createSprite("./images/3-thought.png", {
           width: thoughtH * 1.7756,
           height: thoughtH,
-          x: bodySize.w,
+          x: bodySize.w * 1.4,
           y: 0
         });
         var thoughtAnimationList = new TweenMax(thought, 2, {
-          x: bodySize.w + 2,
+          x: bodySize.w * 1.4 + 5,
           y: 5,
           repeat: -1,
           yoyo: true
@@ -660,6 +660,22 @@ window.ozzx.script = {
           transformOrigin: 'center'
         });
         flaskAnimationList.play();
+        var starH = bodySize.h * 0.12;
+        var star = _this3.methods.createSprite("./images/3-star.png", {
+          width: starH * 1.2352,
+          height: starH,
+          x: bodySize.w + bodySize.w * 0.64,
+          y: bodySize.h * 0.2
+        });
+        star.anchor.x = 0.5;
+        star.anchor.y = 0.5;
+        var starAnimationList = new TweenMax(star, 4, {
+          rotation: 4,
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
+        });
+        starAnimationList.play();
         var textH = bodySize.h * 0.08;
         var text = _this3.methods.createSprite("./images/3-text.png", {
           width: textH * 6.2666,
@@ -676,7 +692,7 @@ window.ozzx.script = {
           transformOrigin: 'center'
         });
         textAnimationList.play();
-        _this3.data.twoContainer.addChild(thought, start, atom, flask, text);
+        _this3.data.twoContainer.addChild(thought, start, atom, flask, text, star);
         _this3.setShowPageNumber(4);
       });
       var fiveLightHeight = bodySize.h / 8;
@@ -698,6 +714,23 @@ window.ozzx.script = {
         cloud5.destroy();
         cloud5AnimationList.kill();
         _this3.setShowPageNumber(6);
+        var tree1H = bodySize.h * 0.18;
+        var tree1 = _this3.methods.createSprite("./images/tree1.png", {
+          width: tree1H * 0.6937,
+          height: tree1H,
+          x: bodySize.w * 3.4 - tree1H * 0.9223 / 2,
+          y: bodySize.h
+        });
+        tree1.anchor.x = 0.5;
+        tree1.anchor.y = 1;
+        var tree1AnimationList = new TweenMax(tree1, 2, {
+          rotation: 0.2,
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
+        });
+        tree1AnimationList.play();
+        _this3.data.twoContainer.addChild(tree1);
       });
       var sevenLightHeight = bodySize.h / 5;
       var sevenLight = this.methods.createSprite("./images/7-light.png", {
@@ -747,7 +780,7 @@ window.ozzx.script = {
       Light9.interactive = true;
       Light9.buttonMode = true;
       this.addBind(Light9, function() {
-        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#fae768', 10);
+        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#f6df60', 10);
         _this3.data.progress = 9;
         var texture = PIXI.Texture.fromFrame('./images/9-colour.png');
         bg9Image.setTexture(texture);

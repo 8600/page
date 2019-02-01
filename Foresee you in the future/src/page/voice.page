@@ -767,15 +767,15 @@
         cloud3AnimationList.kill()
 
         // 小男孩想象的东西 1.7756
-        const thoughtH = bodySize.h * 1
+        const thoughtH = bodySize.h * 0.4
         const thought = this.methods.createSprite("./images/3-thought.png",{
           width: thoughtH * 1.7756,
           height: thoughtH,
-          x: bodySize.w,
+          x: bodySize.w * 1.4,
           y: 0
         })
         const thoughtAnimationList = new TweenMax(thought, 2, {
-          x: bodySize.w + 2,
+          x: bodySize.w * 1.4 + 5,
           y: 5,
           repeat:-1,
           yoyo:true,
@@ -826,6 +826,24 @@
         })
         flaskAnimationList.play()
 
+        // 星球 1.2352
+        const starH = bodySize.h * 0.12
+        const star = this.methods.createSprite("./images/3-star.png",{
+          width: starH * 1.2352,
+          height: starH,
+          x: bodySize.w + bodySize.w * 0.64,
+          y: bodySize.h * 0.2
+        })
+        star.anchor.x = 0.5
+        star.anchor.y = 0.5
+        const starAnimationList = new TweenMax(star, 4, {
+          rotation: 4,
+          repeat:-1,
+          yoyo:true,
+          transformOrigin:'center'
+        })
+        starAnimationList.play()
+
         // 文字 6.2666
         const textH = bodySize.h * 0.08
         const text = this.methods.createSprite("./images/3-text.png",{
@@ -845,7 +863,7 @@
         })
         textAnimationList.play()
 
-        this.data.twoContainer.addChild(thought, start, atom, flask, text)
+        this.data.twoContainer.addChild(thought, start, atom, flask, text, star)
         // 设置可滚动的区域
         this.setShowPageNumber(4)
       })
@@ -880,7 +898,24 @@
         // 设置可滚动的区域
         this.setShowPageNumber(6)
 
-        
+        // 树1在摇摆 0.6937
+        const tree1H = bodySize.h * 0.18
+        const tree1 = this.methods.createSprite("./images/tree1.png",{
+          width: tree1H * 0.6937,
+          height: tree1H,
+          x: bodySize.w * 3.4 - (tree1H * 0.9223) / 2,
+          y: bodySize.h
+        })
+        tree1.anchor.x = 0.5
+        tree1.anchor.y = 1
+        const tree1AnimationList = new TweenMax(tree1, 2, {
+          rotation: 0.2,
+          repeat:-1,
+          yoyo:true,
+          transformOrigin:'center'
+        })
+        tree1AnimationList.play()
+        this.data.twoContainer.addChild(tree1)
       })
 
       // 第七张图 比例:0.7421
@@ -946,7 +981,7 @@
       // 第五张光 亮光触摸事件
       this.addBind(Light9, () => {
         // 修改背景颜色
-        gradientColor(this.data.app.renderer,'#c8c9c9','#fae768',10)
+        gradientColor(this.data.app.renderer,'#c8c9c9','#f6df60',10)
         // this.data.app.renderer.backgroundColor = "0xfae768"
         this.data.progress = 9
         const texture = PIXI.Texture.fromFrame('./images/9-colour.png')
