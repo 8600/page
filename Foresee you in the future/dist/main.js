@@ -444,11 +444,11 @@ window.ozzx.script = {
       });
       bgshare.interactive = true;
       bgshare.buttonMode = true;
-      var shareBTH = this.data.screenInfo.h * 0.2;
+      var shareBTH = this.data.screenInfo.h * 0.3;
       var shareBT = this.methods.createSprite("./images/share-button.png", {
-        width: shareBTH,
+        width: shareBTH * 0.6781,
         height: shareBTH,
-        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.85,
+        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.83,
         y: this.data.screenInfo.h * 0.05
       });
       shareBT.interactive = true;
@@ -740,7 +740,82 @@ window.ozzx.script = {
           yoyo: true
         });
         tree3AnimationList.play();
-        _this3.data.twoContainer.addChild(tree1, tree2, tree3);
+        var house1H = bodySize.h * 0.50;
+        var house1 = _this3.methods.createSprite("./images/house1.png", {
+          width: house1H * 0.5904,
+          height: house1H,
+          x: bodySize.w * 3.6,
+          y: bodySize.h * 1.02
+        });
+        house1.anchor.x = 0.3;
+        house1.anchor.y = 1;
+        var house1AnimationList = TweenMax.fromTo(house1, 1.2, {
+          y: bodySize.h
+        }, {
+          y: bodySize.h * 0.75
+        });
+        house1AnimationList.play();
+        var house2H = bodySize.h * 0.40;
+        var house2 = _this3.methods.createSprite("./images/house2.png", {
+          width: house2H * 0.49011,
+          height: house2H,
+          x: bodySize.w * 3.25,
+          y: bodySize.h * 1.02
+        });
+        house2.anchor.x = 0.3;
+        house2.anchor.y = 1;
+        var house2AnimationList = TweenMax.fromTo(house2, 1.1, {
+          y: bodySize.h
+        }, {
+          y: bodySize.h * 0.75
+        });
+        house2AnimationList.play();
+        var house3H = bodySize.h * 0.42;
+        var house3 = _this3.methods.createSprite("./images/house3.png", {
+          width: house3H * 0.5904,
+          height: house3H,
+          x: bodySize.w * 3.5,
+          y: bodySize.h * 1.02
+        });
+        house3.anchor.x = 0.3;
+        house3.anchor.y = 1;
+        var house3AnimationList = TweenMax.fromTo(house3, 0.8, {
+          y: bodySize.h
+        }, {
+          y: bodySize.h * 0.75
+        });
+        house3AnimationList.play();
+        var house4H = bodySize.h * 0.3;
+        var house4 = _this3.methods.createSprite("./images/house4.png", {
+          width: house4H * 1.034,
+          height: house4H,
+          x: bodySize.w * 3.7,
+          y: bodySize.h * 1.02
+        });
+        house4.anchor.x = 0.3;
+        house4.anchor.y = 1;
+        var house4AnimationList = TweenMax.fromTo(house4, 0.6, {
+          y: bodySize.h
+        }, {
+          y: bodySize.h * 0.75
+        });
+        house4AnimationList.play();
+        var house5H = bodySize.h * 0.3;
+        var house5 = _this3.methods.createSprite("./images/house5.png", {
+          width: house5H * 1.4926,
+          height: house5H,
+          x: bodySize.w * 3.33,
+          y: bodySize.h * 1.01
+        });
+        house5.anchor.x = 0.3;
+        house5.anchor.y = 1;
+        var house5AnimationList = TweenMax.fromTo(house5, 1.4, {
+          y: bodySize.h
+        }, {
+          y: bodySize.h * 0.75
+        });
+        house5AnimationList.play();
+        _this3.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3);
       });
       var sevenLightHeight = bodySize.h / 5;
       var sevenLight = this.methods.createSprite("./images/7-light.png", {

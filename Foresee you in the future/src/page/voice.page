@@ -560,12 +560,12 @@
       bgshare.interactive = true;
       bgshare.buttonMode = true
 
-      // 呼唤朋友按钮 3.9275
-      const shareBTH = this.data.screenInfo.h * 0.2
+      // 呼唤朋友按钮 0.6781
+      const shareBTH = this.data.screenInfo.h * 0.3
       const shareBT = this.methods.createSprite("./images/share-button.png",{
-        width: shareBTH,
+        width: shareBTH * 0.6781,
         height: shareBTH,
-        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.85,
+        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.83,
         y: this.data.screenInfo.h * 0.05
       })
       // 设置可交互
@@ -939,7 +939,72 @@
         })
         tree3AnimationList.play()
         
-        this.data.twoContainer.addChild(tree1, tree2, tree3)
+        // 房子拔地而起 0.5904
+        const house1H = bodySize.h * 0.50
+        const house1 = this.methods.createSprite("./images/house1.png",{
+          width: house1H * 0.5904,
+          height: house1H,
+          x: bodySize.w * 3.6,
+          y: bodySize.h * 1.02 
+        })
+        house1.anchor.x = 0.3
+        house1.anchor.y = 1
+        const house1AnimationList = TweenMax.fromTo(house1, 1.2, {y: bodySize.h}, {y: bodySize.h * 0.75})
+        house1AnimationList.play()
+
+        // 房子拔地而起 0.49011
+        const house2H = bodySize.h * 0.40
+        const house2 = this.methods.createSprite("./images/house2.png",{
+          width: house2H * 0.49011,
+          height: house2H,
+          x: bodySize.w * 3.25,
+          y: bodySize.h * 1.02 
+        })
+        house2.anchor.x = 0.3
+        house2.anchor.y = 1
+        const house2AnimationList = TweenMax.fromTo(house2, 1.1, {y: bodySize.h}, {y: bodySize.h * 0.75})
+        house2AnimationList.play()
+
+        // 房子拔地而起 0.5904
+        const house3H = bodySize.h * 0.42
+        const house3 = this.methods.createSprite("./images/house3.png",{
+          width: house3H * 0.5904,
+          height: house3H,
+          x: bodySize.w * 3.5,
+          y: bodySize.h * 1.02 
+        })
+        house3.anchor.x = 0.3
+        house3.anchor.y = 1
+        const house3AnimationList = TweenMax.fromTo(house3, 0.8, {y: bodySize.h}, {y: bodySize.h * 0.75})
+        house3AnimationList.play()
+
+        // 1.034
+        const house4H = bodySize.h * 0.3
+        const house4 = this.methods.createSprite("./images/house4.png",{
+          width: house4H * 1.034,
+          height: house4H,
+          x: bodySize.w * 3.7,
+          y: bodySize.h * 1.02 
+        })
+        house4.anchor.x = 0.3
+        house4.anchor.y = 1
+        const house4AnimationList = TweenMax.fromTo(house4, 0.6, {y: bodySize.h}, {y: bodySize.h * 0.75})
+        house4AnimationList.play()
+
+        // 1.4926
+        const house5H = bodySize.h * 0.3
+        const house5 = this.methods.createSprite("./images/house5.png",{
+          width: house5H * 1.4926,
+          height: house5H,
+          x: bodySize.w * 3.33,
+          y: bodySize.h * 1.01
+        })
+        house5.anchor.x = 0.3
+        house5.anchor.y = 1
+        const house5AnimationList = TweenMax.fromTo(house5, 1.4, {y: bodySize.h}, {y: bodySize.h * 0.75})
+        house5AnimationList.play()
+
+        this.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3)
       })
 
       // 第七张图 比例:0.7421
