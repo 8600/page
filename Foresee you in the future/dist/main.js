@@ -163,7 +163,7 @@ window.ozzx.script = {
       "progress": 3,
       "people": null,
       "peopleImgID": 1,
-      "imgArr": ["./images/1.png", "./images/logo.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/people-1.png", "./images/people-2.png", "./images/people-3.png", "./images/people-4.png", "./images/people-5.png", "./images/people-6.png", "./images/people-7.png", "./images/people-8.png", "./images/people-9.png", "./images/people-10.png", "./images/people-11.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/4.png", "./images/5.png", "./images/6.png", "./images/7.png", "./images/8.png", "./images/9.png", "./images/10.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/sport/1.png", "./images/sport/2.png", "./images/support.png"],
+      "imgArr": ["./images/1.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/people-1.png", "./images/people-2.png", "./images/people-3.png", "./images/people-4.png", "./images/people-5.png", "./images/people-6.png", "./images/people-7.png", "./images/people-8.png", "./images/people-9.png", "./images/people-10.png", "./images/people-11.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/4.png", "./images/5.png", "./images/6.png", "./images/7.png", "./images/8.png", "./images/9.png", "./images/10.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/sport/1.png", "./images/sport/2.png", "./images/support.png"],
       "animationList": {}
     },
     "created": function created() {
@@ -196,10 +196,10 @@ window.ozzx.script = {
           _this.data.app.stage.addChild(one);
           $('#loadingBox').remove();
           var clockDom = $('#clock')[0];
-          var clockDomWidth = _this.data.screenInfo.w * 1;
+          var clockDomHeight = _this.data.screenInfo.h * 0.8;
           clockDom.style.display = 'block';
-          clockDom.style.width = clockDomWidth + 'px';
-          clockDom.style.height = clockDomWidth / 1.7786 + 'px';
+          clockDom.style.width = clockDomHeight * 1.6481 + 'px';
+          clockDom.style.height = clockDomHeight + 'px';
         }
       });
       this.data.container = new PIXI.Container();
@@ -213,14 +213,6 @@ window.ozzx.script = {
         x: 0,
         y: 0
       });
-      var logoImageHeight = bodySize.h / 10;
-      var logoImageWidth = logoImageHeight * 3.3391;
-      var logoImage = this.methods.createSprite("./images/logo.png", {
-        width: logoImageWidth,
-        height: logoImageHeight,
-        x: bodySize.w * 0.05,
-        y: bodySize.h * 0.02
-      });
       var clockHeight = bodySize.h / 1.2;
       var clockWidth = clockHeight * 1.7801;
       var pointHeight = bodySize.h / 4;
@@ -233,15 +225,15 @@ window.ozzx.script = {
         y: bodySize.h * 0.1,
         z: -1
       });
-      one.addChild(bg1Image, logoImage, oneButterfly);
+      one.addChild(bg1Image, oneButterfly);
       this.addBind($("#clockDial"), function() {
         $('#bgm')[0].play();
-        _this.openClock(one, oneButterfly, logoImage, bg1Image);
+        _this.openClock(one, oneButterfly, bg1Image);
       });
       this.data.loader.load(function(loader) {});
       var shareDom = document.getElementById("shareBox");
       shareDom.ontouchend = function() {
-        console.log(shareDom);
+        $('#qr')[0].style.display = 'block';
         shareDom.style.display = 'none';
         return false;
       };
@@ -315,7 +307,7 @@ window.ozzx.script = {
         };
       }
     },
-    "openClock": function openClock(one, oneButterfly, logoImage, bg1Image) {
+    "openClock": function openClock(one, oneButterfly, bg1Image) {
       var _this2 = this;
       $("#clockDial").unbind();
       var _loop = function _loop(i) {
@@ -334,7 +326,6 @@ window.ozzx.script = {
         setTimeout(function() {
           $('#clock')[0].classList.add('scale-play');
           setTimeout(function() {
-            logoImage.destroy();
             bg1Image.destroy();
             setTimeout(function() {
               _this2.data.app.stage.removeChild(one);
@@ -378,15 +369,15 @@ window.ozzx.script = {
         x: 0,
         y: 0
       });
-      var tipsH = this.data.screenInfo.h * 0.2;
+      var tipsH = this.data.screenInfo.h * 0.25;
       var tips = this.methods.createSprite("./images/tips.png", {
         width: tipsH * 1.7111,
         height: tipsH,
-        x: this.data.screenInfo.w * 0.7,
-        y: this.data.screenInfo.h * 0.20
+        x: this.data.screenInfo.w * 0.42,
+        y: this.data.screenInfo.h * 0.4
       });
       var tipsA = TweenMax.fromTo(tips, 2, {
-        alpha: 0
+        alpha: .5
       }, {
         alpha: 1
       }).repeat(-1);
@@ -464,6 +455,9 @@ window.ozzx.script = {
       shareBT.buttonMode = true;
       this.addBind(shareBT, function() {
         $('#shareBox')[0].style.display = 'block';
+        setTimeout(function() {
+          $('#qr')[0].style.display = 'none';
+        }, 0);
         return false;
       });
       var cloud3H = bodySize.h * 0.25;
@@ -473,12 +467,6 @@ window.ozzx.script = {
         x: bodySize.w + bodySize.w * 0.05,
         y: bodySize.h * 0.1
       });
-      var cloud3AnimationList = new TweenMax(cloud3, 2, {
-        x: bodySize.w + bodySize.w * 0.05 + 20,
-        repeat: -1,
-        yoyo: true
-      });
-      cloud3AnimationList.play();
       var cloud4H = bodySize.h * 0.8;
       var cloud4 = this.methods.createSprite("./images/4-cloud.png", {
         width: cloud4H * 2.1159,
@@ -499,12 +487,6 @@ window.ozzx.script = {
         x: bodySize.w * 3 + bodySize.w * 0.05,
         y: bodySize.h * 0.1
       });
-      var cloud5AnimationList = new TweenMax(cloud5, 2, {
-        x: bodySize.w * 3 + bodySize.w * 0.05 + 20,
-        repeat: -1,
-        yoyo: true
-      });
-      cloud5AnimationList.play();
       var cloud6H = bodySize.h * 0.6;
       var cloud6 = this.methods.createSprite("./images/6-cloud.png", {
         width: cloud6H * 2.0727,
@@ -598,7 +580,6 @@ window.ozzx.script = {
         threeLightAnimationList.kill();
         threeLight.destroy();
         cloud3.destroy();
-        cloud3AnimationList.kill();
         var thoughtH = bodySize.h * 0.4;
         var thought = _this3.methods.createSprite("./images/3-thought.png", {
           width: thoughtH * 1.7756,
@@ -686,7 +667,7 @@ window.ozzx.script = {
         text.anchor.x = 0;
         text.anchor.y = 1;
         var textAnimationList = new TweenMax(text, 1.5, {
-          alpha: 0,
+          alpha: 0.5,
           repeat: -1,
           yoyo: true,
           transformOrigin: 'center'
@@ -712,7 +693,6 @@ window.ozzx.script = {
         fiveLightHeightAnimationList.kill();
         fiveLight.destroy();
         cloud5.destroy();
-        cloud5AnimationList.kill();
         _this3.setShowPageNumber(6);
         var tree1H = bodySize.h * 0.18;
         var tree1 = _this3.methods.createSprite("./images/tree1.png", {
@@ -724,13 +704,43 @@ window.ozzx.script = {
         tree1.anchor.x = 0.5;
         tree1.anchor.y = 1;
         var tree1AnimationList = new TweenMax(tree1, 2, {
-          rotation: 0.2,
+          rotation: 0.4,
           repeat: -1,
           yoyo: true,
           transformOrigin: 'center'
         });
         tree1AnimationList.play();
-        _this3.data.twoContainer.addChild(tree1);
+        var tree2H = bodySize.h * 0.50;
+        var tree2 = _this3.methods.createSprite("./images/tree2.png", {
+          width: tree2H * 0.5323,
+          height: tree2H,
+          x: bodySize.w * 3.2 - tree2H * 0.5323 / 2,
+          y: bodySize.h
+        });
+        tree2.anchor.x = 0.5;
+        tree2.anchor.y = 1;
+        var tree2AnimationList = new TweenMax(tree2, 2, {
+          rotation: 0.2,
+          repeat: -1,
+          yoyo: true
+        });
+        tree2AnimationList.play();
+        var tree3H = bodySize.h * 0.50;
+        var tree3 = _this3.methods.createSprite("./images/tree3.png", {
+          width: tree3H * 0.8517,
+          height: tree3H,
+          x: bodySize.w * 4 - tree3H * 0.8517 / 2,
+          y: bodySize.h * 1.02
+        });
+        tree3.anchor.x = 0.3;
+        tree3.anchor.y = 1;
+        var tree3AnimationList = new TweenMax(tree3, 2, {
+          rotation: 0.2,
+          repeat: -1,
+          yoyo: true
+        });
+        tree3AnimationList.play();
+        _this3.data.twoContainer.addChild(tree1, tree2, tree3);
       });
       var sevenLightHeight = bodySize.h / 5;
       var sevenLight = this.methods.createSprite("./images/7-light.png", {
@@ -877,8 +887,8 @@ window.ozzx.script = {
       var sport = this.methods.createSprite("./images/sport/1.png", {
         width: sportH * 1.0775,
         height: sportH,
-        x: bodySize.w * 10 + bodySize.w * 0.68 - sportH * 1.0775 / 2,
-        y: bodySize.h * 0.39 - sportH / 2
+        x: bodySize.w * 10 + bodySize.w * 0.88 - sportH * 1.0775 / 2,
+        y: bodySize.h * 0.44 - sportH / 2
       });
       var sportInd = 1;
       setInterval(function() {
@@ -1021,11 +1031,21 @@ window.ozzx.script = {
       } else {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4844, 10025, peopleX, -0.0004);
         var ratioB = ratio % 10 * 100;
-        if (ratioB > 5) {
-          $('#qr')[0].style.display = 'block';
-          $('#qr')[0].style.bottom = "".concat(ratio % 10 * 100 + 5, "%");
+        console.log(ratioB);
+        if (this.data.screenInfo.w < 800) {
+          if (ratioB > 5) {
+            $('#qr')[0].style.display = 'block';
+            $('#qr')[0].style.bottom = "".concat(ratio % 10 * 100 + 7, "%");
+          } else {
+            $('#qr')[0].style.display = 'none';
+          }
         } else {
-          $('#qr')[0].style.display = 'none';
+          if (ratioB > 1) {
+            $('#qr')[0].style.display = 'block';
+            $('#qr')[0].style.bottom = "".concat(ratio % 10 * 100 + 10, "%");
+          } else {
+            $('#qr')[0].style.display = 'none';
+          }
         }
       }
     },

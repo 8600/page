@@ -15,7 +15,7 @@
     </div>
   </div>
   <!-- 背景音乐 -->
-  <audio src="./audio/bgm.mp3" id="bgm" loop>
+  <audio src="./audio/bgm.wma" id="bgm" loop>
     您的浏览器不支持 audio 标签。
   </audio>
   <!-- 分享遮蔽罩子 -->
@@ -42,7 +42,6 @@
       peopleImgID: 1,
       imgArr: [
         './images/1.png',
-        './images/logo.png',
         './images/3-colour.png',
         "./images/1-clock.png",
         "./images/1-point.png",
@@ -274,13 +273,13 @@
             // 隐藏掉加载页面
             $('#loadingBox').remove()
 
-            // 显示时钟页面 1.7786
+            // 显示时钟页面 1.6481
             const clockDom = $('#clock')[0]
-            const clockDomWidth = this.data.screenInfo.w * 1
+            const clockDomHeight = this.data.screenInfo.h * 0.8
             clockDom.style.display = 'block'
             // 根据比例计算时钟合适高度
-            clockDom.style.width = clockDomWidth + 'px'
-            clockDom.style.height = clockDomWidth / 1.7786 + 'px'
+            clockDom.style.width = clockDomHeight * 1.6481 + 'px'
+            clockDom.style.height = clockDomHeight + 'px'
             
           }
         }
@@ -298,16 +297,6 @@
         height: bodySize.h,
         x: 0,
         y: 0
-      })
-      // 加载首页logo 比例3.3391
-      const logoImageHeight = bodySize.h / 10
-      const logoImageWidth = logoImageHeight * 3.3391
-      const logoImage = this.methods.createSprite("./images/logo.png", {
-        width: logoImageWidth,
-        height: logoImageHeight,
-        // 位置左上角
-        x: bodySize.w * 0.05,
-        y: bodySize.h * 0.02
       })
 
       // 加载时钟
@@ -332,14 +321,12 @@
         z: -1
       })
 
-      one.addChild(bg1Image, logoImage, oneButterfly)
+      one.addChild(bg1Image, oneButterfly)
       
-
-      // 触摸事件
       this.addBind($("#clockDial"), () => {
         // 播放音乐
         $('#bgm')[0].play()
-        this.openClock(one, oneButterfly, logoImage, bg1Image)
+        this.openClock(one, oneButterfly, bg1Image)
       })
       // 点击事件
       // 加载资源
@@ -349,7 +336,7 @@
       })
       const shareDom = document.getElementById("shareBox")
       shareDom.ontouchend = function() {
-        console.log(shareDom)
+        $('#qr')[0].style.display = 'block'
         shareDom.style.display = 'none'
         return false
       }
@@ -416,7 +403,7 @@
       
     },
     // 打开时钟并进入第二部分
-    openClock: function (one, oneButterfly, logoImage, bg1Image) {
+    openClock: function (one, oneButterfly, bg1Image) {
       // 移除对时钟的所有事件监听
       $("#clockDial").unbind()
       for( let i = 0 ; i < 35; i++) {
@@ -436,8 +423,7 @@
             $('#clock')[0].classList.add('scale-play')
             // 销毁指针
             setTimeout(() => {
-              // 动画完毕销毁首页logo和背景
-              logoImage.destroy()
+              // 动画完毕销毁首页背景
               bg1Image.destroy()
               
               setTimeout(() => {
@@ -489,15 +475,15 @@
       })
 
       // 提示文字
-      const tipsH = this.data.screenInfo.h * 0.2
+      const tipsH = this.data.screenInfo.h * 0.25
       const tips = this.methods.createSprite("./images/tips.png",{
         width: tipsH * 1.7111,
         height: tipsH,
-        x: this.data.screenInfo.w * 0.7,
-        y: this.data.screenInfo.h * 0.20
+        x: this.data.screenInfo.w * 0.42,
+        y: this.data.screenInfo.h * 0.4
       })
       // 提示文字闪动
-      const tipsA = TweenMax.fromTo(tips, 2, {alpha: 0},{alpha: 1}).repeat(-1)
+      const tipsA = TweenMax.fromTo(tips, 2, {alpha: .5},{alpha: 1}).repeat(-1)
       tipsA.play()
       
       // 第三张背景图
@@ -587,6 +573,9 @@
       shareBT.buttonMode = true
       this.addBind(shareBT, () => {
         $('#shareBox')[0].style.display = 'block'
+        setTimeout(() => {
+          $('#qr')[0].style.display = 'none'
+        }, 0)
         return false
       })
 
@@ -601,12 +590,12 @@
         x: bodySize.w + (bodySize.w * 0.05),
         y: bodySize.h * 0.1
       })
-      const cloud3AnimationList = new TweenMax(cloud3, 2, {
-        x: bodySize.w + (bodySize.w * 0.05) + 20,
-        repeat:-1,
-        yoyo:true,
-      })
-      cloud3AnimationList.play()
+      // const cloud3AnimationList = new TweenMax(cloud3, 2, {
+      //   x: bodySize.w + (bodySize.w * 0.05) + 20,
+      //   repeat:-1,
+      //   yoyo:true,
+      // })
+      // cloud3AnimationList.play()
 
       // 4云 比例2.1159
       const cloud4H = bodySize.h * 0.8
@@ -632,12 +621,12 @@
         x: bodySize.w * 3 + (bodySize.w * 0.05),
         y: bodySize.h * 0.1
       })
-      const cloud5AnimationList = new TweenMax(cloud5, 2, {
-        x: bodySize.w * 3 + (bodySize.w * 0.05) + 20,
-        repeat:-1,
-        yoyo:true,
-      })
-      cloud5AnimationList.play()
+      // const cloud5AnimationList = new TweenMax(cloud5, 2, {
+      //   x: bodySize.w * 3 + (bodySize.w * 0.05) + 20,
+      //   repeat:-1,
+      //   yoyo:true,
+      // })
+      // cloud5AnimationList.play()
       
 
       // 6云 比例2.0727
@@ -764,7 +753,7 @@
         threeLight.destroy()
         // 销毁掉云
         cloud3.destroy()
-        cloud3AnimationList.kill()
+        // cloud3AnimationList.kill()
 
         // 小男孩想象的东西 1.7756
         const thoughtH = bodySize.h * 0.4
@@ -820,9 +809,9 @@
         flask.anchor.y = 1
         const flaskAnimationList = new TweenMax(flask, 2, {
           rotation: 0.5,
-          repeat:-1,
-          yoyo:true,
-          transformOrigin:'center'
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
         })
         flaskAnimationList.play()
 
@@ -856,7 +845,7 @@
         text.anchor.y = 1
         // console.log(text)
         const textAnimationList = new TweenMax(text, 1.5, {
-          alpha: 0,
+          alpha: 0.5,
           repeat: -1,
           yoyo:true,
           transformOrigin:'center'
@@ -894,7 +883,7 @@
         fiveLight.destroy()
         // 销毁云
         cloud5.destroy()
-        cloud5AnimationList.kill()
+        // cloud5AnimationList.kill()
         // 设置可滚动的区域
         this.setShowPageNumber(6)
 
@@ -909,13 +898,48 @@
         tree1.anchor.x = 0.5
         tree1.anchor.y = 1
         const tree1AnimationList = new TweenMax(tree1, 2, {
-          rotation: 0.2,
+          rotation: 0.4,
           repeat:-1,
           yoyo:true,
           transformOrigin:'center'
         })
         tree1AnimationList.play()
-        this.data.twoContainer.addChild(tree1)
+
+        // 左边的主树叶 0.5323
+        const tree2H = bodySize.h * 0.50
+        const tree2 = this.methods.createSprite("./images/tree2.png",{
+          width: tree2H * 0.5323,
+          height: tree2H,
+          x: bodySize.w * 3.2 - (tree2H * 0.5323) / 2,
+          y: bodySize.h
+        })
+        tree2.anchor.x = 0.5
+        tree2.anchor.y = 1
+        const tree2AnimationList = new TweenMax(tree2, 2, {
+          rotation: 0.2,
+          repeat:-1,
+          yoyo:true
+        })
+        tree2AnimationList.play()
+
+        // 右边主叶子 0.8517
+        const tree3H = bodySize.h * 0.50
+        const tree3 = this.methods.createSprite("./images/tree3.png",{
+          width: tree3H * 0.8517,
+          height: tree3H,
+          x: bodySize.w * 4 - (tree3H * 0.8517) / 2,
+          y: bodySize.h * 1.02 
+        })
+        tree3.anchor.x = 0.3
+        tree3.anchor.y = 1
+        const tree3AnimationList = new TweenMax(tree3, 2, {
+          rotation: 0.2,
+          repeat:-1,
+          yoyo:true
+        })
+        tree3AnimationList.play()
+        
+        this.data.twoContainer.addChild(tree1, tree2, tree3)
       })
 
       // 第七张图 比例:0.7421
@@ -1076,6 +1100,8 @@
         const grass3AnimationList = TweenMax.fromTo(grass3, 1, {x: bodySize.w * 10, y: bodySize.h},{x: bodySize.w * 10 - grass3H * 1.5402, y: bodySize.h - grass3H})
         grass3AnimationList.play()
 
+        
+
         this.data.twoContainer.addChild(grass1, grass2, grass3)
 
 
@@ -1095,8 +1121,8 @@
       const sport = this.methods.createSprite("./images/sport/1.png",{
         width: sportH * 1.0775,
         height: sportH,
-        x: bodySize.w * 10 + (bodySize.w * 0.68) - (sportH * 1.0775 / 2),
-        y: bodySize.h * 0.39 - (sportH / 2)
+        x: bodySize.w * 10 + (bodySize.w * 0.88) - (sportH * 1.0775 / 2),
+        y: bodySize.h * 0.44 - (sportH / 2)
       })
       // 小人跳舞动画
       let sportInd = 1
@@ -1251,13 +1277,27 @@
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4844, 10025, peopleX, -0.0004)
         // console.log(ratio % 10 * 100 + 5)
         const ratioB = ratio % 10 * 100
-        if (ratioB > 5) {
-          $('#qr')[0].style.display = 'block'
-          // $('#qr')[0].style.left = 0 - peopleX % this.data.screenInfo.w + 'px'
-          $('#qr')[0].style.bottom = `${ratio % 10 * 100 + 5}%`
+        console.log(ratioB)
+        if (this.data.screenInfo.w < 800) {
+          if (ratioB > 5) {
+            $('#qr')[0].style.display = 'block'
+            // $('#qr')[0].style.left = 0 - peopleX % this.data.screenInfo.w + 'px'
+            
+            $('#qr')[0].style.bottom = `${ratio % 10 * 100 + 7}%`
+          } else {
+            $('#qr')[0].style.display = 'none'
+          }
         } else {
-          $('#qr')[0].style.display = 'none'
+          if (ratioB > 1) {
+            $('#qr')[0].style.display = 'block'
+            // $('#qr')[0].style.left = 0 - peopleX % this.data.screenInfo.w + 'px'
+            
+            $('#qr')[0].style.bottom = `${ratio % 10 * 100 + 10}%`
+          } else {
+            $('#qr')[0].style.display = 'none'
+          }
         }
+        
       }
     },
     setPeopleImg: function (peopleX) {
@@ -1371,9 +1411,9 @@
     height: 80%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    left: 0;
+    left: 5%;
     right: 0;
-    top: 0;
+    top: 15%;
     bottom: 0;
     margin: auto;
     position: fixed;
@@ -1381,13 +1421,13 @@
     background-image: url(./images/1-clock.png);
   }
   .dial {
-    width: 36.5%;
-    height: 64.8%;
+    width: 47.2%;
+    height: 76.8%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: absolute;
-    left: 31.8%;
-    top: 22.4%;
+    left: 21.8%;
+    top: 7.4%;
     transform-origin: 0 50%;
     background-image: url(./images/1-clock-dial.png);
   }
@@ -1434,10 +1474,10 @@
   }
   @keyframes around {
     0% {
-      transform: translateX(0);
+      opacity: 0.4;
     }
     100%{
-      transform: translateX(20px);
+      opacity: 1;
     }
   }
   .hand {
@@ -1450,7 +1490,7 @@
     position: absolute;
     background-image: url(./images/1-hand.png);
     animation-name: around;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
   }
@@ -1474,7 +1514,7 @@
     right: 0;
     bottom: 15%;
     margin: auto;
-    height: 30%;
+    height: 23%;
     display: none;
   }
 </style>
