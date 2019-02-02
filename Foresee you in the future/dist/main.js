@@ -948,7 +948,20 @@ window.ozzx.script = {
           y: bodySize.h - grass3H
         });
         grass3AnimationList.play();
-        _this3.data.twoContainer.addChild(grass1, grass2, grass3);
+        var fogH = bodySize.h * 0.2;
+        var fog = _this3.methods.createSprite("./images/fog.png", {
+          width: fogH * 2.2021,
+          height: fogH,
+          x: bodySize.w * 9.32,
+          y: bodySize.h * 0.5
+        });
+        var fogAnimationList = TweenMax.fromTo(fog, 1, {
+          alpha: 0.8
+        }, {
+          alpha: 1
+        }).repeat(-1);
+        fogAnimationList.play();
+        _this3.data.twoContainer.addChild(grass1, grass2, grass3, fog);
         var petal11AnimationList = TweenMax.fromTo(petal11, 8, {
           x: bodySize.w * 9 + bodySize.w * 0.2 - 20,
           y: bodySize.h * 0.15 - 20

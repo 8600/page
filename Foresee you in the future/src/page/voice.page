@@ -1165,9 +1165,19 @@
         const grass3AnimationList = TweenMax.fromTo(grass3, 1, {x: bodySize.w * 10, y: bodySize.h},{x: bodySize.w * 10 - grass3H * 1.5402, y: bodySize.h - grass3H})
         grass3AnimationList.play()
 
+        // 时隐时现的雾气 2.2021
+        const fogH = bodySize.h * 0.2
+        const fog = this.methods.createSprite("./images/fog.png",{
+          width: fogH * 2.2021,
+          height: fogH,
+          x: bodySize.w * 9.32,
+          y: bodySize.h * 0.5
+        })
+        const fogAnimationList = TweenMax.fromTo(fog, 1, {alpha: 0.8},{alpha: 1}).repeat(-1)
+        fogAnimationList.play()
         
 
-        this.data.twoContainer.addChild(grass1, grass2, grass3)
+        this.data.twoContainer.addChild(grass1, grass2, grass3, fog)
 
 
         const petal11AnimationList = TweenMax.fromTo(petal11, 8, {
