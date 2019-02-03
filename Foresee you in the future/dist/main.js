@@ -163,7 +163,7 @@ window.ozzx.script = {
       "progress": 3,
       "people": null,
       "peopleImgID": 1,
-      "imgArr": ["./images/1.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/people-1.png", "./images/people-2.png", "./images/people-3.png", "./images/people-4.png", "./images/people-5.png", "./images/people-6.png", "./images/people-7.png", "./images/people-8.png", "./images/people-9.png", "./images/people-10.png", "./images/people-11.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/4.png", "./images/5.png", "./images/6.png", "./images/7.png", "./images/8.png", "./images/9.png", "./images/10.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/sport/1.png", "./images/sport/2.png", "./images/support.png"],
+      "imgArr": ["./images/1.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/people-1.png", "./images/people-2.png", "./images/people-3.png", "./images/people-4.png", "./images/people-5.png", "./images/people-6.png", "./images/people-7.png", "./images/people-8.png", "./images/people-9.png", "./images/people-10.png", "./images/people-11.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/4.png", "./images/5.png", "./images/6.png", "./images/7.png", "./images/8.png", "./images/9.png", "./images/10.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/sport/1.png", "./images/sport/2.png", "./images/support.png", "./images/support-tree-1.png"],
       "animationList": {}
     },
     "created": function created() {
@@ -171,16 +171,6 @@ window.ozzx.script = {
       var loadingColorDom = $('#color')[0];
       var ww = $(window).width();
       var wh = $(window).height();
-      window.onresize = function() {
-        setTimeout(function() {
-          var ww = $(window).width();
-          var wh = $(window).height();
-          if (_this.data.twoContainer) {
-            _this.scrollBegin();
-          }
-          bodySize = _this.calculationScene(_this);
-        }, 1000);
-      };
       var bodySize = this.calculationScene(this);
       this.data.loader = new PIXI.loaders.Loader();
       this.data.loader.add(this.data.imgArr).onProgress.add(function(e) {
@@ -346,6 +336,15 @@ window.ozzx.script = {
       this.data.twoContainer.x = 0;
       this.data.twoContainer.y = 0;
       this.data.twoContainer.width = this.data.screenInfo.w;
+      var style = new PIXI.TextStyle({
+        fontSize: 18,
+        fill: ['#ea5d8b']
+      });
+      var richText = new PIXI.Text('向左滑动，预见未来（打开音乐效果更佳）', style);
+      console.log(richText);
+      richText.x = 30;
+      richText.y = 180;
+      this.data.app.stage.addChild(richText);
       var peopleH = this.data.screenInfo.h * 0.2;
       this.data.people = this.methods.createSprite("./images/1/1.png", {
         width: 30 * (this.data.screenInfo.w / 1024),
@@ -853,7 +852,26 @@ window.ozzx.script = {
           y: bodySize.h - supportH
         });
         supportAnimationList.play();
-        _this3.data.twoContainer.addChild(support);
+        var supportTree1H = bodySize.h * 0.2;
+        var supportTree1 = _this3.methods.createSprite("./images/support-tree-1.png", {
+          width: supportTree1H * 0.9223,
+          height: supportTree1H,
+          x: bodySize.w * 5.575 - supportTree1H * 1.1141 / 2,
+          y: bodySize.h
+        });
+        var supportTree1AnimationList = TweenMax.fromTo(supportTree1, 1.5, {
+          y: bodySize.h + supportH * 0.428
+        }, {
+          y: bodySize.h - supportH * 0.572
+        });
+        supportAnimationList.play();
+        var supportTree1AnimationList2 = new TweenMax(supportTree1, 2, {
+          width: supportTree1H * 0.9223 - 10,
+          repeat: -1,
+          yoyo: true
+        });
+        supportTree1AnimationList2.play();
+        _this3.data.twoContainer.addChild(support, supportTree1);
       });
       var Light9Height = bodySize.h / 5;
       var Light9 = this.methods.createSprite("./images/9-light.png", {
@@ -937,17 +955,25 @@ window.ozzx.script = {
         var grass3 = _this3.methods.createSprite("./images/grass3.png", {
           width: grass3H * 1.5402,
           height: grass3H,
-          x: bodySize.w * 10 - grass3H * 1.5402,
-          y: bodySize.h + grass3H
+          x: bodySize.w * 10 + 2 * grass3H * 1.5402,
+          y: bodySize.h
         });
         var grass3AnimationList = TweenMax.fromTo(grass3, 1, {
           x: bodySize.w * 10,
           y: bodySize.h
         }, {
-          x: bodySize.w * 10 - grass3H * 1.5402,
-          y: bodySize.h - grass3H
+          x: bodySize.w * 10 - grass3H * 1.5402 / 2,
+          y: bodySize.h * 1.03
         });
         grass3AnimationList.play();
+        grass3.anchor.x = 0.5;
+        grass3.anchor.y = 1;
+        var grass3AnimationList2 = new TweenMax(grass3, 2, {
+          y: bodySize.h * 1.025,
+          repeat: -1,
+          yoyo: true
+        });
+        grass3AnimationList2.play();
         var fogH = bodySize.h * 0.2;
         var fog = _this3.methods.createSprite("./images/fog.png", {
           width: fogH * 2.2021,
@@ -955,8 +981,8 @@ window.ozzx.script = {
           x: bodySize.w * 9.32,
           y: bodySize.h * 0.5
         });
-        var fogAnimationList = TweenMax.fromTo(fog, 1, {
-          alpha: 0.8
+        var fogAnimationList = TweenMax.fromTo(fog, 2, {
+          alpha: 0.2
         }, {
           alpha: 1
         }).repeat(-1);

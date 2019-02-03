@@ -234,7 +234,8 @@
         "./images/grass1.png",
         "./images/sport/1.png",
         "./images/sport/2.png",
-        "./images/support.png"
+        "./images/support.png",
+        "./images/support-tree-1.png"
       ],
       animationList: {}
     },
@@ -244,18 +245,6 @@
       const ww = $(window).width()
       const wh = $(window).height()
       // alert(`可视宽度:${ww}, 可视高度:${wh}`)
-      window.onresize=() => {
-        setTimeout(() => {
-          const ww = $(window).width()
-          const wh = $(window).height()
-          // alert(`可视宽度:${ww}, 可视高度:${wh}`)
-          if (this.data.twoContainer) {
-            this.scrollBegin()
-          }
-          
-          bodySize = this.calculationScene(this)
-        }, 1000)
-			}
       // 创建画板区域并获取设备屏幕宽高
       let bodySize = this.calculationScene(this)
       // 预加载资源
@@ -447,6 +436,10 @@
       this.data.twoContainer.x = 0
       this.data.twoContainer.y = 0
       this.data.twoContainer.width = this.data.screenInfo.w
+      // ----------------------------- 加载文字 -----------------------------
+
+      this.data.app.stage.addChild(richText)
+
       // 加载小人 比例
       const peopleH = this.data.screenInfo.h * 0.2
       this.data.people = this.methods.createSprite(`./images/1/1.png`,{
@@ -1051,7 +1044,26 @@
         })
         const supportAnimationList = TweenMax.fromTo(support, 1.5, {y: bodySize.h},{y: bodySize.h - supportH})
         supportAnimationList.play()
-        this.data.twoContainer.addChild(support)
+
+        // 手上的树 1.1141
+        const supportTree1H = bodySize.h * 0.2
+        const supportTree1 = this.methods.createSprite("./images/support-tree-1.png",{
+          width: supportTree1H * 0.9223,
+          height: supportTree1H,
+          x: bodySize.w * 5.575 - (supportTree1H * 1.1141 / 2),
+          y: bodySize.h
+        })
+        const supportTree1AnimationList = TweenMax.fromTo(supportTree1, 1.5, {y: bodySize.h + supportH * 0.428},{y: bodySize.h - supportH * 0.572})
+        supportAnimationList.play()
+
+        const supportTree1AnimationList2 = new TweenMax(supportTree1, 2, {
+          width: supportTree1H * 0.9223 - 10,
+          repeat:-1,
+          yoyo:true
+        })
+        supportTree1AnimationList2.play()
+
+        this.data.twoContainer.addChild(support, supportTree1)
       })
 
       // 第九张图 比例:1
@@ -1154,16 +1166,25 @@
         const grass2AnimationList = TweenMax.fromTo(grass2, 1, {y: -grass2H},{y: 0})
         grass2AnimationList.play()
 
-        // 从上生出树叶 1.5402
+        // 从右下出的树叶 1.5402
         const grass3H = bodySize.h * 0.2
         const grass3 = this.methods.createSprite("./images/grass3.png",{
           width: grass3H * 1.5402,
           height: grass3H,
-          x: bodySize.w * 10 - grass3H * 1.5402,
-          y: bodySize.h + grass3H
+          x: bodySize.w * 10 + 2 * grass3H * 1.5402,
+          y: bodySize.h
         })
-        const grass3AnimationList = TweenMax.fromTo(grass3, 1, {x: bodySize.w * 10, y: bodySize.h},{x: bodySize.w * 10 - grass3H * 1.5402, y: bodySize.h - grass3H})
+        const grass3AnimationList = TweenMax.fromTo(grass3, 1, {x: bodySize.w * 10, y: bodySize.h},{x: bodySize.w * 10 - grass3H * 1.5402 / 2, y: bodySize.h * 1.03})
         grass3AnimationList.play()
+        // 树叶摆动效果
+        grass3.anchor.x = 0.5
+        grass3.anchor.y = 1
+        const grass3AnimationList2 = new TweenMax(grass3, 2, {
+          y: bodySize.h * 1.025,
+          repeat:-1,
+          yoyo:true
+        })
+        grass3AnimationList2.play()
 
         // 时隐时现的雾气 2.2021
         const fogH = bodySize.h * 0.2
@@ -1173,7 +1194,7 @@
           x: bodySize.w * 9.32,
           y: bodySize.h * 0.5
         })
-        const fogAnimationList = TweenMax.fromTo(fog, 1, {alpha: 0.8},{alpha: 1}).repeat(-1)
+        const fogAnimationList = TweenMax.fromTo(fog, 2, {alpha: 0.2},{alpha: 1}).repeat(-1)
         fogAnimationList.play()
         
 
@@ -1558,8 +1579,8 @@
   .hand {
     width: 15%;
     height: 15%;
-    left: 22%;
-    top: 57%;
+    left: 50%;
+    top: 27%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: absolute;
