@@ -164,6 +164,7 @@ window.ozzx.script = {
       "people": null,
       "peopleImgID": 1,
       "imgArr": ["./images/1.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/people-1.png", "./images/people-2.png", "./images/people-3.png", "./images/people-4.png", "./images/people-5.png", "./images/people-6.png", "./images/people-7.png", "./images/people-8.png", "./images/people-9.png", "./images/people-10.png", "./images/people-11.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/4.png", "./images/5.png", "./images/6.png", "./images/7.png", "./images/8.png", "./images/9.png", "./images/10.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/sport/1.png", "./images/sport/2.png", "./images/support.png", "./images/support-tree-1.png"],
+      "mousedown": false,
       "animationList": {}
     },
     "created": function created() {
@@ -231,7 +232,6 @@ window.ozzx.script = {
     "methods": {
       "createSprite": function createSprite(name, opt) {
         var devicePixelRatio = window.devicePixelRatio || 1;
-        console.log(devicePixelRatio);
         var newSprite = new PIXI.Sprite.fromImage(name, true, devicePixelRatio);
         if (opt) {
           for (var key in opt) {
@@ -261,8 +261,6 @@ window.ozzx.script = {
             backgroundColor: '0xc8c9c9',
             resolution: 1
           });
-          console.log(this.data.app.view);
-          console.log(this.getPixelRatio(this.data.app.view));
           $('#main').append(this.data.app.view);
           this.data.app.stage.displayList = new PIXI.display.Stage();
           this.data.screenInfo = {
@@ -1073,9 +1071,8 @@ window.ozzx.script = {
         this.data.scroller.setDimensions(this.data.screenInfo.h, this.data.screenInfo.w, this.data.screenInfo.h, this.data.screenInfo.w * number);
       }
     },
-    "setPeopleY": function setPeopleY(peopleX) {
-      var ratio = peopleX / this.data.screenInfo.w;
-      peopleX = peopleX * (1024 / this.data.screenInfo.w);
+    "setPeopleY": function setPeopleY(X) {
+      peopleX = X * (1024 / this.data.screenInfo.w);
       if (peopleX < 188) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.25, 0, peopleX, 0.001);
       } else if (peopleX < 390) {
@@ -1154,21 +1151,11 @@ window.ozzx.script = {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5065, 10025, peopleX, -0.0002);
       } else {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4697, 10208, peopleX, -0.0008);
-        var ratioB = ratio % 10 * 100;
-        if (this.data.screenInfo.w < 800) {
-          if (ratioB > 5) {
-            $('#qr')[0].style.display = 'block';
-            $('#qr')[0].style.bottom = "".concat(ratio % 10 * 100 + 7, "%");
-          } else {
-            $('#qr')[0].style.display = 'none';
-          }
+        var pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w;
+        if (pageIndex === 10) {
+          $('#qr')[0].style.display = 'block';
         } else {
-          if (ratioB > 1) {
-            $('#qr')[0].style.display = 'block';
-            $('#qr')[0].style.bottom = "".concat(ratio % 10 * 100 + 10, "%");
-          } else {
-            $('#qr')[0].style.display = 'none';
-          }
+          $('#qr')[0].style.display = 'none';
         }
       }
     },
@@ -1187,42 +1174,41 @@ window.ozzx.script = {
     },
     "mouseEvent": function mouseEvent() {
       var _this5 = this;
-      var mousedown = false;
       $('canvas')[0].addEventListener("touchstart", function(e) {
         _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
-        mousedown = true;
+        _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("touchmove", function(e) {
-        if (!mousedown) {
+        if (!_this5.data.mousedown) {
           return;
         }
         _this5.data.scroller.doTouchMove(e.touches, e.timeStamp);
-        mousedown = true;
+        _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("touchend", function(e) {
-        if (!mousedown) {
+        if (!_this5.data.mousedown) {
           return;
         }
         _this5.data.scroller.doTouchEnd(e.timeStamp);
-        mousedown = false;
+        _this5.data.mousedown = false;
       }, false);
       $('canvas')[0].addEventListener("mousedown", function(e) {
         _this5.data.scroller.doTouchStart([e], e.timeStamp);
-        mousedown = true;
+        _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mousemove", function(e) {
-        if (!mousedown) {
+        if (!_this5.data.mousedown) {
           return;
         }
         _this5.data.scroller.doTouchMove([e], e.timeStamp);
-        mousedown = true;
+        _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mouseup", function(e) {
-        if (!mousedown) {
+        if (!_this5.data.mousedown) {
           return;
         }
         _this5.data.scroller.doTouchEnd(e.timeStamp);
-        mousedown = false;
+        _this5.data.mousedown = false;
       }, false);
     },
     "addBind": function addBind(item, func) {

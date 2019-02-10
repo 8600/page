@@ -237,6 +237,7 @@
         "./images/support.png",
         "./images/support-tree-1.png"
       ],
+      mousedown: false,
       animationList: {}
     },
     created: function () {
@@ -335,7 +336,7 @@
       createSprite: function(name, opt){
         // 获取缩放比例
         const devicePixelRatio = window.devicePixelRatio || 1
-        console.log(devicePixelRatio)
+        // console.log(devicePixelRatio)
         const newSprite = new PIXI.Sprite.fromImage(name, true, devicePixelRatio)
         if (opt) {
           for (let key in opt) {
@@ -373,8 +374,6 @@
             backgroundColor: '0xc8c9c9',
             resolution: 1
           })
-          console.log(this.data.app.view)
-          console.log(this.getPixelRatio(this.data.app.view))
           $('#main').append(this.data.app.view)
           this.data.app.stage.displayList = new PIXI.display.Stage()
           this.data.screenInfo = {w: wh, h: ww, transverse: false}
@@ -1313,12 +1312,12 @@
       }
     },
     // 计算并设置小人Y坐标
-    setPeopleY: function (peopleX) {
+    setPeopleY: function (X) {
+      
       // 当时是在屏幕分辨率为1024*768做的 所以要计算换算为真实屏幕
       // console.log(peopleX / this.data.screenInfo.w)
-      const ratio = peopleX / this.data.screenInfo.w
-      peopleX = peopleX * (1024 / this.data.screenInfo.w)
-      // console.log(peopleX)
+      peopleX = X * (1024 / this.data.screenInfo.w)
+      // console.log((peopleX - 50) / this.data.screenInfo.w)
       if (peopleX < 188) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.25, 0, peopleX, 0.001)
       } else if (peopleX < 390) {
@@ -1348,7 +1347,6 @@
       } else if (peopleX < 2386) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3050, 2238, peopleX, -0.0006)
       } else if (peopleX < 2530) {
-        
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1980, 2386, peopleX, -0.0002)
       } else if (peopleX < 2679) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1690, 2530, peopleX, 0.00015)
@@ -1412,29 +1410,15 @@
       } else {
         // console.log(peopleX, this.methods.smooth(0.4697, 10208, peopleX, -0.0008))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4697, 10208, peopleX, -0.0008)
-        // console.log(ratio % 10 * 100 + 5)
-        const ratioB = ratio % 10 * 100
-        
+        // 计算得到比率
+        const pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w
+        // console.log(pageIndex)
         // console.log(ratioB)
         // 二维码问题
-        if (this.data.screenInfo.w < 800) {
-          if (ratioB > 5) {
-            $('#qr')[0].style.display = 'block'
-            // $('#qr')[0].style.left = 0 - peopleX % this.data.screenInfo.w + 'px'
-            
-            $('#qr')[0].style.bottom = `${ratio % 10 * 100 + 7}%`
-          } else {
-            $('#qr')[0].style.display = 'none'
-          }
+        if (pageIndex === 10) {
+          $('#qr')[0].style.display = 'block'
         } else {
-          if (ratioB > 1) {
-            $('#qr')[0].style.display = 'block'
-            // $('#qr')[0].style.left = 0 - peopleX % this.data.screenInfo.w + 'px'
-            
-            $('#qr')[0].style.bottom = `${ratio % 10 * 100 + 10}%`
-          } else {
-            $('#qr')[0].style.display = 'none'
-          }
+          $('#qr')[0].style.display = 'none'
         }
         
       }
@@ -1457,48 +1441,47 @@
     },
     // 移动屏幕鼠标事件
     mouseEvent: function () {
-      let mousedown = false
       $('canvas')[0].addEventListener("touchstart", (e) => {
         this.data.scroller.doTouchStart(e.touches, e.timeStamp)
-        mousedown = true
+        this.data.mousedown = true
       }, false)
 
       $('canvas')[0].addEventListener("touchmove", (e) => {
-        if (!mousedown) {
+        if (!this.data.mousedown) {
           return
         }
         // console.log(e.touches, e.timeStamp)
         this.data.scroller.doTouchMove(e.touches, e.timeStamp);
-        mousedown = true
+        this.data.mousedown = true
       }, false);
 
       $('canvas')[0].addEventListener("touchend", (e) => {
-        if (!mousedown) {
+        if (!this.data.mousedown) {
           return
         }
         this.data.scroller.doTouchEnd(e.timeStamp)
-        mousedown = false
+        this.data.mousedown = false
       }, false)
       $('canvas')[0].addEventListener("mousedown", (e) => {
         this.data.scroller.doTouchStart([e], e.timeStamp)
-        mousedown = true
+        this.data.mousedown = true
       }, false)
 
       $('canvas')[0].addEventListener("mousemove", (e) => {
-        if (!mousedown) {
+        if (!this.data.mousedown) {
           return
         }
         // console.log(e.touches, e.timeStamp)
         this.data.scroller.doTouchMove([e], e.timeStamp);
-        mousedown = true
+        this.data.mousedown = true
       }, false);
 
       $('canvas')[0].addEventListener("mouseup", (e) => {
-        if (!mousedown) {
+        if (!this.data.mousedown) {
           return
         }
         this.data.scroller.doTouchEnd(e.timeStamp)
-        mousedown = false
+        this.data.mousedown = false
       }, false)
     },
     addBind: function (item, func) {
