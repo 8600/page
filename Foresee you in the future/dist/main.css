@@ -76,9 +76,9 @@ body {
   height: 80%;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  left: 0;
+  left: 5%;
   right: 0;
-  top: 0;
+  top: 15%;
   bottom: 0;
   margin: auto;
   position: fixed;
@@ -87,13 +87,13 @@ body {
 }
 
 .ox-voice .dial {
-  width: 36.5%;
-  height: 64.8%;
+  width: 47.2%;
+  height: 76.8%;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: absolute;
-  left: 31.8%;
-  top: 22.4%;
+  left: 21.8%;
+  top: 7.4%;
   transform-origin: 0 50%;
   background-image: url(./images/1-clock-dial.png);
 }
@@ -148,25 +148,25 @@ body {
 
 @keyframes around {
   0% {
-    transform: translateX(0);
+    opacity: 0.4;
   }
 
   100% {
-    transform: translateX(20px);
+    opacity: 1;
   }
 }
 
 .ox-voice .hand {
   width: 15%;
   height: 15%;
-  left: 22%;
-  top: 57%;
+  left: 50%;
+  top: 27%;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: absolute;
   background-image: url(./images/1-hand.png);
   animation-name: around;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
@@ -193,6 +193,6 @@ body {
   right: 0;
   bottom: 15%;
   margin: auto;
-  height: 30%;
+  height: 23%;
   display: none;
 }

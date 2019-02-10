@@ -15,7 +15,7 @@
     </div>
   </div>
   <!-- 背景音乐 -->
-  <audio src="./audio/bgm.mp3" id="bgm" loop>
+  <audio src="./audio/bgm.wma" id="bgm" loop>
     您的浏览器不支持 audio 标签。
   </audio>
   <!-- 分享遮蔽罩子 -->
@@ -42,7 +42,6 @@
       peopleImgID: 1,
       imgArr: [
         './images/1.png',
-        './images/logo.png',
         './images/3-colour.png',
         "./images/1-clock.png",
         "./images/1-point.png",
@@ -235,7 +234,8 @@
         "./images/grass1.png",
         "./images/sport/1.png",
         "./images/sport/2.png",
-        "./images/support.png"
+        "./images/support.png",
+        "./images/support-tree-1.png"
       ],
       animationList: {}
     },
@@ -245,18 +245,6 @@
       const ww = $(window).width()
       const wh = $(window).height()
       // alert(`可视宽度:${ww}, 可视高度:${wh}`)
-      window.onresize=() => {
-        setTimeout(() => {
-          const ww = $(window).width()
-          const wh = $(window).height()
-          // alert(`可视宽度:${ww}, 可视高度:${wh}`)
-          if (this.data.twoContainer) {
-            this.scrollBegin()
-          }
-          
-          bodySize = this.calculationScene(this)
-        }, 1000)
-			}
       // 创建画板区域并获取设备屏幕宽高
       let bodySize = this.calculationScene(this)
       // 预加载资源
@@ -274,13 +262,13 @@
             // 隐藏掉加载页面
             $('#loadingBox').remove()
 
-            // 显示时钟页面 1.7786
+            // 显示时钟页面 1.6481
             const clockDom = $('#clock')[0]
-            const clockDomWidth = this.data.screenInfo.w * 1
+            const clockDomHeight = this.data.screenInfo.h * 0.8
             clockDom.style.display = 'block'
             // 根据比例计算时钟合适高度
-            clockDom.style.width = clockDomWidth + 'px'
-            clockDom.style.height = clockDomWidth / 1.7786 + 'px'
+            clockDom.style.width = clockDomHeight * 1.6481 + 'px'
+            clockDom.style.height = clockDomHeight + 'px'
             
           }
         }
@@ -298,16 +286,6 @@
         height: bodySize.h,
         x: 0,
         y: 0
-      })
-      // 加载首页logo 比例3.3391
-      const logoImageHeight = bodySize.h / 10
-      const logoImageWidth = logoImageHeight * 3.3391
-      const logoImage = this.methods.createSprite("./images/logo.png", {
-        width: logoImageWidth,
-        height: logoImageHeight,
-        // 位置左上角
-        x: bodySize.w * 0.05,
-        y: bodySize.h * 0.02
       })
 
       // 加载时钟
@@ -332,14 +310,12 @@
         z: -1
       })
 
-      one.addChild(bg1Image, logoImage, oneButterfly)
+      one.addChild(bg1Image, oneButterfly)
       
-
-      // 触摸事件
       this.addBind($("#clockDial"), () => {
         // 播放音乐
         $('#bgm')[0].play()
-        this.openClock(one, oneButterfly, logoImage, bg1Image)
+        this.openClock(one, oneButterfly, bg1Image)
       })
       // 点击事件
       // 加载资源
@@ -349,7 +325,7 @@
       })
       const shareDom = document.getElementById("shareBox")
       shareDom.ontouchend = function() {
-        console.log(shareDom)
+        $('#qr')[0].style.display = 'block'
         shareDom.style.display = 'none'
         return false
       }
@@ -416,7 +392,7 @@
       
     },
     // 打开时钟并进入第二部分
-    openClock: function (one, oneButterfly, logoImage, bg1Image) {
+    openClock: function (one, oneButterfly, bg1Image) {
       // 移除对时钟的所有事件监听
       $("#clockDial").unbind()
       for( let i = 0 ; i < 35; i++) {
@@ -436,8 +412,7 @@
             $('#clock')[0].classList.add('scale-play')
             // 销毁指针
             setTimeout(() => {
-              // 动画完毕销毁首页logo和背景
-              logoImage.destroy()
+              // 动画完毕销毁首页背景
               bg1Image.destroy()
               
               setTimeout(() => {
@@ -461,6 +436,10 @@
       this.data.twoContainer.x = 0
       this.data.twoContainer.y = 0
       this.data.twoContainer.width = this.data.screenInfo.w
+      // ----------------------------- 加载文字 -----------------------------
+
+      this.data.app.stage.addChild(richText)
+
       // 加载小人 比例
       const peopleH = this.data.screenInfo.h * 0.2
       this.data.people = this.methods.createSprite(`./images/1/1.png`,{
@@ -489,15 +468,15 @@
       })
 
       // 提示文字
-      const tipsH = this.data.screenInfo.h * 0.2
+      const tipsH = this.data.screenInfo.h * 0.25
       const tips = this.methods.createSprite("./images/tips.png",{
         width: tipsH * 1.7111,
         height: tipsH,
-        x: this.data.screenInfo.w * 0.7,
-        y: this.data.screenInfo.h * 0.20
+        x: this.data.screenInfo.w * 0.42,
+        y: this.data.screenInfo.h * 0.4
       })
       // 提示文字闪动
-      const tipsA = TweenMax.fromTo(tips, 2, {alpha: 0},{alpha: 1}).repeat(-1)
+      const tipsA = TweenMax.fromTo(tips, 2, {alpha: .5},{alpha: 1}).repeat(-1)
       tipsA.play()
       
       // 第三张背景图
@@ -574,12 +553,12 @@
       bgshare.interactive = true;
       bgshare.buttonMode = true
 
-      // 呼唤朋友按钮 3.9275
-      const shareBTH = this.data.screenInfo.h * 0.2
+      // 呼唤朋友按钮 0.6781
+      const shareBTH = this.data.screenInfo.h * 0.3
       const shareBT = this.methods.createSprite("./images/share-button.png",{
-        width: shareBTH,
+        width: shareBTH * 0.6781,
         height: shareBTH,
-        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.85,
+        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.83,
         y: this.data.screenInfo.h * 0.05
       })
       // 设置可交互
@@ -587,6 +566,9 @@
       shareBT.buttonMode = true
       this.addBind(shareBT, () => {
         $('#shareBox')[0].style.display = 'block'
+        setTimeout(() => {
+          $('#qr')[0].style.display = 'none'
+        }, 0)
         return false
       })
 
@@ -601,12 +583,12 @@
         x: bodySize.w + (bodySize.w * 0.05),
         y: bodySize.h * 0.1
       })
-      const cloud3AnimationList = new TweenMax(cloud3, 2, {
-        x: bodySize.w + (bodySize.w * 0.05) + 20,
-        repeat:-1,
-        yoyo:true,
-      })
-      cloud3AnimationList.play()
+      // const cloud3AnimationList = new TweenMax(cloud3, 2, {
+      //   x: bodySize.w + (bodySize.w * 0.05) + 20,
+      //   repeat:-1,
+      //   yoyo:true,
+      // })
+      // cloud3AnimationList.play()
 
       // 4云 比例2.1159
       const cloud4H = bodySize.h * 0.8
@@ -632,12 +614,12 @@
         x: bodySize.w * 3 + (bodySize.w * 0.05),
         y: bodySize.h * 0.1
       })
-      const cloud5AnimationList = new TweenMax(cloud5, 2, {
-        x: bodySize.w * 3 + (bodySize.w * 0.05) + 20,
-        repeat:-1,
-        yoyo:true,
-      })
-      cloud5AnimationList.play()
+      // const cloud5AnimationList = new TweenMax(cloud5, 2, {
+      //   x: bodySize.w * 3 + (bodySize.w * 0.05) + 20,
+      //   repeat:-1,
+      //   yoyo:true,
+      // })
+      // cloud5AnimationList.play()
       
 
       // 6云 比例2.0727
@@ -764,7 +746,7 @@
         threeLight.destroy()
         // 销毁掉云
         cloud3.destroy()
-        cloud3AnimationList.kill()
+        // cloud3AnimationList.kill()
 
         // 小男孩想象的东西 1.7756
         const thoughtH = bodySize.h * 0.4
@@ -820,9 +802,9 @@
         flask.anchor.y = 1
         const flaskAnimationList = new TweenMax(flask, 2, {
           rotation: 0.5,
-          repeat:-1,
-          yoyo:true,
-          transformOrigin:'center'
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
         })
         flaskAnimationList.play()
 
@@ -856,7 +838,7 @@
         text.anchor.y = 1
         // console.log(text)
         const textAnimationList = new TweenMax(text, 1.5, {
-          alpha: 0,
+          alpha: 0.5,
           repeat: -1,
           yoyo:true,
           transformOrigin:'center'
@@ -894,7 +876,7 @@
         fiveLight.destroy()
         // 销毁云
         cloud5.destroy()
-        cloud5AnimationList.kill()
+        // cloud5AnimationList.kill()
         // 设置可滚动的区域
         this.setShowPageNumber(6)
 
@@ -909,13 +891,113 @@
         tree1.anchor.x = 0.5
         tree1.anchor.y = 1
         const tree1AnimationList = new TweenMax(tree1, 2, {
-          rotation: 0.2,
+          rotation: 0.4,
           repeat:-1,
           yoyo:true,
           transformOrigin:'center'
         })
         tree1AnimationList.play()
-        this.data.twoContainer.addChild(tree1)
+
+        // 左边的主树叶 0.5323
+        const tree2H = bodySize.h * 0.50
+        const tree2 = this.methods.createSprite("./images/tree2.png",{
+          width: tree2H * 0.5323,
+          height: tree2H,
+          x: bodySize.w * 3.2 - (tree2H * 0.5323) / 2,
+          y: bodySize.h
+        })
+        tree2.anchor.x = 0.5
+        tree2.anchor.y = 1
+        const tree2AnimationList = new TweenMax(tree2, 2, {
+          rotation: 0.2,
+          repeat:-1,
+          yoyo:true
+        })
+        tree2AnimationList.play()
+
+        // 右边主叶子 0.8517
+        const tree3H = bodySize.h * 0.50
+        const tree3 = this.methods.createSprite("./images/tree3.png",{
+          width: tree3H * 0.8517,
+          height: tree3H,
+          x: bodySize.w * 4 - (tree3H * 0.8517) / 2,
+          y: bodySize.h * 1.02 
+        })
+        tree3.anchor.x = 0.3
+        tree3.anchor.y = 1
+        const tree3AnimationList = new TweenMax(tree3, 2, {
+          rotation: 0.2,
+          repeat:-1,
+          yoyo:true
+        })
+        tree3AnimationList.play()
+        
+        // 房子拔地而起 0.5904
+        const house1H = bodySize.h * 0.50
+        const house1 = this.methods.createSprite("./images/house1.png",{
+          width: house1H * 0.5904,
+          height: house1H,
+          x: bodySize.w * 3.6,
+          y: bodySize.h * 1.02 
+        })
+        house1.anchor.x = 0.3
+        house1.anchor.y = 1
+        const house1AnimationList = TweenMax.fromTo(house1, 1.2, {y: bodySize.h}, {y: bodySize.h * 0.75})
+        house1AnimationList.play()
+
+        // 房子拔地而起 0.49011
+        const house2H = bodySize.h * 0.40
+        const house2 = this.methods.createSprite("./images/house2.png",{
+          width: house2H * 0.49011,
+          height: house2H,
+          x: bodySize.w * 3.25,
+          y: bodySize.h * 1.02 
+        })
+        house2.anchor.x = 0.3
+        house2.anchor.y = 1
+        const house2AnimationList = TweenMax.fromTo(house2, 1.1, {y: bodySize.h}, {y: bodySize.h * 0.75})
+        house2AnimationList.play()
+
+        // 房子拔地而起 0.5904
+        const house3H = bodySize.h * 0.42
+        const house3 = this.methods.createSprite("./images/house3.png",{
+          width: house3H * 0.5904,
+          height: house3H,
+          x: bodySize.w * 3.5,
+          y: bodySize.h * 1.02 
+        })
+        house3.anchor.x = 0.3
+        house3.anchor.y = 1
+        const house3AnimationList = TweenMax.fromTo(house3, 0.8, {y: bodySize.h}, {y: bodySize.h * 0.75})
+        house3AnimationList.play()
+
+        // 1.034
+        const house4H = bodySize.h * 0.3
+        const house4 = this.methods.createSprite("./images/house4.png",{
+          width: house4H * 1.034,
+          height: house4H,
+          x: bodySize.w * 3.7,
+          y: bodySize.h * 1.02 
+        })
+        house4.anchor.x = 0.3
+        house4.anchor.y = 1
+        const house4AnimationList = TweenMax.fromTo(house4, 0.6, {y: bodySize.h}, {y: bodySize.h * 0.75})
+        house4AnimationList.play()
+
+        // 1.4926
+        const house5H = bodySize.h * 0.3
+        const house5 = this.methods.createSprite("./images/house5.png",{
+          width: house5H * 1.4926,
+          height: house5H,
+          x: bodySize.w * 3.33,
+          y: bodySize.h * 1.01
+        })
+        house5.anchor.x = 0.3
+        house5.anchor.y = 1
+        const house5AnimationList = TweenMax.fromTo(house5, 1.4, {y: bodySize.h}, {y: bodySize.h * 0.75})
+        house5AnimationList.play()
+
+        this.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3)
       })
 
       // 第七张图 比例:0.7421
@@ -962,7 +1044,26 @@
         })
         const supportAnimationList = TweenMax.fromTo(support, 1.5, {y: bodySize.h},{y: bodySize.h - supportH})
         supportAnimationList.play()
-        this.data.twoContainer.addChild(support)
+
+        // 手上的树 1.1141
+        const supportTree1H = bodySize.h * 0.2
+        const supportTree1 = this.methods.createSprite("./images/support-tree-1.png",{
+          width: supportTree1H * 0.9223,
+          height: supportTree1H,
+          x: bodySize.w * 5.575 - (supportTree1H * 1.1141 / 2),
+          y: bodySize.h
+        })
+        const supportTree1AnimationList = TweenMax.fromTo(supportTree1, 1.5, {y: bodySize.h + supportH * 0.428},{y: bodySize.h - supportH * 0.572})
+        supportAnimationList.play()
+
+        const supportTree1AnimationList2 = new TweenMax(supportTree1, 2, {
+          width: supportTree1H * 0.9223 - 10,
+          repeat:-1,
+          yoyo:true
+        })
+        supportTree1AnimationList2.play()
+
+        this.data.twoContainer.addChild(support, supportTree1)
       })
 
       // 第九张图 比例:1
@@ -1065,18 +1166,39 @@
         const grass2AnimationList = TweenMax.fromTo(grass2, 1, {y: -grass2H},{y: 0})
         grass2AnimationList.play()
 
-        // 从上生出树叶 1.5402
+        // 从右下出的树叶 1.5402
         const grass3H = bodySize.h * 0.2
         const grass3 = this.methods.createSprite("./images/grass3.png",{
           width: grass3H * 1.5402,
           height: grass3H,
-          x: bodySize.w * 10 - grass3H * 1.5402,
-          y: bodySize.h + grass3H
+          x: bodySize.w * 10 + 2 * grass3H * 1.5402,
+          y: bodySize.h
         })
-        const grass3AnimationList = TweenMax.fromTo(grass3, 1, {x: bodySize.w * 10, y: bodySize.h},{x: bodySize.w * 10 - grass3H * 1.5402, y: bodySize.h - grass3H})
+        const grass3AnimationList = TweenMax.fromTo(grass3, 1, {x: bodySize.w * 10, y: bodySize.h},{x: bodySize.w * 10 - grass3H * 1.5402 / 2, y: bodySize.h * 1.03})
         grass3AnimationList.play()
+        // 树叶摆动效果
+        grass3.anchor.x = 0.5
+        grass3.anchor.y = 1
+        const grass3AnimationList2 = new TweenMax(grass3, 2, {
+          y: bodySize.h * 1.025,
+          repeat:-1,
+          yoyo:true
+        })
+        grass3AnimationList2.play()
 
-        this.data.twoContainer.addChild(grass1, grass2, grass3)
+        // 时隐时现的雾气 2.2021
+        const fogH = bodySize.h * 0.2
+        const fog = this.methods.createSprite("./images/fog.png",{
+          width: fogH * 2.2021,
+          height: fogH,
+          x: bodySize.w * 9.32,
+          y: bodySize.h * 0.5
+        })
+        const fogAnimationList = TweenMax.fromTo(fog, 2, {alpha: 0.2},{alpha: 1}).repeat(-1)
+        fogAnimationList.play()
+        
+
+        this.data.twoContainer.addChild(grass1, grass2, grass3, fog)
 
 
         const petal11AnimationList = TweenMax.fromTo(petal11, 8, {
@@ -1095,8 +1217,8 @@
       const sport = this.methods.createSprite("./images/sport/1.png",{
         width: sportH * 1.0775,
         height: sportH,
-        x: bodySize.w * 10 + (bodySize.w * 0.68) - (sportH * 1.0775 / 2),
-        y: bodySize.h * 0.39 - (sportH / 2)
+        x: bodySize.w * 10 + (bodySize.w * 0.88) - (sportH * 1.0775 / 2),
+        y: bodySize.h * 0.44 - (sportH / 2)
       })
       // 小人跳舞动画
       let sportInd = 1
@@ -1252,13 +1374,26 @@
         // console.log(ratio % 10 * 100 + 5)
         const ratioB = ratio % 10 * 100
         // console.log(ratioB)
-        if (ratioB > 2) {
-          $('#qr')[0].style.display = 'block'
-          // $('#qr')[0].style.left = 0 - peopleX % this.data.screenInfo.w + 'px'
-          $('#qr')[0].style.bottom = `${ratio % 10 * 100 + 5}%`
+        if (this.data.screenInfo.w < 800) {
+          if (ratioB > 5) {
+            $('#qr')[0].style.display = 'block'
+            // $('#qr')[0].style.left = 0 - peopleX % this.data.screenInfo.w + 'px'
+            
+            $('#qr')[0].style.bottom = `${ratio % 10 * 100 + 7}%`
+          } else {
+            $('#qr')[0].style.display = 'none'
+          }
         } else {
-          $('#qr')[0].style.display = 'none'
+          if (ratioB > 1) {
+            $('#qr')[0].style.display = 'block'
+            // $('#qr')[0].style.left = 0 - peopleX % this.data.screenInfo.w + 'px'
+            
+            $('#qr')[0].style.bottom = `${ratio % 10 * 100 + 10}%`
+          } else {
+            $('#qr')[0].style.display = 'none'
+          }
         }
+        
       }
     },
     setPeopleImg: function (peopleX) {
@@ -1372,9 +1507,9 @@
     height: 80%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    left: 0;
+    left: 5%;
     right: 0;
-    top: 0;
+    top: 15%;
     bottom: 0;
     margin: auto;
     position: fixed;
@@ -1382,13 +1517,13 @@
     background-image: url(./images/1-clock.png);
   }
   .dial {
-    width: 36.5%;
-    height: 64.8%;
+    width: 47.2%;
+    height: 76.8%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: absolute;
-    left: 31.8%;
-    top: 22.4%;
+    left: 21.8%;
+    top: 7.4%;
     transform-origin: 0 50%;
     background-image: url(./images/1-clock-dial.png);
   }
@@ -1435,23 +1570,23 @@
   }
   @keyframes around {
     0% {
-      transform: translateX(0);
+      opacity: 0.4;
     }
     100%{
-      transform: translateX(20px);
+      opacity: 1;
     }
   }
   .hand {
     width: 15%;
     height: 15%;
-    left: 22%;
-    top: 57%;
+    left: 50%;
+    top: 27%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: absolute;
     background-image: url(./images/1-hand.png);
     animation-name: around;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
   }
@@ -1475,7 +1610,7 @@
     right: 0;
     bottom: 15%;
     margin: auto;
-    height: 30%;
+    height: 23%;
     display: none;
   }
 </style>
