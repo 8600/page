@@ -230,7 +230,9 @@ window.ozzx.script = {
     },
     "methods": {
       "createSprite": function createSprite(name, opt) {
-        var newSprite = new PIXI.Sprite.from(name);
+        var devicePixelRatio = window.devicePixelRatio || 1;
+        console.log(devicePixelRatio);
+        var newSprite = new PIXI.Sprite.fromImage(name, true, devicePixelRatio);
         if (opt) {
           for (var key in opt) {
             newSprite[key] = opt[key];
@@ -253,10 +255,14 @@ window.ozzx.script = {
         window.document.body.classList.add('horizontal');
         window.document.body.style.left = "calc(50% - ".concat(wh / 2, "px)");
         window.document.body.style.top = "calc(50% - ".concat(ww / 2, "px)");
+        var _devicePixelRatio = window.devicePixelRatio || 1;
         if (!this.data.app) {
-          this.data.app = new PIXI.Application($(window).height() * 2, $(window).width() * 2, {
-            backgroundColor: '0xc8c9c9'
+          this.data.app = new PIXI.Application($(window).height() * _devicePixelRatio, $(window).width() * _devicePixelRatio, {
+            backgroundColor: '0xc8c9c9',
+            resolution: 1
           });
+          console.log(this.data.app.view);
+          console.log(this.getPixelRatio(this.data.app.view));
           $('#main').append(this.data.app.view);
           this.data.app.stage.displayList = new PIXI.display.Stage();
           this.data.screenInfo = {
@@ -278,8 +284,9 @@ window.ozzx.script = {
         window.document.body.style.left = '';
         window.document.body.style.top = '';
         if (!this.data.app) {
-          this.data.app = new PIXI.Application($(window).width() * 2, $(window).height() * 2, {
-            backgroundColor: '0xc8c9c9'
+          this.data.app = new PIXI.Application($(window).width() * devicePixelRatio, $(window).height() * devicePixelRatio, {
+            backgroundColor: '0xc8c9c9',
+            resolution: 1
           });
           $('#main').append(this.data.app.view);
           this.data.app.stage.displayList = new PIXI.display.Stage();
@@ -336,15 +343,6 @@ window.ozzx.script = {
       this.data.twoContainer.x = 0;
       this.data.twoContainer.y = 0;
       this.data.twoContainer.width = this.data.screenInfo.w;
-      var style = new PIXI.TextStyle({
-        fontSize: 18,
-        fill: ['#ea5d8b']
-      });
-      var richText = new PIXI.Text('向左滑动，预见未来（打开音乐效果更佳）', style);
-      console.log(richText);
-      richText.x = 30;
-      richText.y = 180;
-      this.data.app.stage.addChild(richText);
       var peopleH = this.data.screenInfo.h * 0.2;
       this.data.people = this.methods.createSprite("./images/1/1.png", {
         width: 30 * (this.data.screenInfo.w / 1024),
@@ -898,7 +896,6 @@ window.ozzx.script = {
         cloud9AnimationList.play();
       });
       var Light11Height = bodySize.h / 1.5;
-      console.log(bodySize.h / bodySize.w);
       var Light11 = this.methods.createSprite("./images/11-light.png", {
         width: Light11Height,
         height: Light11Height,
@@ -1102,11 +1099,11 @@ window.ozzx.script = {
       } else if (peopleX < 1844) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6054, 1744, peopleX, 0.0001);
       } else if (peopleX < 2017) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6122, 1844, peopleX, -0.0006);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6122, 1844, peopleX, -0.0005);
       } else if (peopleX < 2238) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5081, 2017, peopleX, -0.001);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5257, 2017, peopleX, -0.001);
       } else if (peopleX < 2386) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2864, 2238, peopleX, -0.0006);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3050, 2238, peopleX, -0.0006);
       } else if (peopleX < 2530) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1980, 2386, peopleX, -0.0002);
       } else if (peopleX < 2679) {
@@ -1114,37 +1111,50 @@ window.ozzx.script = {
       } else if (peopleX < 3299) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1911, 2679, peopleX, 0.0006);
       } else if (peopleX < 3777) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5635, 3299, peopleX, -0.0005);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5635, 3299, peopleX, -0.00045);
       } else if (peopleX < 3969) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3243, 3777, peopleX, -0.0001);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.35, 3777, peopleX, -0.0001);
       } else if (peopleX < 4317) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3050, 3969, peopleX, 0.0003);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3308, 3969, peopleX, 0.0002);
       } else if (peopleX < 4614) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4096, 4317, peopleX, 0.0005);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4003, 4317, peopleX, 0.0005);
       } else if (peopleX < 4944) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5582, 4614, peopleX, 0.0003);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5582, 4614, peopleX, 0.00035);
+      } else if (peopleX < 5084) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.673, 4944, peopleX, -0.0005);
       } else if (peopleX < 5352) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6572, 4944, peopleX, -0.0007);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6028, 5084, peopleX, -0.0008);
+      } else if (peopleX < 5521) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3888, 5352, peopleX, -0.0003);
       } else if (peopleX < 5638) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3714, 5352, peopleX, -0.0003);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3438, 5521, peopleX, -0.0002);
       } else if (peopleX < 5946) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2854, 5638, peopleX, 0.0004);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3205, 5638, peopleX, 0.0003);
+      } else if (peopleX < 6295) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4089, 5946, peopleX, 0.0007);
       } else if (peopleX < 6443) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4089, 5946, peopleX, 0.0006);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6501, 6295, peopleX, 0.0005);
       } else if (peopleX < 7042) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7080, 6443, peopleX, 0.00001);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7233, 6443, peopleX, 0.00001);
+      } else if (peopleX < 7356) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7292, 7042, peopleX, -0.0003);
+      } else if (peopleX < 7610) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6348, 7356, peopleX, -0.0005);
       } else if (peopleX < 7723) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7139, 7042, peopleX, -0.0004);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5075, 7610, peopleX, -0.0002);
+      } else if (peopleX < 8143) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4850, 7723, peopleX, 0.0001);
       } else if (peopleX < 8383) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4412, 7723, peopleX, 0.0001);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4850, 7723, peopleX, 0.00005);
       } else if (peopleX < 9303) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5072, 8383, peopleX, -0.00026);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5178, 8383, peopleX, -0.00024);
       } else if (peopleX < 10025) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2677, 9303, peopleX, 0.0003);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2973, 9303, peopleX, 0.00029);
+      } else if (peopleX < 10208) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5065, 10025, peopleX, -0.0002);
       } else {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4844, 10025, peopleX, -0.0004);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4697, 10208, peopleX, -0.0008);
         var ratioB = ratio % 10 * 100;
-        // console.log(ratioB);
         if (this.data.screenInfo.w < 800) {
           if (ratioB > 5) {
             $('#qr')[0].style.display = 'block';
