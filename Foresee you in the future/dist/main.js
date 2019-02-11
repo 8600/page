@@ -1067,7 +1067,7 @@ window.ozzx.script = {
         }
         sport.setTexture(texture);
       }, 100);
-      this.data.twoContainer.addChild(bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport, this.data.people);
+      this.data.twoContainer.addChild(this.data.people, bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport);
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12);
       this.data.app.stage.addChild(this.data.twoContainer);
       var threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {
@@ -1133,7 +1133,6 @@ window.ozzx.script = {
       peopleX = X * (1024 / this.data.screenInfo.w);
       var pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w;
       if (this.data.xMax < peopleX) this.data.xMax = peopleX;
-      console.log(this.data.xMax);
       if (pageIndex >= 1 && pageIndex <= 1.52) {
         if (this.data.progress === 2) {
           this.peopleMove1(pageIndex);
@@ -1143,26 +1142,34 @@ window.ozzx.script = {
         }
       }
       if (pageIndex >= 3 && pageIndex <= 3.5) {
-        this.peopleMove2(pageIndex);
-        if (this.data.progress === 5) {
+        if (this.data.progress === 4) {
+          this.peopleMove2(pageIndex);
+          return;
+        } else if (this.data.xMax < 3450) {
           return;
         }
       }
       if (pageIndex >= 5 && pageIndex <= 5.3) {
-        this.peopleMove3(pageIndex);
-        if (this.data.progress === 7) {
+        if (this.data.progress === 6) {
+          this.peopleMove3(pageIndex);
+          return;
+        } else if (this.data.xMax < 5430) {
           return;
         }
       }
       if (pageIndex >= 7 && pageIndex <= 7.5) {
-        this.peopleMove4(pageIndex);
-        if (this.data.progress === 9) {
+        if (this.data.progress === 8) {
+          this.peopleMove4(pageIndex);
+          return;
+        } else if (this.data.xMax < 7648) {
           return;
         }
       }
       if (pageIndex >= 9 && pageIndex <= 9.5) {
-        this.peopleMove5(pageIndex);
-        if (this.data.progress === 9) {
+        if (this.data.progress === 10) {
+          this.peopleMove5(pageIndex);
+          return;
+        } else if (this.data.xMax < 9700) {
           return;
         }
       }
@@ -1347,13 +1354,11 @@ window.ozzx.script = {
             setTimeout(function() {
               _this7.data.people.x = _this7.data.screenInfo.w * (3.11 + i);
               if (i < 0.15) {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.5, 0, i * 1000, 0.0005);
-                console.log(i, 1 - _this7.methods.smooth(0.7, 0, i * 1000, -0.0008));
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.5, 0, i * 1000, 0.0004);
               } else if (i < 0.3) {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.58, 0, i * 1000, -0.0001);
-                console.log(_this7.methods.smooth(0.55, 0.5700, i * 1000, -0.0001));
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.59, 0, i * 1000, -0.0001);
               } else {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.69, 0, i * 1000, -0.0006);
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.76, 0, i * 1000, -0.00075);
               }
             }, i * 4000);
           };
@@ -1372,7 +1377,7 @@ window.ozzx.script = {
             setTimeout(function() {
               _this8.data.people.x = _this8.data.screenInfo.w * (5.11 + i);
               if (i < 0.15) {
-                _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.52, 0, i * 1000, -0.001);
+                _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.48, 0, i * 1000, -0.0008);
               }
             }, i * 4000);
           };

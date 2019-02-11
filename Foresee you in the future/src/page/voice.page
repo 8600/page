@@ -1312,7 +1312,7 @@
         sport.setTexture(texture)
       }, 100)
       // 添加背景
-      this.data.twoContainer.addChild(bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport, this.data.people)
+      this.data.twoContainer.addChild(this.data.people, bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport)
       // 添加云
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12)
       this.data.app.stage.addChild(this.data.twoContainer)
@@ -1390,7 +1390,7 @@
       // 记录最大到达的点
       if (this.data.xMax < peopleX) this.data.xMax = peopleX
       // console.log(pageIndex, this.data.progress)
-      console.log(this.data.xMax)
+      // console.log(this.data.progress, this.data.xMax)
       // console.log(this.data.peopleIsMoveing)
       // 第三幅图小人移动到光圈下
       // 1 - 1.52区域小人不接受移动指令
@@ -1404,31 +1404,38 @@
         }
       }
       if (pageIndex >= 3 && pageIndex <= 3.5) {
-        this.peopleMove2(pageIndex)
         // 保证返回的时候不会不流畅
-        if (this.data.progress === 5) {
+        if (this.data.progress === 4) {
+          this.peopleMove2(pageIndex)
+          return
+        } else if (this.data.xMax < 3450) {
           return
         }
       }
       if (pageIndex >= 5 && pageIndex <= 5.3) {
-        this.peopleMove3(pageIndex)
         // 保证返回的时候不会不流畅
-        if (this.data.progress === 7) {
+        if (this.data.progress === 6) {
+          this.peopleMove3(pageIndex)
+          return
+        } else if (this.data.xMax < 5430) {
           return
         }
       }
       if (pageIndex >= 7 && pageIndex <= 7.5) {
-        this.peopleMove4(pageIndex)
         // 保证返回的时候不会不流畅
-        if (this.data.progress === 9) {
+        if (this.data.progress === 8) {
+          this.peopleMove4(pageIndex)
+          return
+        } else if (this.data.xMax < 7648) {
           return
         }
       }
       if (pageIndex >= 9 && pageIndex <= 9.5) {
-        this.peopleMove5(pageIndex)
         // 保证返回的时候不会不流畅
-        
-        if (this.data.progress === 9) {
+        if (this.data.progress === 10) {
+          this.peopleMove5(pageIndex)
+          return
+        } else if (this.data.xMax < 9700) {
           return
         }
       }
@@ -1642,13 +1649,13 @@
             setTimeout(() => {
               this.data.people.x = this.data.screenInfo.w * (3.11 + i)
               if (i < 0.15) {
-                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5, 0, i * 1000, 0.0005)
-                console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5, 0, i * 1000, 0.0004)
+                // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else if (i < 0.3){
-                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.58, 0, i * 1000 , -0.0001)
-                console.log(this.methods.smooth(0.55, 0.5700, i * 1000 , -0.0001))
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.59, 0, i * 1000 , -0.0001)
+                // console.log(this.methods.smooth(0.55, 0.5700, i * 1000 , -0.0001))
               } else {
-                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.69, 0, i * 1000 , -0.0006)
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.76, 0, i * 1000 , -0.00075)
                 // console.log(this.data.people.y)
               }
             }, i * 4000)
@@ -1665,7 +1672,7 @@
             setTimeout(() => {
               this.data.people.x = this.data.screenInfo.w * (5.11 + i)
               if (i < 0.15) {
-                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.52, 0, i * 1000, -0.001)
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.48, 0, i * 1000, -0.0008)
               }
             }, i * 4000)
           }
