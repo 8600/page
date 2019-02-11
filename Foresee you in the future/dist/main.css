@@ -178,3 +178,7 @@ body {
   height: 23%;
   display: none
 }
+.ox-voice .main-box canvas {
+  width: 100%;
+  height: 100%
+}

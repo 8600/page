@@ -370,9 +370,9 @@
         // 创建画布
         if (!this.data.app) {
 
-          this.data.app = new PIXI.Application($(window).height() * devicePixelRatio, $(window).width() * devicePixelRatio, {
+          this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
             backgroundColor: '0xc8c9c9',
-            resolution: 1
+            resolution: devicePixelRatio
           })
           $('#main').append(this.data.app.view)
           this.data.app.stage.displayList = new PIXI.display.Stage()
@@ -388,9 +388,10 @@
         window.document.body.style.top = ''
         // 创建画布
         if (!this.data.app) {
-          this.data.app = new PIXI.Application($(window).width() * devicePixelRatio, $(window).height() * devicePixelRatio, {
+          console.log(devicePixelRatio)
+          this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
             backgroundColor: '0xc8c9c9',
-            resolution: 1
+            resolution: devicePixelRatio
           })
           $('#main').append(this.data.app.view)
           
@@ -1243,7 +1244,7 @@
         sport.setTexture(texture)
       }, 100)
       // 添加背景
-      this.data.twoContainer.addChild(bg2Image, tips, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport)
+      this.data.twoContainer.addChild(this.data.people, bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport)
       // 添加云
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12)
       this.data.app.stage.addChild(this.data.twoContainer)
@@ -1639,5 +1640,11 @@
     margin: auto;
     height: 23%;
     display: none;
+  }
+  .main-box {
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
   }
 </style>
