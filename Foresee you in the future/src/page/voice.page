@@ -252,7 +252,7 @@
       // 创建画板区域并获取设备屏幕宽高
       let bodySize = this.calculationScene(this)
       // 预加载资源
-      this.data.loader = new PIXI.loaders.Loader()
+      this.data.loader = PIXI.loader
       this.data.loader.add(this.data.imgArr)
         .onProgress.add((e) => {
           // 资源加载完毕后显示one
@@ -344,7 +344,7 @@
         // 获取缩放比例
         const devicePixelRatio = window.devicePixelRatio || 1
         // console.log(devicePixelRatio)
-        const newSprite = new PIXI.Sprite.fromImage(name, true, devicePixelRatio)
+        const newSprite = new PIXI.Sprite.fromImage(name, 1, devicePixelRatio)
         if (opt) {
           for (let key in opt) {
             // console.log(opt[key])
@@ -387,7 +387,6 @@
             resolution: devicePixelRatio
           })
           $('#main').append(this.data.app.view)
-          this.data.app.stage.displayList = new PIXI.display.Stage()
           this.data.screenInfo = {w: wh, h: ww, transverse: false}
           return {w: wh, h: ww, transverse: false}
         }
@@ -406,8 +405,6 @@
             resolution: devicePixelRatio
           })
           $('#main').append(this.data.app.view)
-          
-          this.data.app.stage.displayList = new PIXI.display.Stage()
           this.data.transverse = true
           this.data.screenInfo = {w: ww, h: wh, transverse: true}
         }
@@ -453,9 +450,6 @@
         }, 500)
     },
     two: function () {
-      // 创建layer
-      this.data.layer = new PIXI.display.Layer()
-      this.data.layer.group.enableSort = true
       const bodySize = this.data.screenInfo
       console.log('第二部分!')
       this.data.twoContainer = new PIXI.Container()
@@ -474,9 +468,6 @@
         x: 50,
         y: 0
       })
-      // 分配图层
-      this.data.people.parentLayer = this.data.layer
-      this.data.people.zIndex = 0
       // 不断地切换小人的皮肤
       let peopleIndex = 16
       setInterval(() => {
@@ -486,7 +477,7 @@
         const groupID = this.data.peopleImgID > 9 ? 9 : this.data.peopleImgID
         const texture = PIXI.Texture.fromFrame(`./images/${groupID}/${peopleIndex}.png`)
         peopleIndex--
-        this.data.people.setTexture(texture)
+        this.data.people.texture = texture
       }, 100)
       // 第二张背景图
       const bg2Image = this.methods.createSprite("./images/2.png",{
@@ -515,9 +506,6 @@
         x: this.data.screenInfo.w,
         y: 0
       })
-      // 分配图层
-      bg3Image.parentLayer = this.data.layer
-      bg3Image.zIndex = 1
 
       
       // 第四章背景图
@@ -769,8 +757,7 @@
         // this.data.app.renderer.backgroundColor = "0x2a99a5"
         gradientColor(this.data.app.renderer,'#c8c9c9','#2a99a5',10)
 
-        const texture = PIXI.Texture.fromFrame('./images/3-colour.png')
-        bg3Image.setTexture(texture)
+        bg3Image.texture = PIXI.Texture.fromFrame('./images/3-colour.png')
         // 销毁动画
         threeLightAnimationList.kill()
         // 销毁掉亮光
@@ -934,11 +921,9 @@
       fiveLight.buttonMode = true
       // 第五张光 亮光触摸事件
       this.addBind(fiveLight, () => {
-        const texture = PIXI.Texture.fromFrame('./images/5-colour.png')
+        bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png')
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#59d3cb',10)
-        // this.data.app.renderer.backgroundColor = "0x59d3cb"
-        bg5Image.setTexture(texture)
         // 销毁动画
         fiveLightHeightAnimationList.kill()
         // 销毁掉亮光
@@ -1090,8 +1075,7 @@
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#dccfbc',10)
         // this.data.app.renderer.backgroundColor = "0xdccfbc"
-        const texture = PIXI.Texture.fromFrame('./images/7-colour.png')
-        bg7Image.setTexture(texture)
+        bg7Image.texture = PIXI.Texture.fromFrame('./images/7-colour.png')
         // 销毁动画
         sevenLightHeightAnimationList.kill()
         // 销毁掉亮光
@@ -1160,8 +1144,7 @@
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#f6df60',10)
         // this.data.app.renderer.backgroundColor = "0xfae768"
-        const texture = PIXI.Texture.fromFrame('./images/9-colour.png')
-        bg9Image.setTexture(texture)
+        bg9Image.texture = PIXI.Texture.fromFrame('./images/9-colour.png')
         // 销毁动画
         Light9AnimationList.kill()
         // 销毁掉亮光
@@ -1207,11 +1190,9 @@
       this.addBind(Light11, () => {
         // 修改背景颜色
         this.data.app.renderer.backgroundColor = "0xcfdee5"
-        const texture = PIXI.Texture.fromFrame('./images/11-colour.png')
-        bg11Image.setTexture(texture)
+        bg11Image.texture = PIXI.Texture.fromFrame('./images/11-colour.png')
         // 替换彩色花瓣材质
-        const petalTexture = PIXI.Texture.fromFrame('./images/11-petal-colour.png')
-        petal11.setTexture(petalTexture)
+        petal11.texture = PIXI.Texture.fromFrame('./images/11-petal-colour.png')
         // 销毁动画
         Light11AnimationList.kill()
         // 销毁掉亮光
@@ -1303,13 +1284,12 @@
       // 小人跳舞动画
       let sportInd = 1
       setInterval(() => {
-        const texture = PIXI.Texture.fromFrame(`./images/sport/${sportInd}.png`)
+        sport.texture = PIXI.Texture.fromFrame(`./images/sport/${sportInd}.png`)
         if (sportInd === 1) {
           sportInd = 2
         } else {
           sportInd = 1
         }
-        sport.setTexture(texture)
       }, 100)
       // 添加背景
       this.data.twoContainer.addChild(this.data.people, bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport)

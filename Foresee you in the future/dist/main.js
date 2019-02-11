@@ -175,7 +175,7 @@ window.ozzx.script = {
       var ww = $(window).width();
       var wh = $(window).height();
       var bodySize = this.calculationScene(this);
-      this.data.loader = new PIXI.loaders.Loader();
+      this.data.loader = PIXI.loader;
       this.data.loader.add(this.data.imgArr).onProgress.add(function(e) {
         var progressDom = $('#progress')[0];
         if (progressDom) {
@@ -237,7 +237,7 @@ window.ozzx.script = {
     "methods": {
       "createSprite": function createSprite(name, opt) {
         var devicePixelRatio = window.devicePixelRatio || 1;
-        var newSprite = new PIXI.Sprite.fromImage(name, true, devicePixelRatio);
+        var newSprite = new PIXI.Sprite.fromImage(name, 1, devicePixelRatio);
         if (opt) {
           for (var key in opt) {
             newSprite[key] = opt[key];
@@ -271,7 +271,6 @@ window.ozzx.script = {
             resolution: _devicePixelRatio
           });
           $('#main').append(this.data.app.view);
-          this.data.app.stage.displayList = new PIXI.display.Stage();
           this.data.screenInfo = {
             w: wh,
             h: ww,
@@ -297,7 +296,6 @@ window.ozzx.script = {
             resolution: devicePixelRatio
           });
           $('#main').append(this.data.app.view);
-          this.data.app.stage.displayList = new PIXI.display.Stage();
           this.data.transverse = true;
           this.data.screenInfo = {
             w: ww,
@@ -345,8 +343,6 @@ window.ozzx.script = {
     },
     "two": function two() {
       var _this3 = this;
-      this.data.layer = new PIXI.display.Layer();
-      this.data.layer.group.enableSort = true;
       var bodySize = this.data.screenInfo;
       console.log('第二部分!');
       this.data.twoContainer = new PIXI.Container();
@@ -360,8 +356,6 @@ window.ozzx.script = {
         x: 50,
         y: 0
       });
-      this.data.people.parentLayer = this.data.layer;
-      this.data.people.zIndex = 0;
       var peopleIndex = 16;
       setInterval(function() {
         if (peopleIndex <= 0) {
@@ -370,7 +364,7 @@ window.ozzx.script = {
         var groupID = _this3.data.peopleImgID > 9 ? 9 : _this3.data.peopleImgID;
         var texture = PIXI.Texture.fromFrame("./images/".concat(groupID, "/").concat(peopleIndex, ".png"));
         peopleIndex--;
-        _this3.data.people.setTexture(texture);
+        _this3.data.people.texture = texture;
       }, 100);
       var bg2Image = this.methods.createSprite("./images/2.png", {
         width: this.data.screenInfo.w + 1,
@@ -397,8 +391,6 @@ window.ozzx.script = {
         x: this.data.screenInfo.w,
         y: 0
       });
-      bg3Image.parentLayer = this.data.layer;
-      bg3Image.zIndex = 1;
       var bg4Image = this.methods.createSprite("./images/4.png", {
         width: this.data.screenInfo.w,
         height: this.data.screenInfo.h,
@@ -584,8 +576,7 @@ window.ozzx.script = {
       threeLight.buttonMode = true;
       this.addBind(threeLight, function() {
         gradientColor(_this3.data.app.renderer, '#c8c9c9', '#2a99a5', 10);
-        var texture = PIXI.Texture.fromFrame('./images/3-colour.png');
-        bg3Image.setTexture(texture);
+        bg3Image.texture = PIXI.Texture.fromFrame('./images/3-colour.png');
         threeLightAnimationList.kill();
         threeLight.destroy();
         cloud3.destroy();
@@ -731,9 +722,8 @@ window.ozzx.script = {
       fiveLight.interactive = true;
       fiveLight.buttonMode = true;
       this.addBind(fiveLight, function() {
-        var texture = PIXI.Texture.fromFrame('./images/5-colour.png');
+        bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png');
         gradientColor(_this3.data.app.renderer, '#c8c9c9', '#59d3cb', 10);
-        bg5Image.setTexture(texture);
         fiveLightHeightAnimationList.kill();
         fiveLight.destroy();
         cloud5.destroy();
@@ -875,8 +865,7 @@ window.ozzx.script = {
       sevenLight.buttonMode = true;
       this.addBind(sevenLight, function() {
         gradientColor(_this3.data.app.renderer, '#c8c9c9', '#dccfbc', 10);
-        var texture = PIXI.Texture.fromFrame('./images/7-colour.png');
-        bg7Image.setTexture(texture);
+        bg7Image.texture = PIXI.Texture.fromFrame('./images/7-colour.png');
         sevenLightHeightAnimationList.kill();
         sevenLight.destroy();
         _this3.setShowPageNumber(8);
@@ -934,8 +923,7 @@ window.ozzx.script = {
       Light9.buttonMode = true;
       this.addBind(Light9, function() {
         gradientColor(_this3.data.app.renderer, '#c8c9c9', '#f6df60', 10);
-        var texture = PIXI.Texture.fromFrame('./images/9-colour.png');
-        bg9Image.setTexture(texture);
+        bg9Image.texture = PIXI.Texture.fromFrame('./images/9-colour.png');
         Light9AnimationList.kill();
         Light9.destroy();
         _this3.setShowPageNumber(10);
@@ -967,10 +955,8 @@ window.ozzx.script = {
       Light11.buttonMode = true;
       this.addBind(Light11, function() {
         _this3.data.app.renderer.backgroundColor = "0xcfdee5";
-        var texture = PIXI.Texture.fromFrame('./images/11-colour.png');
-        bg11Image.setTexture(texture);
-        var petalTexture = PIXI.Texture.fromFrame('./images/11-petal-colour.png');
-        petal11.setTexture(petalTexture);
+        bg11Image.texture = PIXI.Texture.fromFrame('./images/11-colour.png');
+        petal11.texture = PIXI.Texture.fromFrame('./images/11-petal-colour.png');
         Light11AnimationList.kill();
         Light11.destroy();
         hand.destroy();
@@ -1059,13 +1045,12 @@ window.ozzx.script = {
       });
       var sportInd = 1;
       setInterval(function() {
-        var texture = PIXI.Texture.fromFrame("./images/sport/".concat(sportInd, ".png"));
+        sport.texture = PIXI.Texture.fromFrame("./images/sport/".concat(sportInd, ".png"));
         if (sportInd === 1) {
           sportInd = 2;
         } else {
           sportInd = 1;
         }
-        sport.setTexture(texture);
       }, 100);
       this.data.twoContainer.addChild(this.data.people, bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport);
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12);
