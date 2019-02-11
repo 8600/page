@@ -253,31 +253,18 @@
       let bodySize = this.calculationScene(this)
       // 预加载资源
       this.data.loader = PIXI.loader
+      // 加载GIF图
+      this.data.loader.add('./1.gif', {
+        loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
+        xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
+        crossOrigin:''
+      })
       this.data.loader.add(this.data.imgArr)
         .onProgress.add((e) => {
           // 资源加载完毕后显示one
           const progressDom = $('#progress')[0]
           if (progressDom) {
             progressDom.innerText = parseInt(e.progress) + '%'
-          }
-          
-          if (Math.ceil(e.progress) >= 100) {
-            // 蝴蝶飞舞动画
-            this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {y: this.data.screenInfo.h*0.1},{y: this.data.screenInfo.h * 0.104, ease:Linear.easeNone}).repeat(-1)
-            this.data.animationList.oneButterfly.play()
-            this.data.app.stage.addChild(one)
-
-            // 隐藏掉加载页面
-            $('#loadingBox').remove()
-
-            // 显示时钟页面 1.6481
-            const clockDom = $('#clock')[0]
-            const clockDomHeight = this.data.screenInfo.h * 0.8
-            clockDom.style.display = 'block'
-            // 根据比例计算时钟合适高度
-            clockDom.style.width = clockDomHeight * 1.6481 + 'px'
-            clockDom.style.height = clockDomHeight + 'px'
-            
           }
         }
       )
@@ -327,9 +314,28 @@
       })
       // 点击事件
       // 加载资源
-      this.data.loader.load((loader) => {
-        // 设置音乐播放模式
-        
+      this.data.loader.load((progress,resources) => {
+        // 资源加载完毕事件
+        console.log(progress)
+        // let gifSprite = new GIF("./1.gif", resources)
+        // gifSprite.sprite.x = 10
+        // gifSprite.sprite.y = 10
+        // this.data.app.stage.addChild(gifSprite.sprite)
+        // 蝴蝶飞舞动画
+        this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {y: this.data.screenInfo.h*0.1},{y: this.data.screenInfo.h * 0.104, ease:Linear.easeNone}).repeat(-1)
+        this.data.animationList.oneButterfly.play()
+        this.data.app.stage.addChild(one)
+
+        // 隐藏掉加载页面
+        $('#loadingBox').remove()
+
+        // 显示时钟页面 1.6481
+        const clockDom = $('#clock')[0]
+        const clockDomHeight = this.data.screenInfo.h * 0.8
+        clockDom.style.display = 'block'
+        // 根据比例计算时钟合适高度
+        clockDom.style.width = clockDomHeight * 1.6481 + 'px'
+        clockDom.style.height = clockDomHeight + 'px'
       })
       const shareDom = document.getElementById("shareBox")
       shareDom.ontouchend = function() {
@@ -756,8 +762,15 @@
         // 修改背景颜色
         // this.data.app.renderer.backgroundColor = "0x2a99a5"
         gradientColor(this.data.app.renderer,'#c8c9c9','#2a99a5',10)
-
-        bg3Image.texture = PIXI.Texture.fromFrame('./images/3-colour.png')
+        bg3Image.destroy()
+        // 重新生成新的背景图
+        // 第三张背景图
+        const newbg3I = this.methods.createSprite('./images/3-colour.png',{
+          width: this.data.screenInfo.w,
+          height: this.data.screenInfo.h,
+          x: this.data.screenInfo.w,
+          y: 0
+        })
         // 销毁动画
         threeLightAnimationList.kill()
         // 销毁掉亮光
@@ -898,7 +911,7 @@
           
         })
 
-        this.data.twoContainer.addChild(thought, start, atom, bubble, flask, text, star, showMore)
+        this.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, text, star, showMore)
         // 设置可滚动的区域
         this.setShowPageNumber(4)
         // 允许滚动
@@ -1292,7 +1305,7 @@
         }
       }, 100)
       // 添加背景
-      this.data.twoContainer.addChild(this.data.people, bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport)
+      this.data.twoContainer.addChild(bg3Image, this.data.people, bg2Image, tips, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport)
       // 添加云
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12)
       this.data.app.stage.addChild(this.data.twoContainer)

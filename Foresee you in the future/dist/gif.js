@@ -755,7 +755,7 @@ class GIF{
    */
   gifResourceToTextures(resource){
       const _ts = this;
-      console.log(resource)
+      console.log(resource.data)
       let obj = {
               delayTimes:[],
               textures:[]

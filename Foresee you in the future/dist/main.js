@@ -176,26 +176,15 @@ window.ozzx.script = {
       var wh = $(window).height();
       var bodySize = this.calculationScene(this);
       this.data.loader = PIXI.loader;
+      this.data.loader.add('./1.gif', {
+        loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
+        xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
+        crossOrigin: ''
+      });
       this.data.loader.add(this.data.imgArr).onProgress.add(function(e) {
         var progressDom = $('#progress')[0];
         if (progressDom) {
           progressDom.innerText = parseInt(e.progress) + '%';
-        }
-        if (Math.ceil(e.progress) >= 100) {
-          _this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {
-            y: _this.data.screenInfo.h * 0.1
-          }, {
-            y: _this.data.screenInfo.h * 0.104,
-            ease: Linear.easeNone
-          }).repeat(-1);
-          _this.data.animationList.oneButterfly.play();
-          _this.data.app.stage.addChild(one);
-          $('#loadingBox').remove();
-          var clockDom = $('#clock')[0];
-          var clockDomHeight = _this.data.screenInfo.h * 0.8;
-          clockDom.style.display = 'block';
-          clockDom.style.width = clockDomHeight * 1.6481 + 'px';
-          clockDom.style.height = clockDomHeight + 'px';
         }
       });
       this.data.container = new PIXI.Container();
@@ -226,7 +215,23 @@ window.ozzx.script = {
         $('#bgm')[0].play();
         _this.openClock(one, oneButterfly, bg1Image);
       });
-      this.data.loader.load(function(loader) {});
+      this.data.loader.load(function(progress, resources) {
+        console.log(progress);
+        _this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {
+          y: _this.data.screenInfo.h * 0.1
+        }, {
+          y: _this.data.screenInfo.h * 0.104,
+          ease: Linear.easeNone
+        }).repeat(-1);
+        _this.data.animationList.oneButterfly.play();
+        _this.data.app.stage.addChild(one);
+        $('#loadingBox').remove();
+        var clockDom = $('#clock')[0];
+        var clockDomHeight = _this.data.screenInfo.h * 0.8;
+        clockDom.style.display = 'block';
+        clockDom.style.width = clockDomHeight * 1.6481 + 'px';
+        clockDom.style.height = clockDomHeight + 'px';
+      });
       var shareDom = document.getElementById("shareBox");
       shareDom.ontouchend = function() {
         $('#qr')[0].style.display = 'block';
@@ -576,7 +581,13 @@ window.ozzx.script = {
       threeLight.buttonMode = true;
       this.addBind(threeLight, function() {
         gradientColor(_this3.data.app.renderer, '#c8c9c9', '#2a99a5', 10);
-        bg3Image.texture = PIXI.Texture.fromFrame('./images/3-colour.png');
+        bg3Image.destroy();
+        var newbg3I = _this3.methods.createSprite('./images/3-colour.png', {
+          width: _this3.data.screenInfo.w,
+          height: _this3.data.screenInfo.h,
+          x: _this3.data.screenInfo.w,
+          y: 0
+        });
         threeLightAnimationList.kill();
         threeLight.destroy();
         cloud3.destroy();
@@ -706,7 +717,7 @@ window.ozzx.script = {
             _this3.domList.showText.style.display = 'block';
           }, 0);
         });
-        _this3.data.twoContainer.addChild(thought, start, atom, bubble, flask, text, star, showMore);
+        _this3.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, text, star, showMore);
         _this3.setShowPageNumber(4);
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
@@ -1052,7 +1063,7 @@ window.ozzx.script = {
           sportInd = 1;
         }
       }, 100);
-      this.data.twoContainer.addChild(this.data.people, bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport);
+      this.data.twoContainer.addChild(bg3Image, this.data.people, bg2Image, tips, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport);
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12);
       this.data.app.stage.addChild(this.data.twoContainer);
       var threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {
