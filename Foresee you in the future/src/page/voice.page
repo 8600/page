@@ -39,6 +39,8 @@
       people: null,
       // 小人图片
       peopleImgID: 1,
+      // 最大到达的X点
+      xMax: 0,
       // 小人正在移动
       peopleIsMoveing: false,
       imgArr: [
@@ -766,8 +768,7 @@
         // 修改背景颜色
         // this.data.app.renderer.backgroundColor = "0x2a99a5"
         gradientColor(this.data.app.renderer,'#c8c9c9','#2a99a5',10)
-        // console.log(this.data.app.renderer)
-        this.data.progress = 3
+
         const texture = PIXI.Texture.fromFrame('./images/3-colour.png')
         bg3Image.setTexture(texture)
         // 销毁动画
@@ -937,7 +938,6 @@
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#59d3cb',10)
         // this.data.app.renderer.backgroundColor = "0x59d3cb"
-        this.data.progress = 5
         bg5Image.setTexture(texture)
         // 销毁动画
         fiveLightHeightAnimationList.kill()
@@ -1090,7 +1090,6 @@
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#dccfbc',10)
         // this.data.app.renderer.backgroundColor = "0xdccfbc"
-        this.data.progress = 7
         const texture = PIXI.Texture.fromFrame('./images/7-colour.png')
         bg7Image.setTexture(texture)
         // 销毁动画
@@ -1161,7 +1160,6 @@
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#f6df60',10)
         // this.data.app.renderer.backgroundColor = "0xfae768"
-        this.data.progress = 9
         const texture = PIXI.Texture.fromFrame('./images/9-colour.png')
         bg9Image.setTexture(texture)
         // 销毁动画
@@ -1209,7 +1207,6 @@
       this.addBind(Light11, () => {
         // 修改背景颜色
         this.data.app.renderer.backgroundColor = "0xcfdee5"
-        this.data.progress = 11
         const texture = PIXI.Texture.fromFrame('./images/11-colour.png')
         bg11Image.setTexture(texture)
         // 替换彩色花瓣材质
@@ -1373,6 +1370,8 @@
     },
     // 设置可以拖动的屏幕数量
     setShowPageNumber: function (number) {
+      // 设置进度
+      this.data.progress = number
       const transverse = this.data.screenInfo.transverse
       // 根据横屏还是竖屏 设置滚动区域
       if (transverse) {
@@ -1388,14 +1387,19 @@
       // console.log(peopleX / this.data.screenInfo.w)
       peopleX = X * (1024 / this.data.screenInfo.w)
       const pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w
-      console.log(pageIndex, this.data.progress)
+      // 记录最大到达的点
+      if (this.data.xMax < peopleX) this.data.xMax = peopleX
+      // console.log(pageIndex, this.data.progress)
+      console.log(this.data.xMax)
       // console.log(this.data.peopleIsMoveing)
       // 第三幅图小人移动到光圈下
       // 1 - 1.52区域小人不接受移动指令
       if (pageIndex >= 1 && pageIndex <= 1.52) {
-        this.peopleMove1(pageIndex)
         // 保证返回的时候不会不流畅
-        if (this.data.progress === 3) {
+        if (this.data.progress === 2) {
+          this.peopleMove1(pageIndex)
+          return
+        } else if (this.data.xMax < 1690) {
           return
         }
       }
