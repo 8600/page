@@ -36,11 +36,11 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: url(images/loadingbg.png)
+  background: linear-gradient(to bottom right,#fb5747,#cc2a22)
 }
 .ox-voice .loading-box .loading {
   width: 220px;
-  height: 83px;
+  height: 181px;
   position: absolute;
   left: 0;
   right: 0;
@@ -48,15 +48,11 @@ body {
   bottom: 0;
   margin: auto
 }
-.ox-voice .loading-box .poss {
-  border: 1px solid #f5b144;
-  height: 5px;
-  border-radius: 5px;
-  margin: 10px 0
-}
-.ox-voice .loading-box .color {
-  height: 100%;
-  background-color: #f5b144
+.ox-voice .loading-box .progress {
+  text-align: center;
+  font-size: 25px;
+  color: #fff;
+  line-height: 50px
 }
 .ox-voice .loading-box img {
   width: 100%;
@@ -181,4 +177,15 @@ body {
 .ox-voice .main-box canvas {
   width: 100%;
   height: 100%
+}
+.ox-voice .show-text {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-image: url(images/3-showText.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%
 }

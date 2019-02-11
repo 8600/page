@@ -1,10 +1,8 @@
 <template>
   <div class="loading-box" id="loadingBox">
     <div class="loading">
-      <img src="./images/loading.png"/>
-      <div class="poss">
-        <div class="color" id="color"></div>
-      </div>
+      <img src="./images/loading.gif"/>
+      <div class="progress" id="progress"></div>
     </div>
   </div>
   <div class="main-box" id="main"></div>
@@ -22,6 +20,7 @@
   <div class="share-box" id="shareBox">
     <img src="./images/share-text.png"/>
   </div>
+  <div class="show-text" @name="showText" @click="closeShowText"></div>
   <img class="qr" id="qr" src="./images/QR.png"/>
 </template>
 
@@ -240,11 +239,11 @@
         "./images/support-tree-1.png"
       ],
       mousedown: false,
-      animationList: {}
+      animationList: {},
+      layer: null
     },
     created: function () {
       // 获取到进度条Dom
-      const loadingColorDom =  $('#color')[0]
       const ww = $(window).width()
       const wh = $(window).height()
       // alert(`可视宽度:${ww}, 可视高度:${wh}`)
@@ -255,7 +254,11 @@
       this.data.loader.add(this.data.imgArr)
         .onProgress.add((e) => {
           // 资源加载完毕后显示one
-          loadingColorDom.style.width = parseInt(e.progress) + '%'
+          const progressDom = $('#progress')[0]
+          if (progressDom) {
+            progressDom.innerText = parseInt(e.progress) + '%'
+          }
+          
           if (Math.ceil(e.progress) >= 100) {
             // 蝴蝶飞舞动画
             this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {y: this.data.screenInfo.h*0.1},{y: this.data.screenInfo.h * 0.104, ease:Linear.easeNone}).repeat(-1)
@@ -351,6 +354,11 @@
       smooth: function (baseValue, minValue, nowValue, step) {
         // console.log(nowValue, baseValue + (nowValue - minValue) * step)
         return baseValue + (nowValue - minValue) * step
+      },
+      // 关闭展示框
+      closeShowText: function () {
+        console.log('sd')
+        this.$el.style.display = 'none'
       }
     },
     // 注册画板区域并返回设备屏幕信息
@@ -443,7 +451,9 @@
         }, 500)
     },
     two: function () {
-      
+      // 创建layer
+      this.data.layer = new PIXI.display.Layer()
+      this.data.layer.group.enableSort = true
       const bodySize = this.data.screenInfo
       console.log('第二部分!')
       this.data.twoContainer = new PIXI.Container()
@@ -462,6 +472,9 @@
         x: 50,
         y: 0
       })
+      // 分配图层
+      this.data.people.parentLayer = this.data.layer
+      this.data.people.zIndex = 0
       // 不断地切换小人的皮肤
       let peopleIndex = 16
       setInterval(() => {
@@ -500,6 +513,9 @@
         x: this.data.screenInfo.w,
         y: 0
       })
+      // 分配图层
+      bg3Image.parentLayer = this.data.layer
+      bg3Image.zIndex = 1
 
       
       // 第四章背景图
@@ -802,7 +818,7 @@
           y: bodySize.h * 0.05
         })
         
-        const startAnimationList = TweenMax.fromTo(start, 1, {alpha: 0},{alpha: 1}).repeat(-1)
+        const startAnimationList = TweenMax.fromTo(start, 4, {alpha: 0},{alpha: 1}).repeat(-1)
         startAnimationList.play()
 
         // 原子
@@ -880,6 +896,18 @@
           height: showMoreH,
           x: bodySize.w * 1.22,
           y: bodySize.h * 0.52
+        })
+        const showMoreA = TweenMax.fromTo(showMore, 1.2, {alpha: 0.2},{alpha: 1}).repeat(-1)
+        showMoreA.play()
+        // 3-显示更多 设置可交互
+        showMore.interactive = true;
+        showMore.buttonMode = true
+        // 第三张图 亮光触摸事件
+        this.addBind(showMore, () => {
+          setTimeout(() => {
+            this.domList.showText.style.display = 'block'
+          }, 0)
+          
         })
 
         this.data.twoContainer.addChild(thought, start, atom, bubble, flask, text, star, showMore)
@@ -1039,6 +1067,10 @@
         house5AnimationList.play()
 
         this.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3)
+        // 允许滚动
+        setTimeout(() => {
+          this.data.peopleIsMoveing = false
+        }, 200)
       })
 
       // 第七张图 比例:0.7421
@@ -1105,6 +1137,10 @@
         supportTree1AnimationList2.play()
 
         this.data.twoContainer.addChild(support, supportTree1)
+        // 允许滚动
+        setTimeout(() => {
+          this.data.peopleIsMoveing = false
+        }, 200)
       })
 
       // 第九张图 比例:1
@@ -1141,7 +1177,10 @@
           yoyo:true,
         })
         cloud9AnimationList.play()
-
+        // 允许滚动
+        setTimeout(() => {
+          this.data.peopleIsMoveing = false
+        }, 200)
       })
 
       // 第11张图 大柚子 比例:1
@@ -1251,7 +1290,10 @@
           }).repeat(-1)
         petal11AnimationList.play()
 
-        
+        // 允许滚动
+        setTimeout(() => {
+          this.data.peopleIsMoveing = false
+        }, 200)
       })
       // 小人跳舞
       const sportH = bodySize.h * 0.1
@@ -1273,7 +1315,7 @@
         sport.setTexture(texture)
       }, 100)
       // 添加背景
-      this.data.twoContainer.addChild(bg2Image, tips, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport)
+      this.data.twoContainer.addChild(bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport, this.data.people)
       // 添加云
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12)
       this.data.app.stage.addChild(this.data.twoContainer)
@@ -1346,7 +1388,7 @@
       // console.log(peopleX / this.data.screenInfo.w)
       peopleX = X * (1024 / this.data.screenInfo.w)
       const pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w
-      // console.log(pageIndex)
+      console.log(pageIndex, this.data.progress)
       // console.log(this.data.peopleIsMoveing)
       // 第三幅图小人移动到光圈下
       // 1 - 1.52区域小人不接受移动指令
@@ -1354,6 +1396,35 @@
         this.peopleMove1(pageIndex)
         // 保证返回的时候不会不流畅
         if (this.data.progress === 3) {
+          return
+        }
+      }
+      if (pageIndex >= 3 && pageIndex <= 3.5) {
+        this.peopleMove2(pageIndex)
+        // 保证返回的时候不会不流畅
+        if (this.data.progress === 5) {
+          return
+        }
+      }
+      if (pageIndex >= 5 && pageIndex <= 5.3) {
+        this.peopleMove3(pageIndex)
+        // 保证返回的时候不会不流畅
+        if (this.data.progress === 7) {
+          return
+        }
+      }
+      if (pageIndex >= 7 && pageIndex <= 7.5) {
+        this.peopleMove4(pageIndex)
+        // 保证返回的时候不会不流畅
+        if (this.data.progress === 9) {
+          return
+        }
+      }
+      if (pageIndex >= 9 && pageIndex <= 9.5) {
+        this.peopleMove5(pageIndex)
+        // 保证返回的时候不会不流畅
+        
+        if (this.data.progress === 9) {
           return
         }
       }
@@ -1466,7 +1537,7 @@
         
       }
       // 移动小人
-      this.data.people.x = peopleX
+      this.data.people.x = X
     },
     setPeopleImg: function (peopleX) {
       const peopleID = Math.ceil(peopleX / this.data.screenInfo.w)
@@ -1557,6 +1628,83 @@
           }
         }
       }
+    },
+    peopleMove2: function (pageIndex) {
+      if (pageIndex === 3) {
+        // console.log(this.data.progress)
+        if (this.data.progress < 5 && !this.data.peopleIsMoveing) {
+          this.data.peopleIsMoveing = true
+          for (let i = 0; i < 0.5; i+= 0.005) {
+            setTimeout(() => {
+              this.data.people.x = this.data.screenInfo.w * (3.11 + i)
+              if (i < 0.15) {
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5, 0, i * 1000, 0.0005)
+                
+              } else if (i < 0.3){
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.55, 0.5700, i * 1000 , -0.0001)
+                console.log(this.methods.smooth(0.55, 0.5700, i * 1000 , -0.0001))
+              } else {
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.65, 0.5700, i * 1000 , -0.0005)
+                // console.log(this.data.people.y)
+              }
+            }, i * 4000)
+          }
+        }
+      }
+    },
+    peopleMove3: function (pageIndex) {
+      if (pageIndex === 5) {
+        // console.log(this.data.progress)
+        if (this.data.progress < 7 && !this.data.peopleIsMoveing) {
+          this.data.peopleIsMoveing = true
+          for (let i = 0; i < 0.2; i += 0.005) {
+            setTimeout(() => {
+              this.data.people.x = this.data.screenInfo.w * (5.11 + i)
+              if (i < 0.15) {
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.52, 0, i * 1000, -0.001)
+              }
+            }, i * 4000)
+          }
+        }
+      }
+    },
+    peopleMove4: function (pageIndex) {
+      if (pageIndex === 7) {
+        // console.log(this.data.progress)
+        if (this.data.progress < 9 && !this.data.peopleIsMoveing) {
+          this.data.peopleIsMoveing = true
+          for (let i = 0; i < 0.36; i += 0.005) {
+            setTimeout(() => {
+              this.data.people.x = this.data.screenInfo.w * (7.11 + i)
+              if (i < 0.16) {
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7, 0, i * 1000, -0.0007)
+                // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
+              } else {
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.66, 0, i * 1000, -0.00045)
+              }
+            }, i * 4000)
+          }
+        }
+      }
+    },
+    peopleMove5: function (pageIndex) {
+      if (pageIndex === 9) {
+        // console.log(this.data.progress)
+        if (this.data.progress < 11 && !this.data.peopleIsMoveing) {
+          this.data.peopleIsMoveing = true
+          for (let i = 0; i < 0.36; i += 0.005) {
+            setTimeout(() => {
+              this.data.people.x = this.data.screenInfo.w * (9.11 + i)
+              if (i < 0.10) {
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3, 0, i * 1000, 0.0001)
+                console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
+              } else {
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.265, 0, i * 1000, 0.0004)
+              }
+            }, i * 40000)
+          }
+        }
+      }
     }
   }
 </script>
@@ -1568,10 +1716,10 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-image: url('./images/loadingbg.png');
+    background: linear-gradient(to bottom right, #fb5747, #cc2a22);
     .loading {
       width: 220px;
-      height: 83px;
+      height: 181px;
       position: absolute;
       left: 0;
       right: 0;
@@ -1579,15 +1727,11 @@
       bottom: 0;
       margin: auto;
     }
-    .poss {
-      border: 1px solid #f5b144;
-      height: 5px;
-      border-radius: 5px;
-      margin: 10px 0;
-    }
-    .color {
-      height: 100%;
-      background-color: #f5b144;
+    .progress {
+      text-align: center;
+      font-size: 25px;
+      color: #fff;
+      line-height: 50px;
     }
     img {
       width: 100%;
@@ -1715,5 +1859,16 @@
       width: 100%;
       height: 100%;
     }
+  }
+  .show-text {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-image: url('./images/3-showText.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
   }
 </style>

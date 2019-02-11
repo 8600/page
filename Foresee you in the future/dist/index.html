@@ -28,10 +28,8 @@
   <body ontouchmove="return false">
     <div class="ox-voice ox" id="ox-voice"><div class="loading-box" id="loadingBox">
     <div class="loading">
-      <img src="./images/loading.png">
-      <div class="poss">
-        <div class="color" id="color"></div>
-      </div>
+      <img src="./images/loading.gif">
+      <div class="progress" id="progress"></div>
     </div>
   </div>
   <div class="main-box" id="main"></div>
@@ -49,6 +47,7 @@
   <div class="share-box" id="shareBox">
     <img src="./images/share-text.png">
   </div>
+  <div class="show-text" @name="showText" @click="closeShowText"></div>
   <img class="qr" id="qr" src="./images/QR.png">
 </div>
     

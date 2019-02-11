@@ -166,17 +166,20 @@ window.ozzx.script = {
       "peopleIsMoveing": false,
       "imgArr": ["./images/1.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/people-1.png", "./images/people-2.png", "./images/people-3.png", "./images/people-4.png", "./images/people-5.png", "./images/people-6.png", "./images/people-7.png", "./images/people-8.png", "./images/people-9.png", "./images/people-10.png", "./images/people-11.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/4.png", "./images/5.png", "./images/6.png", "./images/7.png", "./images/8.png", "./images/9.png", "./images/10.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/sport/1.png", "./images/sport/2.png", "./images/support.png", "./images/support-tree-1.png"],
       "mousedown": false,
-      "animationList": {}
+      "animationList": {},
+      "layer": null
     },
     "created": function created() {
       var _this = this;
-      var loadingColorDom = $('#color')[0];
       var ww = $(window).width();
       var wh = $(window).height();
       var bodySize = this.calculationScene(this);
       this.data.loader = new PIXI.loaders.Loader();
       this.data.loader.add(this.data.imgArr).onProgress.add(function(e) {
-        loadingColorDom.style.width = parseInt(e.progress) + '%';
+        var progressDom = $('#progress')[0];
+        if (progressDom) {
+          progressDom.innerText = parseInt(e.progress) + '%';
+        }
         if (Math.ceil(e.progress) >= 100) {
           _this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {
             y: _this.data.screenInfo.h * 0.1
@@ -243,6 +246,10 @@ window.ozzx.script = {
       },
       "smooth": function smooth(baseValue, minValue, nowValue, step) {
         return baseValue + (nowValue - minValue) * step;
+      },
+      "closeShowText": function closeShowText() {
+        console.log('sd');
+        this.$el.style.display = 'none';
       }
     },
     "calculationScene": function calculationScene() {
@@ -337,6 +344,8 @@ window.ozzx.script = {
     },
     "two": function two() {
       var _this3 = this;
+      this.data.layer = new PIXI.display.Layer();
+      this.data.layer.group.enableSort = true;
       var bodySize = this.data.screenInfo;
       console.log('第二部分!');
       this.data.twoContainer = new PIXI.Container();
@@ -350,6 +359,8 @@ window.ozzx.script = {
         x: 50,
         y: 0
       });
+      this.data.people.parentLayer = this.data.layer;
+      this.data.people.zIndex = 0;
       var peopleIndex = 16;
       setInterval(function() {
         if (peopleIndex <= 0) {
@@ -385,6 +396,8 @@ window.ozzx.script = {
         x: this.data.screenInfo.w,
         y: 0
       });
+      bg3Image.parentLayer = this.data.layer;
+      bg3Image.zIndex = 1;
       var bg4Image = this.methods.createSprite("./images/4.png", {
         width: this.data.screenInfo.w,
         height: this.data.screenInfo.h,
@@ -611,7 +624,7 @@ window.ozzx.script = {
           x: bodySize.w + bodySize.w * 0.3,
           y: bodySize.h * 0.05
         });
-        var startAnimationList = TweenMax.fromTo(start, 1, {
+        var startAnimationList = TweenMax.fromTo(start, 4, {
           alpha: 0
         }, {
           alpha: 1
@@ -688,6 +701,19 @@ window.ozzx.script = {
           height: showMoreH,
           x: bodySize.w * 1.22,
           y: bodySize.h * 0.52
+        });
+        var showMoreA = TweenMax.fromTo(showMore, 1.2, {
+          alpha: 0.2
+        }, {
+          alpha: 1
+        }).repeat(-1);
+        showMoreA.play();
+        showMore.interactive = true;
+        showMore.buttonMode = true;
+        _this3.addBind(showMore, function() {
+          setTimeout(function() {
+            _this3.domList.showText.style.display = 'block';
+          }, 0);
         });
         _this3.data.twoContainer.addChild(thought, start, atom, bubble, flask, text, star, showMore);
         _this3.setShowPageNumber(4);
@@ -835,6 +861,9 @@ window.ozzx.script = {
         });
         house5AnimationList.play();
         _this3.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3);
+        setTimeout(function() {
+          _this3.data.peopleIsMoveing = false;
+        }, 200);
       });
       var sevenLightHeight = bodySize.h / 5;
       var sevenLight = this.methods.createSprite("./images/7-light.png", {
@@ -892,6 +921,9 @@ window.ozzx.script = {
         });
         supportTree1AnimationList2.play();
         _this3.data.twoContainer.addChild(support, supportTree1);
+        setTimeout(function() {
+          _this3.data.peopleIsMoveing = false;
+        }, 200);
       });
       var Light9Height = bodySize.h / 5;
       var Light9 = this.methods.createSprite("./images/9-light.png", {
@@ -916,6 +948,9 @@ window.ozzx.script = {
           yoyo: true
         });
         cloud9AnimationList.play();
+        setTimeout(function() {
+          _this3.data.peopleIsMoveing = false;
+        }, 200);
       });
       var Light11Height = bodySize.h / 1.5;
       var Light11 = this.methods.createSprite("./images/11-light.png", {
@@ -1015,6 +1050,9 @@ window.ozzx.script = {
           y: bodySize.h * 0.15 + 40
         }).repeat(-1);
         petal11AnimationList.play();
+        setTimeout(function() {
+          _this3.data.peopleIsMoveing = false;
+        }, 200);
       });
       var sportH = bodySize.h * 0.1;
       var sport = this.methods.createSprite("./images/sport/1.png", {
@@ -1033,7 +1071,7 @@ window.ozzx.script = {
         }
         sport.setTexture(texture);
       }, 100);
-      this.data.twoContainer.addChild(bg2Image, tips, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport);
+      this.data.twoContainer.addChild(bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport, this.data.people);
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12);
       this.data.app.stage.addChild(this.data.twoContainer);
       var threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {
@@ -1097,9 +1135,34 @@ window.ozzx.script = {
     "setPeopleY": function setPeopleY(X) {
       peopleX = X * (1024 / this.data.screenInfo.w);
       var pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w;
+      console.log(pageIndex, this.data.progress);
       if (pageIndex >= 1 && pageIndex <= 1.52) {
         this.peopleMove1(pageIndex);
         if (this.data.progress === 3) {
+          return;
+        }
+      }
+      if (pageIndex >= 3 && pageIndex <= 3.5) {
+        this.peopleMove2(pageIndex);
+        if (this.data.progress === 5) {
+          return;
+        }
+      }
+      if (pageIndex >= 5 && pageIndex <= 5.3) {
+        this.peopleMove3(pageIndex);
+        if (this.data.progress === 7) {
+          return;
+        }
+      }
+      if (pageIndex >= 7 && pageIndex <= 7.5) {
+        this.peopleMove4(pageIndex);
+        if (this.data.progress === 9) {
+          return;
+        }
+      }
+      if (pageIndex >= 9 && pageIndex <= 9.5) {
+        this.peopleMove5(pageIndex);
+        if (this.data.progress === 9) {
           return;
         }
       }
@@ -1190,7 +1253,7 @@ window.ozzx.script = {
           $('#qr')[0].style.display = 'none';
         }
       }
-      this.data.people.x = peopleX;
+      this.data.people.x = X;
     },
     "setPeopleImg": function setPeopleImg(peopleX) {
       var peopleID = Math.ceil(peopleX / this.data.screenInfo.w);
@@ -1271,6 +1334,92 @@ window.ozzx.script = {
           };
           for (var i = 0; i < 0.52; i += 0.005) {
             _loop2(i);
+          }
+        }
+      }
+    },
+    "peopleMove2": function peopleMove2(pageIndex) {
+      var _this7 = this;
+      if (pageIndex === 3) {
+        if (this.data.progress < 5 && !this.data.peopleIsMoveing) {
+          this.data.peopleIsMoveing = true;
+          var _loop3 = function _loop3(i) {
+            setTimeout(function() {
+              _this7.data.people.x = _this7.data.screenInfo.w * (3.11 + i);
+              if (i < 0.15) {
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.5, 0, i * 1000, 0.0005);
+              } else if (i < 0.3) {
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.55, 0.5700, i * 1000, -0.0001);
+                console.log(_this7.methods.smooth(0.55, 0.5700, i * 1000, -0.0001));
+              } else {
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.65, 0.5700, i * 1000, -0.0005);
+              }
+            }, i * 4000);
+          };
+          for (var i = 0; i < 0.5; i += 0.005) {
+            _loop3(i);
+          }
+        }
+      }
+    },
+    "peopleMove3": function peopleMove3(pageIndex) {
+      var _this8 = this;
+      if (pageIndex === 5) {
+        if (this.data.progress < 7 && !this.data.peopleIsMoveing) {
+          this.data.peopleIsMoveing = true;
+          var _loop4 = function _loop4(i) {
+            setTimeout(function() {
+              _this8.data.people.x = _this8.data.screenInfo.w * (5.11 + i);
+              if (i < 0.15) {
+                _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.52, 0, i * 1000, -0.001);
+              }
+            }, i * 4000);
+          };
+          for (var i = 0; i < 0.2; i += 0.005) {
+            _loop4(i);
+          }
+        }
+      }
+    },
+    "peopleMove4": function peopleMove4(pageIndex) {
+      var _this9 = this;
+      if (pageIndex === 7) {
+        if (this.data.progress < 9 && !this.data.peopleIsMoveing) {
+          this.data.peopleIsMoveing = true;
+          var _loop5 = function _loop5(i) {
+            setTimeout(function() {
+              _this9.data.people.x = _this9.data.screenInfo.w * (7.11 + i);
+              if (i < 0.16) {
+                _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.7, 0, i * 1000, -0.0007);
+              } else {
+                _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.66, 0, i * 1000, -0.00045);
+              }
+            }, i * 4000);
+          };
+          for (var i = 0; i < 0.36; i += 0.005) {
+            _loop5(i);
+          }
+        }
+      }
+    },
+    "peopleMove5": function peopleMove5(pageIndex) {
+      var _this10 = this;
+      if (pageIndex === 9) {
+        if (this.data.progress < 11 && !this.data.peopleIsMoveing) {
+          this.data.peopleIsMoveing = true;
+          var _loop6 = function _loop6(i) {
+            setTimeout(function() {
+              _this10.data.people.x = _this10.data.screenInfo.w * (9.11 + i);
+              if (i < 0.10) {
+                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.3, 0, i * 1000, 0.0001);
+                console.log(i, 1 - _this10.methods.smooth(0.7, 0, i * 1000, -0.0008));
+              } else {
+                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.265, 0, i * 1000, 0.0004);
+              }
+            }, i * 40000);
+          };
+          for (var i = 0; i < 0.36; i += 0.005) {
+            _loop6(i);
           }
         }
       }
