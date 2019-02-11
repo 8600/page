@@ -35,11 +35,13 @@
       scroller: null,
       twoContainer: null,
       // 小人所走的进程
-      progress: 3,
+      progress: 1,
       // 小人
       people: null,
       // 小人图片
       peopleImgID: 1,
+      // 小人正在移动
+      peopleIsMoveing: false,
       imgArr: [
         './images/1.png',
         './images/3-colour.png',
@@ -748,7 +750,7 @@
         // 修改背景颜色
         // this.data.app.renderer.backgroundColor = "0x2a99a5"
         gradientColor(this.data.app.renderer,'#c8c9c9','#2a99a5',10)
-        console.log(this.data.app.renderer)
+        // console.log(this.data.app.renderer)
         this.data.progress = 3
         const texture = PIXI.Texture.fromFrame('./images/3-colour.png')
         bg3Image.setTexture(texture)
@@ -775,6 +777,20 @@
           yoyo:true,
         })
         thoughtAnimationList.play()
+        // 气泡 3.5218
+        const bubbleH = bodySize.h * 0.35
+        const bubble = this.methods.createSprite("./images/3-bubble.png",{
+          width: bubbleH * 3.5218,
+          height: bubbleH,
+          x: bodySize.w * 1.25,
+          y: bodySize.h * 0.02
+        })
+        const bubbleAnimationList = new TweenMax(bubble, 2, {
+          y: bodySize.h * 0.02 + 5,
+          repeat:-1,
+          yoyo:true,
+        })
+        bubbleAnimationList.play()
         // 设置可滚动的区域
         this.setShowPageNumber(4)
         // 小孩想到的星星
@@ -857,9 +873,22 @@
         })
         textAnimationList.play()
 
-        this.data.twoContainer.addChild(thought, start, atom, flask, text, star)
+        // 显示更多
+        const showMoreH = bodySize.h * 0.1
+        const showMore = this.methods.createSprite("./images/showMore.png",{
+          width: showMoreH,
+          height: showMoreH,
+          x: bodySize.w * 1.22,
+          y: bodySize.h * 0.52
+        })
+
+        this.data.twoContainer.addChild(thought, start, atom, bubble, flask, text, star, showMore)
         // 设置可滚动的区域
         this.setShowPageNumber(4)
+        // 允许滚动
+        setTimeout(() => {
+          this.data.peopleIsMoveing = false
+        }, 200)
       })
 
       // 第五张光 比例1.6582
@@ -1244,7 +1273,7 @@
         sport.setTexture(texture)
       }, 100)
       // 添加背景
-      this.data.twoContainer.addChild(this.data.people, bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport)
+      this.data.twoContainer.addChild(bg2Image, tips, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport)
       // 添加云
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12)
       this.data.app.stage.addChild(this.data.twoContainer)
@@ -1282,14 +1311,13 @@
         // console.log(this.data.twoContainer)
         this.data.twoContainer.x = -scrollNumber
         const peopleX = scrollNumber + 50 * (1024 / this.data.screenInfo.w)
-        // 移动小人
-        this.data.people.x = peopleX
         // 设置小人的图片
         this.setPeopleImg(peopleX)
         // 设置背景颜色
         this.setBGC(peopleX)
         // console.log(scrollNumber)
         // 小球移动轨迹
+        // console.log('sd')
         this.setPeopleY(peopleX)
       }, {
         zooming: true,
@@ -1314,11 +1342,22 @@
     },
     // 计算并设置小人Y坐标
     setPeopleY: function (X) {
-      
       // 当时是在屏幕分辨率为1024*768做的 所以要计算换算为真实屏幕
       // console.log(peopleX / this.data.screenInfo.w)
       peopleX = X * (1024 / this.data.screenInfo.w)
-      // console.log((peopleX - 50) / this.data.screenInfo.w)
+      const pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w
+      // console.log(pageIndex)
+      // console.log(this.data.peopleIsMoveing)
+      // 第三幅图小人移动到光圈下
+      // 1 - 1.52区域小人不接受移动指令
+      if (pageIndex >= 1 && pageIndex <= 1.52) {
+        this.peopleMove1(pageIndex)
+        // 保证返回的时候不会不流畅
+        if (this.data.progress === 3) {
+          return
+        }
+      }
+      // console.log(peopleX)
       if (peopleX < 188) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.25, 0, peopleX, 0.001)
       } else if (peopleX < 390) {
@@ -1381,24 +1420,27 @@
       } else if (peopleX < 6443) {
         // console.log(peopleX, this.methods.smooth(0.6501, 6295, peopleX, 0.0005))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6501, 6295, peopleX, 0.0005)
+      } else if (peopleX < 6674) {
+        // console.log(peopleX, this.methods.smooth(0.7233, 6443, peopleX, 0.00008))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7233, 6443, peopleX, 0.00008)
       } else if (peopleX < 7042) {
-        // console.log(peopleX, this.methods.smooth(0.7233, 6443, peopleX, 0.00001))
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7233, 6443, peopleX, 0.00001)
+        // console.log(peopleX, this.methods.smooth(0.7418, 6674, peopleX, -0.00001))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7418, 6443, peopleX, -0.00001)
       } else if (peopleX < 7356) {
-        // console.log(peopleX, this.methods.smooth(0.7292, 7042, peopleX, -0.0003))
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7292, 7042, peopleX, -0.0003)
+        // console.log(peopleX, this.methods.smooth(0.7292, 7042, peopleX, -0.00025))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7381, 7042, peopleX, -0.00025)
       } else if (peopleX < 7610) {
-        // console.log(peopleX, this.methods.smooth(0.6348, 7356, peopleX, -0.0005))
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6348, 7356, peopleX, -0.0005)
+        // console.log(peopleX, this.methods.smooth(0.6509, 7356, peopleX, -0.0005))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6509, 7356, peopleX, -0.0005)
       } else if (peopleX < 7723) {
-        // console.log(peopleX, this.methods.smooth(0.5075, 7610, peopleX, -0.0002))
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5075, 7610, peopleX, -0.0002)
+        // console.log(peopleX, this.methods.smooth(0.5258, 7610, peopleX, -0.0002))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5258, 7610, peopleX, -0.0002)
       } else if (peopleX < 8143) {
         // console.log(peopleX, this.methods.smooth(0.4850, 7723, peopleX, 0.0001))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4850, 7723, peopleX, 0.0001)
       } else if (peopleX < 8383) {
         // console.log(peopleX, this.methods.smooth(0.4850, 7723, peopleX, 0.00005))
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4850, 7723, peopleX, 0.00005)
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5268, 8143, peopleX, -0.00005)
       } else if (peopleX < 9303) {
         // console.log(peopleX, this.methods.smooth(0.5178, 8383, peopleX, -0.00024))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5178, 8383, peopleX, -0.00024)
@@ -1423,7 +1465,8 @@
         }
         
       }
-      
+      // 移动小人
+      this.data.people.x = peopleX
     },
     setPeopleImg: function (peopleX) {
       const peopleID = Math.ceil(peopleX / this.data.screenInfo.w)
@@ -1443,11 +1486,13 @@
     // 移动屏幕鼠标事件
     mouseEvent: function () {
       $('canvas')[0].addEventListener("touchstart", (e) => {
+        if (this.data.peopleIsMoveing) return
         this.data.scroller.doTouchStart(e.touches, e.timeStamp)
         this.data.mousedown = true
       }, false)
 
       $('canvas')[0].addEventListener("touchmove", (e) => {
+        if (this.data.peopleIsMoveing) return
         if (!this.data.mousedown) {
           return
         }
@@ -1457,6 +1502,7 @@
       }, false);
 
       $('canvas')[0].addEventListener("touchend", (e) => {
+        if (this.data.peopleIsMoveing) return
         if (!this.data.mousedown) {
           return
         }
@@ -1464,11 +1510,13 @@
         this.data.mousedown = false
       }, false)
       $('canvas')[0].addEventListener("mousedown", (e) => {
+        if (this.data.peopleIsMoveing) return
         this.data.scroller.doTouchStart([e], e.timeStamp)
         this.data.mousedown = true
       }, false)
 
       $('canvas')[0].addEventListener("mousemove", (e) => {
+        if (this.data.peopleIsMoveing) return
         if (!this.data.mousedown) {
           return
         }
@@ -1478,6 +1526,7 @@
       }, false);
 
       $('canvas')[0].addEventListener("mouseup", (e) => {
+        if (this.data.peopleIsMoveing) return
         if (!this.data.mousedown) {
           return
         }
@@ -1488,6 +1537,26 @@
     addBind: function (item, func) {
       item.on('tap', func)
       item.on('click', func)
+    },
+    // 图三处小人自发移动
+    peopleMove1: function (pageIndex) {
+      if (pageIndex === 1) {
+        if (this.data.progress < 3 && !this.data.peopleIsMoveing) {
+          this.data.peopleIsMoveing = true
+          for (let i = 0; i < 0.52; i+= 0.005) {
+            setTimeout(() => {
+              this.data.people.x = this.data.screenInfo.w * (1.11 + i)
+              if (i < 0.16) {
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.22, 0, i * 1000, 0.0003)
+              } else {
+                // console.log(this.data.screenInfo.h * 0.1704, i * this.data.screenInfo.h)
+                this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2557, 155, i * 1000 , 0.00085)
+                // console.log(this.data.people.y)
+              }
+            }, i * 4000)
+          }
+        }
+      }
     }
   }
 </script>

@@ -160,9 +160,10 @@ window.ozzx.script = {
       "titleStart": null,
       "scroller": null,
       "twoContainer": null,
-      "progress": 3,
+      "progress": 1,
       "people": null,
       "peopleImgID": 1,
+      "peopleIsMoveing": false,
       "imgArr": ["./images/1.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/people-1.png", "./images/people-2.png", "./images/people-3.png", "./images/people-4.png", "./images/people-5.png", "./images/people-6.png", "./images/people-7.png", "./images/people-8.png", "./images/people-9.png", "./images/people-10.png", "./images/people-11.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/4.png", "./images/5.png", "./images/6.png", "./images/7.png", "./images/8.png", "./images/9.png", "./images/10.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/sport/1.png", "./images/sport/2.png", "./images/support.png", "./images/support-tree-1.png"],
       "mousedown": false,
       "animationList": {}
@@ -569,7 +570,6 @@ window.ozzx.script = {
       threeLight.buttonMode = true;
       this.addBind(threeLight, function() {
         gradientColor(_this3.data.app.renderer, '#c8c9c9', '#2a99a5', 10);
-        console.log(_this3.data.app.renderer);
         _this3.data.progress = 3;
         var texture = PIXI.Texture.fromFrame('./images/3-colour.png');
         bg3Image.setTexture(texture);
@@ -590,6 +590,19 @@ window.ozzx.script = {
           yoyo: true
         });
         thoughtAnimationList.play();
+        var bubbleH = bodySize.h * 0.35;
+        var bubble = _this3.methods.createSprite("./images/3-bubble.png", {
+          width: bubbleH * 3.5218,
+          height: bubbleH,
+          x: bodySize.w * 1.25,
+          y: bodySize.h * 0.02
+        });
+        var bubbleAnimationList = new TweenMax(bubble, 2, {
+          y: bodySize.h * 0.02 + 5,
+          repeat: -1,
+          yoyo: true
+        });
+        bubbleAnimationList.play();
         _this3.setShowPageNumber(4);
         var startH = bodySize.h * 0.45;
         var start = _this3.methods.createSprite("./images/3-start.png", {
@@ -669,8 +682,18 @@ window.ozzx.script = {
           transformOrigin: 'center'
         });
         textAnimationList.play();
-        _this3.data.twoContainer.addChild(thought, start, atom, flask, text, star);
+        var showMoreH = bodySize.h * 0.1;
+        var showMore = _this3.methods.createSprite("./images/showMore.png", {
+          width: showMoreH,
+          height: showMoreH,
+          x: bodySize.w * 1.22,
+          y: bodySize.h * 0.52
+        });
+        _this3.data.twoContainer.addChild(thought, start, atom, bubble, flask, text, star, showMore);
         _this3.setShowPageNumber(4);
+        setTimeout(function() {
+          _this3.data.peopleIsMoveing = false;
+        }, 200);
       });
       var fiveLightHeight = bodySize.h / 8;
       var fiveLight = this.methods.createSprite("./images/5-light.png", {
@@ -1010,7 +1033,7 @@ window.ozzx.script = {
         }
         sport.setTexture(texture);
       }, 100);
-      this.data.twoContainer.addChild(this.data.people, bg2Image, tips, bg3Image, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport);
+      this.data.twoContainer.addChild(bg2Image, tips, bg3Image, this.data.people, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport);
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12);
       this.data.app.stage.addChild(this.data.twoContainer);
       var threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {
@@ -1053,7 +1076,6 @@ window.ozzx.script = {
         var scrollNumber = transverse ? left : top;
         _this4.data.twoContainer.x = -scrollNumber;
         var peopleX = scrollNumber + 50 * (1024 / _this4.data.screenInfo.w);
-        _this4.data.people.x = peopleX;
         _this4.setPeopleImg(peopleX);
         _this4.setBGC(peopleX);
         _this4.setPeopleY(peopleX);
@@ -1074,6 +1096,13 @@ window.ozzx.script = {
     },
     "setPeopleY": function setPeopleY(X) {
       peopleX = X * (1024 / this.data.screenInfo.w);
+      var pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w;
+      if (pageIndex >= 1 && pageIndex <= 1.52) {
+        this.peopleMove1(pageIndex);
+        if (this.data.progress === 3) {
+          return;
+        }
+      }
       if (peopleX < 188) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.25, 0, peopleX, 0.001);
       } else if (peopleX < 390) {
@@ -1132,18 +1161,20 @@ window.ozzx.script = {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4089, 5946, peopleX, 0.0007);
       } else if (peopleX < 6443) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6501, 6295, peopleX, 0.0005);
+      } else if (peopleX < 6674) {
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7233, 6443, peopleX, 0.00008);
       } else if (peopleX < 7042) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7233, 6443, peopleX, 0.00001);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7418, 6443, peopleX, -0.00001);
       } else if (peopleX < 7356) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7292, 7042, peopleX, -0.0003);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7381, 7042, peopleX, -0.00025);
       } else if (peopleX < 7610) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6348, 7356, peopleX, -0.0005);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6509, 7356, peopleX, -0.0005);
       } else if (peopleX < 7723) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5075, 7610, peopleX, -0.0002);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5258, 7610, peopleX, -0.0002);
       } else if (peopleX < 8143) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4850, 7723, peopleX, 0.0001);
       } else if (peopleX < 8383) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4850, 7723, peopleX, 0.00005);
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5268, 8143, peopleX, -0.00005);
       } else if (peopleX < 9303) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5178, 8383, peopleX, -0.00024);
       } else if (peopleX < 10025) {
@@ -1152,13 +1183,14 @@ window.ozzx.script = {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5065, 10025, peopleX, -0.0002);
       } else {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4697, 10208, peopleX, -0.0008);
-        var pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w;
-        if (pageIndex === 10) {
+        var _pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w;
+        if (_pageIndex === 10) {
           $('#qr')[0].style.display = 'block';
         } else {
           $('#qr')[0].style.display = 'none';
         }
       }
+      this.data.people.x = peopleX;
     },
     "setPeopleImg": function setPeopleImg(peopleX) {
       var peopleID = Math.ceil(peopleX / this.data.screenInfo.w);
@@ -1176,10 +1208,12 @@ window.ozzx.script = {
     "mouseEvent": function mouseEvent() {
       var _this5 = this;
       $('canvas')[0].addEventListener("touchstart", function(e) {
+        if (_this5.data.peopleIsMoveing) return;
         _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
         _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("touchmove", function(e) {
+        if (_this5.data.peopleIsMoveing) return;
         if (!_this5.data.mousedown) {
           return;
         }
@@ -1187,6 +1221,7 @@ window.ozzx.script = {
         _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("touchend", function(e) {
+        if (_this5.data.peopleIsMoveing) return;
         if (!_this5.data.mousedown) {
           return;
         }
@@ -1194,10 +1229,12 @@ window.ozzx.script = {
         _this5.data.mousedown = false;
       }, false);
       $('canvas')[0].addEventListener("mousedown", function(e) {
+        if (_this5.data.peopleIsMoveing) return;
         _this5.data.scroller.doTouchStart([e], e.timeStamp);
         _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mousemove", function(e) {
+        if (_this5.data.peopleIsMoveing) return;
         if (!_this5.data.mousedown) {
           return;
         }
@@ -1205,6 +1242,7 @@ window.ozzx.script = {
         _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mouseup", function(e) {
+        if (_this5.data.peopleIsMoveing) return;
         if (!_this5.data.mousedown) {
           return;
         }
@@ -1215,6 +1253,27 @@ window.ozzx.script = {
     "addBind": function addBind(item, func) {
       item.on('tap', func);
       item.on('click', func);
+    },
+    "peopleMove1": function peopleMove1(pageIndex) {
+      var _this6 = this;
+      if (pageIndex === 1) {
+        if (this.data.progress < 3 && !this.data.peopleIsMoveing) {
+          this.data.peopleIsMoveing = true;
+          var _loop2 = function _loop2(i) {
+            setTimeout(function() {
+              _this6.data.people.x = _this6.data.screenInfo.w * (1.11 + i);
+              if (i < 0.16) {
+                _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.22, 0, i * 1000, 0.0003);
+              } else {
+                _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.2557, 155, i * 1000, 0.00085);
+              }
+            }, i * 4000);
+          };
+          for (var i = 0; i < 0.52; i += 0.005) {
+            _loop2(i);
+          }
+        }
+      }
     }
   }
 }
