@@ -1348,11 +1348,12 @@ window.ozzx.script = {
               _this7.data.people.x = _this7.data.screenInfo.w * (3.11 + i);
               if (i < 0.15) {
                 _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.5, 0, i * 1000, 0.0005);
+                console.log(i, 1 - _this7.methods.smooth(0.7, 0, i * 1000, -0.0008));
               } else if (i < 0.3) {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.55, 0.5700, i * 1000, -0.0001);
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.58, 0, i * 1000, -0.0001);
                 console.log(_this7.methods.smooth(0.55, 0.5700, i * 1000, -0.0001));
               } else {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.65, 0.5700, i * 1000, -0.0005);
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.69, 0, i * 1000, -0.0006);
               }
             }, i * 4000);
           };
@@ -1412,11 +1413,10 @@ window.ozzx.script = {
               _this10.data.people.x = _this10.data.screenInfo.w * (9.11 + i);
               if (i < 0.10) {
                 _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.3, 0, i * 1000, 0.0001);
-                console.log(i, 1 - _this10.methods.smooth(0.7, 0, i * 1000, -0.0008));
               } else {
                 _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.265, 0, i * 1000, 0.0004);
               }
-            }, i * 40000);
+            }, i * 4000);
           };
           for (var i = 0; i < 0.36; i += 0.005) {
             _loop6(i);
