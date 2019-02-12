@@ -48,6 +48,7 @@
       peopleImgID: 1,
       // 最大到达的X点
       xMax: 0,
+      resources: null,
       // 小人正在移动
       peopleIsMoveing: false,
       imgArr: [
@@ -242,11 +243,7 @@
         './images/9/15.png',
         './images/9/16.png',
         "./images/grass1.png",
-        "./images/sport/1.png",
-        "./images/sport/2.png",
-        "./images/support.png",
-        "./images/showMore.png",
-        "./images/support-tree-1.png"
+        "./images/showMore.png"
       ],
       mousedown: false,
       animationList: {},
@@ -262,7 +259,12 @@
       // 预加载资源
       this.data.loader = PIXI.loader
       // 加载GIF图
-      this.data.loader.add('./1.gif', {
+      this.data.loader.add("./images/sport.gif", {
+        loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
+        xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
+        crossOrigin:''
+      })
+      this.data.loader.add("./images/support.gif", {
         loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
         xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
         crossOrigin:''
@@ -324,8 +326,9 @@
       // 加载资源
       this.data.loader.load((progress,resources) => {
         // 资源加载完毕事件
+        this.data.resources = resources
         console.log(progress)
-        // let gifSprite = new GIF("./1.gif", resources)
+        // let gifSprite = new GIF("./images/sport.gif", resources)
         // gifSprite.sprite.x = 10
         // gifSprite.sprite.y = 10
         // this.data.app.stage.addChild(gifSprite.sprite)
@@ -1141,33 +1144,14 @@
         cloud7AnimationList.play()
 
         // 从下面生出政府的手 0.9223
-        const supportH = bodySize.h * 0.8
-        const support = this.methods.createSprite("./images/support.png",{
-          width: supportH * 0.9223,
-          height: supportH,
-          x: bodySize.w * 5 - (supportH * 0.9223 / 2) + bodySize.w * 0.5,
-          y: bodySize.h
-        })
-        const supportAnimationList = TweenMax.fromTo(support, 1.5, {y: bodySize.h},{y: bodySize.h - supportH})
+        const supportH = bodySize.h * 0.8624
+        let support = new GIF("./images/support.gif", this.data.resources)
+        support.sprite.width = supportH * 0.9223
+        support.sprite.height = supportH
+        support.sprite.x = bodySize.w * 5 - (supportH * 0.9223 / 2) + bodySize.w * 0.5
+        support.sprite.y = bodySize.h
+        const supportAnimationList = TweenMax.fromTo(support.sprite, 1.5, {y: bodySize.h},{y: bodySize.h - supportH})
         supportAnimationList.play()
-
-        // 手上的树 1.1141
-        const supportTree1H = bodySize.h * 0.2
-        const supportTree1 = this.methods.createSprite("./images/support-tree-1.png",{
-          width: supportTree1H * 0.9223,
-          height: supportTree1H,
-          x: bodySize.w * 5.575 - (supportTree1H * 1.1141 / 2),
-          y: bodySize.h
-        })
-        const supportTree1AnimationList = TweenMax.fromTo(supportTree1, 1.5, {y: bodySize.h + supportH * 0.428},{y: bodySize.h - supportH * 0.572})
-        supportAnimationList.play()
-
-        const supportTree1AnimationList2 = new TweenMax(supportTree1, 2, {
-          width: supportTree1H * 0.9223 - 10,
-          repeat:-1,
-          yoyo:true
-        })
-        supportTree1AnimationList2.play()
 
         // 7-显示更多
         const showMoreH = bodySize.h * 0.1
@@ -1194,7 +1178,7 @@
           }, 0)
         })
 
-        this.data.twoContainer.addChild(support, supportTree1, showMore)
+        this.data.twoContainer.addChild(support.sprite, showMore)
         // 允许滚动
         setTimeout(() => {
           this.data.peopleIsMoveing = false
@@ -1405,24 +1389,14 @@
       })
       // 小人跳舞
       const sportH = bodySize.h * 0.1
-      const sport = this.methods.createSprite("./images/sport/1.png",{
-        width: sportH * 1.0775,
-        height: sportH,
-        x: bodySize.w * 10 + (bodySize.w * 0.88) - (sportH * 1.0775 / 2),
-        y: bodySize.h * 0.44 - (sportH / 2)
-      })
-      // 小人跳舞动画
-      let sportInd = 1
-      setInterval(() => {
-        sport.texture = PIXI.Texture.fromFrame(`./images/sport/${sportInd}.png`)
-        if (sportInd === 1) {
-          sportInd = 2
-        } else {
-          sportInd = 1
-        }
-      }, 100)
+      let sport = new GIF("./images/sport.gif", this.data.resources)
+      sport.sprite.width = sportH * 1.0775
+      sport.sprite.height = sportH
+      sport.sprite.x = bodySize.w * 10 + (bodySize.w * 0.88) - (sportH * 1.0775 / 2)
+      sport.sprite.y = bodySize.h * 0.44 - (sportH / 2)
+
       // 添加背景
-      this.data.twoContainer.addChild(bg3Image, this.data.people, bg2Image, tips, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport)
+      this.data.twoContainer.addChild(bg3Image, this.data.people, bg2Image, tips, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport.sprite)
       // 添加云
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12)
       this.data.app.stage.addChild(this.data.twoContainer)
