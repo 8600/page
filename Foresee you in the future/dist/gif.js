@@ -1,5 +1,6 @@
   // https://github.com/deanm/omggif
-  function GifReader (buf) {
+  
+  function GifReader(buf) {
     var p = 0;
   
     // - Header (GIF87a or GIF89a).
@@ -278,7 +279,7 @@
             interlaceskip >>= 1;
           }
         }
-  
+        // console.log(index, trans)
         if (index === trans) {
           op += 4;
         } else {
@@ -294,8 +295,8 @@
       }
     };
   }
-
-  function GifReaderLZWOutputIndexStream (code_stream, p, output, output_length) {
+  
+  function GifReaderLZWOutputIndexStream(code_stream, p, output, output_length) {
     var min_code_size = code_stream[p++];
   
     var clear_code = 1 << min_code_size;
@@ -487,75 +488,65 @@ class GIF{
   }
 
   // 播放
-  play(loop,callback){
-      const _ts = this;
+  play(loop, callback) {
+    // 没有纹理材质时抛出错误
+    if(!this.textures.length) throw new Error('没有可用的textures')
+    // 纹理材质只有一帧时不往下执行
+    if(this.textures.length === 1) return
+    
+    
+    let status = this.__status,
+        attr = this.__attr,
+        time = 0;
 
-      // 没有纹理材质时抛出错误
-      if(!_ts.textures.length){
-          throw new Error('没有可用的textures');
-      };
+    // 当状态是停止的时候，将播放次数清0
+    if(status.status === 'stop') {
+      status.loops = 0
+    }
 
-      // 纹理材质只有一帧时不往下执行
-      if(_ts.textures.length === 1){
-          return;
-      };
+    // 设置循环参数
+    loop = typeof loop === 'number' ? loop : attr.loop;
+    this.temp.loop = loop;
+    attr.loop = loop;
 
-      let status = _ts.__status,
-          attr = _ts.__attr,
-          time = 0;
-
-      // 当状态是停止的时候，将播放次数清0
-      if(status.status === 'stop'){
-          status.loops = 0;
-      };
-
-      // 设置循环参数
-      loop = typeof loop === 'number' ? loop : attr.loop;
-      _ts.temp.loop = loop;
-      attr.loop = loop;
-      
-      // 为轮循执行器添加一个操作
-      if(!_ts.temp.tickerIsAdd){
-          _ts.ticker.add(deltaTime => {
-              let elapsed = PIXI.ticker.shared.elapsedMS;
-              time+=elapsed;
-
-              // 当帧停留时间已达到间隔帧率时播放下一帧
-              if(time > _ts.framesDelay[status.frame]){
-                  status.frame++;
-
-                  // 修改状态为执行中
-                  status.status = 'playing';
-  
-                  // 当一次播放完成，将播放帧归0，并记录播放次数
-                  if(status.frame > _ts.textures.length - 1){
-                      status.frame = 0;
-                      status.loops++;
-  
-                      // 当指定了有效的播放次数并且当前播放次数达到指定次数时，执行回调则停止播放
-                      if(_ts.temp.loop > 0 && status.loops >= _ts.temp.loop){
-                          if(typeof callback === 'function'){
-                              callback(status);
-                          };
-                          // 修改状态为执行完成并停止
-                          status.status = 'played';
-                          _ts.runEvent('played',status);
-                          _ts.stop();
-                      };
-                  };
-  
-                  // 修改精灵纹理材质与当前的帧率相匹配
-                  _ts.sprite.texture = _ts.textures[status.frame];
-                  time = 0;
-
-                  _ts.runEvent('playing',status);
-              };
-          });
-          _ts.temp.tickerIsAdd = true;
-      };
-      
-      // 让轮循执行器开始执行
-      _ts.ticker.start();
+    // 修改状态为执行中
+    this.__status = 'playing'
+    console.log(this)
+    // 为轮循执行器添加一个操作
+    if(!this.temp.tickerIsAdd) {
+      this.ticker.add(deltaTime => {
+        let elapsed = PIXI.ticker.shared.elapsedMS
+        time += elapsed
+        // 当帧停留时间已达到间隔帧率时播放下一帧
+        if(time > this.framesDelay[status.frame]) {
+          status.frame++
+          // 当一次播放完成，将播放帧归0，并记录播放次数
+          if(status.frame > this.textures.length - 1){
+            status.frame = 0;
+            status.loops++;
+            
+            // 当指定了有效的播放次数并且当前播放次数达到指定次数时，执行回调则停止播放
+            if(this.temp.loop > 0 && status.loops >= this.temp.loop) {
+              console.log('播放完毕')
+              if(typeof callback === 'function'){
+                callback(status)
+              }
+              // 修改状态为执行完成并停止
+              status.status = 'played';
+              this.runEvent('played',status);
+              this.stop();
+            }
+          }
+          // console.log(status.frame, this.textures[status.frame])
+          // 修改精灵纹理材质与当前的帧率相匹配
+          this.sprite.texture = this.textures[status.frame]
+          time = 0
+        }
+      })
+      this.temp.tickerIsAdd = true
+    }
+    // 让轮循执行器开始执行
+    this.ticker.start()
   }
 
   // 暂停
@@ -576,76 +567,25 @@ class GIF{
       _ts.runEvent('stop',status);
   }
 
-  // 跳至指定的帧数
-  jumpToFrame(frameIndex){
-      const _ts = this,
-          textures = _ts.textures;
-
-      // 没有纹理材质时抛出错误
-      if(!textures.length){
-          throw new Error('没有可用的textures');
-      };
-
-      let status = _ts.__status;
-
-      frameIndex = frameIndex < 0 ? 0 : frameIndex > textures.length - 1 ? textures.length - 1 : frameIndex;
-
-      if(typeof frameIndex === 'number'){
-          _ts.sprite.texture = textures[frameIndex];
-          status.frame = frameIndex;
-      };
-  }
-
-  // 获取总播放时长
-  getDuration(){
-      const _ts = this,
-          framesDelay = _ts.framesDelay;
-      
-      // 没有帧时间时抛出错误
-      if(!framesDelay.length){
-          throw new Error('未找到图片帧时间');
-      };
-
-      let time = 0;
-
-      for(let i=0,len=framesDelay.length; i<len; i++){
-          time += framesDelay[i];
-      };
-      return time;
-  }
-
-  // 获取总帧数
-  getFramesLength(){
-      const _ts = this;
-      // 没有纹理材质时抛出错误
-      if(!_ts.textures.length){
-          throw new Error('没有可用的textures');
-      };
-      return _ts.textures.length;
-  }
-
   // 事件
   on(type,fun){
-      const _ts = this;
-
-      switch (type) {
-          case 'playing':
-          case 'played':
-          case 'pause':
-          case 'stop':
-              _ts.temp.events[type] = fun;
-          break;
-          default:
-              throw new Error('无效的事件');
-          break;
-      }
+    switch (type) {
+      case 'played':
+      case 'pause':
+      case 'stop':
+      this.temp.events[type] = fun;
+      break;
+      default:
+        throw new Error('无效的事件');
+      break;
+    }
   }
 
   runEvent(type,status){
-      let temp = this.temp;
-      if(typeof temp.events[type] === 'function'){
-          temp.events[type](status);
-      };
+    let temp = this.temp;
+    if(typeof temp.events[type] === 'function'){
+      temp.events[type](status)
+    }
   }
 
   getExeName(filePath) {
@@ -668,31 +608,22 @@ class GIF{
           exeName = this.getExeName(imgSrc.toLocaleLowerCase());
       
       // 文件扩展名为gif或png则返回对应的名称，其它反返回other
-      exeName = exeName === 'gif' || exeName === 'png' ? exeName : 'other';
+      exeName = exeName === 'gif' ? exeName : 'other';
 
       let funs = {
-          'gif':()=>{
-              let gifDecodeData = _ts.gifResourceToTextures(resources[imgSrc]);
-              _ts.textures = gifDecodeData.textures;
-              _ts.framesDelay = gifDecodeData.delayTimes;
-              _ts.play();
+        'gif':()=>{
+          let gifDecodeData = _ts.gifResourceToTextures(resources[imgSrc]);
+          _ts.textures = gifDecodeData.textures;
+          _ts.framesDelay = gifDecodeData.delayTimes;
+          _ts.play();
 
-              // 返回精灵并将纹理材质设置为第一帧图像
-              return new Sprite(_ts.textures[0]);
-          },
-          'png':()=>{
-              let pngDecodeData = _ts.apngResourceToTextures(resources[imgSrc]);
-              _ts.textures = pngDecodeData.textures;
-              _ts.framesDelay = pngDecodeData.delayTimes;
-              _ts.play();
-
-              // 返回精灵并将纹理材质设置为第一帧图像
-              return new Sprite(_ts.textures[0]);
-          },
-          'other':()=>{
-              _ts.textures = [resources[imgSrc].texture];
-              return new Sprite(resources[imgSrc].texture);
-          }
+          // 返回精灵并将纹理材质设置为第一帧图像
+          return new Sprite(_ts.textures[0]);
+        },
+        'other':()=>{
+            _ts.textures = [resources[imgSrc].texture];
+            return new Sprite(resources[imgSrc].texture);
+        }
       };
       return funs[exeName]();
   }
@@ -755,7 +686,6 @@ class GIF{
    */
   gifResourceToTextures(resource){
       const _ts = this;
-      console.log(resource.data)
       let obj = {
               delayTimes:[],
               textures:[]
@@ -773,28 +703,44 @@ class GIF{
           imageData;
       
       
-
+      let last = null
       for(let i=0; i<gifFramesLen; i++){
-          //得到每帧的信息并将帧延迟信息保存起来
-          gifFrameInfo = gif.frameInfo(i);
-          obj.delayTimes.push(gifFrameInfo.delay * 10);
+        //得到每帧的信息并将帧延迟信息保存起来
+        gifFrameInfo = gif.frameInfo(i);
+        obj.delayTimes.push(gifFrameInfo.delay * 10);
 
-          canvas = document.createElement('canvas');
-          canvas.width = gifWidth;
-          canvas.height = gifHeight;
-          ctx = canvas.getContext('2d');
+        canvas = document.createElement('canvas');
+        canvas.width = gifWidth;
+        canvas.height = gifHeight;
+        ctx = canvas.getContext('2d');
 
-          //创建一块空白的ImageData对象
-          imageData = ctx.createImageData(gifWidth, gifHeight);
-
-          //将第一帧转换为RGBA值，将赋予到图像区
-          gif.decodeAndBlitFrameRGBA(i,imageData.data);
-
-          //将上面创建的图像数据放回到画面上
-          ctx.putImageData(imageData, 0, 0);
-
-          spriteSheet = new PIXI.BaseTexture.fromCanvas(canvas);
-          obj.textures.push(new PIXI.Texture(spriteSheet,new PIXI.Rectangle(0, 0, gifWidth, gifHeight)));
+        //创建一块空白的ImageData对象
+        
+        if (last === null) {
+          imageData = ctx.createImageData(gifWidth, gifHeight)
+        } else {
+          imageData = last
+        }
+        //将第一帧转换为RGBA值，将赋予到图像区
+        gif.decodeAndBlitFrameRGBA(i, imageData.data)
+        last = imageData
+        // console.log(imageData.data)
+        // 过滤掉无效帧
+        // let isOK = false
+        // console.log(imageData.data.length)
+        // for (let ind = 0; ind < imageData.data.length; ind++) {
+        //   const data = imageData.data[ind]
+        //   if (data !== 0) {
+        //     console.log(i, ind, data)
+        //     isOK = true
+        //     break
+        //   }
+        // }
+        // 将上面创建的图像数据放回到画面上
+        ctx.putImageData(imageData, 0, 0)
+        spriteSheet = new PIXI.BaseTexture.fromCanvas(canvas)
+        // console.log(imageData.data)
+        obj.textures.push(new PIXI.Texture(spriteSheet,new PIXI.Rectangle(0, 0, gifWidth, gifHeight)));
       };
       // document.body.appendChild(canvas);
       return obj;

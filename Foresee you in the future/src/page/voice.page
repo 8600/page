@@ -243,7 +243,8 @@
         './images/9/15.png',
         './images/9/16.png',
         "./images/grass1.png",
-        "./images/showMore.png"
+        "./images/showMore.png",
+        "./images/showMore2.png"
       ],
       mousedown: false,
       animationList: {},
@@ -265,6 +266,18 @@
         crossOrigin:''
       })
       this.data.loader.add("./images/support.gif", {
+        loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
+        xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
+        crossOrigin:''
+      })
+      // 群众
+      this.data.loader.add("./images/masses.gif", {
+        loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
+        xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
+        crossOrigin:''
+      })
+      // 手托着地球
+      this.data.loader.add("./images/earth.gif", {
         loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
         xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
         crossOrigin:''
@@ -327,7 +340,7 @@
       this.data.loader.load((progress,resources) => {
         // 资源加载完毕事件
         this.data.resources = resources
-        console.log(progress)
+        // console.log(progress)
         // let gifSprite = new GIF("./images/sport.gif", resources)
         // gifSprite.sprite.x = 10
         // gifSprite.sprite.y = 10
@@ -386,7 +399,7 @@
       const ww = $(window).width()
       const wh = $(window).height()
       console.log(`可视宽度:${ww}, 可视高度:${wh}`)
-      
+      // alert(`可视宽度:${ww}, 可视高度:${wh}`)
       if (ww < wh){
         console.log('竖屏')
         window.document.body.style.width = `${wh}px`
@@ -403,6 +416,8 @@
             backgroundColor: '0xc8c9c9',
             resolution: devicePixelRatio
           })
+          this.data.app.view.style.width = `${wh}px`
+          this.data.app.view.style.height = `${ww}px`
           $('#main').append(this.data.app.view)
           this.data.screenInfo = {w: wh, h: ww, transverse: false}
           return {w: wh, h: ww, transverse: false}
@@ -421,6 +436,8 @@
             backgroundColor: '0xc8c9c9',
             resolution: devicePixelRatio
           })
+          this.data.app.view.style.width = `${ww}px`
+          this.data.app.view.style.height = `${wh}px`
           $('#main').append(this.data.app.view)
           this.data.transverse = true
           this.data.screenInfo = {w: ww, h: wh, transverse: true}
@@ -882,25 +899,6 @@
         })
         starAnimationList.play()
 
-        // 文字 6.2666
-        const textH = bodySize.h * 0.08
-        const text = this.methods.createSprite("./images/3-text.png",{
-          width: textH * 6.2666,
-          height: textH,
-          x: bodySize.w + bodySize.w * 0.06,
-          y: bodySize.h * 0.69
-        })
-        text.anchor.x = 0
-        text.anchor.y = 1
-        // console.log(text)
-        const textAnimationList = new TweenMax(text, 1.5, {
-          alpha: 0.5,
-          repeat: -1,
-          yoyo:true,
-          transformOrigin:'center'
-        })
-        textAnimationList.play()
-
         // 3-显示更多
         const showMoreH = bodySize.h * 0.1
         const showMore = this.methods.createSprite("./images/showMore.png",{
@@ -926,7 +924,7 @@
           }, 0)
         })
 
-        this.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, text, star, showMore)
+        this.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, star, showMore)
         // 设置可滚动的区域
         this.setShowPageNumber(4)
         // 允许滚动
@@ -1143,10 +1141,10 @@
         })
         cloud7AnimationList.play()
 
-        // 从下面生出政府的手 0.9223
-        const supportH = bodySize.h * 0.8624
+        // 从下面生出政府的手 0.8624
+        const supportH = bodySize.h * 0.7
         let support = new GIF("./images/support.gif", this.data.resources)
-        support.sprite.width = supportH * 0.9223
+        support.sprite.width = supportH * 0.8624
         support.sprite.height = supportH
         support.sprite.x = bodySize.w * 5 - (supportH * 0.9223 / 2) + bodySize.w * 0.5
         support.sprite.y = bodySize.h
@@ -1220,7 +1218,7 @@
 
         // 9-显示更多
         const showMoreH = bodySize.h * 0.1
-        const showMore = this.methods.createSprite("./images/showMore.png",{
+        const showMore = this.methods.createSprite("./images/showMore2.png",{
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 7.75,
@@ -1244,7 +1242,15 @@
           }, 0)
         })
 
-        this.data.twoContainer.addChild(showMore)
+        // 群众向上拉 1.22
+        const massesH = bodySize.h * 0.65
+        let masses = new GIF("./images/masses.gif", this.data.resources)
+        masses.sprite.width = massesH * 1.22
+        masses.sprite.height = massesH
+        masses.sprite.x = bodySize.w * 7.55 - (massesH * 1.22 / 2)
+        masses.sprite.y = bodySize.h * 0.55 - (massesH / 2)
+
+        this.data.twoContainer.addChild(showMore, masses.sprite)
         // 允许滚动
         setTimeout(() => {
           this.data.peopleIsMoveing = false
@@ -1331,20 +1337,6 @@
         })
         grass3AnimationList2.play()
 
-        // 时隐时现的雾气 2.2021
-        const fogH = bodySize.h * 0.2
-        const fog = this.methods.createSprite("./images/fog.png",{
-          width: fogH * 2.2021,
-          height: fogH,
-          x: bodySize.w * 9.32,
-          y: bodySize.h * 0.5
-        })
-        const fogAnimationList = TweenMax.fromTo(fog, 2, {alpha: 0.2},{alpha: 1}).repeat(-1)
-        fogAnimationList.play()
-        
-
-        this.data.twoContainer.addChild(grass1, grass2, grass3, fog)
-
 
         const petal11AnimationList = TweenMax.fromTo(petal11, 8, {
             x: bodySize.w * 9  + (bodySize.w * 0.2) - 20,
@@ -1357,7 +1349,7 @@
 
         // 11-显示更多
         const showMoreH = bodySize.h * 0.1
-        const showMore = this.methods.createSprite("./images/showMore.png",{
+        const showMore = this.methods.createSprite("./images/showMore2.png",{
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 9.80,
@@ -1380,8 +1372,18 @@
             this.domList.showText.style.display = 'block'
           }, 0)
         })
-        this.data.twoContainer.addChild(showMore)
 
+
+
+        // 11-手托着地球 1.1212
+        const earthH = bodySize.h * 0.8
+        let earth = new GIF("./images/earth.gif", this.data.resources)
+        earth.sprite.width = earthH * 1.22
+        earth.sprite.height = earthH
+        earth.sprite.x = bodySize.w * 9.5 - (earthH * 1.22 / 2)
+        earth.sprite.y = bodySize.h * 0.5 - (earthH / 2)
+
+        this.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore)
         // 允许滚动
         setTimeout(() => {
           this.data.peopleIsMoveing = false
@@ -1481,6 +1483,7 @@
       if (pageIndex >= 1 && pageIndex <= 1.52) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 2) {
+          this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove1(pageIndex)
           return
         } else if (this.data.xMax < 1690) {
@@ -1490,6 +1493,7 @@
       if (pageIndex >= 3 && pageIndex <= 3.5) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 4) {
+          this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove2(pageIndex)
           return
         } else if (this.data.xMax < 3450) {
@@ -1499,6 +1503,7 @@
       if (pageIndex >= 5 && pageIndex <= 5.3) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 6) {
+          this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove3(pageIndex)
           return
         } else if (this.data.xMax < 5430) {
@@ -1508,6 +1513,7 @@
       if (pageIndex >= 7 && pageIndex <= 7.5) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 8) {
+          this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove4(pageIndex)
           return
         } else if (this.data.xMax < 7648) {
@@ -1517,6 +1523,7 @@
       if (pageIndex >= 9 && pageIndex <= 9.5) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 10) {
+          this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove5(pageIndex)
           return
         } else if (this.data.xMax < 9700) {
@@ -1710,6 +1717,7 @@
         if (this.data.progress < 3 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true
           for (let i = 0; i < 0.52; i+= 0.005) {
+            if (!this.data.peopleIsMoveing) break
             setTimeout(() => {
               this.data.people.x = this.data.screenInfo.w * (1.11 + i)
               if (i < 0.16) {
@@ -1730,6 +1738,7 @@
         if (this.data.progress < 5 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true
           for (let i = 0; i < 0.5; i+= 0.005) {
+            if (!this.data.peopleIsMoveing) break
             setTimeout(() => {
               this.data.people.x = this.data.screenInfo.w * (3.11 + i)
               if (i < 0.15) {
@@ -1753,6 +1762,7 @@
         if (this.data.progress < 7 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true
           for (let i = 0; i < 0.2; i += 0.005) {
+            if (!this.data.peopleIsMoveing) break
             setTimeout(() => {
               this.data.people.x = this.data.screenInfo.w * (5.11 + i)
               if (i < 0.15) {
@@ -1769,6 +1779,7 @@
         if (this.data.progress < 9 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true
           for (let i = 0; i < 0.36; i += 0.005) {
+            if (!this.data.peopleIsMoveing) break
             setTimeout(() => {
               this.data.people.x = this.data.screenInfo.w * (7.11 + i)
               if (i < 0.16) {
@@ -1788,6 +1799,7 @@
         if (this.data.progress < 11 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true
           for (let i = 0; i < 0.36; i += 0.005) {
+            if (!this.data.peopleIsMoveing) break
             setTimeout(() => {
               this.data.people.x = this.data.screenInfo.w * (9.11 + i)
               if (i < 0.10) {
@@ -1949,11 +1961,9 @@
     height: 23%;
     display: none;
   }
-  .main-box {
-    canvas {
-      width: 100%;
-      height: 100%;
-    }
+  .main-box, canvas {
+    width: 100%;
+    height: 100%;
   }
   .show-text {
     position: fixed;
@@ -1968,23 +1978,21 @@
     .text-box {
       position: absolute;
       width: 48%;
-      padding: 5px;
+      padding: 5px 10px;
       background-color: rgba(0, 0, 0, 0.6);
     }
     .title {
       display: flex;
       justify-content: flex-end;
-      height: 31px;
+      height: 20px;
     }
     img {
-      width: 25px;
-      height: 25px;
-      margin: 3px;
+      width: 20px;
+      height: 20px;
     }
     .text-box-content {
       color: white;
       font-size: 1.4em;
-      text-align: center;
       line-height: 2em;
     }
   }
