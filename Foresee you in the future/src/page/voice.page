@@ -1377,7 +1377,7 @@
 
         // 11-手托着地球 1.1212
         const earthH = bodySize.h * 0.8
-        let earth = new GIF("./images/earth.gif", this.data.resources)
+        let earth = new GIF("./images/earth.gif", this.data.resources, true)
         earth.sprite.width = earthH * 1.22
         earth.sprite.height = earthH
         earth.sprite.x = bodySize.w * 9.5 - (earthH * 1.22 / 2)

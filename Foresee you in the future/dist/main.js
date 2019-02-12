@@ -1125,7 +1125,7 @@ window.ozzx.script = {
           }, 0);
         });
         var earthH = bodySize.h * 0.8;
-        var earth = new GIF("./images/earth.gif", _this3.data.resources);
+        var earth = new GIF("./images/earth.gif", _this3.data.resources, true);
         earth.sprite.width = earthH * 1.22;
         earth.sprite.height = earthH;
         earth.sprite.x = bodySize.w * 9.5 - earthH * 1.22 / 2;

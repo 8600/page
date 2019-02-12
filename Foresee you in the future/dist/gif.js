@@ -164,83 +164,18 @@
       return frames[frame_num];
     }
   
-    this.decodeAndBlitFrameBGRA = function(frame_num, pixels) {
-      var frame = this.frameInfo(frame_num);
-      var num_pixels = frame.width * frame.height;
-      var index_stream = new Uint8Array(num_pixels);  // At most 8-bit indices.
-      GifReaderLZWOutputIndexStream(
-          buf, frame.data_offset, index_stream, num_pixels);
-      var palette_offset = frame.palette_offset;
-  
-      // NOTE(deanm): It seems to be much faster to compare index to 256 than
-      // to === null.  Not sure why, but CompareStub_EQ_STRICT shows up high in
-      // the profile, not sure if it's related to using a Uint8Array.
-      var trans = frame.transparent_index;
-      if (trans === null) trans = 256;
-  
-      // We are possibly just blitting to a portion of the entire frame.
-      // That is a subrect within the framerect, so the additional pixels
-      // must be skipped over after we finished a scanline.
-      var framewidth  = frame.width;
-      var framestride = width - framewidth;
-      var xleft       = framewidth;  // Number of subrect pixels left in scanline.
-  
-      // Output indicies of the top left and bottom right corners of the subrect.
-      var opbeg = ((frame.y * width) + frame.x) * 4;
-      var opend = ((frame.y + frame.height) * width + frame.x) * 4;
-      var op    = opbeg;
-  
-      var scanstride = framestride * 4;
-  
-      // Use scanstride to skip past the rows when interlacing.  This is skipping
-      // 7 rows for the first two passes, then 3 then 1.
-      if (frame.interlaced === true) {
-        scanstride += width * 4 * 7;  // Pass 1.
-      }
-  
-      var interlaceskip = 8;  // Tracking the row interval in the current pass.
-  
-      for (var i = 0, il = index_stream.length; i < il; ++i) {
-        var index = index_stream[i];
-  
-        if (xleft === 0) {  // Beginning of new scan line
-          op += scanstride;
-          xleft = framewidth;
-          if (op >= opend) { // Catch the wrap to switch passes when interlacing.
-            scanstride = framestride * 4 + width * 4 * (interlaceskip-1);
-            // interlaceskip / 2 * 4 is interlaceskip << 1.
-            op = opbeg + (framewidth + framestride) * (interlaceskip << 1);
-            interlaceskip >>= 1;
-          }
-        }
-  
-        if (index === trans) {
-          op += 4;
-        } else {
-          var r = buf[palette_offset + index * 3];
-          var g = buf[palette_offset + index * 3 + 1];
-          var b = buf[palette_offset + index * 3 + 2];
-          pixels[op++] = b;
-          pixels[op++] = g;
-          pixels[op++] = r;
-          pixels[op++] = 255;
-        }
-        --xleft;
-      }
-    };
-  
     // I will go to copy and paste hell one day...
     this.decodeAndBlitFrameRGBA = function(frame_num, pixels) {
-      var frame = this.frameInfo(frame_num);
-      var num_pixels = frame.width * frame.height;
-      var index_stream = new Uint8Array(num_pixels);  // At most 8-bit indices.
-      GifReaderLZWOutputIndexStream(
-          buf, frame.data_offset, index_stream, num_pixels);
+      var frame = this.frameInfo(frame_num)
+      // 计算出总像素点数量
+      var num_pixels = frame.width * frame.height
+      // 创建像素点值
+      var index_stream = new Uint8Array(num_pixels)  // At most 8-bit indices.
+      GifReaderLZWOutputIndexStream(buf, frame.data_offset, index_stream, num_pixels);
+      // console.log(index_stream)
       var palette_offset = frame.palette_offset;
   
-      // NOTE(deanm): It seems to be much faster to compare index to 256 than
-      // to === null.  Not sure why, but CompareStub_EQ_STRICT shows up high in
-      // the profile, not sure if it's related to using a Uint8Array.
+      // 计算出空像素点值
       var trans = frame.transparent_index;
       if (trans === null) trans = 256;
   
@@ -297,8 +232,9 @@
   }
   
   function GifReaderLZWOutputIndexStream(code_stream, p, output, output_length) {
+    
     var min_code_size = code_stream[p++];
-  
+    
     var clear_code = 1 << min_code_size;
     var eoi_code = clear_code + 1;
     var next_code = eoi_code + 1;
@@ -313,7 +249,6 @@
     var op = 0;  // Output pointer.
   
     var subblock_size = code_stream[p++];
-  
     // TODO(deanm): Would using a TypedArray be any faster?  At least it would
     // solve the fast mode / backing store uncertainty.
     // var code_table = Array(4096);
@@ -329,7 +264,7 @@
         cur |= code_stream[p++] << cur_shift;
         cur_shift += 8;
   
-        if (subblock_size === 1) {  // Never let it get to 0 to hold logic above.
+        if (subblock_size === 1) {  // Never var it get to 0 to hold logic above.
           subblock_size = code_stream[p++];  // Next subblock.
         } else {
           --subblock_size;
@@ -442,15 +377,14 @@
 
 
 class GIF{
-  constructor(esource,resources){
-      const _ts = this;
+  constructor(esource, resources, overlying){
+      var _ts = this;
       _ts.esource = esource;
       _ts.resources = resources;
-
-      _ts.init();
+      _ts.init(Boolean(overlying));
   }
-  init(){
-      const _ts = this,
+  init(overlying){
+      var _ts = this,
           esource = _ts.esource,
           resources = _ts.resources;
 
@@ -462,8 +396,9 @@ class GIF{
 
       // 属性
       _ts.__attr = {
-          autoPlay:true,     // 默认自动播放
-          loop:0             // 默认无限次播放
+        overlying: overlying,   // 后一张图是前一张图的叠加,用来解决部分情况下怪异的闪动问题
+        autoPlay: true,     // 默认自动播放
+        loop:0             // 默认无限次播放
       };
 
       // 方法
@@ -495,7 +430,7 @@ class GIF{
     if(this.textures.length === 1) return
     
     
-    let status = this.__status,
+    var status = this.__status,
         attr = this.__attr,
         time = 0;
 
@@ -511,11 +446,10 @@ class GIF{
 
     // 修改状态为执行中
     this.__status = 'playing'
-    console.log(this)
     // 为轮循执行器添加一个操作
     if(!this.temp.tickerIsAdd) {
       this.ticker.add(deltaTime => {
-        let elapsed = PIXI.ticker.shared.elapsedMS
+        var elapsed = PIXI.ticker.shared.elapsedMS
         time += elapsed
         // 当帧停留时间已达到间隔帧率时播放下一帧
         if(time > this.framesDelay[status.frame]) {
@@ -551,7 +485,7 @@ class GIF{
 
   // 暂停
   pause(){
-      const _ts = this,
+      var _ts = this,
           status = _ts.__status;
       _ts.ticker.stop();
       status.status = 'pause';
@@ -560,7 +494,7 @@ class GIF{
 
   // 停止播放并跳至第一帧
   stop(){
-      const _ts = this,
+      var _ts = this,
           status = _ts.__status;
       _ts.ticker.stop();
       status.status = 'stop'; 
@@ -582,14 +516,14 @@ class GIF{
   }
 
   runEvent(type,status){
-    let temp = this.temp;
+    var temp = this.temp;
     if(typeof temp.events[type] === 'function'){
       temp.events[type](status)
     }
   }
 
   getExeName(filePath) {
-    let aList = filePath.split('.');
+    var aList = filePath.split('.');
     return aList[aList.length - 1];
   }
 
@@ -600,9 +534,9 @@ class GIF{
    * @return {object} 返回精灵
    */
   createSprite(esource,resources){
-      const _ts = this;
+      var _ts = this;
 
-      let Sprite = PIXI.Sprite,
+      var Sprite = PIXI.Sprite,
           
           imgSrc = esource,
           exeName = this.getExeName(imgSrc.toLocaleLowerCase());
@@ -610,9 +544,9 @@ class GIF{
       // 文件扩展名为gif或png则返回对应的名称，其它反返回other
       exeName = exeName === 'gif' ? exeName : 'other';
 
-      let funs = {
+      var funs = {
         'gif':()=>{
-          let gifDecodeData = _ts.gifResourceToTextures(resources[imgSrc]);
+          var gifDecodeData = _ts.gifResourceToTextures(resources[imgSrc]);
           _ts.textures = gifDecodeData.textures;
           _ts.framesDelay = gifDecodeData.delayTimes;
           _ts.play();
@@ -634,8 +568,8 @@ class GIF{
    * @return {object} 返回一个对象，包括apng的每帧时长及解码出来材质
    */
   apngResourceToTextures(resource){
-      const _ts = this;
-      let obj = {
+      var _ts = this;
+      var obj = {
               delayTimes:[],
               textures:[]
           },
@@ -658,8 +592,8 @@ class GIF{
           obj.delayTimes.push(item.delay);
       });
 
-      for(let i=0,len=rgba.length; i<len; i++){
-          let item = rgba[i],
+      for(var i=0,len=rgba.length; i<len; i++){
+          var item = rgba[i],
               data = new Uint8ClampedArray(item);
           
           canvas = document.createElement('canvas');
@@ -685,8 +619,8 @@ class GIF{
    * @return {object} 返回一个对象，包括apng的每帧时长及解码出来材质
    */
   gifResourceToTextures(resource){
-      const _ts = this;
-      let obj = {
+      var _ts = this;
+      var obj = {
               delayTimes:[],
               textures:[]
           },
@@ -703,8 +637,8 @@ class GIF{
           imageData;
       
       
-      let last = null
-      for(let i=0; i<gifFramesLen; i++){
+      var last = null
+      for(var i=0; i<gifFramesLen; i++){
         //得到每帧的信息并将帧延迟信息保存起来
         gifFrameInfo = gif.frameInfo(i);
         obj.delayTimes.push(gifFrameInfo.delay * 10);
@@ -715,27 +649,19 @@ class GIF{
         ctx = canvas.getContext('2d');
 
         //创建一块空白的ImageData对象
-        
-        if (last === null) {
+        if (!this.__attr.overlying) {
           imageData = ctx.createImageData(gifWidth, gifHeight)
+          // 将第一帧转换为RGBA值，将赋予到图像区
+          gif.decodeAndBlitFrameRGBA(i, imageData.data)
         } else {
+          if (last == null) last = ctx.createImageData(gifWidth, gifHeight)
           imageData = last
+          // 将第一帧转换为RGBA值，将赋予到图像区
+          gif.decodeAndBlitFrameRGBA(i, imageData.data)
+          last = imageData
         }
-        //将第一帧转换为RGBA值，将赋予到图像区
-        gif.decodeAndBlitFrameRGBA(i, imageData.data)
-        last = imageData
-        // console.log(imageData.data)
-        // 过滤掉无效帧
-        // let isOK = false
-        // console.log(imageData.data.length)
-        // for (let ind = 0; ind < imageData.data.length; ind++) {
-        //   const data = imageData.data[ind]
-        //   if (data !== 0) {
-        //     console.log(i, ind, data)
-        //     isOK = true
-        //     break
-        //   }
-        // }
+        
+        
         // 将上面创建的图像数据放回到画面上
         ctx.putImageData(imageData, 0, 0)
         spriteSheet = new PIXI.BaseTexture.fromCanvas(canvas)
