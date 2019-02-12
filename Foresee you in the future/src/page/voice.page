@@ -20,7 +20,14 @@
   <div class="share-box" id="shareBox">
     <img src="./images/share-text.png"/>
   </div>
-  <div class="show-text" @name="showText" @click="closeShowText"></div>
+  <div class="show-text" @name="showText" >
+    <div class="text-box" @name="showTextBox">
+      <div class="title">
+        <img @click="closeShowText" src="./images/close.png"/>
+      </div>
+      <div class="text-box-content" @name="textBoxContent">提示内容</div>
+    </div>
+  </div>
   <img class="qr" id="qr" src="./images/QR.png"/>
 </template>
 
@@ -238,6 +245,7 @@
         "./images/sport/1.png",
         "./images/sport/2.png",
         "./images/support.png",
+        "./images/showMore.png",
         "./images/support-tree-1.png"
       ],
       mousedown: false,
@@ -365,8 +373,8 @@
       },
       // 关闭展示框
       closeShowText: function () {
-        console.log('sd')
-        this.$el.style.display = 'none'
+        // console.log('sd')
+        this.domList.showText.style.display = 'none'
       }
     },
     // 注册画板区域并返回设备屏幕信息
@@ -890,7 +898,7 @@
         })
         textAnimationList.play()
 
-        // 显示更多
+        // 3-显示更多
         const showMoreH = bodySize.h * 0.1
         const showMore = this.methods.createSprite("./images/showMore.png",{
           width: showMoreH,
@@ -903,12 +911,16 @@
         // 3-显示更多 设置可交互
         showMore.interactive = true;
         showMore.buttonMode = true
-        // 第三张图 亮光触摸事件
+        // 第三张图 显示更多触摸事件
         this.addBind(showMore, () => {
           setTimeout(() => {
+            this.domList.showTextBox.style.left = "28%"
+            this.domList.showTextBox.style.top = "28%"
+            this.domList.showTextBox.style.bottom = ''
+            this.domList.showTextBox.style.right = ''
+            this.domList.textBoxContent.innerText = '中国有你，你有未来。阳光普照，让个体生命怒放。'
             this.domList.showText.style.display = 'block'
           }, 0)
-          
         })
 
         this.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, text, star, showMore)
@@ -1064,7 +1076,32 @@
         const house5AnimationList = TweenMax.fromTo(house5, 1.4, {y: bodySize.h}, {y: bodySize.h * 0.75})
         house5AnimationList.play()
 
-        this.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3)
+        // 5-显示更多
+        const showMoreH = bodySize.h * 0.1
+        const showMore = this.methods.createSprite("./images/showMore.png",{
+          width: showMoreH,
+          height: showMoreH,
+          x: bodySize.w * 3.27,
+          y: bodySize.h * 0.16
+        })
+        const showMoreA = TweenMax.fromTo(showMore, 1.2, {alpha: 0.2},{alpha: 1}).repeat(-1)
+        showMoreA.play()
+        // 显示更多 设置可交互
+        showMore.interactive = true;
+        showMore.buttonMode = true
+        // 第三张图 显示更多触摸事件
+        this.addBind(showMore, () => {
+          setTimeout(() => {
+            this.domList.showTextBox.style.left = "34%"
+            this.domList.showTextBox.style.top = "20%"
+            this.domList.showTextBox.style.bottom = ''
+            this.domList.showTextBox.style.right = ''
+            this.domList.textBoxContent.innerText = '“人”、“地”和谐发展，城市有温度，人民更幸福。'
+            this.domList.showText.style.display = 'block'
+          }, 0)
+        })
+
+        this.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore)
         // 允许滚动
         setTimeout(() => {
           this.data.peopleIsMoveing = false
@@ -1132,7 +1169,32 @@
         })
         supportTree1AnimationList2.play()
 
-        this.data.twoContainer.addChild(support, supportTree1)
+        // 7-显示更多
+        const showMoreH = bodySize.h * 0.1
+        const showMore = this.methods.createSprite("./images/showMore.png",{
+          width: showMoreH,
+          height: showMoreH,
+          x: bodySize.w * 5.29,
+          y: bodySize.h * 0.30
+        })
+        const showMoreA = TweenMax.fromTo(showMore, 1.2, {alpha: 0.2},{alpha: 1}).repeat(-1)
+        showMoreA.play()
+        // 显示更多 设置可交互
+        showMore.interactive = true;
+        showMore.buttonMode = true
+        // 第三张图 显示更多触摸事件
+        this.addBind(showMore, () => {
+          setTimeout(() => {
+            this.domList.showTextBox.style.left = "37%"
+            this.domList.showTextBox.style.top = "33%"
+            this.domList.showTextBox.style.bottom = ''
+            this.domList.showTextBox.style.right = ''
+            this.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。'
+            this.domList.showText.style.display = 'block'
+          }, 0)
+        })
+
+        this.data.twoContainer.addChild(support, supportTree1, showMore)
         // 允许滚动
         setTimeout(() => {
           this.data.peopleIsMoveing = false
@@ -1171,6 +1233,34 @@
           yoyo:true,
         })
         cloud9AnimationList.play()
+
+        // 9-显示更多
+        const showMoreH = bodySize.h * 0.1
+        const showMore = this.methods.createSprite("./images/showMore.png",{
+          width: showMoreH,
+          height: showMoreH,
+          x: bodySize.w * 7.75,
+          y: bodySize.h * 0.05
+        })
+        const showMoreA = TweenMax.fromTo(showMore, 1.2, {alpha: 0.2},{alpha: 1}).repeat(-1)
+        showMoreA.play()
+        // 显示更多 设置可交互
+        showMore.interactive = true;
+        showMore.buttonMode = true
+
+        // 显示更多触摸事件
+        this.addBind(showMore, () => {
+          setTimeout(() => {
+            this.domList.showTextBox.style.right = "26%"
+            this.domList.showTextBox.style.top = "18%"
+            this.domList.showTextBox.style.bottom = ''
+            this.domList.showTextBox.style.left = ''
+            this.domList.textBoxContent.innerText = '一头系着贫，一头系着富，把社会捆绑结实。'
+            this.domList.showText.style.display = 'block'
+          }, 0)
+        })
+
+        this.data.twoContainer.addChild(showMore)
         // 允许滚动
         setTimeout(() => {
           this.data.peopleIsMoveing = false
@@ -1280,6 +1370,33 @@
             y: bodySize.h * 0.15 + 40,
           }).repeat(-1)
         petal11AnimationList.play()
+
+        // 11-显示更多
+        const showMoreH = bodySize.h * 0.1
+        const showMore = this.methods.createSprite("./images/showMore.png",{
+          width: showMoreH,
+          height: showMoreH,
+          x: bodySize.w * 9.80,
+          y: bodySize.h * 0.82
+        })
+        const showMoreA = TweenMax.fromTo(showMore, 1.2, {alpha: 0.2},{alpha: 1}).repeat(-1)
+        showMoreA.play()
+        // 显示更多 设置可交互
+        showMore.interactive = true;
+        showMore.buttonMode = true
+
+        // 显示更多触摸事件
+        this.addBind(showMore, () => {
+          setTimeout(() => {
+            this.domList.showTextBox.style.top = ''
+            this.domList.showTextBox.style.right = ''
+            this.domList.showTextBox.style.left = "27%"
+            this.domList.showTextBox.style.bottom = "13%"
+            this.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。'
+            this.domList.showText.style.display = 'block'
+          }, 0)
+        })
+        this.data.twoContainer.addChild(showMore)
 
         // 允许滚动
         setTimeout(() => {
@@ -1871,8 +1988,30 @@
     width: 100%;
     height: 100%;
     display: none;
-    background-image: url('./images/3-showText.png');
+    background-color: rgba(71, 73, 86, 0.6);
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    .text-box {
+      position: absolute;
+      width: 48%;
+      padding: 5px;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    .title {
+      display: flex;
+      justify-content: flex-end;
+      height: 31px;
+    }
+    img {
+      width: 25px;
+      height: 25px;
+      margin: 3px;
+    }
+    .text-box-content {
+      color: white;
+      font-size: 1.4em;
+      text-align: center;
+      line-height: 2em;
+    }
   }
 </style>

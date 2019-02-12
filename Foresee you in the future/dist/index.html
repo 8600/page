@@ -47,7 +47,14 @@
   <div class="share-box" id="shareBox">
     <img src="./images/share-text.png">
   </div>
-  <div class="show-text" @name="showText" @click="closeShowText"></div>
+  <div class="show-text" @name="showText">
+    <div class="text-box" @name="showTextBox">
+      <div class="title">
+        <img @click="closeShowText" src="./images/close.png">
+      </div>
+      <div class="text-box-content" @name="textBoxContent">提示内容</div>
+    </div>
+  </div>
   <img class="qr" id="qr" src="./images/QR.png">
 </div>
     
