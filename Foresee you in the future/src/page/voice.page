@@ -930,6 +930,8 @@
         setTimeout(() => {
           this.data.peopleIsMoveing = false
         }, 200)
+        // 使小人在当前屏幕下移动不受限制
+        this.data.xMax = 1690
       })
 
       // 第五张光 比例1.6582
@@ -1106,6 +1108,8 @@
         setTimeout(() => {
           this.data.peopleIsMoveing = false
         }, 200)
+        // 使小人在当前屏幕下移动不受限制
+        this.data.xMax = 3450
       })
 
       // 第七张图 比例:0.7421
@@ -1183,6 +1187,8 @@
         setTimeout(() => {
           this.data.peopleIsMoveing = false
         }, 200)
+        // 使小人在当前屏幕下移动不受限制
+        this.data.xMax = 5430
       })
 
       // 第九张图 比例:1
@@ -1260,6 +1266,8 @@
         setTimeout(() => {
           this.data.peopleIsMoveing = false
         }, 200)
+        // 使小人在当前屏幕下移动不受限制
+        this.data.xMax = 7648
       })
 
       // 第11张图 大柚子 比例:1
@@ -1396,6 +1404,8 @@
         setTimeout(() => {
           this.data.peopleIsMoveing = false
         }, 200)
+        // 使小人在当前屏幕下移动不受限制
+        this.data.xMax = 9700
       })
       // 小人跳舞
       const sportH = bodySize.h * 0.2
@@ -1677,6 +1687,8 @@
     // 移动屏幕鼠标事件
     mouseEvent: function () {
       $('canvas')[0].addEventListener("touchstart", (e) => {
+        // 隐藏掉提示条
+        this.domList.showTextBox.style.display = 'none'
         if (this.data.peopleIsMoveing) return
         this.data.scroller.doTouchStart(e.touches, e.timeStamp)
         this.data.mousedown = true

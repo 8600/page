@@ -733,6 +733,7 @@ window.ozzx.script = {
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
         }, 200);
+        _this3.data.xMax = 1690;
       });
       var fiveLightHeight = bodySize.h / 8;
       var fiveLight = this.methods.createSprite("./images/5-light.png", {
@@ -900,6 +901,7 @@ window.ozzx.script = {
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
         }, 200);
+        _this3.data.xMax = 3450;
       });
       var sevenLightHeight = bodySize.h / 5;
       var sevenLight = this.methods.createSprite("./images/7-light.png", {
@@ -966,6 +968,7 @@ window.ozzx.script = {
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
         }, 200);
+        _this3.data.xMax = 5430;
       });
       var Light9Height = bodySize.h / 5;
       var Light9 = this.methods.createSprite("./images/9-light.png", {
@@ -1026,6 +1029,7 @@ window.ozzx.script = {
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
         }, 200);
+        _this3.data.xMax = 7648;
       });
       var Light11Height = bodySize.h / 1.5;
       var Light11 = this.methods.createSprite("./images/11-light.png", {
@@ -1146,6 +1150,7 @@ window.ozzx.script = {
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
         }, 200);
+        _this3.data.xMax = 9700;
       });
       var sportH = bodySize.h * 0.2;
       var sport = new GIF("./images/sport.gif", this.data.resources);
@@ -1376,6 +1381,7 @@ window.ozzx.script = {
     "mouseEvent": function mouseEvent() {
       var _this5 = this;
       $('canvas')[0].addEventListener("touchstart", function(e) {
+        _this5.domList.showTextBox.style.display = 'none';
         if (_this5.data.peopleIsMoveing) return;
         _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
         _this5.data.mousedown = true;
