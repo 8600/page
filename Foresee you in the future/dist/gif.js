@@ -549,7 +549,7 @@ class GIF{
           var gifDecodeData = _ts.gifResourceToTextures(resources[imgSrc]);
           _ts.textures = gifDecodeData.textures;
           _ts.framesDelay = gifDecodeData.delayTimes;
-          _ts.play();
+          // _ts.play();
 
           // 返回精灵并将纹理材质设置为第一帧图像
           return new Sprite(_ts.textures[0]);

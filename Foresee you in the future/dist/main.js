@@ -254,6 +254,9 @@ window.ozzx.script = {
         shareDom.style.display = 'none';
         return false;
       };
+      window.onorientationchange = function() {
+        location.reload();
+      };
     },
     "methods": {
       "createSprite": function createSprite(name, opt) {
@@ -270,7 +273,7 @@ window.ozzx.script = {
         return baseValue + (nowValue - minValue) * step;
       },
       "closeShowText": function closeShowText() {
-        this.domList.showText.style.display = 'none';
+        this.domList.showTextBox.style.display = 'none';
       }
     },
     "calculationScene": function calculationScene() {
@@ -722,7 +725,7 @@ window.ozzx.script = {
             _this3.domList.showTextBox.style.bottom = '';
             _this3.domList.showTextBox.style.right = '';
             _this3.domList.textBoxContent.innerText = '中国有你，你有未来。阳光普照，让个体生命怒放。';
-            _this3.domList.showText.style.display = 'block';
+            _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         });
         _this3.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, star, showMore);
@@ -890,7 +893,7 @@ window.ozzx.script = {
             _this3.domList.showTextBox.style.bottom = '';
             _this3.domList.showTextBox.style.right = '';
             _this3.domList.textBoxContent.innerText = '“人”、“地”和谐发展，城市有温度，人民更幸福。';
-            _this3.domList.showText.style.display = 'block';
+            _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         });
         _this3.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore);
@@ -931,6 +934,9 @@ window.ozzx.script = {
           y: bodySize.h - supportH
         });
         supportAnimationList.play();
+        setTimeout(function() {
+          support.play();
+        }, 500);
         var showMoreH = bodySize.h * 0.1;
         var showMore = _this3.methods.createSprite("./images/showMore.png", {
           width: showMoreH,
@@ -953,7 +959,7 @@ window.ozzx.script = {
             _this3.domList.showTextBox.style.bottom = '';
             _this3.domList.showTextBox.style.right = '';
             _this3.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。';
-            _this3.domList.showText.style.display = 'block';
+            _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         });
         _this3.data.twoContainer.addChild(support.sprite, showMore);
@@ -1004,16 +1010,19 @@ window.ozzx.script = {
             _this3.domList.showTextBox.style.bottom = '';
             _this3.domList.showTextBox.style.left = '';
             _this3.domList.textBoxContent.innerText = '一头系着贫，一头系着富，把社会捆绑结实。';
-            _this3.domList.showText.style.display = 'block';
+            _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         });
         var massesH = bodySize.h * 0.65;
         var masses = new GIF("./images/masses.gif", _this3.data.resources);
         masses.sprite.width = massesH * 1.22;
         masses.sprite.height = massesH;
-        masses.sprite.x = bodySize.w * 7.55 - massesH * 1.22 / 2;
-        masses.sprite.y = bodySize.h * 0.55 - massesH / 2;
+        masses.sprite.x = bodySize.w * 7.56 - massesH * 1.22 / 2;
+        masses.sprite.y = bodySize.h * 0.555 - massesH / 2;
         _this3.data.twoContainer.addChild(showMore, masses.sprite);
+        setTimeout(function() {
+          masses.play();
+        }, 500);
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
         }, 200);
@@ -1042,12 +1051,12 @@ window.ozzx.script = {
         Light11.destroy();
         hand.destroy();
         _this3.setShowPageNumber(11);
-        var grass1H = bodySize.h;
+        var grass1H = bodySize.h * 0.9;
         var grass1 = _this3.methods.createSprite("./images/grass1.png", {
           width: grass1H * 0.8106,
           height: grass1H,
           x: bodySize.w * 9,
-          y: 0
+          y: bodySize.h * 0.1
         });
         var grass1AnimationList = TweenMax.fromTo(grass1, 1, {
           x: bodySize.w * 9 - grass1H * 0.8106
@@ -1121,7 +1130,7 @@ window.ozzx.script = {
             _this3.domList.showTextBox.style.left = "27%";
             _this3.domList.showTextBox.style.bottom = "13%";
             _this3.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。';
-            _this3.domList.showText.style.display = 'block';
+            _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         });
         var earthH = bodySize.h * 0.8;
@@ -1130,18 +1139,24 @@ window.ozzx.script = {
         earth.sprite.height = earthH;
         earth.sprite.x = bodySize.w * 9.5 - earthH * 1.22 / 2;
         earth.sprite.y = bodySize.h * 0.5 - earthH / 2;
+        setTimeout(function() {
+          earth.play();
+        }, 500);
         _this3.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore);
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
         }, 200);
       });
-      var sportH = bodySize.h * 0.1;
+      var sportH = bodySize.h * 0.12;
       var sport = new GIF("./images/sport.gif", this.data.resources);
       sport.sprite.width = sportH * 1.0775;
       sport.sprite.height = sportH;
       sport.sprite.x = bodySize.w * 10 + bodySize.w * 0.88 - sportH * 1.0775 / 2;
       sport.sprite.y = bodySize.h * 0.44 - sportH / 2;
       this.data.twoContainer.addChild(bg3Image, this.data.people, bg2Image, tips, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport.sprite);
+      setTimeout(function() {
+        sport.play();
+      }, 2000);
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12);
       this.data.app.stage.addChild(this.data.twoContainer);
       var threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {
@@ -1391,6 +1406,27 @@ window.ozzx.script = {
         _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mouseup", function(e) {
+        if (_this5.data.peopleIsMoveing) return;
+        if (!_this5.data.mousedown) {
+          return;
+        }
+        _this5.data.scroller.doTouchEnd(e.timeStamp);
+        _this5.data.mousedown = false;
+      }, false);
+      $('#qr')[0].addEventListener("touchstart", function(e) {
+        if (_this5.data.peopleIsMoveing) return;
+        _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
+        _this5.data.mousedown = true;
+      }, false);
+      $('#qr')[0].addEventListener("touchmove", function(e) {
+        if (_this5.data.peopleIsMoveing) return;
+        if (!_this5.data.mousedown) {
+          return;
+        }
+        _this5.data.scroller.doTouchMove(e.touches, e.timeStamp);
+        _this5.data.mousedown = true;
+      }, false);
+      $('#qr')[0].addEventListener("touchend", function(e) {
         if (_this5.data.peopleIsMoveing) return;
         if (!_this5.data.mousedown) {
           return;

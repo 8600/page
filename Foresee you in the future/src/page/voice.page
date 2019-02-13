@@ -13,20 +13,15 @@
     </div>
   </div>
   <!-- 背景音乐 -->
-  <audio src="./audio/bgm.wma" id="bgm" loop>
+  <audio src="./audio/bgm.mp3" id="bgm" loop>
     您的浏览器不支持 audio 标签。
   </audio>
   <!-- 分享遮蔽罩子 -->
   <div class="share-box" id="shareBox">
     <img src="./images/share-text.png"/>
   </div>
-  <div class="show-text" @name="showText" >
-    <div class="text-box" @name="showTextBox">
-      <div class="title">
-        <img @click="closeShowText" src="./images/close.png"/>
-      </div>
-      <div class="text-box-content" @name="textBoxContent">提示内容</div>
-    </div>
+  <div class="text-box" @name="showTextBox">
+    <div class="text-box-content" @name="textBoxContent">提示内容</div>
   </div>
   <img class="qr" id="qr" src="./images/QR.png"/>
 </template>
@@ -367,6 +362,10 @@
         shareDom.style.display = 'none'
         return false
       }
+      // 屏幕方向改变事件
+      window.onorientationchange = function() {
+        location.reload()
+      }
     },
     methods: {
       // 创建sprite对象
@@ -390,7 +389,7 @@
       // 关闭展示框
       closeShowText: function () {
         // console.log('sd')
-        this.domList.showText.style.display = 'none'
+        this.domList.showTextBox.style.display = 'none'
       }
     },
     // 注册画板区域并返回设备屏幕信息
@@ -920,7 +919,7 @@
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
             this.domList.textBoxContent.innerText = '中国有你，你有未来。阳光普照，让个体生命怒放。'
-            this.domList.showText.style.display = 'block'
+            this.domList.showTextBox.style.display = 'block'
           }, 0)
         })
 
@@ -1098,7 +1097,7 @@
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
             this.domList.textBoxContent.innerText = '“人”、“地”和谐发展，城市有温度，人民更幸福。'
-            this.domList.showText.style.display = 'block'
+            this.domList.showTextBox.style.display = 'block'
           }, 0)
         })
 
@@ -1150,6 +1149,9 @@
         support.sprite.y = bodySize.h
         const supportAnimationList = TweenMax.fromTo(support.sprite, 1.5, {y: bodySize.h},{y: bodySize.h - supportH})
         supportAnimationList.play()
+        setTimeout(() => {
+          support.play()
+        }, 500)
 
         // 7-显示更多
         const showMoreH = bodySize.h * 0.1
@@ -1172,7 +1174,7 @@
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
             this.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。'
-            this.domList.showText.style.display = 'block'
+            this.domList.showTextBox.style.display = 'block'
           }, 0)
         })
 
@@ -1238,7 +1240,7 @@
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.left = ''
             this.domList.textBoxContent.innerText = '一头系着贫，一头系着富，把社会捆绑结实。'
-            this.domList.showText.style.display = 'block'
+            this.domList.showTextBox.style.display = 'block'
           }, 0)
         })
 
@@ -1247,10 +1249,13 @@
         let masses = new GIF("./images/masses.gif", this.data.resources)
         masses.sprite.width = massesH * 1.22
         masses.sprite.height = massesH
-        masses.sprite.x = bodySize.w * 7.55 - (massesH * 1.22 / 2)
-        masses.sprite.y = bodySize.h * 0.55 - (massesH / 2)
+        masses.sprite.x = bodySize.w * 7.56 - (massesH * 1.22 / 2)
+        masses.sprite.y = bodySize.h * 0.555 - (massesH / 2)
 
         this.data.twoContainer.addChild(showMore, masses.sprite)
+        setTimeout(() => {
+          masses.play()
+        }, 500)
         // 允许滚动
         setTimeout(() => {
           this.data.peopleIsMoveing = false
@@ -1296,12 +1301,12 @@
         this.setShowPageNumber(11)
 
         // 从左面生出树叶 0.8106
-        const grass1H = bodySize.h
+        const grass1H = bodySize.h * 0.9
         const grass1 = this.methods.createSprite("./images/grass1.png",{
           width: grass1H * 0.8106,
           height: grass1H,
           x: bodySize.w * 9,
-          y: 0
+          y: bodySize.h * 0.1
         })
         const grass1AnimationList = TweenMax.fromTo(grass1, 1, {x: bodySize.w * 9 - grass1H * 0.8106},{x: bodySize.w * 9})
         grass1AnimationList.play()
@@ -1369,7 +1374,7 @@
             this.domList.showTextBox.style.left = "27%"
             this.domList.showTextBox.style.bottom = "13%"
             this.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。'
-            this.domList.showText.style.display = 'block'
+            this.domList.showTextBox.style.display = 'block'
           }, 0)
         })
 
@@ -1382,6 +1387,9 @@
         earth.sprite.height = earthH
         earth.sprite.x = bodySize.w * 9.5 - (earthH * 1.22 / 2)
         earth.sprite.y = bodySize.h * 0.5 - (earthH / 2)
+        setTimeout(() => {
+          earth.play()
+        }, 500)
 
         this.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore)
         // 允许滚动
@@ -1390,15 +1398,20 @@
         }, 200)
       })
       // 小人跳舞
-      const sportH = bodySize.h * 0.1
+      const sportH = bodySize.h * 0.12
       let sport = new GIF("./images/sport.gif", this.data.resources)
       sport.sprite.width = sportH * 1.0775
       sport.sprite.height = sportH
       sport.sprite.x = bodySize.w * 10 + (bodySize.w * 0.88) - (sportH * 1.0775 / 2)
       sport.sprite.y = bodySize.h * 0.44 - (sportH / 2)
 
+      
+
       // 添加背景
       this.data.twoContainer.addChild(bg3Image, this.data.people, bg2Image, tips, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport.sprite)
+      setTimeout(() => {
+        sport.play()
+      }, 2000)
       // 添加云
       this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12)
       this.data.app.stage.addChild(this.data.twoContainer)
@@ -1706,6 +1719,30 @@
         this.data.scroller.doTouchEnd(e.timeStamp)
         this.data.mousedown = false
       }, false)
+      $('#qr')[0].addEventListener("touchstart", (e) => {
+        if (this.data.peopleIsMoveing) return
+        this.data.scroller.doTouchStart(e.touches, e.timeStamp)
+        this.data.mousedown = true
+      }, false)
+
+      $('#qr')[0].addEventListener("touchmove", (e) => {
+        if (this.data.peopleIsMoveing) return
+        if (!this.data.mousedown) {
+          return
+        }
+        // console.log(e.touches, e.timeStamp)
+        this.data.scroller.doTouchMove(e.touches, e.timeStamp);
+        this.data.mousedown = true
+      }, false);
+
+      $('#qr')[0].addEventListener("touchend", (e) => {
+        if (this.data.peopleIsMoveing) return
+        if (!this.data.mousedown) {
+          return
+        }
+        this.data.scroller.doTouchEnd(e.timeStamp)
+        this.data.mousedown = false
+      }, false)
     },
     addBind: function (item, func) {
       item.on('tap', func)
@@ -1862,6 +1899,7 @@
     margin: auto;
     position: fixed;
     display: none;
+    user-select: none;
     background-image: url(./images/1-clock.png);
   }
   .dial {
@@ -1953,47 +1991,34 @@
     }
   }
   .qr {
-    position: fixed;
-    left: 0;
+    position: absolute;
+    left: 30%;
     right: 0;
-    bottom: 15%;
+    bottom: 12%;
     margin: auto;
     height: 23%;
     display: none;
+    padding-top: 40%;
+    padding-right: 27%;
+    user-select: none;
+    -webkit-touch-callout: default;
   }
   .main-box, canvas {
     width: 100%;
     height: 100%;
   }
-  .show-text {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    background-color: rgba(71, 73, 86, 0.6);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    .text-box {
-      position: absolute;
-      width: 48%;
-      padding: 5px 10px;
-      background-color: rgba(0, 0, 0, 0.6);
-    }
-    .title {
-      display: flex;
-      justify-content: flex-end;
-      height: 20px;
-    }
-    img {
-      width: 20px;
-      height: 20px;
-    }
-    .text-box-content {
-      color: white;
-      font-size: 1.4em;
-      line-height: 2em;
-    }
+  .text-box {
+    position: absolute;
+    width: 48%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  .text-box-content {
+    color: #fff;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: bold;
+    font-family: Simsun;
+    margin: 0 20px;
   }
 </style>

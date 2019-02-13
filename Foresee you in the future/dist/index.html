@@ -40,20 +40,15 @@
     </div>
   </div>
   <!-- 背景音乐 -->
-  <audio src="./audio/bgm.wma" id="bgm" loop="">
+  <audio src="./audio/bgm.mp3" id="bgm" loop="">
     您的浏览器不支持 audio 标签。
   </audio>
   <!-- 分享遮蔽罩子 -->
   <div class="share-box" id="shareBox">
     <img src="./images/share-text.png">
   </div>
-  <div class="show-text" @name="showText">
-    <div class="text-box" @name="showTextBox">
-      <div class="title">
-        <img @click="closeShowText" src="./images/close.png">
-      </div>
-      <div class="text-box-content" @name="textBoxContent">提示内容</div>
-    </div>
+  <div class="text-box" @name="showTextBox">
+    <div class="text-box-content" @name="textBoxContent">提示内容</div>
   </div>
   <img class="qr" id="qr" src="./images/QR.png">
 </div>
@@ -62,7 +57,7 @@
     <script src="./pixi.min.js"></script>
     <script charset="utf-8" src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.core.js"></script>
     <script charset="utf-8" src="http://tools.people.com.cn/libs/jquery/3.0.0/jquery-3.0.0.min.js"></script>
-    <script src="./TweenMax.min.js"> </script>
+    <script src="http://tools.people.com.cn/libs/news/TweenMax.min.js"> </script>
     <!-- 解决pixi事件异常 -->
     <script src="./pixi-transform-tool.js" type="text/javascript"></script>
     <script src="./Scroller.js" type="text/javascript"></script>
