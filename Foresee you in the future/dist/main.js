@@ -1147,11 +1147,11 @@ window.ozzx.script = {
           _this3.data.peopleIsMoveing = false;
         }, 200);
       });
-      var sportH = bodySize.h * 0.12;
+      var sportH = bodySize.h * 0.2;
       var sport = new GIF("./images/sport.gif", this.data.resources);
       sport.sprite.width = sportH * 1.0775;
       sport.sprite.height = sportH;
-      sport.sprite.x = bodySize.w * 10 + bodySize.w * 0.88 - sportH * 1.0775 / 2;
+      sport.sprite.x = bodySize.w * 10.78 - sportH * 1.0775 / 2;
       sport.sprite.y = bodySize.h * 0.44 - sportH / 2;
       this.data.twoContainer.addChild(bg3Image, this.data.people, bg2Image, tips, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport.sprite);
       setTimeout(function() {
@@ -1344,6 +1344,10 @@ window.ozzx.script = {
       } else if (peopleX < 10025) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2973, 9303, peopleX, 0.00029);
       } else if (peopleX < 10208) {
+        var peopleData = this.methods.smooth(0, peopleX, 10208, 0.01);
+        if (peopleData >= 0) {
+          this.data.people.alpha = peopleData;
+        }
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5065, 10025, peopleX, -0.0002);
       } else {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4697, 10208, peopleX, -0.0008);

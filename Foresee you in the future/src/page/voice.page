@@ -1398,11 +1398,11 @@
         }, 200)
       })
       // 小人跳舞
-      const sportH = bodySize.h * 0.12
+      const sportH = bodySize.h * 0.2
       let sport = new GIF("./images/sport.gif", this.data.resources)
       sport.sprite.width = sportH * 1.0775
       sport.sprite.height = sportH
-      sport.sprite.x = bodySize.w * 10 + (bodySize.w * 0.88) - (sportH * 1.0775 / 2)
+      sport.sprite.x = bodySize.w * 10.78 - (sportH * 1.0775 / 2)
       sport.sprite.y = bodySize.h * 0.44 - (sportH / 2)
 
       
@@ -1634,6 +1634,11 @@
         // console.log(peopleX, this.methods.smooth(0.2973, 9303, peopleX, 0.00029))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2973, 9303, peopleX, 0.00029)
       } else if (peopleX < 10208) {
+        // 小人慢慢消失出现
+        const peopleData = this.methods.smooth(0, peopleX, 10208, 0.01)
+        if (peopleData >= 0) {
+          this.data.people.alpha = peopleData
+        }
         // console.log(peopleX, this.methods.smooth(0.5065, 10025, peopleX, -0.0002))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5065, 10025, peopleX, -0.0002)
       } else {
