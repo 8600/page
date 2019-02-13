@@ -23,6 +23,10 @@
   <div class="text-box" @name="showTextBox">
     <div class="text-box-content" @name="textBoxContent">提示内容</div>
   </div>
+  <div class="music-box">
+    <img class="music-play" id="musicPlay" @click="closeMusic" src="./images/music-play.png"/>
+    <img class="music-close" id="musicClose" @click="palyMusic" src="./images/music-close.png"/>
+  </div>
   <img class="qr" id="qr" src="./images/QR.png"/>
 </template>
 
@@ -239,7 +243,8 @@
         './images/9/16.png',
         "./images/grass1.png",
         "./images/showMore.png",
-        "./images/showMore2.png"
+        "./images/showMore2.png",
+        "./images/child.png"
       ],
       mousedown: false,
       animationList: {},
@@ -255,6 +260,11 @@
       // 预加载资源
       this.data.loader = PIXI.loader
       // 加载GIF图
+      this.data.loader.add("./images/left.gif", {
+        loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
+        xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
+        crossOrigin:''
+      })
       this.data.loader.add("./images/sport.gif", {
         loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
         xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
@@ -328,6 +338,7 @@
       this.addBind($("#clockDial"), () => {
         // 播放音乐
         $('#bgm')[0].play()
+        $('#musicPlay').show()
         this.openClock(one, oneButterfly, bg1Image)
       })
       // 点击事件
@@ -390,6 +401,16 @@
       closeShowText: function () {
         // console.log('sd')
         this.domList.showTextBox.style.display = 'none'
+      },
+      closeMusic: function () {
+        $('#bgm')[0].pause()
+        $('#musicClose').show()
+        $('#musicPlay').hide()
+      },
+      palyMusic: function () {
+        $('#bgm')[0].play()
+        $('#musicClose').hide()
+        $('#musicPlay').show()
       }
     },
     // 注册画板区域并返回设备屏幕信息
@@ -520,17 +541,15 @@
         y: 0
       })
 
-      // 提示文字
-      const tipsH = this.data.screenInfo.h * 0.25
-      const tips = this.methods.createSprite("./images/tips.png",{
-        width: tipsH * 1.7111,
-        height: tipsH,
-        x: this.data.screenInfo.w * 0.42,
-        y: this.data.screenInfo.h * 0.4
-      })
-      // 提示文字闪动
-      const tipsA = TweenMax.fromTo(tips, 2, {alpha: .5},{alpha: 1}).repeat(-1)
-      tipsA.play()
+      // 向左箭头 5.032
+      const leftArrowH = bodySize.h * 0.1
+      let leftArrow = new GIF("./images/left.gif", this.data.resources)
+      leftArrow.sprite.width = leftArrowH * 5.032
+      leftArrow.sprite.height = leftArrowH
+      leftArrow.sprite.x = bodySize.w * 0.56 - (leftArrowH * 5.032 / 2)
+      leftArrow.sprite.y = bodySize.h * 0.35 - (leftArrowH / 2)
+      // this.data.twoContainer.addChild(leftArrow)
+      leftArrow.play()
       
       // 第三张背景图
       const bg3Image = this.methods.createSprite("./images/3.png",{
@@ -538,6 +557,15 @@
         height: this.data.screenInfo.h,
         x: this.data.screenInfo.w,
         y: 0
+      })
+
+      // 熊孩子 0.63
+      const childH = this.data.screenInfo.h * 0.55
+      const child = this.methods.createSprite("./images/child.png",{
+        width: childH * 0.63,
+        height: childH,
+        x: this.data.screenInfo.w * 1.55 - (childH * 0.63 / 2),
+        y: this.data.screenInfo.h - childH
       })
 
       
@@ -611,8 +639,8 @@
       const shareBT = this.methods.createSprite("./images/share-button.png",{
         width: shareBTH * 0.6781,
         height: shareBTH,
-        x: this.data.screenInfo.w * 10 + this.data.screenInfo.w * 0.83,
-        y: this.data.screenInfo.h * 0.05
+        x: this.data.screenInfo.w * 10.83,
+        y: this.data.screenInfo.h * 0.15
       })
       // 设置可交互
       shareBT.interactive = true;
@@ -1417,7 +1445,7 @@
       
 
       // 添加背景
-      this.data.twoContainer.addChild(bg3Image, this.data.people, bg2Image, tips, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport.sprite)
+      this.data.twoContainer.addChild(bg3Image, this.data.people, child, bg2Image, leftArrow.sprite, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport.sprite)
       setTimeout(() => {
         sport.play()
       }, 2000)
@@ -1460,8 +1488,6 @@
         const peopleX = scrollNumber + 50 * (1024 / this.data.screenInfo.w)
         // 设置小人的图片
         this.setPeopleImg(peopleX)
-        // 设置背景颜色
-        this.setBGC(peopleX)
         // console.log(scrollNumber)
         // 小球移动轨迹
         // console.log('sd')
@@ -1584,6 +1610,7 @@
       } else if (peopleX < 2530) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1980, 2386, peopleX, -0.0002)
       } else if (peopleX < 2679) {
+        this.data.app.renderer.backgroundColor = gradientColor2( '#c8c9c9', '#2a99a5', 15, Math.floor((2679 - peopleX) / 10))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1690, 2530, peopleX, 0.00015)
       } else if (peopleX < 3299) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1911, 2679, peopleX, 0.0006)
@@ -1596,6 +1623,7 @@
       } else if (peopleX < 4614) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4003, 4317, peopleX, 0.0005)
       } else if (peopleX < 4944) {
+        this.data.app.renderer.backgroundColor = gradientColor2( '#c8c9c9', '#59d3cb', 34, Math.floor((4944 - peopleX) / 10))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5582, 4614, peopleX, 0.00035)
       } else if (peopleX < 5084) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.673, 4944, peopleX, -0.0005)
@@ -1619,6 +1647,7 @@
         // console.log(peopleX, this.methods.smooth(0.7233, 6443, peopleX, 0.00008))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7233, 6443, peopleX, 0.00008)
       } else if (peopleX < 7042) {
+        this.data.app.renderer.backgroundColor = gradientColor2( '#c8c9c9', '#dccfbc', 37, Math.floor((7042 - peopleX) / 10))
         // console.log(peopleX, this.methods.smooth(0.7418, 6674, peopleX, -0.00001))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7418, 6443, peopleX, -0.00001)
       } else if (peopleX < 7356) {
@@ -1637,6 +1666,7 @@
         // console.log(peopleX, this.methods.smooth(0.4850, 7723, peopleX, 0.00005))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5268, 8143, peopleX, -0.00005)
       } else if (peopleX < 9303) {
+        this.data.app.renderer.backgroundColor = gradientColor2( '#c8c9c9', '#f6df60', 93, Math.floor((9303 - peopleX) / 10))
         // console.log(peopleX, this.methods.smooth(0.5178, 8383, peopleX, -0.00024))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5178, 8383, peopleX, -0.00024)
       } else if (peopleX < 10025) {
@@ -1656,8 +1686,11 @@
         if (peopleData < 0) {
           this.data.people.alpha = 0
         }
+        // 如果是前进姿态
         // console.log(peopleX, this.methods.smooth(0.4697, 10208, peopleX, -0.0008))
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4697, 10208, peopleX, -0.0008)
+        if (this.data.xMax > 10300 && peopleX < 10300 && this.data.app.renderer.backgroundColor !== '#cfdee5') {
+          this.data.app.renderer.backgroundColor = gradientColor2( '#cfdee5', '#c8c9c9', 10, Math.floor((10300 - peopleX) / 10))
+        }
         // 计算得到比率
         const pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w
         // console.log(pageIndex)
@@ -1677,15 +1710,6 @@
       const peopleID = Math.ceil(peopleX / this.data.screenInfo.w)
       if (this.data.peopleImgID !== peopleID) {
         this.data.peopleImgID = peopleID
-      }
-    },
-    setBGC: function (peopleX) {
-      const progressID = Math.ceil(peopleX / this.data.screenInfo.w)
-      if (this.data.progress < progressID) {
-        this.data.progress = progressID
-        
-        // gradientColor(this.data.app.renderer,'#fae768','#c8c9c9',10)
-        this.data.app.renderer.backgroundColor = '0xc8c9c9'
       }
     },
     // 移动屏幕鼠标事件
@@ -1983,6 +2007,10 @@
       opacity: 1;
     }
   }
+  @keyframes circle{
+      0%{ transform:rotate(0deg); }
+      100%{ transform:rotate(360deg); }
+  }
   .hand {
     width: 15%;
     height: 15%;
@@ -2041,5 +2069,21 @@
     font-weight: bold;
     font-family: Simsun;
     margin: 0 20px;
+  }
+  .music-box {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    .music-play {
+      animation-name: circle;
+      animation-duration: 5s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    img {
+      display: none;
+      width: 30px;
+      height: 30px;
+    }
   }
 </style>

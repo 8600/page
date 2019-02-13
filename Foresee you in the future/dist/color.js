@@ -25,6 +25,33 @@ function gradientColor(objs, startColor, endColor, step){
         
     }
 }
+
+function gradientColor2(startColor, endColor, step, index) {
+    console.log(startColor, endColor)
+    startRGB = colorRgb(startColor)
+    startR = startRGB[0];
+    startG = startRGB[1];
+    startB = startRGB[2];
+
+    endRGB = colorRgb(endColor);
+    endR = endRGB[0];
+    endG = endRGB[1];
+    endB = endRGB[2];
+
+    sR = (endR-startR)/step
+    sG = (endG-startG)/step
+    sB = (endB-startB)/step
+    for(var i = 0; i < step; i++){
+        const color = colorRGB2Hex(colorHex('rgb('+parseInt((sR*i+startR))+','+parseInt((sG*i+startG))+','+parseInt((sB*i+startB))+')'));
+        //计算每一步的hex值
+        // console.log(i, index)
+        if (i == index) {
+            return color
+        }
+        
+    }
+    return '#c8c9c9'
+}
 function colorRGB2Hex(color) {
     var rgb = color.split(',');
     var r = parseInt(rgb[0].split('(')[1]);

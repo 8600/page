@@ -138,6 +138,14 @@ body {
     opacity: 1
   }
 }
+@keyframes circle {
+  0% {
+    transform: rotate(0)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
 .ox-voice .hand {
   width: 15%;
   height: 15%;
@@ -197,4 +205,20 @@ body {
   font-weight: 700;
   font-family: Simsun;
   margin: 0 20px
+}
+.ox-voice .music-box {
+  position: fixed;
+  right: 10px;
+  top: 10px
+}
+.ox-voice .music-box .music-play {
+  animation-name: circle;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite
+}
+.ox-voice .music-box img {
+  display: none;
+  width: 30px;
+  height: 30px
 }
