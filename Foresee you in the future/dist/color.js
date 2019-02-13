@@ -1,6 +1,6 @@
 
 function gradientColor(objs, startColor, endColor, step){
-    console.log(startColor, endColor)
+    // console.log(startColor, endColor)
     startRGB = colorRgb(startColor)
     startR = startRGB[0];
     startG = startRGB[1];
@@ -27,7 +27,7 @@ function gradientColor(objs, startColor, endColor, step){
 }
 
 function gradientColor2(startColor, endColor, step, index) {
-    console.log(startColor, endColor)
+    // console.log(startColor, endColor)
     startRGB = colorRgb(startColor)
     startR = startRGB[0];
     startG = startRGB[1];

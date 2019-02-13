@@ -1560,7 +1560,7 @@ window.ozzx.script = {
     "setPeopleY": function setPeopleY(X) {
       // 当时是在屏幕分辨率为1024*768做的 所以要计算换算为真实屏幕
       // console.log(peopleX / this.data.screenInfo.w)
-      peopleX = X * (1024 / this.data.screenInfo.w);
+      var peopleX = X * (1024 / this.data.screenInfo.w);
       var pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w; // 记录最大到达的点
 
       if (this.data.xMax < peopleX) this.data.xMax = peopleX; // console.log(pageIndex, this.data.progress)
@@ -1656,7 +1656,10 @@ window.ozzx.script = {
       } else if (peopleX < 2530) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1980, 2386, peopleX, -0.0002);
       } else if (peopleX < 2679) {
-        this.data.app.renderer.backgroundColor = gradientColor2('#c8c9c9', '#2a99a5', 15, Math.floor((2679 - peopleX) / 10));
+        var startColor = '#c8c9c9'; // 根据前进还是后退做不同处理 倒退的时候没有灰色
+
+        if (this.data.xMax > 3299) startColor = '#59d3cb';
+        this.data.app.renderer.backgroundColor = gradientColor2(startColor, '#2a99a5', 15, Math.floor((2679 - peopleX) / 10));
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1690, 2530, peopleX, 0.00015);
       } else if (peopleX < 3299) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.1911, 2679, peopleX, 0.0006);
@@ -1669,7 +1672,10 @@ window.ozzx.script = {
       } else if (peopleX < 4614) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4003, 4317, peopleX, 0.0005);
       } else if (peopleX < 4944) {
-        this.data.app.renderer.backgroundColor = gradientColor2('#c8c9c9', '#59d3cb', 34, Math.floor((4944 - peopleX) / 10));
+        var _startColor = '#c8c9c9'; // 根据前进还是后退做不同处理 倒退的时候没有灰色
+
+        if (this.data.xMax > 5084) _startColor = '#dccfbc';
+        this.data.app.renderer.backgroundColor = gradientColor2(_startColor, '#59d3cb', 34, Math.floor((4944 - peopleX) / 10));
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5582, 4614, peopleX, 0.00035);
       } else if (peopleX < 5084) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.673, 4944, peopleX, -0.0005);
@@ -1693,7 +1699,10 @@ window.ozzx.script = {
         // console.log(peopleX, this.methods.smooth(0.7233, 6443, peopleX, 0.00008))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7233, 6443, peopleX, 0.00008);
       } else if (peopleX < 7042) {
-        this.data.app.renderer.backgroundColor = gradientColor2('#c8c9c9', '#dccfbc', 37, Math.floor((7042 - peopleX) / 10)); // console.log(peopleX, this.methods.smooth(0.7418, 6674, peopleX, -0.00001))
+        var _startColor2 = '#c8c9c9'; // 根据前进还是后退做不同处理 倒退的时候没有灰色
+
+        if (this.data.xMax > 7356) _startColor2 = '#f6df60';
+        this.data.app.renderer.backgroundColor = gradientColor2(_startColor2, '#dccfbc', 37, Math.floor((7042 - peopleX) / 10)); // console.log(peopleX, this.methods.smooth(0.7418, 6674, peopleX, -0.00001))
 
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7418, 6443, peopleX, -0.00001);
       } else if (peopleX < 7356) {
@@ -1712,7 +1721,10 @@ window.ozzx.script = {
         // console.log(peopleX, this.methods.smooth(0.4850, 7723, peopleX, 0.00005))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5268, 8143, peopleX, -0.00005);
       } else if (peopleX < 9303) {
-        this.data.app.renderer.backgroundColor = gradientColor2('#c8c9c9', '#f6df60', 93, Math.floor((9303 - peopleX) / 10)); // console.log(peopleX, this.methods.smooth(0.5178, 8383, peopleX, -0.00024))
+        var _startColor3 = '#c8c9c9'; // 根据前进还是后退做不同处理 倒退的时候没有灰色
+
+        if (this.data.xMax > 10025) _startColor3 = '#cfdee5';
+        this.data.app.renderer.backgroundColor = gradientColor2(_startColor3, '#f6df60', 93, Math.floor((9303 - peopleX) / 10)); // console.log(peopleX, this.methods.smooth(0.5178, 8383, peopleX, -0.00024))
 
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5178, 8383, peopleX, -0.00024);
       } else if (peopleX < 10025) {
@@ -1736,11 +1748,10 @@ window.ozzx.script = {
           this.data.people.alpha = 0;
         } // 如果是前进姿态
         // console.log(peopleX, this.methods.smooth(0.4697, 10208, peopleX, -0.0008))
-
-
-        if (this.data.xMax > 10300 && peopleX < 10300 && this.data.app.renderer.backgroundColor !== '#cfdee5') {
-          this.data.app.renderer.backgroundColor = gradientColor2('#cfdee5', '#c8c9c9', 10, Math.floor((10300 - peopleX) / 10));
-        } // 计算得到比率
+        // if (this.data.xMax > 10300 && peopleX < 10300 && this.data.app.renderer.backgroundColor !== '#cfdee5') {
+        //   this.data.app.renderer.backgroundColor = gradientColor2( '#cfdee5', '#c8c9c9', 10, Math.floor((10300 - peopleX) / 10))
+        // }
+        // 计算得到比率
 
 
         var _pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w; // console.log(pageIndex)
