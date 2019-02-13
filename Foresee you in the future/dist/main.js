@@ -189,6 +189,7 @@ window.ozzx.script = {
       "xMax": 0,
       "resources": null,
       "peopleIsMoveing": false,
+      "peopleCanMoveing": false,
       "imgArr": ["./images/1.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/people-1.png", "./images/people-2.png", "./images/people-3.png", "./images/people-4.png", "./images/people-5.png", "./images/people-6.png", "./images/people-7.png", "./images/people-8.png", "./images/people-9.png", "./images/people-10.png", "./images/people-11.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/4.png", "./images/5.png", "./images/6.png", "./images/7.png", "./images/8.png", "./images/9.png", "./images/10.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/showMore.png", "./images/showMore2.png", "./images/child.png", "./images/grass2.png", "./images/grass3.png", "./images/3-bubble.png", "./images/3-atom.png", "./images/3-flask.png", "./images/3-star.png", "./images/5-line.png", "./images/tree1.png", "./images/tree2.png", "./images/tree3.png", "./images/house1.png", "./images/house2.png", "./images/house3.png", "./images/house4.png", "./images/house5.png"],
       "mousedown": false,
       "animationList": {},
@@ -493,14 +494,17 @@ window.ozzx.script = {
 
       var peopleIndex = 16;
       setInterval(function () {
-        if (peopleIndex <= 0) {
-          peopleIndex = 16;
-        }
+        // 如果正在移动才切换小人材质
+        if (_this3.data.peopleIsMoveing) {
+          if (peopleIndex <= 0) {
+            peopleIndex = 16;
+          }
 
-        var groupID = _this3.data.peopleImgID > 9 ? 9 : _this3.data.peopleImgID;
-        var texture = PIXI.Texture.fromFrame("./images/".concat(groupID, "/").concat(peopleIndex, ".png"));
-        peopleIndex--;
-        _this3.data.people.texture = texture;
+          var groupID = _this3.data.peopleImgID > 9 ? 9 : _this3.data.peopleImgID;
+          var texture = PIXI.Texture.fromFrame("./images/".concat(groupID, "/").concat(peopleIndex, ".png"));
+          peopleIndex--;
+          _this3.data.people.texture = texture;
+        }
       }, 100); // 第二张背景图
 
       var bg2Image = this.methods.createSprite("./images/2.png", {
@@ -926,7 +930,7 @@ window.ozzx.script = {
 
 
         setTimeout(function () {
-          _this3.data.peopleIsMoveing = false;
+          _this3.data.peopleCanMoveing = false;
         }, 200);
       }); // 第五张光 比例1.6582
 
@@ -1144,7 +1148,7 @@ window.ozzx.script = {
 
 
         setTimeout(function () {
-          _this3.data.peopleIsMoveing = false;
+          _this3.data.peopleCanMoveing = false;
         }, 200);
       }); // 第七张图 比例:0.7421
 
@@ -1229,7 +1233,7 @@ window.ozzx.script = {
 
 
         setTimeout(function () {
-          _this3.data.peopleIsMoveing = false;
+          _this3.data.peopleCanMoveing = false;
         }, 200);
       }); // 第九张图 比例:1
 
@@ -1309,7 +1313,7 @@ window.ozzx.script = {
         }, 500); // 允许滚动
 
         setTimeout(function () {
-          _this3.data.peopleIsMoveing = false;
+          _this3.data.peopleCanMoveing = false;
         }, 200);
       }); // 第11张图 大柚子 比例:1
 
@@ -1463,7 +1467,7 @@ window.ozzx.script = {
 
 
         setTimeout(function () {
-          _this3.data.peopleIsMoveing = false;
+          _this3.data.peopleCanMoveing = false;
         }, 200);
       }); // 小人跳舞
 
@@ -1565,7 +1569,7 @@ window.ozzx.script = {
 
       if (this.data.xMax < peopleX) this.data.xMax = peopleX; // console.log(pageIndex, this.data.progress)
       // console.log(this.data.progress, this.data.xMax)
-      // console.log(this.data.peopleIsMoveing)
+      // console.log(this.data.peopleCanMoveing)
       // 第三幅图小人移动到光圈下
       // 1 - 1.52区域小人不接受移动指令
 
@@ -1574,9 +1578,6 @@ window.ozzx.script = {
         if (this.data.progress === 2) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove1(pageIndex);
-          return;
-        } else if (this.data.xMax < 1690) {
-          return;
         }
       }
 
@@ -1585,9 +1586,6 @@ window.ozzx.script = {
         if (this.data.progress === 4) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove2(pageIndex);
-          return;
-        } else if (this.data.xMax < 3450) {
-          return;
         }
       }
 
@@ -1596,9 +1594,6 @@ window.ozzx.script = {
         if (this.data.progress === 6) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove3(pageIndex);
-          return;
-        } else if (this.data.xMax < 5430) {
-          return;
         }
       }
 
@@ -1607,9 +1602,6 @@ window.ozzx.script = {
         if (this.data.progress === 8) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove4(pageIndex);
-          return;
-        } else if (this.data.xMax < 7648) {
-          return;
         }
       }
 
@@ -1618,9 +1610,6 @@ window.ozzx.script = {
         if (this.data.progress === 10) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove5(pageIndex);
-          return;
-        } else if (this.data.xMax < 9700) {
-          return;
         }
       } // console.log(peopleX)
 
@@ -1779,17 +1768,28 @@ window.ozzx.script = {
     "mouseEvent": function mouseEvent() {
       var _this5 = this;
 
+      // console.log(this.data.scroller)
+      // 小人移动结束事件
+      this.data.scroller.options.scrollingComplete = function (e) {
+        console.log('小人移动结束!');
+
+        if (!_this5.data.peopleCanMoveing) {
+          _this5.data.peopleIsMoveing = false;
+        }
+      };
+
       $('canvas')[0].addEventListener("touchstart", function (e) {
-        // 隐藏掉提示条
+        _this5.data.peopleIsMoveing = true; // 隐藏掉提示条
+
         _this5.domList.showTextBox.style.display = 'none';
-        if (_this5.data.peopleIsMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
         _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
 
         _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("touchmove", function (e) {
-        if (_this5.data.peopleIsMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
         if (!_this5.data.mousedown) {
           return;
@@ -1801,7 +1801,7 @@ window.ozzx.script = {
         _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("touchend", function (e) {
-        if (_this5.data.peopleIsMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
         if (!_this5.data.mousedown) {
           return;
@@ -1812,14 +1812,15 @@ window.ozzx.script = {
         _this5.data.mousedown = false;
       }, false);
       $('canvas')[0].addEventListener("mousedown", function (e) {
-        if (_this5.data.peopleIsMoveing) return;
+        _this5.data.peopleIsMoveing = true;
+        if (_this5.data.peopleCanMoveing) return;
 
         _this5.data.scroller.doTouchStart([e], e.timeStamp);
 
         _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mousemove", function (e) {
-        if (_this5.data.peopleIsMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
         if (!_this5.data.mousedown) {
           return;
@@ -1831,7 +1832,7 @@ window.ozzx.script = {
         _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mouseup", function (e) {
-        if (_this5.data.peopleIsMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
         if (!_this5.data.mousedown) {
           return;
@@ -1842,14 +1843,15 @@ window.ozzx.script = {
         _this5.data.mousedown = false;
       }, false);
       $('#qr')[0].addEventListener("touchstart", function (e) {
-        if (_this5.data.peopleIsMoveing) return;
+        _this5.data.peopleIsMoveing = true;
+        if (_this5.data.peopleCanMoveing) return;
 
         _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
 
         _this5.data.mousedown = true;
       }, false);
       $('#qr')[0].addEventListener("touchmove", function (e) {
-        if (_this5.data.peopleIsMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
         if (!_this5.data.mousedown) {
           return;
@@ -1861,7 +1863,7 @@ window.ozzx.script = {
         _this5.data.mousedown = true;
       }, false);
       $('#qr')[0].addEventListener("touchend", function (e) {
-        if (_this5.data.peopleIsMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
         if (!_this5.data.mousedown) {
           return;
@@ -1880,12 +1882,12 @@ window.ozzx.script = {
       var _this6 = this;
 
       if (pageIndex === 1) {
-        if (this.data.progress < 3 && !this.data.peopleIsMoveing) {
-          this.data.peopleIsMoveing = true;
+        if (this.data.progress < 3 && !this.data.peopleCanMoveing) {
+          this.data.peopleCanMoveing = true;
 
           var _loop2 = function _loop2(i) {
             setTimeout(function () {
-              if (!_this6.data.peopleIsMoveing) return;
+              if (!_this6.data.peopleCanMoveing) return;
               _this6.data.people.x = _this6.data.screenInfo.w * (1.11 + i);
 
               if (i < 0.16) {
@@ -1908,12 +1910,12 @@ window.ozzx.script = {
 
       if (pageIndex === 3) {
         // console.log(this.data.progress)
-        if (this.data.progress < 5 && !this.data.peopleIsMoveing) {
-          this.data.peopleIsMoveing = true;
+        if (this.data.progress < 5 && !this.data.peopleCanMoveing) {
+          this.data.peopleCanMoveing = true;
 
           var _loop3 = function _loop3(i) {
             setTimeout(function () {
-              if (!_this7.data.peopleIsMoveing) return;
+              if (!_this7.data.peopleCanMoveing) return;
               _this7.data.people.x = _this7.data.screenInfo.w * (3.11 + i);
 
               if (i < 0.15) {
@@ -1937,12 +1939,12 @@ window.ozzx.script = {
 
       if (pageIndex === 5) {
         // console.log(this.data.progress)
-        if (this.data.progress < 7 && !this.data.peopleIsMoveing) {
-          this.data.peopleIsMoveing = true;
+        if (this.data.progress < 7 && !this.data.peopleCanMoveing) {
+          this.data.peopleCanMoveing = true;
 
           var _loop4 = function _loop4(i) {
             setTimeout(function () {
-              if (!_this8.data.peopleIsMoveing) return;
+              if (!_this8.data.peopleCanMoveing) return;
               _this8.data.people.x = _this8.data.screenInfo.w * (5.11 + i);
 
               if (i < 0.15) {
@@ -1962,12 +1964,12 @@ window.ozzx.script = {
 
       if (pageIndex === 7) {
         // console.log(this.data.progress)
-        if (this.data.progress < 9 && !this.data.peopleIsMoveing) {
-          this.data.peopleIsMoveing = true;
+        if (this.data.progress < 9 && !this.data.peopleCanMoveing) {
+          this.data.peopleCanMoveing = true;
 
           var _loop5 = function _loop5(i) {
             setTimeout(function () {
-              if (!_this9.data.peopleIsMoveing) return;
+              if (!_this9.data.peopleCanMoveing) return;
               _this9.data.people.x = _this9.data.screenInfo.w * (7.11 + i);
 
               if (i < 0.16) {
@@ -1989,12 +1991,12 @@ window.ozzx.script = {
 
       if (pageIndex === 9) {
         // console.log(this.data.progress)
-        if (this.data.progress < 11 && !this.data.peopleIsMoveing) {
-          this.data.peopleIsMoveing = true;
+        if (this.data.progress < 11 && !this.data.peopleCanMoveing) {
+          this.data.peopleCanMoveing = true;
 
           var _loop6 = function _loop6(i) {
             setTimeout(function () {
-              if (!_this10.data.peopleIsMoveing) return;
+              if (!_this10.data.peopleCanMoveing) return;
               _this10.data.people.x = _this10.data.screenInfo.w * (9.11 + i);
 
               if (i < 0.10) {

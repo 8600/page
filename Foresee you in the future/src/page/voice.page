@@ -50,6 +50,7 @@
       resources: null,
       // 小人正在移动
       peopleIsMoveing: false,
+      peopleCanMoveing: false,
       imgArr: [
         './images/1.png',
         './images/3-colour.png',
@@ -540,13 +541,16 @@
       // 不断地切换小人的皮肤
       let peopleIndex = 16
       setInterval(() => {
-        if (peopleIndex <= 0) {
-          peopleIndex = 16
+        // 如果正在移动才切换小人材质
+        if (this.data.peopleIsMoveing) {
+          if (peopleIndex <= 0) {
+            peopleIndex = 16
+          }
+          const groupID = this.data.peopleImgID > 9 ? 9 : this.data.peopleImgID
+          const texture = PIXI.Texture.fromFrame(`./images/${groupID}/${peopleIndex}.png`)
+          peopleIndex--
+          this.data.people.texture = texture
         }
-        const groupID = this.data.peopleImgID > 9 ? 9 : this.data.peopleImgID
-        const texture = PIXI.Texture.fromFrame(`./images/${groupID}/${peopleIndex}.png`)
-        peopleIndex--
-        this.data.people.texture = texture
       }, 100)
       // 第二张背景图
       const bg2Image = this.methods.createSprite("./images/2.png",{
@@ -971,7 +975,7 @@
         this.setShowPageNumber(4)
         // 允许滚动
         setTimeout(() => {
-          this.data.peopleIsMoveing = false
+          this.data.peopleCanMoveing = false
         }, 200)
       })
 
@@ -1156,7 +1160,7 @@
         this.data.twoContainer.addChild(bg5Line, house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore)
         // 允许滚动
         setTimeout(() => {
-          this.data.peopleIsMoveing = false
+          this.data.peopleCanMoveing = false
         }, 200)
       })
 
@@ -1233,7 +1237,7 @@
         this.data.twoContainer.addChild(support.sprite, showMore)
         // 允许滚动
         setTimeout(() => {
-          this.data.peopleIsMoveing = false
+          this.data.peopleCanMoveing = false
         }, 200)
       })
 
@@ -1310,7 +1314,7 @@
         }, 500)
         // 允许滚动
         setTimeout(() => {
-          this.data.peopleIsMoveing = false
+          this.data.peopleCanMoveing = false
         }, 200)
       })
 
@@ -1446,7 +1450,7 @@
         this.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore)
         // 允许滚动
         setTimeout(() => {
-          this.data.peopleIsMoveing = false
+          this.data.peopleCanMoveing = false
         }, 200)
       })
       // 小人跳舞
@@ -1540,7 +1544,7 @@
       if (this.data.xMax < peopleX) this.data.xMax = peopleX
       // console.log(pageIndex, this.data.progress)
       // console.log(this.data.progress, this.data.xMax)
-      // console.log(this.data.peopleIsMoveing)
+      // console.log(this.data.peopleCanMoveing)
       // 第三幅图小人移动到光圈下
       // 1 - 1.52区域小人不接受移动指令
       if (pageIndex >= 1 && pageIndex <= 1.52) {
@@ -1548,19 +1552,14 @@
         if (this.data.progress === 2) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove1(pageIndex)
-          return
-        } else if (this.data.xMax < 1690) {
-          return
         }
       }
       if (pageIndex >= 3 && pageIndex <= 3.5) {
+        
         // 保证返回的时候不会不流畅
         if (this.data.progress === 4) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove2(pageIndex)
-          return
-        } else if (this.data.xMax < 3450) {
-          return
         }
       }
       if (pageIndex >= 5 && pageIndex <= 5.3) {
@@ -1568,9 +1567,6 @@
         if (this.data.progress === 6) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove3(pageIndex)
-          return
-        } else if (this.data.xMax < 5430) {
-          return
         }
       }
       if (pageIndex >= 7 && pageIndex <= 7.5) {
@@ -1578,19 +1574,15 @@
         if (this.data.progress === 8) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove4(pageIndex)
-          return
-        } else if (this.data.xMax < 7648) {
-          return
         }
+        
       }
       if (pageIndex >= 9 && pageIndex <= 9.5) {
+        
         // 保证返回的时候不会不流畅
         if (this.data.progress === 10) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove5(pageIndex)
-          return
-        } else if (this.data.xMax < 9700) {
-          return
         }
       }
       // console.log(peopleX)
@@ -1741,16 +1733,25 @@
     },
     // 移动屏幕鼠标事件
     mouseEvent: function () {
+      // console.log(this.data.scroller)
+      // 小人移动结束事件
+      this.data.scroller.options.scrollingComplete = (e) => {
+        console.log('小人移动结束!')
+        if (!this.data.peopleCanMoveing) {
+          this.data.peopleIsMoveing = false
+        }
+      }
       $('canvas')[0].addEventListener("touchstart", (e) => {
+        this.data.peopleIsMoveing = true
         // 隐藏掉提示条
         this.domList.showTextBox.style.display = 'none'
-        if (this.data.peopleIsMoveing) return
+        if (this.data.peopleCanMoveing) return
         this.data.scroller.doTouchStart(e.touches, e.timeStamp)
         this.data.mousedown = true
       }, false)
 
       $('canvas')[0].addEventListener("touchmove", (e) => {
-        if (this.data.peopleIsMoveing) return
+        if (this.data.peopleCanMoveing) return
         if (!this.data.mousedown) {
           return
         }
@@ -1760,7 +1761,7 @@
       }, false);
 
       $('canvas')[0].addEventListener("touchend", (e) => {
-        if (this.data.peopleIsMoveing) return
+        if (this.data.peopleCanMoveing) return
         if (!this.data.mousedown) {
           return
         }
@@ -1768,13 +1769,14 @@
         this.data.mousedown = false
       }, false)
       $('canvas')[0].addEventListener("mousedown", (e) => {
-        if (this.data.peopleIsMoveing) return
+        this.data.peopleIsMoveing = true
+        if (this.data.peopleCanMoveing) return
         this.data.scroller.doTouchStart([e], e.timeStamp)
         this.data.mousedown = true
       }, false)
 
       $('canvas')[0].addEventListener("mousemove", (e) => {
-        if (this.data.peopleIsMoveing) return
+        if (this.data.peopleCanMoveing) return
         if (!this.data.mousedown) {
           return
         }
@@ -1784,7 +1786,7 @@
       }, false);
 
       $('canvas')[0].addEventListener("mouseup", (e) => {
-        if (this.data.peopleIsMoveing) return
+        if (this.data.peopleCanMoveing) return
         if (!this.data.mousedown) {
           return
         }
@@ -1792,13 +1794,14 @@
         this.data.mousedown = false
       }, false)
       $('#qr')[0].addEventListener("touchstart", (e) => {
-        if (this.data.peopleIsMoveing) return
+        this.data.peopleIsMoveing = true
+        if (this.data.peopleCanMoveing) return
         this.data.scroller.doTouchStart(e.touches, e.timeStamp)
         this.data.mousedown = true
       }, false)
 
       $('#qr')[0].addEventListener("touchmove", (e) => {
-        if (this.data.peopleIsMoveing) return
+        if (this.data.peopleCanMoveing) return
         if (!this.data.mousedown) {
           return
         }
@@ -1808,7 +1811,7 @@
       }, false);
 
       $('#qr')[0].addEventListener("touchend", (e) => {
-        if (this.data.peopleIsMoveing) return
+        if (this.data.peopleCanMoveing) return
         if (!this.data.mousedown) {
           return
         }
@@ -1823,11 +1826,11 @@
     // 图三处小人自发移动
     peopleMove1: function (pageIndex) {
       if (pageIndex === 1) {
-        if (this.data.progress < 3 && !this.data.peopleIsMoveing) {
-          this.data.peopleIsMoveing = true
+        if (this.data.progress < 3 && !this.data.peopleCanMoveing) {
+          this.data.peopleCanMoveing = true
           for (let i = 0; i < 0.52; i+= 0.005) {
             setTimeout(() => {
-              if (!this.data.peopleIsMoveing) return
+              if (!this.data.peopleCanMoveing) return
               this.data.people.x = this.data.screenInfo.w * (1.11 + i)
               if (i < 0.16) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.22, 0, i * 1000, 0.0003)
@@ -1844,11 +1847,11 @@
     peopleMove2: function (pageIndex) {
       if (pageIndex === 3) {
         // console.log(this.data.progress)
-        if (this.data.progress < 5 && !this.data.peopleIsMoveing) {
-          this.data.peopleIsMoveing = true
+        if (this.data.progress < 5 && !this.data.peopleCanMoveing) {
+          this.data.peopleCanMoveing = true
           for (let i = 0; i < 0.5; i+= 0.005) {
             setTimeout(() => {
-              if (!this.data.peopleIsMoveing) return
+              if (!this.data.peopleCanMoveing) return
               this.data.people.x = this.data.screenInfo.w * (3.11 + i)
               if (i < 0.15) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5, 0, i * 1000, 0.0004)
@@ -1868,11 +1871,11 @@
     peopleMove3: function (pageIndex) {
       if (pageIndex === 5) {
         // console.log(this.data.progress)
-        if (this.data.progress < 7 && !this.data.peopleIsMoveing) {
-          this.data.peopleIsMoveing = true
+        if (this.data.progress < 7 && !this.data.peopleCanMoveing) {
+          this.data.peopleCanMoveing = true
           for (let i = 0; i < 0.2; i += 0.005) {
             setTimeout(() => {
-              if (!this.data.peopleIsMoveing) return
+              if (!this.data.peopleCanMoveing) return
               this.data.people.x = this.data.screenInfo.w * (5.11 + i)
               if (i < 0.15) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.48, 0, i * 1000, -0.0008)
@@ -1885,11 +1888,11 @@
     peopleMove4: function (pageIndex) {
       if (pageIndex === 7) {
         // console.log(this.data.progress)
-        if (this.data.progress < 9 && !this.data.peopleIsMoveing) {
-          this.data.peopleIsMoveing = true
+        if (this.data.progress < 9 && !this.data.peopleCanMoveing) {
+          this.data.peopleCanMoveing = true
           for (let i = 0; i < 0.36; i += 0.005) {
             setTimeout(() => {
-              if (!this.data.peopleIsMoveing) return
+              if (!this.data.peopleCanMoveing) return
               this.data.people.x = this.data.screenInfo.w * (7.11 + i)
               if (i < 0.16) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7, 0, i * 1000, -0.0007)
@@ -1905,11 +1908,11 @@
     peopleMove5: function (pageIndex) {
       if (pageIndex === 9) {
         // console.log(this.data.progress)
-        if (this.data.progress < 11 && !this.data.peopleIsMoveing) {
-          this.data.peopleIsMoveing = true
+        if (this.data.progress < 11 && !this.data.peopleCanMoveing) {
+          this.data.peopleCanMoveing = true
           for (let i = 0; i < 0.36; i += 0.005) {
             setTimeout(() => {
-              if (!this.data.peopleIsMoveing) return
+              if (!this.data.peopleCanMoveing) return
               this.data.people.x = this.data.screenInfo.w * (9.11 + i)
               if (i < 0.10) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3, 0, i * 1000, 0.0001)
