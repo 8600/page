@@ -550,7 +550,6 @@ class GIF{
           _ts.textures = gifDecodeData.textures;
           _ts.framesDelay = gifDecodeData.delayTimes;
           // _ts.play();
-
           // 返回精灵并将纹理材质设置为第一帧图像
           return new Sprite(_ts.textures[0]);
         },
@@ -619,57 +618,61 @@ class GIF{
    * @return {object} 返回一个对象，包括apng的每帧时长及解码出来材质
    */
   gifResourceToTextures(resource){
-      var _ts = this;
-      var obj = {
-              delayTimes:[],
-              textures:[]
-          },
-          buf = new Uint8Array(resource.data),
-          gif = new GifReader(buf),
-          gifWidth = gif.width,
-          gifHeight = gif.height,
-          gifFramesLen = gif.numFrames(),
-          gifFrameInfo,
-          
-          spriteSheet,
-          canvas,
-          ctx,
-          imageData;
+    console.time('testForEach')
+    var _ts = this;
+    var obj = {
+      delayTimes:[],
+      textures:[]
+    },
+    buf = new Uint8Array(resource.data),
+    gif = new GifReader(buf),
+    gifWidth = gif.width,
+    gifHeight = gif.height,
+    gifFramesLen = gif.numFrames(),
+    gifFrameInfo,
+    
+    spriteSheet,
+    canvas,
+    ctx,
+    imageData;
+  
+    
+    var last = null
+    for(var i = 0; i < gifFramesLen; i++) {
+      //得到每帧的信息并将帧延迟信息保存起来
+      gifFrameInfo = gif.frameInfo(i);
+      obj.delayTimes.push(gifFrameInfo.delay * 10);
+
+      canvas = document.createElement('canvas');
+      canvas.width = gifWidth;
+      canvas.height = gifHeight;
+      ctx = canvas.getContext('2d');
+      
+      //创建一块空白的ImageData对象
+      if (!this.__attr.overlying) {
+        imageData = ctx.createImageData(gifWidth, gifHeight)
+        // 将第一帧转换为RGBA值，将赋予到图像区
+        gif.decodeAndBlitFrameRGBA(i, imageData.data)
+      } else {
+        if (last == null) last = ctx.createImageData(gifWidth, gifHeight)
+        imageData = last
+        // 将第一帧转换为RGBA值，将赋予到图像区
+        gif.decodeAndBlitFrameRGBA(i, imageData.data)
+        last = imageData
+      }
       
       
-      var last = null
-      for(var i=0; i<gifFramesLen; i++){
-        //得到每帧的信息并将帧延迟信息保存起来
-        gifFrameInfo = gif.frameInfo(i);
-        obj.delayTimes.push(gifFrameInfo.delay * 10);
-
-        canvas = document.createElement('canvas');
-        canvas.width = gifWidth;
-        canvas.height = gifHeight;
-        ctx = canvas.getContext('2d');
-
-        //创建一块空白的ImageData对象
-        if (!this.__attr.overlying) {
-          imageData = ctx.createImageData(gifWidth, gifHeight)
-          // 将第一帧转换为RGBA值，将赋予到图像区
-          gif.decodeAndBlitFrameRGBA(i, imageData.data)
-        } else {
-          if (last == null) last = ctx.createImageData(gifWidth, gifHeight)
-          imageData = last
-          // 将第一帧转换为RGBA值，将赋予到图像区
-          gif.decodeAndBlitFrameRGBA(i, imageData.data)
-          last = imageData
-        }
-        
-        
-        // 将上面创建的图像数据放回到画面上
-        ctx.putImageData(imageData, 0, 0)
-        spriteSheet = new PIXI.BaseTexture.fromCanvas(canvas)
-        // console.log(imageData.data)
-        obj.textures.push(new PIXI.Texture(spriteSheet,new PIXI.Rectangle(0, 0, gifWidth, gifHeight)));
-      };
-      // document.body.appendChild(canvas);
-      return obj;
+      // 将上面创建的图像数据放回到画面上
+      ctx.putImageData(imageData, 0, 0)
+      
+      spriteSheet = new PIXI.BaseTexture.fromCanvas(canvas)
+      // console.log(imageData.data)
+      obj.textures.push(new PIXI.Texture(spriteSheet,new PIXI.Rectangle(0, 0, gifWidth, gifHeight)))
+      
+    };
+    console.timeEnd('testForEach')
+    // document.body.appendChild(canvas);
+    return obj
   }
 
 }

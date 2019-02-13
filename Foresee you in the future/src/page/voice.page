@@ -282,7 +282,7 @@
           // 资源加载完毕后显示one
           const progressDom = $('#progress')[0]
           if (progressDom) {
-            progressDom.innerText = parseInt(e.progress) + '%'
+            progressDom.innerText = parseInt(e.progress) + '  %'
           }
         }
       )
@@ -915,7 +915,7 @@
         this.addBind(showMore, () => {
           setTimeout(() => {
             this.domList.showTextBox.style.left = "28%"
-            this.domList.showTextBox.style.top = "28%"
+            this.domList.showTextBox.style.top = "38%"
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
             this.domList.textBoxContent.innerText = '中国有你，你有未来。阳光普照，让个体生命怒放。'
@@ -930,8 +930,6 @@
         setTimeout(() => {
           this.data.peopleIsMoveing = false
         }, 200)
-        // 使小人在当前屏幕下移动不受限制
-        this.data.xMax = 1690
       })
 
       // 第五张光 比例1.6582
@@ -949,6 +947,15 @@
       // 第五张光 亮光触摸事件
       this.addBind(fiveLight, () => {
         bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png')
+
+        // 第五张背景图
+        const bg5Line = this.methods.createSprite("./images/5-line.png",{
+          width: this.data.screenInfo.w,
+          height: this.data.screenInfo.h,
+          x: this.data.screenInfo.w * 3,
+          y: 0
+        })
+
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#59d3cb',10)
         // 销毁动画
@@ -1103,13 +1110,11 @@
           }, 0)
         })
 
-        this.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore)
+        this.data.twoContainer.addChild(bg5Line, house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore)
         // 允许滚动
         setTimeout(() => {
           this.data.peopleIsMoveing = false
         }, 200)
-        // 使小人在当前屏幕下移动不受限制
-        this.data.xMax = 3450
       })
 
       // 第七张图 比例:0.7421
@@ -1187,8 +1192,6 @@
         setTimeout(() => {
           this.data.peopleIsMoveing = false
         }, 200)
-        // 使小人在当前屏幕下移动不受限制
-        this.data.xMax = 5430
       })
 
       // 第九张图 比例:1
@@ -1266,8 +1269,6 @@
         setTimeout(() => {
           this.data.peopleIsMoveing = false
         }, 200)
-        // 使小人在当前屏幕下移动不受限制
-        this.data.xMax = 7648
       })
 
       // 第11张图 大柚子 比例:1
@@ -1389,7 +1390,7 @@
 
 
         // 11-手托着地球 1.1212
-        const earthH = bodySize.h * 0.8
+        const earthH = bodySize.h * 0.7
         let earth = new GIF("./images/earth.gif", this.data.resources, true)
         earth.sprite.width = earthH * 1.22
         earth.sprite.height = earthH
@@ -1404,8 +1405,6 @@
         setTimeout(() => {
           this.data.peopleIsMoveing = false
         }, 200)
-        // 使小人在当前屏幕下移动不受限制
-        this.data.xMax = 9700
       })
       // 小人跳舞
       const sportH = bodySize.h * 0.2
@@ -1652,6 +1651,11 @@
         // console.log(peopleX, this.methods.smooth(0.5065, 10025, peopleX, -0.0002))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5065, 10025, peopleX, -0.0002)
       } else {
+        // 小人慢慢消失出现
+        const peopleData = this.methods.smooth(0, peopleX, 10208, 0.01)
+        if (peopleData < 0) {
+          this.data.people.alpha = 0
+        }
         // console.log(peopleX, this.methods.smooth(0.4697, 10208, peopleX, -0.0008))
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4697, 10208, peopleX, -0.0008)
         // 计算得到比率
@@ -1771,8 +1775,8 @@
         if (this.data.progress < 3 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true
           for (let i = 0; i < 0.52; i+= 0.005) {
-            if (!this.data.peopleIsMoveing) break
             setTimeout(() => {
+              if (!this.data.peopleIsMoveing) return
               this.data.people.x = this.data.screenInfo.w * (1.11 + i)
               if (i < 0.16) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.22, 0, i * 1000, 0.0003)
@@ -1792,8 +1796,8 @@
         if (this.data.progress < 5 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true
           for (let i = 0; i < 0.5; i+= 0.005) {
-            if (!this.data.peopleIsMoveing) break
             setTimeout(() => {
+              if (!this.data.peopleIsMoveing) return
               this.data.people.x = this.data.screenInfo.w * (3.11 + i)
               if (i < 0.15) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5, 0, i * 1000, 0.0004)
@@ -1816,8 +1820,8 @@
         if (this.data.progress < 7 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true
           for (let i = 0; i < 0.2; i += 0.005) {
-            if (!this.data.peopleIsMoveing) break
             setTimeout(() => {
+              if (!this.data.peopleIsMoveing) return
               this.data.people.x = this.data.screenInfo.w * (5.11 + i)
               if (i < 0.15) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.48, 0, i * 1000, -0.0008)
@@ -1833,8 +1837,8 @@
         if (this.data.progress < 9 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true
           for (let i = 0; i < 0.36; i += 0.005) {
-            if (!this.data.peopleIsMoveing) break
             setTimeout(() => {
+              if (!this.data.peopleIsMoveing) return
               this.data.people.x = this.data.screenInfo.w * (7.11 + i)
               if (i < 0.16) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7, 0, i * 1000, -0.0007)
@@ -1853,8 +1857,8 @@
         if (this.data.progress < 11 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true
           for (let i = 0; i < 0.36; i += 0.005) {
-            if (!this.data.peopleIsMoveing) break
             setTimeout(() => {
+              if (!this.data.peopleIsMoveing) return
               this.data.people.x = this.data.screenInfo.w * (9.11 + i)
               if (i < 0.10) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3, 0, i * 1000, 0.0001)

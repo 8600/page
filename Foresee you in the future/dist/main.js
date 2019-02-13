@@ -200,7 +200,7 @@ window.ozzx.script = {
       this.data.loader.add(this.data.imgArr).onProgress.add(function(e) {
         var progressDom = $('#progress')[0];
         if (progressDom) {
-          progressDom.innerText = parseInt(e.progress) + '%';
+          progressDom.innerText = parseInt(e.progress) + '  %';
         }
       });
       this.data.container = new PIXI.Container();
@@ -721,7 +721,7 @@ window.ozzx.script = {
         _this3.addBind(showMore, function() {
           setTimeout(function() {
             _this3.domList.showTextBox.style.left = "28%";
-            _this3.domList.showTextBox.style.top = "28%";
+            _this3.domList.showTextBox.style.top = "38%";
             _this3.domList.showTextBox.style.bottom = '';
             _this3.domList.showTextBox.style.right = '';
             _this3.domList.textBoxContent.innerText = '中国有你，你有未来。阳光普照，让个体生命怒放。';
@@ -733,7 +733,6 @@ window.ozzx.script = {
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
         }, 200);
-        _this3.data.xMax = 1690;
       });
       var fiveLightHeight = bodySize.h / 8;
       var fiveLight = this.methods.createSprite("./images/5-light.png", {
@@ -746,6 +745,12 @@ window.ozzx.script = {
       fiveLight.buttonMode = true;
       this.addBind(fiveLight, function() {
         bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png');
+        var bg5Line = _this3.methods.createSprite("./images/5-line.png", {
+          width: _this3.data.screenInfo.w,
+          height: _this3.data.screenInfo.h,
+          x: _this3.data.screenInfo.w * 3,
+          y: 0
+        });
         gradientColor(_this3.data.app.renderer, '#c8c9c9', '#59d3cb', 10);
         fiveLightHeightAnimationList.kill();
         fiveLight.destroy();
@@ -897,11 +902,10 @@ window.ozzx.script = {
             _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         });
-        _this3.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore);
+        _this3.data.twoContainer.addChild(bg5Line, house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore);
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
         }, 200);
-        _this3.data.xMax = 3450;
       });
       var sevenLightHeight = bodySize.h / 5;
       var sevenLight = this.methods.createSprite("./images/7-light.png", {
@@ -968,7 +972,6 @@ window.ozzx.script = {
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
         }, 200);
-        _this3.data.xMax = 5430;
       });
       var Light9Height = bodySize.h / 5;
       var Light9 = this.methods.createSprite("./images/9-light.png", {
@@ -1029,7 +1032,6 @@ window.ozzx.script = {
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
         }, 200);
-        _this3.data.xMax = 7648;
       });
       var Light11Height = bodySize.h / 1.5;
       var Light11 = this.methods.createSprite("./images/11-light.png", {
@@ -1137,7 +1139,7 @@ window.ozzx.script = {
             _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         });
-        var earthH = bodySize.h * 0.8;
+        var earthH = bodySize.h * 0.7;
         var earth = new GIF("./images/earth.gif", _this3.data.resources, true);
         earth.sprite.width = earthH * 1.22;
         earth.sprite.height = earthH;
@@ -1150,7 +1152,6 @@ window.ozzx.script = {
         setTimeout(function() {
           _this3.data.peopleIsMoveing = false;
         }, 200);
-        _this3.data.xMax = 9700;
       });
       var sportH = bodySize.h * 0.2;
       var sport = new GIF("./images/sport.gif", this.data.resources);
@@ -1355,6 +1356,10 @@ window.ozzx.script = {
         }
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5065, 10025, peopleX, -0.0002);
       } else {
+        var _peopleData = this.methods.smooth(0, peopleX, 10208, 0.01);
+        if (_peopleData < 0) {
+          this.data.people.alpha = 0;
+        }
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4697, 10208, peopleX, -0.0008);
         var _pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w;
         if (_pageIndex === 10) {
@@ -1455,8 +1460,8 @@ window.ozzx.script = {
         if (this.data.progress < 3 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true;
           var _loop2 = function _loop2(i) {
-            if (!_this6.data.peopleIsMoveing) return "break";
             setTimeout(function() {
+              if (!_this6.data.peopleIsMoveing) return;
               _this6.data.people.x = _this6.data.screenInfo.w * (1.11 + i);
               if (i < 0.16) {
                 _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.22, 0, i * 1000, 0.0003);
@@ -1466,8 +1471,7 @@ window.ozzx.script = {
             }, i * 4000);
           };
           for (var i = 0; i < 0.52; i += 0.005) {
-            var _ret = _loop2(i);
-            if (_ret === "break") break;
+            _loop2(i);
           }
         }
       }
@@ -1478,8 +1482,8 @@ window.ozzx.script = {
         if (this.data.progress < 5 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true;
           var _loop3 = function _loop3(i) {
-            if (!_this7.data.peopleIsMoveing) return "break";
             setTimeout(function() {
+              if (!_this7.data.peopleIsMoveing) return;
               _this7.data.people.x = _this7.data.screenInfo.w * (3.11 + i);
               if (i < 0.15) {
                 _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.5, 0, i * 1000, 0.0004);
@@ -1491,8 +1495,7 @@ window.ozzx.script = {
             }, i * 4000);
           };
           for (var i = 0; i < 0.5; i += 0.005) {
-            var _ret2 = _loop3(i);
-            if (_ret2 === "break") break;
+            _loop3(i);
           }
         }
       }
@@ -1503,8 +1506,8 @@ window.ozzx.script = {
         if (this.data.progress < 7 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true;
           var _loop4 = function _loop4(i) {
-            if (!_this8.data.peopleIsMoveing) return "break";
             setTimeout(function() {
+              if (!_this8.data.peopleIsMoveing) return;
               _this8.data.people.x = _this8.data.screenInfo.w * (5.11 + i);
               if (i < 0.15) {
                 _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.48, 0, i * 1000, -0.0008);
@@ -1512,8 +1515,7 @@ window.ozzx.script = {
             }, i * 4000);
           };
           for (var i = 0; i < 0.2; i += 0.005) {
-            var _ret3 = _loop4(i);
-            if (_ret3 === "break") break;
+            _loop4(i);
           }
         }
       }
@@ -1524,8 +1526,8 @@ window.ozzx.script = {
         if (this.data.progress < 9 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true;
           var _loop5 = function _loop5(i) {
-            if (!_this9.data.peopleIsMoveing) return "break";
             setTimeout(function() {
+              if (!_this9.data.peopleIsMoveing) return;
               _this9.data.people.x = _this9.data.screenInfo.w * (7.11 + i);
               if (i < 0.16) {
                 _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.7, 0, i * 1000, -0.0007);
@@ -1535,8 +1537,7 @@ window.ozzx.script = {
             }, i * 4000);
           };
           for (var i = 0; i < 0.36; i += 0.005) {
-            var _ret4 = _loop5(i);
-            if (_ret4 === "break") break;
+            _loop5(i);
           }
         }
       }
@@ -1547,8 +1548,8 @@ window.ozzx.script = {
         if (this.data.progress < 11 && !this.data.peopleIsMoveing) {
           this.data.peopleIsMoveing = true;
           var _loop6 = function _loop6(i) {
-            if (!_this10.data.peopleIsMoveing) return "break";
             setTimeout(function() {
+              if (!_this10.data.peopleIsMoveing) return;
               _this10.data.people.x = _this10.data.screenInfo.w * (9.11 + i);
               if (i < 0.10) {
                 _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.3, 0, i * 1000, 0.0001);
@@ -1558,8 +1559,7 @@ window.ozzx.script = {
             }, i * 4000);
           };
           for (var i = 0; i < 0.36; i += 0.005) {
-            var _ret5 = _loop6(i);
-            if (_ret5 === "break") break;
+            _loop6(i);
           }
         }
       }
