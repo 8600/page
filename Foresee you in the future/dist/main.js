@@ -947,9 +947,9 @@ window.ozzx.script = {
         cloud7AnimationList.play();
         var supportH = bodySize.h * 0.7;
         var support = new GIF("./images/support.gif", _this3.data.resources);
-        support.sprite.width = supportH * 0.8624;
+        support.sprite.width = supportH * 0.8511;
         support.sprite.height = supportH;
-        support.sprite.x = bodySize.w * 5 - supportH * 0.9223 / 2 + bodySize.w * 0.5;
+        support.sprite.x = bodySize.w * 5 - supportH * 0.8511 / 2 + bodySize.w * 0.5;
         support.sprite.y = bodySize.h;
         var supportAnimationList = TweenMax.fromTo(support.sprite, 1.5, {
           y: bodySize.h

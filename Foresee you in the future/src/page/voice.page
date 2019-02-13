@@ -1177,12 +1177,12 @@
         })
         cloud7AnimationList.play()
 
-        // 从下面生出政府的手 0.8624
+        // 从下面生出政府的手 0.8511
         const supportH = bodySize.h * 0.7
         let support = new GIF("./images/support.gif", this.data.resources)
-        support.sprite.width = supportH * 0.8624
+        support.sprite.width = supportH * 0.8511
         support.sprite.height = supportH
-        support.sprite.x = bodySize.w * 5 - (supportH * 0.9223 / 2) + bodySize.w * 0.5
+        support.sprite.x = bodySize.w * 5 - (supportH * 0.8511 / 2) + bodySize.w * 0.5
         support.sprite.y = bodySize.h
         const supportAnimationList = TweenMax.fromTo(support.sprite, 1.5, {y: bodySize.h},{y: bodySize.h - supportH})
         supportAnimationList.play()
