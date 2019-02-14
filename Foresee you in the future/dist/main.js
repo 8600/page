@@ -1366,7 +1366,7 @@ window.ozzx.script = {
               _this4.data.peopleCanMoveing = false;
               _this4.data.clickPeopleRunning = false;
             }
-          }, i * 4000 - 800);
+          }, i * 2000 - 400);
         };
 
         for (var i = 0.2; i < 0.72; i += 0.005) {
