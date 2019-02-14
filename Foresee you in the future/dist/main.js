@@ -522,7 +522,7 @@ window.ozzx.script = {
         x: bodySize.w * 0.6 - leftArrowH / 2,
         y: bodySize.h * 0.4 - leftArrowH / 2
       });
-      var leftArrowA = TweenMax.fromTo(leftArrow, 4, {
+      var leftArrowA = TweenMax.fromTo(leftArrow, 2, {
         x: bodySize.w * 0.6 - leftArrowH / 2
       }, {
         x: bodySize.w * 0.43 - leftArrowH / 2
@@ -898,12 +898,12 @@ window.ozzx.script = {
           y: bodySize.h * 0.18
         }).repeat(0);
         atomStartA.play();
-        var atomAnimationList = TweenMax.fromTo(atom.scale, 1, {
+        var atomAnimationList = TweenMax.fromTo(atom.scale, 2, {
           x: 0.4,
           y: 0.4
         }, {
-          x: 0.5,
-          y: 0.5
+          x: 0.6,
+          y: 0.6
         }).repeat(-1);
         atomAnimationList.play(); // 烧瓶
 
@@ -1774,13 +1774,13 @@ window.ozzx.script = {
         }
       }
 
-      if (pageIndex >= 9 && pageIndex <= 9.85) {
+      if (pageIndex >= 9 && pageIndex <= 9.8) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 10) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove5(pageIndex);
           return;
-        } else if (this.data.xMax < 10205) {
+        } else if (this.data.xMax < 10005) {
           return;
         }
       } // console.log(peopleX)

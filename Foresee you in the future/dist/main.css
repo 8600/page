@@ -42,8 +42,8 @@ body {
 }
 
 .ox-voice .loading-box .loading {
-  width: 355px;
-  height: 132px;
+  width: 275px;
+  height: 92px;
   position: absolute;
   left: 0;
   right: 0;
@@ -54,9 +54,9 @@ body {
 
 .ox-voice .loading-box .progress {
   text-align: center;
-  font-size: 25px;
+  font-size: 19px;
   color: #fff;
-  line-height: 50px;
+  line-height: 25px;
 }
 
 .ox-voice .loading-box img {

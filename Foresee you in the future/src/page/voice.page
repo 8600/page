@@ -568,7 +568,7 @@
         x: bodySize.w * 0.6 - (leftArrowH / 2),
         y: bodySize.h * 0.4 - (leftArrowH / 2)
       })
-      const leftArrowA = TweenMax.fromTo(leftArrow, 4, {x: bodySize.w * 0.6 - (leftArrowH / 2)},{x: bodySize.w * 0.43 - (leftArrowH / 2)}).repeat(-1)
+      const leftArrowA = TweenMax.fromTo(leftArrow, 2, {x: bodySize.w * 0.6 - (leftArrowH / 2)},{x: bodySize.w * 0.43 - (leftArrowH / 2)}).repeat(-1)
       leftArrowA.play()
       
       // 第三张背景图
@@ -931,7 +931,7 @@
         atom.anchor.y = 0.5
         const atomStartA = TweenMax.fromTo(atom, 0.6, {x: bodySize.w * 1.6, y: bodySize.h * 0.45}, {x: bodySize.w + bodySize.w * 0.42, y: bodySize.h * 0.18}).repeat(0)
         atomStartA.play()
-        const atomAnimationList = TweenMax.fromTo(atom.scale, 1, {x: 0.4, y: 0.4}, {x: 0.5, y: 0.5}).repeat(-1)
+        const atomAnimationList = TweenMax.fromTo(atom.scale, 2, {x: 0.4, y: 0.4}, {x: 0.6, y: 0.6}).repeat(-1)
         
         atomAnimationList.play()
 
@@ -1683,13 +1683,13 @@
           return
         }
       }
-      if (pageIndex >= 9 && pageIndex <= 9.85) {
+      if (pageIndex >= 9 && pageIndex <= 9.8) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 10) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove5(pageIndex)
           return
-        } else if (this.data.xMax < 10205) {
+        } else if (this.data.xMax < 10005) {
           return
         }
       }
@@ -2045,8 +2045,8 @@
     height: 100%;
     background: linear-gradient(to bottom right, #fb5747, #cc2a22);
     .loading {
-      width: 355px;
-      height: 132px;
+      width: 275px;
+      height: 92px;
       position: absolute;
       left: 0;
       right: 0;
@@ -2056,9 +2056,9 @@
     }
     .progress {
       text-align: center;
-      font-size: 25px;
+      font-size: 19px;
       color: #fff;
-      line-height: 50px;
+      line-height: 25px;
     }
     img {
       width: 100%;
