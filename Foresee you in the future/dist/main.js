@@ -884,8 +884,30 @@ window.ozzx.script = {
         });
         bubbleStartA.play(); // 设置可滚动的区域
 
-        _this4.setShowPageNumber(4); // 小孩想到的星星
+        _this4.setShowPageNumber(4); // 幻想的云彩 2.852
 
+
+        var fantasyH = bodySize.h * 0.48;
+
+        var fantasy = _this4.methods.createSprite("./images/3-fantasy.png", {
+          width: fantasyH * 2.852,
+          height: fantasyH,
+          x: bodySize.w * 1.22,
+          y: 0
+        });
+
+        var fantasyAnimationList = TweenMax.fromTo(bubble, 0.4, {
+          x: bodySize.w * 1.6,
+          width: 0,
+          y: bodySize.h * 0.45,
+          height: 0
+        }, {
+          x: bodySize.w * 1.22,
+          y: 0,
+          width: fantasyH * 2.852,
+          height: fantasyH
+        });
+        fantasyAnimationList.play(); // 小孩想到的星星
 
         var startH = bodySize.h * 0.45;
 
@@ -1028,7 +1050,7 @@ window.ozzx.script = {
           }, 0);
         });
 
-        _this4.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, star, showMore); // 3-小人继续移动 ssd
+        _this4.data.twoContainer.addChild(newbg3I, fantasy, thought, start, atom, bubble, flask, star, showMore); // 3-小人继续移动 ssd
 
 
         _this4.data.clickPeopleRunning = true;
