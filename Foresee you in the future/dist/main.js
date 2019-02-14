@@ -188,7 +188,6 @@ window.ozzx.script = {
       "peopleImgID": 1,
       "xMax": 0,
       "resources": null,
-      "peopleIsMoveing": false,
       "peopleCanMoveing": false,
       "imgArr": ["./images/1.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/people-1.png", "./images/people-2.png", "./images/people-3.png", "./images/people-4.png", "./images/people-5.png", "./images/people-6.png", "./images/people-7.png", "./images/people-8.png", "./images/people-9.png", "./images/people-10.png", "./images/people-11.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/4.png", "./images/5.png", "./images/6.png", "./images/7.png", "./images/8.png", "./images/9.png", "./images/10.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/showMore.png", "./images/showMore2.png", "./images/child.png", "./images/grass2.png", "./images/grass3.png", "./images/3-bubble.png", "./images/3-atom.png", "./images/3-flask.png", "./images/3-star.png", "./images/5-line.png", "./images/tree1.png", "./images/tree2.png", "./images/tree3.png", "./images/house1.png", "./images/house2.png", "./images/house3.png", "./images/house4.png", "./images/house5.png"],
       "mousedown": false,
@@ -346,7 +345,6 @@ window.ozzx.script = {
         return baseValue + (nowValue - minValue) * step;
       },
       "closeShowText": function closeShowText() {
-        // console.log('sd')
         this.domList.showTextBox.style.display = 'none';
       },
       "closeMusic": function closeMusic() {
@@ -496,16 +494,14 @@ window.ozzx.script = {
       var peopleIndex = 16;
       setInterval(function () {
         // 如果正在移动才切换小人材质
-        if (_this3.data.peopleIsMoveing) {
-          if (peopleIndex <= 0) {
-            peopleIndex = 16;
-          }
-
-          var groupID = _this3.data.peopleImgID > 9 ? 9 : _this3.data.peopleImgID;
-          var texture = PIXI.Texture.fromFrame("./images/".concat(groupID, "/").concat(peopleIndex, ".png"));
-          peopleIndex--;
-          _this3.data.people.texture = texture;
+        if (peopleIndex <= 0) {
+          peopleIndex = 16;
         }
+
+        var groupID = _this3.data.peopleImgID > 9 ? 9 : _this3.data.peopleImgID;
+        var texture = PIXI.Texture.fromFrame("./images/".concat(groupID, "/").concat(peopleIndex, ".png"));
+        peopleIndex--;
+        _this3.data.people.texture = texture;
       }, 100); // 第二张背景图
 
       var bg2Image = this.methods.createSprite("./images/2.png", {
@@ -924,15 +920,31 @@ window.ozzx.script = {
           }, 0);
         });
 
-        _this3.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, star, showMore); // 设置可滚动的区域
+        _this3.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, star, showMore); // 3-小人继续移动 ssd
 
 
-        _this3.setShowPageNumber(4); // 允许滚动
+        var _loop2 = function _loop2(i) {
+          setTimeout(function () {
+            _this3.data.people.x = _this3.data.screenInfo.w * (1.11 + i);
+
+            if (i < 0.75) {
+              // this.data.people.x = this.data.screenInfo.w * (1.11 + i)
+              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.6242, 199.7, i * 1000, 0.00002);
+            } else {
+              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.6351, 690.233, i * 1000, -0.0006);
+            } // 允许滚动
 
 
-        setTimeout(function () {
-          _this3.data.peopleCanMoveing = false;
-        }, 200);
+            if (i >= 0.84) _this3.data.peopleCanMoveing = false;
+          }, i * 4000 - 2300);
+        };
+
+        for (var i = 0.407; i < 0.85; i += 0.01) {
+          _loop2(i);
+        } // 设置可滚动的区域
+
+
+        _this3.setShowPageNumber(4);
       }); // 第五张光 比例1.6582
 
       var fiveLightHeight = bodySize.h / 8;
@@ -1145,12 +1157,21 @@ window.ozzx.script = {
           }, 0);
         });
 
-        _this3.data.twoContainer.addChild(bg5Line, house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore); // 允许滚动
+        _this3.data.twoContainer.addChild(bg5Line, house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore); // 5-小人继续移动
 
 
-        setTimeout(function () {
-          _this3.data.peopleCanMoveing = false;
-        }, 200);
+        var _loop3 = function _loop3(i) {
+          setTimeout(function () {
+            _this3.data.people.x = _this3.data.screenInfo.w * (3.11 + i);
+            _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.3737, 0, i * 1000, -0.00006); // 允许滚动
+
+            if (i >= 0.7) _this3.data.peopleCanMoveing = false;
+          }, i * 4000 - 2000);
+        };
+
+        for (var i = 0.52; i < 0.72; i += 0.005) {
+          _loop3(i);
+        }
       }); // 第七张图 比例:0.7421
 
       var sevenLightHeight = bodySize.h / 5;
@@ -1464,12 +1485,21 @@ window.ozzx.script = {
           earth.play();
         }, 500);
 
-        _this3.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore); // 允许滚动
+        _this3.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore); // 13-小人继续移动
 
 
-        setTimeout(function () {
-          _this3.data.peopleCanMoveing = false;
-        }, 200);
+        var _loop4 = function _loop4(i) {
+          setTimeout(function () {
+            _this3.data.people.x = _this3.data.screenInfo.w * (9.11 + i);
+            _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.407, 0, i * 1000, 0.00012); // 允许滚动
+
+            if (i >= 0.7) _this3.data.peopleCanMoveing = false;
+          }, i * 4000 - 2000);
+        };
+
+        for (var i = 0.407; i < 0.75; i += 0.005) {
+          _loop4(i);
+        }
       }); // 小人跳舞
 
       var sportH = bodySize.h * 0.2;
@@ -1569,29 +1599,30 @@ window.ozzx.script = {
       var pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w; // 记录最大到达的点
 
       if (this.data.xMax < peopleX) this.data.xMax = peopleX; // console.log(pageIndex, this.data.progress)
-      // console.log(this.data.progress, this.data.xMax)
+      // console.log(pageIndex, this.data.xMax + this.data.screenInfo.w * 1.11)
       // console.log(this.data.peopleCanMoveing)
       // 第三幅图小人移动到光圈下
       // 1 - 1.52区域小人不接受移动指令
 
-      if (pageIndex >= 1 && pageIndex <= 1.58) {
+      if (pageIndex >= 1 && pageIndex <= 1.9) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 2) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove1(pageIndex);
           return;
-        } else if (this.data.xMax < 1710) {
+        } else if (this.data.xMax < 2210) {
           return;
         }
-      }
+      } // sdd
 
-      if (pageIndex >= 3 && pageIndex <= 3.52) {
+
+      if (pageIndex >= 3 && pageIndex <= 3.78) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 4) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove2(pageIndex);
           return;
-        } else if (this.data.xMax < 3750) {
+        } else if (this.data.xMax < 4050) {
           return;
         }
       }
@@ -1618,13 +1649,13 @@ window.ozzx.script = {
         }
       }
 
-      if (pageIndex >= 9 && pageIndex <= 9.5) {
+      if (pageIndex >= 9 && pageIndex <= 9.85) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 10) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove5(pageIndex);
           return;
-        } else if (this.data.xMax < 9700) {
+        } else if (this.data.xMax < 11000) {
           return;
         }
       } // console.log(peopleX)
@@ -1789,18 +1820,8 @@ window.ozzx.script = {
       var _this5 = this;
 
       // console.log(this.data.scroller)
-      // 小人移动结束事件
-      this.data.scroller.options.scrollingComplete = function (e) {
-        console.log('小人移动结束!');
-
-        if (!_this5.data.peopleCanMoveing) {
-          _this5.data.peopleIsMoveing = false;
-        }
-      };
-
       $('canvas')[0].addEventListener("touchstart", function (e) {
-        _this5.data.peopleIsMoveing = true; // 隐藏掉提示条
-
+        // 隐藏掉提示条
         _this5.domList.showTextBox.style.display = 'none';
         if (_this5.data.peopleCanMoveing) return;
 
@@ -1834,7 +1855,6 @@ window.ozzx.script = {
       $('canvas')[0].addEventListener("mousedown", function (e) {
         // 隐藏掉提示条
         _this5.domList.showTextBox.style.display = 'none';
-        _this5.data.peopleIsMoveing = true;
         if (_this5.data.peopleCanMoveing) return;
 
         _this5.data.scroller.doTouchStart([e], e.timeStamp);
@@ -1865,7 +1885,6 @@ window.ozzx.script = {
         _this5.data.mousedown = false;
       }, false);
       $('#qr')[0].addEventListener("touchstart", function (e) {
-        _this5.data.peopleIsMoveing = true;
         if (_this5.data.peopleCanMoveing) return;
 
         _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
@@ -1907,7 +1926,7 @@ window.ozzx.script = {
         if (this.data.progress < 3 && !this.data.peopleCanMoveing) {
           this.data.peopleCanMoveing = true;
 
-          var _loop2 = function _loop2(i) {
+          var _loop5 = function _loop5(i) {
             setTimeout(function () {
               if (!_this6.data.peopleCanMoveing) return;
               _this6.data.people.x = _this6.data.screenInfo.w * (1.11 + i);
@@ -1916,15 +1935,14 @@ window.ozzx.script = {
                 _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.22, 0, i * 1000, 0.0003);
               } else {
                 // console.log(this.data.screenInfo.h * 0.1704, i * this.data.screenInfo.h)
-                _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.2557, 155, i * 1000, 0.00085); // console.log(this.data.people.y)
+                // ssd
+                _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.2557, 155, i * 1000, 0.00085); // console.log(this.data.people.y, this.methods.smooth(0.2557, 155, i * 1000 , 0.00085))
               }
-
-              if (i >= 0.5) _this6.data.peopleIsMoveing = false;
             }, i * 4000);
           };
 
           for (var i = 0; i < 0.58; i += 0.005) {
-            _loop2(i);
+            _loop5(i);
           }
         }
       }
@@ -1937,7 +1955,7 @@ window.ozzx.script = {
         if (this.data.progress < 5 && !this.data.peopleCanMoveing) {
           this.data.peopleCanMoveing = true;
 
-          var _loop3 = function _loop3(i) {
+          var _loop6 = function _loop6(i) {
             setTimeout(function () {
               if (!_this7.data.peopleCanMoveing) return;
               _this7.data.people.x = _this7.data.screenInfo.w * (3.11 + i);
@@ -1947,15 +1965,13 @@ window.ozzx.script = {
               } else if (i < 0.3) {
                 _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.59, 0, i * 1000, -0.0001); // console.log(this.methods.smooth(0.55, 0.5700, i * 1000 , -0.0001))
               } else {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.76, 0, i * 1000, -0.00075); // console.log(this.data.people.y)
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.76, 0, i * 1000, -0.00075); // console.log(this.data.people.y, this.methods.smooth(0.76, 0, i * 1000 , -0.00075))
               }
-
-              if (i >= 0.49) _this7.data.peopleIsMoveing = false;
             }, i * 4000);
           };
 
           for (var i = 0; i < 0.52; i += 0.005) {
-            _loop3(i);
+            _loop6(i);
           }
         }
       }
@@ -1968,7 +1984,7 @@ window.ozzx.script = {
         if (this.data.progress < 7 && !this.data.peopleCanMoveing) {
           this.data.peopleCanMoveing = true;
 
-          var _loop4 = function _loop4(i) {
+          var _loop7 = function _loop7(i) {
             setTimeout(function () {
               if (!_this8.data.peopleCanMoveing) return;
               _this8.data.people.x = _this8.data.screenInfo.w * (5.11 + i);
@@ -1976,13 +1992,11 @@ window.ozzx.script = {
               if (i < 0.15) {
                 _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.48, 0, i * 1000, -0.0008);
               }
-
-              if (i >= 0.19) _this8.data.peopleIsMoveing = false;
             }, i * 4000);
           };
 
           for (var i = 0; i < 0.2; i += 0.005) {
-            _loop4(i);
+            _loop7(i);
           }
         }
       }
@@ -1995,7 +2009,7 @@ window.ozzx.script = {
         if (this.data.progress < 9 && !this.data.peopleCanMoveing) {
           this.data.peopleCanMoveing = true;
 
-          var _loop5 = function _loop5(i) {
+          var _loop8 = function _loop8(i) {
             setTimeout(function () {
               if (!_this9.data.peopleCanMoveing) return;
               _this9.data.people.x = _this9.data.screenInfo.w * (7.11 + i);
@@ -2005,13 +2019,11 @@ window.ozzx.script = {
               } else {
                 _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.66, 0, i * 1000, -0.00045);
               }
-
-              if (i >= 0.355) _this9.data.peopleIsMoveing = false;
             }, i * 4000);
           };
 
           for (var i = 0; i < 0.36; i += 0.005) {
-            _loop5(i);
+            _loop8(i);
           }
         }
       }
@@ -2024,7 +2036,7 @@ window.ozzx.script = {
         if (this.data.progress < 11 && !this.data.peopleCanMoveing) {
           this.data.peopleCanMoveing = true;
 
-          var _loop6 = function _loop6(i) {
+          var _loop9 = function _loop9(i) {
             setTimeout(function () {
               if (!_this10.data.peopleCanMoveing) return;
               _this10.data.people.x = _this10.data.screenInfo.w * (9.11 + i);
@@ -2033,14 +2045,13 @@ window.ozzx.script = {
                 _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.3, 0, i * 1000, 0.0001); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else {
                 _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.265, 0, i * 1000, 0.0004);
+                console.log(_this10.data.people.y, _this10.methods.smooth(0.265, 0, i * 1000, 0.0004));
               }
-
-              if (i >= 0.355) _this10.data.peopleIsMoveing = false;
             }, i * 4000);
           };
 
           for (var i = 0; i < 0.36; i += 0.005) {
-            _loop6(i);
+            _loop9(i);
           }
         }
       }

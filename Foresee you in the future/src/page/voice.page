@@ -48,8 +48,6 @@
       // 最大到达的X点
       xMax: 0,
       resources: null,
-      // 小人正在移动
-      peopleIsMoveing: false,
       peopleCanMoveing: false,
       imgArr: [
         './images/1.png',
@@ -415,7 +413,6 @@
       },
       // 关闭展示框
       closeShowText: function () {
-        // console.log('sd')
         this.domList.showTextBox.style.display = 'none'
       },
       closeMusic: function () {
@@ -543,15 +540,13 @@
       let peopleIndex = 16
       setInterval(() => {
         // 如果正在移动才切换小人材质
-        if (this.data.peopleIsMoveing) {
-          if (peopleIndex <= 0) {
-            peopleIndex = 16
-          }
-          const groupID = this.data.peopleImgID > 9 ? 9 : this.data.peopleImgID
-          const texture = PIXI.Texture.fromFrame(`./images/${groupID}/${peopleIndex}.png`)
-          peopleIndex--
-          this.data.people.texture = texture
+        if (peopleIndex <= 0) {
+          peopleIndex = 16
         }
+        const groupID = this.data.peopleImgID > 9 ? 9 : this.data.peopleImgID
+        const texture = PIXI.Texture.fromFrame(`./images/${groupID}/${peopleIndex}.png`)
+        peopleIndex--
+        this.data.people.texture = texture
       }, 100)
       // 第二张背景图
       const bg2Image = this.methods.createSprite("./images/2.png",{
@@ -972,12 +967,24 @@
         })
 
         this.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, star, showMore)
+        
+        // 3-小人继续移动 ssd
+        for (let i = 0.407; i < 0.85; i += 0.01) {
+          setTimeout(() => {
+            this.data.people.x = this.data.screenInfo.w * (1.11 + i)
+            if (i < 0.75) {
+              // this.data.people.x = this.data.screenInfo.w * (1.11 + i)
+              this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6242, 199.7, i * 1000 , 0.00002)
+            } else {
+              this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6351, 690.233, i * 1000 , -0.0006)
+            }
+            // 允许滚动
+            if (i >= 0.84) this.data.peopleCanMoveing = false
+          }, i * 4000 - 2300)
+        }
+        
         // 设置可滚动的区域
         this.setShowPageNumber(4)
-        // 允许滚动
-        setTimeout(() => {
-          this.data.peopleCanMoveing = false
-        }, 200)
       })
 
       // 第五张光 比例1.6582
@@ -1159,10 +1166,16 @@
         })
 
         this.data.twoContainer.addChild(bg5Line, house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore)
-        // 允许滚动
-        setTimeout(() => {
-          this.data.peopleCanMoveing = false
-        }, 200)
+        
+        // 5-小人继续移动
+        for (let i = 0.52; i < 0.72; i+= 0.005) {
+          setTimeout(() => {
+            this.data.people.x = this.data.screenInfo.w * (3.11 + i)
+            this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3737, 0, i * 1000 , -0.00006)
+            // 允许滚动
+            if (i >= 0.7) this.data.peopleCanMoveing = false
+          }, i * 4000 - 2000)
+        }
       })
 
       // 第七张图 比例:0.7421
@@ -1449,10 +1462,16 @@
         }, 500)
 
         this.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore)
-        // 允许滚动
-        setTimeout(() => {
-          this.data.peopleCanMoveing = false
-        }, 200)
+
+        // 13-小人继续移动
+        for (let i = 0.407; i < 0.75; i+= 0.005) {
+          setTimeout(() => {
+            this.data.people.x = this.data.screenInfo.w * (9.11 + i)
+            this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.407, 0, i * 1000, 0.00012)
+            // 允许滚动
+            if (i >= 0.7) this.data.peopleCanMoveing = false
+          }, i * 4000 - 2000)
+        }
       })
       // 小人跳舞
       const sportH = bodySize.h * 0.2
@@ -1544,28 +1563,29 @@
       // 记录最大到达的点
       if (this.data.xMax < peopleX) this.data.xMax = peopleX
       // console.log(pageIndex, this.data.progress)
-      // console.log(this.data.progress, this.data.xMax)
+      // console.log(pageIndex, this.data.xMax + this.data.screenInfo.w * 1.11)
       // console.log(this.data.peopleCanMoveing)
       // 第三幅图小人移动到光圈下
       // 1 - 1.52区域小人不接受移动指令
-      if (pageIndex >= 1 && pageIndex <= 1.58) {
+      
+      if (pageIndex >= 1 && pageIndex <= 1.9) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 2) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove1(pageIndex)
           return
-        } else if (this.data.xMax < 1710) {
+        } else if (this.data.xMax < 2210) {
           return
         }
       }
-      if (pageIndex >= 3 && pageIndex <= 3.52) {
-        
+      // sdd
+      if (pageIndex >= 3 && pageIndex <= 3.78) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 4) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove2(pageIndex)
           return
-        } else if (this.data.xMax < 3750) {
+        } else if (this.data.xMax < 4050) {
           return
         }
       }
@@ -1589,13 +1609,13 @@
           return
         }
       }
-      if (pageIndex >= 9 && pageIndex <= 9.5) {
+      if (pageIndex >= 9 && pageIndex <= 9.85) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 10) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove5(pageIndex)
           return
-        } else if (this.data.xMax < 9700) {
+        } else if (this.data.xMax < 11000) {
           return
         }
       }
@@ -1752,15 +1772,7 @@
     // 移动屏幕鼠标事件
     mouseEvent: function () {
       // console.log(this.data.scroller)
-      // 小人移动结束事件
-      this.data.scroller.options.scrollingComplete = (e) => {
-        console.log('小人移动结束!')
-        if (!this.data.peopleCanMoveing) {
-          this.data.peopleIsMoveing = false
-        }
-      }
       $('canvas')[0].addEventListener("touchstart", (e) => {
-        this.data.peopleIsMoveing = true
         // 隐藏掉提示条
         this.domList.showTextBox.style.display = 'none'
         if (this.data.peopleCanMoveing) return
@@ -1789,7 +1801,6 @@
       $('canvas')[0].addEventListener("mousedown", (e) => {
         // 隐藏掉提示条
         this.domList.showTextBox.style.display = 'none'
-        this.data.peopleIsMoveing = true
         if (this.data.peopleCanMoveing) return
         this.data.scroller.doTouchStart([e], e.timeStamp)
         this.data.mousedown = true
@@ -1814,7 +1825,6 @@
         this.data.mousedown = false
       }, false)
       $('#qr')[0].addEventListener("touchstart", (e) => {
-        this.data.peopleIsMoveing = true
         if (this.data.peopleCanMoveing) return
         this.data.scroller.doTouchStart(e.touches, e.timeStamp)
         this.data.mousedown = true
@@ -1856,10 +1866,10 @@
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.22, 0, i * 1000, 0.0003)
               } else {
                 // console.log(this.data.screenInfo.h * 0.1704, i * this.data.screenInfo.h)
+                // ssd
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2557, 155, i * 1000 , 0.00085)
-                // console.log(this.data.people.y)
+                // console.log(this.data.people.y, this.methods.smooth(0.2557, 155, i * 1000 , 0.00085))
               }
-              if (i >= 0.5) this.data.peopleIsMoveing = false
             }, i * 4000)
           }
         }
@@ -1882,9 +1892,8 @@
                 // console.log(this.methods.smooth(0.55, 0.5700, i * 1000 , -0.0001))
               } else {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.76, 0, i * 1000 , -0.00075)
-                // console.log(this.data.people.y)
+                // console.log(this.data.people.y, this.methods.smooth(0.76, 0, i * 1000 , -0.00075))
               }
-              if (i >= 0.49) this.data.peopleIsMoveing = false
             }, i * 4000)
           }
         }
@@ -1902,7 +1911,6 @@
               if (i < 0.15) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.48, 0, i * 1000, -0.0008)
               }
-              if (i >= 0.19) this.data.peopleIsMoveing = false
             }, i * 4000)
           }
         }
@@ -1923,7 +1931,6 @@
               } else {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.66, 0, i * 1000, -0.00045)
               }
-              if (i >= 0.355) this.data.peopleIsMoveing = false
             }, i * 4000)
           }
         }
@@ -1943,8 +1950,8 @@
                 // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.265, 0, i * 1000, 0.0004)
+                console.log(this.data.people.y, this.methods.smooth(0.265, 0, i * 1000, 0.0004))
               }
-              if (i >= 0.355) this.data.peopleIsMoveing = false
             }, i * 4000)
           }
         }
@@ -1962,8 +1969,8 @@
     height: 100%;
     background: linear-gradient(to bottom right, #fb5747, #cc2a22);
     .loading {
-      width: 220px;
-      height: 181px;
+      width: 355px;
+      height: 132px;
       position: absolute;
       left: 0;
       right: 0;
