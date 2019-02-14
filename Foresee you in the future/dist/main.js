@@ -405,7 +405,7 @@ window.ozzx.script = {
         window.document.body.style.top = ''; // 创建画布
 
         if (!this.data.app) {
-          console.log(devicePixelRatio);
+          // console.log(devicePixelRatio)
           this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
             backgroundColor: '0xc8c9c9',
             resolution: devicePixelRatio
@@ -454,7 +454,8 @@ window.ozzx.script = {
 
         oneButterfly.destroy();
         setTimeout(function () {
-          $('#clock')[0].classList.add('scale-play'); // 销毁指针
+          $('#main')[0].classList.add('scale-play');
+          $('#clock')[0].classList.add('scale-play-forwards'); // 销毁指针
 
           setTimeout(function () {
             // 动画完毕销毁首页背景
@@ -464,11 +465,11 @@ window.ozzx.script = {
             }, 0); // 销毁tocuh监听
 
             $("#clock").off("touchstart");
-            $('#clock')[0].style.display = 'none';
+            $('#clock').hide(800);
             console.log('首页已销毁'); // 开启第二部分
 
             _this2.two();
-          }, 500);
+          }, 800);
         }, 1000);
       }, 500);
     },
@@ -1578,6 +1579,9 @@ window.ozzx.script = {
         if (this.data.progress === 2) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove1(pageIndex);
+          return;
+        } else if (this.data.xMax < 1690) {
+          return;
         }
       }
 
@@ -1586,6 +1590,9 @@ window.ozzx.script = {
         if (this.data.progress === 4) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove2(pageIndex);
+          return;
+        } else if (this.data.xMax < 3450) {
+          return;
         }
       }
 
@@ -1594,6 +1601,9 @@ window.ozzx.script = {
         if (this.data.progress === 6) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove3(pageIndex);
+          return;
+        } else if (this.data.xMax < 5430) {
+          return;
         }
       }
 
@@ -1602,6 +1612,9 @@ window.ozzx.script = {
         if (this.data.progress === 8) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove4(pageIndex);
+          return;
+        } else if (this.data.xMax < 7648) {
+          return;
         }
       }
 
@@ -1610,6 +1623,9 @@ window.ozzx.script = {
         if (this.data.progress === 10) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove5(pageIndex);
+          return;
+        } else if (this.data.xMax < 9700) {
+          return;
         }
       } // console.log(peopleX)
 
@@ -1621,11 +1637,14 @@ window.ozzx.script = {
       } else if (peopleX < 560) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5794, 390, peopleX, 0.00025);
       } else if (peopleX < 687) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6219, 560, peopleX, -0.0003);
+        // console.log(peopleX, this.methods.smooth(0.6219, 560, peopleX, -0.0003))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6219, 560, peopleX, -0.0001);
       } else if (peopleX < 966) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5838, 687, peopleX, -0.0011);
+        // console.log(peopleX, this.methods.smooth(0.5840, 687, peopleX, -0.001))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6, 687, peopleX, -0.001);
       } else if (peopleX < 1125) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2769, 966, peopleX, -0.0004);
+        // console.log(peopleX, this.methods.smooth(0.3075, 966, peopleX, -0.0004))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3075, 966, peopleX, -0.0006);
       } else if (peopleX < 1167) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2133, 1125, peopleX, -0.00005);
       } else if (peopleX < 1412) {
@@ -1659,7 +1678,8 @@ window.ozzx.script = {
       } else if (peopleX < 4317) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3308, 3969, peopleX, 0.0002);
       } else if (peopleX < 4614) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4003, 4317, peopleX, 0.0005);
+        // console.log(peopleX, this.methods.smooth(0.3995, 4317, peopleX, 0.00055))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3995, 4317, peopleX, 0.00055);
       } else if (peopleX < 4944) {
         var _startColor = '#c8c9c9'; // 根据前进还是后退做不同处理 倒退的时候没有灰色
 
@@ -1812,6 +1832,8 @@ window.ozzx.script = {
         _this5.data.mousedown = false;
       }, false);
       $('canvas')[0].addEventListener("mousedown", function (e) {
+        // 隐藏掉提示条
+        _this5.domList.showTextBox.style.display = 'none';
         _this5.data.peopleIsMoveing = true;
         if (_this5.data.peopleCanMoveing) return;
 
@@ -1896,6 +1918,8 @@ window.ozzx.script = {
                 // console.log(this.data.screenInfo.h * 0.1704, i * this.data.screenInfo.h)
                 _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.2557, 155, i * 1000, 0.00085); // console.log(this.data.people.y)
               }
+
+              if (i >= 0.5) _this6.data.peopleIsMoveing = false;
             }, i * 4000);
           };
 
@@ -1925,6 +1949,8 @@ window.ozzx.script = {
               } else {
                 _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.76, 0, i * 1000, -0.00075); // console.log(this.data.people.y)
               }
+
+              if (i >= 0.49) _this7.data.peopleIsMoveing = false;
             }, i * 4000);
           };
 
@@ -1950,6 +1976,8 @@ window.ozzx.script = {
               if (i < 0.15) {
                 _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.48, 0, i * 1000, -0.0008);
               }
+
+              if (i >= 0.19) _this8.data.peopleIsMoveing = false;
             }, i * 4000);
           };
 
@@ -1977,6 +2005,8 @@ window.ozzx.script = {
               } else {
                 _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.66, 0, i * 1000, -0.00045);
               }
+
+              if (i >= 0.355) _this9.data.peopleIsMoveing = false;
             }, i * 4000);
           };
 
@@ -2004,6 +2034,8 @@ window.ozzx.script = {
               } else {
                 _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.265, 0, i * 1000, 0.0004);
               }
+
+              if (i >= 0.355) _this10.data.peopleIsMoveing = false;
             }, i * 4000);
           };
 

@@ -112,17 +112,28 @@ body {
           animation-iteration-count: 1;
 }
 
-.ox-voice .scale-play {
+.ox-voice .scale-play-forwards {
   -webkit-animation-name: scale;
           animation-name: scale;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 0.8;
+          animation-iteration-count: 0.8;
+}
+
+.ox-voice .scale-play {
+  -webkit-animation-name: scale;
+          animation-name: scale;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 0.8;
+          animation-iteration-count: 0.8;
 }
 
 @-webkit-keyframes flip {

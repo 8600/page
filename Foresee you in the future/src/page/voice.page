@@ -467,7 +467,7 @@
         window.document.body.style.top = ''
         // 创建画布
         if (!this.data.app) {
-          console.log(devicePixelRatio)
+          // console.log(devicePixelRatio)
           this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
             backgroundColor: '0xc8c9c9',
             resolution: devicePixelRatio
@@ -500,7 +500,8 @@
           // 销毁蝴蝶
           oneButterfly.destroy()
           setTimeout(() => {
-            $('#clock')[0].classList.add('scale-play')
+            $('#main')[0].classList.add('scale-play')
+            $('#clock')[0].classList.add('scale-play-forwards')
             // 销毁指针
             setTimeout(() => {
               // 动画完毕销毁首页背景
@@ -511,11 +512,11 @@
               }, 0)
               // 销毁tocuh监听
               $("#clock").off("touchstart")
-              $('#clock')[0].style.display = 'none'
+              $('#clock').hide(800)
               console.log('首页已销毁')
               // 开启第二部分
               this.two()
-            }, 500)
+            }, 800)
           }, 1000)
         }, 500)
     },
@@ -1552,6 +1553,9 @@
         if (this.data.progress === 2) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove1(pageIndex)
+          return
+        } else if (this.data.xMax < 1690) {
+          return
         }
       }
       if (pageIndex >= 3 && pageIndex <= 3.5) {
@@ -1560,6 +1564,9 @@
         if (this.data.progress === 4) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove2(pageIndex)
+          return
+        } else if (this.data.xMax < 3450) {
+          return
         }
       }
       if (pageIndex >= 5 && pageIndex <= 5.3) {
@@ -1567,6 +1574,9 @@
         if (this.data.progress === 6) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove3(pageIndex)
+          return
+        } else if (this.data.xMax < 5430) {
+          return
         }
       }
       if (pageIndex >= 7 && pageIndex <= 7.5) {
@@ -1574,15 +1584,19 @@
         if (this.data.progress === 8) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove4(pageIndex)
+          return
+        } else if (this.data.xMax < 7648) {
+          return
         }
-        
       }
       if (pageIndex >= 9 && pageIndex <= 9.5) {
-        
         // 保证返回的时候不会不流畅
         if (this.data.progress === 10) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove5(pageIndex)
+          return
+        } else if (this.data.xMax < 9700) {
+          return
         }
       }
       // console.log(peopleX)
@@ -1593,11 +1607,14 @@
       } else if (peopleX < 560) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5794, 390, peopleX, 0.00025)
       } else if (peopleX < 687) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6219, 560, peopleX, -0.0003)
+        // console.log(peopleX, this.methods.smooth(0.6219, 560, peopleX, -0.0003))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6219, 560, peopleX, -0.0001)
       } else if (peopleX < 966) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5838, 687, peopleX, -0.0011)
+        // console.log(peopleX, this.methods.smooth(0.5840, 687, peopleX, -0.001))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6, 687, peopleX, -0.001)
       } else if (peopleX < 1125) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2769, 966, peopleX, -0.0004)
+        // console.log(peopleX, this.methods.smooth(0.3075, 966, peopleX, -0.0004))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3075, 966, peopleX, -0.0006)
       } else if (peopleX < 1167) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2133, 1125, peopleX, -0.00005)
       } else if (peopleX < 1412) {
@@ -1631,7 +1648,8 @@
       } else if (peopleX < 4317) {
         this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3308, 3969, peopleX, 0.0002)
       } else if (peopleX < 4614) {
-        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.4003, 4317, peopleX, 0.0005)
+        // console.log(peopleX, this.methods.smooth(0.3995, 4317, peopleX, 0.00055))
+        this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3995, 4317, peopleX, 0.00055)
       } else if (peopleX < 4944) {
         let startColor = '#c8c9c9'
         // 根据前进还是后退做不同处理 倒退的时候没有灰色
@@ -1769,6 +1787,8 @@
         this.data.mousedown = false
       }, false)
       $('canvas')[0].addEventListener("mousedown", (e) => {
+        // 隐藏掉提示条
+        this.domList.showTextBox.style.display = 'none'
         this.data.peopleIsMoveing = true
         if (this.data.peopleCanMoveing) return
         this.data.scroller.doTouchStart([e], e.timeStamp)
@@ -1839,6 +1859,7 @@
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.2557, 155, i * 1000 , 0.00085)
                 // console.log(this.data.people.y)
               }
+              if (i >= 0.5) this.data.peopleIsMoveing = false
             }, i * 4000)
           }
         }
@@ -1863,6 +1884,7 @@
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.76, 0, i * 1000 , -0.00075)
                 // console.log(this.data.people.y)
               }
+              if (i >= 0.49) this.data.peopleIsMoveing = false
             }, i * 4000)
           }
         }
@@ -1880,6 +1902,7 @@
               if (i < 0.15) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.48, 0, i * 1000, -0.0008)
               }
+              if (i >= 0.19) this.data.peopleIsMoveing = false
             }, i * 4000)
           }
         }
@@ -1900,6 +1923,7 @@
               } else {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.66, 0, i * 1000, -0.00045)
               }
+              if (i >= 0.355) this.data.peopleIsMoveing = false
             }, i * 4000)
           }
         }
@@ -1920,6 +1944,7 @@
               } else {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.265, 0, i * 1000, 0.0004)
               }
+              if (i >= 0.355) this.data.peopleIsMoveing = false
             }, i * 4000)
           }
         }
@@ -1995,12 +2020,18 @@
     animation-timing-function: ease-in-out;
     animation-iteration-count: 1;
   }
-  .scale-play {
+  .scale-play-forwards {
     animation-name: scale;
-    animation-duration: 1s;
+    animation-duration: 0.8s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
-    animation-iteration-count: 1;
+    animation-iteration-count: 0.8;
+  }
+  .scale-play {
+    animation-name: scale;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 0.8;
   }
   @keyframes flip {
     0% {
