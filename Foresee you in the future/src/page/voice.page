@@ -1544,7 +1544,7 @@
       // 记录最大到达的点
       if (this.data.xMax < peopleX) this.data.xMax = peopleX
       // console.log(pageIndex, this.data.progress)
-      console.log(this.data.progress, this.data.xMax)
+      // console.log(this.data.progress, this.data.xMax)
       // console.log(this.data.peopleCanMoveing)
       // 第三幅图小人移动到光圈下
       // 1 - 1.52区域小人不接受移动指令
@@ -1585,7 +1585,7 @@
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove4(pageIndex)
           return
-        } else if (this.data.xMax < 7648) {
+        } else if (this.data.xMax < 7628) {
           return
         }
       }
