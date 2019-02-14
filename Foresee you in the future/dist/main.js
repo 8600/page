@@ -205,24 +205,7 @@ window.ozzx.script = {
 
       var bodySize = this.calculationScene(this); // 预加载资源
 
-      this.data.loader = PIXI.loader; // 加载GIF图
-
-      this.data.loader.add("./images/sport.gif", {
-        loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
-        xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
-        crossOrigin: ''
-      });
-      this.data.loader.add("./images/support.gif", {
-        loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
-        xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
-        crossOrigin: ''
-      }); // 群众
-
-      this.data.loader.add("./images/masses.gif", {
-        loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
-        xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
-        crossOrigin: ''
-      }); // 手托着地球
+      this.data.loader = PIXI.loader; // 手托着地球
 
       this.data.loader.add("./images/earth.gif", {
         loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
@@ -305,7 +288,26 @@ window.ozzx.script = {
         clockDom.style.display = 'block'; // 根据比例计算时钟合适高度
 
         clockDom.style.width = clockDomHeight * 1.6481 + 'px';
-        clockDom.style.height = clockDomHeight + 'px';
+        clockDom.style.height = clockDomHeight + 'px'; // 开始加载gif
+
+        _this.data.loader.add("./images/sport.gif", {
+          loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
+          xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
+          crossOrigin: ''
+        });
+
+        _this.data.loader.add("./images/support.gif", {
+          loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
+          xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
+          crossOrigin: ''
+        }); // 群众
+
+
+        _this.data.loader.add("./images/masses.gif", {
+          loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
+          xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
+          crossOrigin: ''
+        });
       });
       var shareDom = document.getElementById("shareBox");
 
@@ -471,7 +473,7 @@ window.ozzx.script = {
             console.log('首页已销毁'); // 开启第二部分
 
             _this3.two();
-          }, 800);
+          }, 900);
         }, 1000);
       }, 500);
     },
@@ -776,7 +778,27 @@ window.ozzx.script = {
         // 位置中间靠上
         x: bodySize.w + bodySize.w * 0.62 - threeLightHeight / 2,
         y: bodySize.h * 0.1
-      }); // 设置可交互
+      }); // 亮光上的小手
+
+      var Hand3H = bodySize.h * 0.05;
+      var Hand3 = this.methods.createSprite("./images/light-hand.png", {
+        width: Hand3H,
+        height: Hand3H,
+        // 位置中间靠上
+        x: bodySize.w * 1.65 - Hand3H / 2,
+        y: bodySize.h * 0.30
+      }); // 小手闪烁
+
+      Hand3.anchor.x = 0.5;
+      Hand3.anchor.y = 0.5;
+      var Hand3A = TweenMax.fromTo(Hand3.scale, 1.2, {
+        x: 0.5,
+        y: 0.5
+      }, {
+        x: 0.4,
+        y: 0.4
+      }).repeat(-1);
+      Hand3A.play(); // 设置可交互
 
       threeLight.interactive = true;
       threeLight.buttonMode = true; // 第三张图 亮光触摸事件
@@ -796,9 +818,11 @@ window.ozzx.script = {
         }); // 销毁动画
 
 
-        threeLightAnimationList.kill(); // 销毁掉亮光
+        threeLightAnimationList.kill();
+        Hand3A.kill(); // 销毁掉亮光
 
-        threeLight.destroy(); // 销毁掉云
+        threeLight.destroy();
+        Hand3.destroy(); // 销毁掉云
 
         cloud3.destroy(); // cloud3AnimationList.kill()
         // 小男孩想象的东西 1.7756
@@ -1043,7 +1067,27 @@ window.ozzx.script = {
         // 位置中间靠上
         x: bodySize.w * 3 + bodySize.w * 0.585 - fiveLightHeight / 2,
         y: bodySize.h * 0.57
-      }); // 设置可交互
+      }); // 亮光上的小手
+
+      var Hand5H = bodySize.h * 0.05;
+      var Hand5 = this.methods.createSprite("./images/light-hand.png", {
+        width: Hand5H,
+        height: Hand5H,
+        // 位置中间靠上
+        x: bodySize.w * 3.65 - Hand5H / 2,
+        y: bodySize.h * 0.67
+      }); // 小手闪烁
+
+      Hand5.anchor.x = 0.5;
+      Hand5.anchor.y = 0.5;
+      var Hand5A = TweenMax.fromTo(Hand5.scale, 1.2, {
+        x: 0.5,
+        y: 0.5
+      }, {
+        x: 0.4,
+        y: 0.4
+      }).repeat(-1);
+      Hand5A.play(); // 设置可交互
 
       fiveLight.interactive = true;
       fiveLight.buttonMode = true; // 第五张光 亮光触摸事件
@@ -1061,9 +1105,11 @@ window.ozzx.script = {
 
         gradientColor(_this4.data.app.renderer, '#c8c9c9', '#59d3cb', 10); // 销毁动画
 
-        fiveLightHeightAnimationList.kill(); // 销毁掉亮光
+        fiveLightHeightAnimationList.kill();
+        Hand5A.kill(); // 销毁掉亮光
 
-        fiveLight.destroy(); // 销毁云
+        fiveLight.destroy();
+        Hand5.destroy(); // 销毁云
 
         cloud5.destroy(); // cloud5AnimationList.kill()
         // 设置可滚动的区域
@@ -1275,7 +1321,27 @@ window.ozzx.script = {
         // 位置中间靠上
         x: bodySize.w * 5 + bodySize.w * 0.33 - sevenLightHeight / 2,
         y: bodySize.h * 0.57
-      }); // 设置可交互
+      }); // 亮光上的小手
+
+      var Hand7H = bodySize.h * 0.05;
+      var Hand7 = this.methods.createSprite("./images/light-hand.png", {
+        width: Hand7H,
+        height: Hand7H,
+        // 位置中间靠上
+        x: bodySize.w * 5.35 - Hand7H / 2,
+        y: bodySize.h * 0.70
+      }); // 小手闪烁
+
+      Hand7.anchor.x = 0.5;
+      Hand7.anchor.y = 0.5;
+      var Hand7A = TweenMax.fromTo(Hand7.scale, 1.2, {
+        x: 0.5,
+        y: 0.5
+      }, {
+        x: 0.4,
+        y: 0.4
+      }).repeat(-1);
+      Hand7A.play(); // 设置可交互
 
       sevenLight.interactive = true;
       sevenLight.buttonMode = true; // 第七张光 亮光触摸事件
@@ -1286,9 +1352,11 @@ window.ozzx.script = {
 
         bg7Image.texture = PIXI.Texture.fromFrame('./images/7-colour.png'); // 销毁动画
 
-        sevenLightHeightAnimationList.kill(); // 销毁掉亮光
+        sevenLightHeightAnimationList.kill();
+        Hand7A.kill(); // 销毁掉亮光
 
-        sevenLight.destroy(); // 设置可滚动的区域
+        sevenLight.destroy();
+        Hand7.destroy(); // 设置可滚动的区域
 
         _this4.setShowPageNumber(8);
 
@@ -1381,7 +1449,27 @@ window.ozzx.script = {
         // 位置中间靠上
         x: bodySize.w * 7 + bodySize.w * 0.57 - sevenLightHeight / 2,
         y: bodySize.h * 0.065
-      }); // 设置可交互
+      }); // 亮光上的小手
+
+      var Hand9H = bodySize.h * 0.05;
+      var Hand9 = this.methods.createSprite("./images/light-hand.png", {
+        width: Hand9H,
+        height: Hand9H,
+        // 位置中间靠上
+        x: bodySize.w * 7.6 - Hand9H / 2,
+        y: bodySize.h * 0.2
+      }); // 九-小手闪烁
+
+      Hand9.anchor.x = 0.5;
+      Hand9.anchor.y = 0.5;
+      var Hand9A = TweenMax.fromTo(Hand9.scale, 1.2, {
+        x: 0.5,
+        y: 0.5
+      }, {
+        x: 0.4,
+        y: 0.4
+      }).repeat(-1);
+      Hand9A.play(); // 设置可交互
 
       Light9.interactive = true;
       Light9.buttonMode = true; // 第五张光 亮光触摸事件
@@ -1392,9 +1480,11 @@ window.ozzx.script = {
 
         bg9Image.texture = PIXI.Texture.fromFrame('./images/9-colour.png'); // 销毁动画
 
-        Light9AnimationList.kill(); // 销毁掉亮光
+        Light9AnimationList.kill();
+        Hand9A.kill(); // 销毁掉亮光
 
-        Light9.destroy(); // 设置可滚动的区域
+        Light9.destroy();
+        Hand9.destroy(); // 设置可滚动的区域
 
         _this4.setShowPageNumber(10);
 
@@ -1489,7 +1579,27 @@ window.ozzx.script = {
         // 位置中间靠上
         x: bodySize.w * 9 + bodySize.w * 0.35 - sevenLightHeight / 2,
         y: bodySize.h * 0.065
-      }); // 设置可交互
+      }); // 亮光上的小手
+
+      var Hand11H = bodySize.h * 0.05;
+      var Hand11 = this.methods.createSprite("./images/light-hand.png", {
+        width: Hand11H,
+        height: Hand11H,
+        // 位置中间靠上
+        x: bodySize.w * 9.6 - Hand11H / 2,
+        y: bodySize.h * 0.5
+      }); // 九-小手闪烁
+
+      Hand11.anchor.x = 0.5;
+      Hand11.anchor.y = 0.5;
+      var Hand11A = TweenMax.fromTo(Hand11.scale, 1.2, {
+        x: 0.5,
+        y: 0.5
+      }, {
+        x: 0.4,
+        y: 0.4
+      }).repeat(-1);
+      Hand11A.play(); // 设置可交互
 
       Light11.interactive = true;
       Light11.buttonMode = true; // 第五张光 亮光触摸事件
@@ -1501,9 +1611,11 @@ window.ozzx.script = {
 
         petal11.texture = PIXI.Texture.fromFrame('./images/11-petal-colour.png'); // 销毁动画
 
-        Light11AnimationList.kill(); // 销毁掉亮光
+        Light11AnimationList.kill();
+        Hand11A.kill(); // 销毁掉亮光
 
-        Light11.destroy(); // 销毁掉手
+        Light11.destroy();
+        Hand11.destroy(); // 销毁掉手
 
         hand.destroy(); // 设置可滚动的区域
 
@@ -1647,7 +1759,7 @@ window.ozzx.script = {
       sport.sprite.x = bodySize.w * 10.78 - sportH * 1.0775 / 2;
       sport.sprite.y = bodySize.h * 0.44 - sportH / 2; // 添加背景
 
-      this.data.twoContainer.addChild(bg3Image, this.data.people, child, bg2Image, leftArrow, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, againBT, sport.sprite);
+      this.data.twoContainer.addChild(bg3Image, this.data.people, child, bg2Image, leftArrow, threeLight, Hand3, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, Hand5, sevenLight, Hand7, Light9, Hand9, Hand11, shareBT, againBT, sport.sprite);
       setTimeout(function () {
         sport.play();
       }, 2000); // 添加云
@@ -2155,8 +2267,7 @@ window.ozzx.script = {
               if (i < 0.16) {
                 _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.7, 0, i * 1000, -0.0007); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else {
-                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.66, 0, i * 1000, -0.00045);
-                console.log(_this10.data.people.y, _this10.methods.smooth(0.66, 0, i * 1000, -0.00045));
+                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.66, 0, i * 1000, -0.00045); // console.log(this.data.people.y, this.methods.smooth(0.66, 0, i * 1000, -0.00045))
               }
             }, i * 4000);
           };
