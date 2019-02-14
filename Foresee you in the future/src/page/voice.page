@@ -436,20 +436,24 @@
         window.document.body.classList.add('horizontal')
         window.document.body.style.left = `calc(50% - ${wh / 2}px)`
         window.document.body.style.top = `calc(50% - ${ww / 2}px)`
+        window.document.body.style.display = 'block'
         // 获取浏览器缩放比例
         const devicePixelRatio = window.devicePixelRatio || 1
         // 创建画布
         if (!this.data.app) {
-
-          this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
-            backgroundColor: '0xc8c9c9',
-            resolution: devicePixelRatio
-          })
-          this.data.app.view.style.width = `${wh}px`
-          this.data.app.view.style.height = `${ww}px`
-          $('#main').append(this.data.app.view)
-          this.data.screenInfo = {w: wh, h: ww, transverse: false}
+          setTimeout(() => {
+            this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
+              backgroundColor: '0xc8c9c9',
+              resolution: devicePixelRatio
+            })
+            this.data.app.view.style.width = `${wh}px`
+            this.data.app.view.style.height = `${ww}px`
+            $('#main').append(this.data.app.view)
+            this.data.screenInfo = {w: wh, h: ww, transverse: false}
+            
+          }, 0)
           return {w: wh, h: ww, transverse: false}
+          
         }
       } else {
         console.log('横屏')
@@ -458,18 +462,22 @@
         window.document.body.style.height = `${wh}px`
         window.document.body.style.left = ''
         window.document.body.style.top = ''
+        window.document.body.style.display = 'block'
         // 创建画布
         if (!this.data.app) {
-          // console.log(devicePixelRatio)
-          this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
-            backgroundColor: '0xc8c9c9',
-            resolution: devicePixelRatio
-          })
-          this.data.app.view.style.width = `${ww}px`
-          this.data.app.view.style.height = `${wh}px`
-          $('#main').append(this.data.app.view)
-          this.data.transverse = true
-          this.data.screenInfo = {w: ww, h: wh, transverse: true}
+          setTimeout(() => {
+            // console.log(devicePixelRatio)
+            this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
+              backgroundColor: '0xc8c9c9',
+              resolution: devicePixelRatio
+            })
+            this.data.app.view.style.width = `${ww}px`
+            this.data.app.view.style.height = `${wh}px`
+            $('#main').append(this.data.app.view)
+            this.data.transverse = true
+            this.data.screenInfo = {w: ww, h: wh, transverse: true}
+          }, 0)
+          
         }
         return {w: ww, h: wh, transverse: true}
       }
@@ -646,13 +654,13 @@
       bgshare.interactive = true;
       bgshare.buttonMode = true
 
-      // 呼唤朋友按钮 0.6781
-      const shareBTH = this.data.screenInfo.h * 0.3
+      // 呼唤朋友按钮 3.982
+      const shareBTH = this.data.screenInfo.h * 0.1
       const shareBT = this.methods.createSprite("./images/share-button.png",{
-        width: shareBTH * 0.6781,
+        width: shareBTH * 3.982,
         height: shareBTH,
-        x: this.data.screenInfo.w * 10.83,
-        y: this.data.screenInfo.h * 0.15
+        x: this.data.screenInfo.w * 10.63 - (shareBTH * 3.982 / 2),
+        y: this.data.screenInfo.h * 0.82
       })
 
       
@@ -668,18 +676,18 @@
         return false
       })
 
-      // 再看一次按钮 0.6732
-      const againBTH = this.data.screenInfo.h * 0.3
+      // 再看一次按钮 3.982
+      const againBTH = this.data.screenInfo.h * 0.1
       const againBT = this.methods.createSprite("./images/again.png",{
-        width: againBTH * 0.6723,
+        width: againBTH * 3.982,
         height: againBTH,
-        x: this.data.screenInfo.w * 10.1,
-        y: this.data.screenInfo.h * 0.6
+        x: this.data.screenInfo.w * 10.37 - (againBTH * 3.982 /2 ),
+        y: this.data.screenInfo.h * 0.82
       })
       // 设置可交互
       againBT.interactive = true;
       againBT.buttonMode = true
-      this.addBind(shareBT, () => {
+      this.addBind(againBT, () => {
         location.reload()
       })
 
@@ -983,8 +991,8 @@
         // 第三张图 显示更多触摸事件
         this.addBind(showMore, () => {
           setTimeout(() => {
-            this.domList.showTextBox.style.left = "28%"
-            this.domList.showTextBox.style.top = "38%"
+            this.domList.showTextBox.style.left = "25%"
+            this.domList.showTextBox.style.top = "42%"
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
             this.domList.textBoxContent.innerText = '中国有你，你有未来。阳光普照，让个体生命怒放。'
@@ -1273,8 +1281,8 @@
         // 第三张图 显示更多触摸事件
         this.addBind(showMore, () => {
           setTimeout(() => {
-            this.domList.showTextBox.style.left = "37%"
-            this.domList.showTextBox.style.top = "33%"
+            this.domList.showTextBox.style.left = "32%"
+            this.domList.showTextBox.style.top = "16%"
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
             this.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。'
@@ -1284,9 +1292,24 @@
 
         this.data.twoContainer.addChild(support.sprite, showMore)
         // 允许滚动
-        setTimeout(() => {
-          this.data.peopleCanMoveing = false
-        }, 200)
+        // 7-小人继续移动
+        this.data.clickPeopleRunning = true
+        for (let i = 0.2; i < 0.72; i+= 0.005) {
+          setTimeout(() => {
+            this.data.people.x = this.data.screenInfo.w * (5.11 + i)
+            if (i < 0.42) {
+              this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.36, 0, i * 1000, -0.00001)
+              // console.log(this.data.people.y, this.methods.smooth(0.36, 0, i * 1000, -0.00001))
+            } else {
+              this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3558, 420, i * 1000, 0.00025)
+            }
+            // 允许滚动
+            if (i >= 0.7) {
+              this.data.peopleCanMoveing = false
+              this.data.clickPeopleRunning = false
+            }
+          }, i * 4000 - 800)
+        }
       })
 
       // 第九张图 比例:1
@@ -1339,7 +1362,7 @@
         // 显示更多触摸事件
         this.addBind(showMore, () => {
           setTimeout(() => {
-            this.domList.showTextBox.style.right = "26%"
+            this.domList.showTextBox.style.right = "22%"
             this.domList.showTextBox.style.top = "18%"
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.left = ''
@@ -1361,9 +1384,22 @@
           masses.play()
         }, 500)
         // 允许滚动
-        setTimeout(() => {
-          this.data.peopleCanMoveing = false
-        }, 200)
+        for (let i = 0.36; i < 0.85; i+= 0.005) {
+          setTimeout(() => {
+            this.data.people.x = this.data.screenInfo.w * (7.11 + i)
+            if (i < 0.4) {
+              this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5, 187.59, i * 1000, -0.00002)
+              // console.log(this.data.people.y, this.methods.smooth(0.5, 187.59, i * 1000, -0.00002))
+            } else {
+              this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.51, 185.9, i * 1000, 0.00001)
+            }
+            // 允许滚动
+            if (i >= 0.7) {
+              this.data.peopleCanMoveing = false
+              this.data.clickPeopleRunning = false
+            }
+          }, i * 4000 - 800)
+        }
       })
 
       // 第11张图 大柚子 比例:1
@@ -1475,7 +1511,7 @@
           setTimeout(() => {
             this.domList.showTextBox.style.top = ''
             this.domList.showTextBox.style.right = ''
-            this.domList.showTextBox.style.left = "27%"
+            this.domList.showTextBox.style.left = "40%"
             this.domList.showTextBox.style.bottom = "13%"
             this.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。'
             this.domList.showTextBox.style.display = 'block'
@@ -1508,7 +1544,7 @@
               this.data.clickPeopleRunning = false
               this.data.peopleCanMoveing = false
             }
-          }, i * 4000 - 2000)
+          }, i * 4000 - 1600)
         }
       })
       // 小人跳舞
@@ -1627,23 +1663,23 @@
           return
         }
       }
-      if (pageIndex >= 5 && pageIndex <= 5.3) {
+      if (pageIndex >= 5 && pageIndex <= 5.75) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 6) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove3(pageIndex)
           return
-        } else if (this.data.xMax < 5430) {
+        } else if (this.data.xMax < 6430) {
           return
         }
       }
-      if (pageIndex >= 7 && pageIndex <= 7.5) {
+      if (pageIndex >= 7 && pageIndex <= 7.85) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 8) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove4(pageIndex)
           return
-        } else if (this.data.xMax < 7628) {
+        } else if (this.data.xMax < 8218) {
           return
         }
       }
@@ -1653,7 +1689,7 @@
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove5(pageIndex)
           return
-        } else if (this.data.xMax < 11000) {
+        } else if (this.data.xMax < 10205) {
           return
         }
       }
@@ -1948,6 +1984,7 @@
               this.data.people.x = this.data.screenInfo.w * (5.11 + i)
               if (i < 0.15) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.48, 0, i * 1000, -0.0008)
+                // console.log(this.data.people.y, this.methods.smooth(0.48, 0, i * 1000, -0.0008))
               }
             }, i * 4000)
           }
@@ -1968,6 +2005,7 @@
                 // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.66, 0, i * 1000, -0.00045)
+                console.log(this.data.people.y, this.methods.smooth(0.66, 0, i * 1000, -0.00045))
               }
             }, i * 4000)
           }
@@ -1988,7 +2026,7 @@
                 // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.265, 0, i * 1000, 0.0004)
-                console.log(this.data.people.y, this.methods.smooth(0.265, 0, i * 1000, 0.0004))
+                // console.log(this.data.people.y, this.methods.smooth(0.265, 0, i * 1000, 0.0004))
               }
             }, i * 4000)
           }
@@ -2147,14 +2185,13 @@
   }
   .qr {
     position: absolute;
-    left: 30%;
-    right: 0;
-    bottom: 12%;
+    left: 2.5%;
+    bottom: 6%;
     margin: auto;
     height: 23%;
     display: none;
     padding-top: 40%;
-    padding-right: 27%;
+    // padding-right: 15%;
     user-select: none;
     -webkit-touch-callout: default;
   }
@@ -2164,14 +2201,14 @@
   }
   .text-box {
     position: absolute;
-    width: 48%;
+    width: 30%;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.6);
   }
   .text-box-content {
     color: #fff;
-    font-size: 13px;
-    line-height: 20px;
+    font-size: 0.8em;
+    line-height: 1.4em;
     font-weight: bold;
     font-family: Simsun;
     margin: 0 20px;

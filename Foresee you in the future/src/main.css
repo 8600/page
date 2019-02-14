@@ -5,6 +5,9 @@ body, html, .ox-home {
   height: 100%;
   font-family: Microsoft YaHei;
 }
+body {
+  display: none;
+}
 /* 清除浮动 */
 .clear {
   clear: both;

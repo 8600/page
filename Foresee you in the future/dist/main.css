@@ -5,6 +5,9 @@ body, html, .ox-home {
   height: 100%;
   font-family: Microsoft YaHei;
 }
+body {
+  display: none;
+}
 /* 清除浮动 */
 .clear {
   clear: both;
@@ -278,14 +281,12 @@ body {
 
 .ox-voice .qr {
   position: absolute;
-  left: 30%;
-  right: 0;
-  bottom: 12%;
+  left: 2.5%;
+  bottom: 6%;
   margin: auto;
   height: 23%;
   display: none;
   padding-top: 40%;
-  padding-right: 27%;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -301,15 +302,15 @@ body {
 
 .ox-voice .text-box {
   position: absolute;
-  width: 48%;
+  width: 30%;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
 .ox-voice .text-box-content {
   color: #fff;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 0.8em;
+  line-height: 1.4em;
   font-weight: bold;
   font-family: Simsun;
   margin: 0 20px;

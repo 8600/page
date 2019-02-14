@@ -355,6 +355,8 @@ window.ozzx.script = {
       }
     },
     "calculationScene": function calculationScene() {
+      var _this2 = this;
+
       // 获取屏幕宽高
       var ww = $(window).width();
       var wh = $(window).height();
@@ -366,24 +368,27 @@ window.ozzx.script = {
         window.document.body.style.height = "".concat(ww, "px");
         window.document.body.classList.add('horizontal');
         window.document.body.style.left = "calc(50% - ".concat(wh / 2, "px)");
-        window.document.body.style.top = "calc(50% - ".concat(ww / 2, "px)"); // 获取浏览器缩放比例
+        window.document.body.style.top = "calc(50% - ".concat(ww / 2, "px)");
+        window.document.body.style.display = 'block'; // 获取浏览器缩放比例
 
         var _devicePixelRatio = window.devicePixelRatio || 1; // 创建画布
 
 
         if (!this.data.app) {
-          this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
-            backgroundColor: '0xc8c9c9',
-            resolution: _devicePixelRatio
-          });
-          this.data.app.view.style.width = "".concat(wh, "px");
-          this.data.app.view.style.height = "".concat(ww, "px");
-          $('#main').append(this.data.app.view);
-          this.data.screenInfo = {
-            w: wh,
-            h: ww,
-            transverse: false
-          };
+          setTimeout(function () {
+            _this2.data.app = new PIXI.Application($(window).height(), $(window).width(), {
+              backgroundColor: '0xc8c9c9',
+              resolution: _devicePixelRatio
+            });
+            _this2.data.app.view.style.width = "".concat(wh, "px");
+            _this2.data.app.view.style.height = "".concat(ww, "px");
+            $('#main').append(_this2.data.app.view);
+            _this2.data.screenInfo = {
+              w: wh,
+              h: ww,
+              transverse: false
+            };
+          }, 0);
           return {
             w: wh,
             h: ww,
@@ -396,23 +401,26 @@ window.ozzx.script = {
         window.document.body.style.width = "".concat(ww, "px");
         window.document.body.style.height = "".concat(wh, "px");
         window.document.body.style.left = '';
-        window.document.body.style.top = ''; // 创建画布
+        window.document.body.style.top = '';
+        window.document.body.style.display = 'block'; // 创建画布
 
         if (!this.data.app) {
-          // console.log(devicePixelRatio)
-          this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
-            backgroundColor: '0xc8c9c9',
-            resolution: devicePixelRatio
-          });
-          this.data.app.view.style.width = "".concat(ww, "px");
-          this.data.app.view.style.height = "".concat(wh, "px");
-          $('#main').append(this.data.app.view);
-          this.data.transverse = true;
-          this.data.screenInfo = {
-            w: ww,
-            h: wh,
-            transverse: true
-          };
+          setTimeout(function () {
+            // console.log(devicePixelRatio)
+            _this2.data.app = new PIXI.Application($(window).width(), $(window).height(), {
+              backgroundColor: '0xc8c9c9',
+              resolution: devicePixelRatio
+            });
+            _this2.data.app.view.style.width = "".concat(ww, "px");
+            _this2.data.app.view.style.height = "".concat(wh, "px");
+            $('#main').append(_this2.data.app.view);
+            _this2.data.transverse = true;
+            _this2.data.screenInfo = {
+              w: ww,
+              h: wh,
+              transverse: true
+            };
+          }, 0);
         }
 
         return {
@@ -423,7 +431,7 @@ window.ozzx.script = {
       }
     },
     "openClock": function openClock(one, oneButterfly, bg1Image) {
-      var _this2 = this;
+      var _this3 = this;
 
       // 移除对时钟的所有事件监听
       $("#clockDial").unbind();
@@ -443,7 +451,7 @@ window.ozzx.script = {
         $("#clock").off("touchmove"); // 销毁蝴蝶
         // 停止蝴蝶动画
 
-        _this2.data.animationList.oneButterfly.kill(); // 销毁蝴蝶
+        _this3.data.animationList.oneButterfly.kill(); // 销毁蝴蝶
 
 
         oneButterfly.destroy();
@@ -455,20 +463,20 @@ window.ozzx.script = {
             // 动画完毕销毁首页背景
             bg1Image.destroy();
             setTimeout(function () {
-              _this2.data.app.stage.removeChild(one);
+              _this3.data.app.stage.removeChild(one);
             }, 0); // 销毁tocuh监听
 
             $("#clock").off("touchstart");
             $('#clock').hide(800);
             console.log('首页已销毁'); // 开启第二部分
 
-            _this2.two();
+            _this3.two();
           }, 800);
         }, 1000);
       }, 500);
     },
     "two": function two() {
-      var _this3 = this;
+      var _this4 = this;
 
       var bodySize = this.data.screenInfo;
       console.log('第二部分!');
@@ -494,10 +502,10 @@ window.ozzx.script = {
           peopleIndex = 16;
         }
 
-        var groupID = _this3.data.peopleImgID > 9 ? 9 : _this3.data.peopleImgID;
+        var groupID = _this4.data.peopleImgID > 9 ? 9 : _this4.data.peopleImgID;
         var texture = PIXI.Texture.fromFrame("./images/".concat(groupID, "/").concat(peopleIndex, ".png"));
         peopleIndex--;
-        _this3.data.people.texture = texture;
+        _this4.data.people.texture = texture;
       }, 100); // 第二张背景图
 
       var bg2Image = this.methods.createSprite("./images/2.png", {
@@ -593,14 +601,14 @@ window.ozzx.script = {
         y: 0
       });
       bgshare.interactive = true;
-      bgshare.buttonMode = true; // 呼唤朋友按钮 0.6781
+      bgshare.buttonMode = true; // 呼唤朋友按钮 3.982
 
-      var shareBTH = this.data.screenInfo.h * 0.3;
+      var shareBTH = this.data.screenInfo.h * 0.1;
       var shareBT = this.methods.createSprite("./images/share-button.png", {
-        width: shareBTH * 0.6781,
+        width: shareBTH * 3.982,
         height: shareBTH,
-        x: this.data.screenInfo.w * 10.83,
-        y: this.data.screenInfo.h * 0.15
+        x: this.data.screenInfo.w * 10.63 - shareBTH * 3.982 / 2,
+        y: this.data.screenInfo.h * 0.82
       }); // 设置可交互
 
       shareBT.interactive = true;
@@ -611,19 +619,19 @@ window.ozzx.script = {
           $('#qr')[0].style.display = 'none';
         }, 0);
         return false;
-      }); // 再看一次按钮 0.6732
+      }); // 再看一次按钮 3.982
 
-      var againBTH = this.data.screenInfo.h * 0.3;
+      var againBTH = this.data.screenInfo.h * 0.1;
       var againBT = this.methods.createSprite("./images/again.png", {
-        width: againBTH * 0.6723,
+        width: againBTH * 3.982,
         height: againBTH,
-        x: this.data.screenInfo.w * 10.1,
-        y: this.data.screenInfo.h * 0.6
+        x: this.data.screenInfo.w * 10.37 - againBTH * 3.982 / 2,
+        y: this.data.screenInfo.h * 0.82
       }); // 设置可交互
 
       againBT.interactive = true;
       againBT.buttonMode = true;
-      this.addBind(shareBT, function () {
+      this.addBind(againBT, function () {
         location.reload();
       }); // ------------------------------------------- 云 -------------------------------------------
       // 3云 比例6.397
@@ -776,14 +784,14 @@ window.ozzx.script = {
       this.addBind(threeLight, function () {
         // 修改背景颜色
         // this.data.app.renderer.backgroundColor = "0x2a99a5"
-        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#2a99a5', 10);
+        gradientColor(_this4.data.app.renderer, '#c8c9c9', '#2a99a5', 10);
         bg3Image.destroy(); // 重新生成新的背景图
         // 第三张背景图
 
-        var newbg3I = _this3.methods.createSprite('./images/3-colour.png', {
-          width: _this3.data.screenInfo.w,
-          height: _this3.data.screenInfo.h,
-          x: _this3.data.screenInfo.w,
+        var newbg3I = _this4.methods.createSprite('./images/3-colour.png', {
+          width: _this4.data.screenInfo.w,
+          height: _this4.data.screenInfo.h,
+          x: _this4.data.screenInfo.w,
           y: 0
         }); // 销毁动画
 
@@ -797,7 +805,7 @@ window.ozzx.script = {
 
         var thoughtH = bodySize.h * 0.4;
 
-        var thought = _this3.methods.createSprite("./images/3-thought.png", {
+        var thought = _this4.methods.createSprite("./images/3-thought.png", {
           width: thoughtH * 1.7756,
           height: thoughtH,
           x: bodySize.w * 1.4,
@@ -826,7 +834,7 @@ window.ozzx.script = {
 
         var bubbleH = bodySize.h * 0.35;
 
-        var bubble = _this3.methods.createSprite("./images/3-bubble.png", {
+        var bubble = _this4.methods.createSprite("./images/3-bubble.png", {
           width: bubbleH * 3.5218,
           height: bubbleH,
           x: bodySize.w * 1.25,
@@ -852,12 +860,12 @@ window.ozzx.script = {
         });
         bubbleStartA.play(); // 设置可滚动的区域
 
-        _this3.setShowPageNumber(4); // 小孩想到的星星
+        _this4.setShowPageNumber(4); // 小孩想到的星星
 
 
         var startH = bodySize.h * 0.45;
 
-        var start = _this3.methods.createSprite("./images/3-start.png", {
+        var start = _this4.methods.createSprite("./images/3-start.png", {
           width: startH * 2.5459,
           height: startH,
           x: bodySize.w + bodySize.w * 0.3,
@@ -873,7 +881,7 @@ window.ozzx.script = {
 
         var atomH = bodySize.h * 0.1;
 
-        var atom = _this3.methods.createSprite("./images/3-atom.png", {
+        var atom = _this4.methods.createSprite("./images/3-atom.png", {
           width: atomH,
           height: atomH,
           x: bodySize.w + bodySize.w * 0.42,
@@ -901,7 +909,7 @@ window.ozzx.script = {
 
         var flaskH = bodySize.h * 0.12;
 
-        var flask = _this3.methods.createSprite("./images/3-flask.png", {
+        var flask = _this4.methods.createSprite("./images/3-flask.png", {
           width: flaskH * 0.7356,
           height: flaskH,
           x: bodySize.w + bodySize.w * 0.58,
@@ -928,7 +936,7 @@ window.ozzx.script = {
 
         var starH = bodySize.h * 0.12;
 
-        var star = _this3.methods.createSprite("./images/3-star.png", {
+        var star = _this4.methods.createSprite("./images/3-star.png", {
           width: starH * 1.2352,
           height: starH,
           x: bodySize.w + bodySize.w * 0.64,
@@ -955,7 +963,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this3.methods.createSprite("./images/showMore.png", {
+        var showMore = _this4.methods.createSprite("./images/showMore.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 1.22,
@@ -972,37 +980,37 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
-        _this3.addBind(showMore, function () {
+        _this4.addBind(showMore, function () {
           setTimeout(function () {
-            _this3.domList.showTextBox.style.left = "28%";
-            _this3.domList.showTextBox.style.top = "38%";
-            _this3.domList.showTextBox.style.bottom = '';
-            _this3.domList.showTextBox.style.right = '';
-            _this3.domList.textBoxContent.innerText = '中国有你，你有未来。阳光普照，让个体生命怒放。';
-            _this3.domList.showTextBox.style.display = 'block';
+            _this4.domList.showTextBox.style.left = "25%";
+            _this4.domList.showTextBox.style.top = "42%";
+            _this4.domList.showTextBox.style.bottom = '';
+            _this4.domList.showTextBox.style.right = '';
+            _this4.domList.textBoxContent.innerText = '中国有你，你有未来。阳光普照，让个体生命怒放。';
+            _this4.domList.showTextBox.style.display = 'block';
           }, 0);
         });
 
-        _this3.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, star, showMore); // 3-小人继续移动 ssd
+        _this4.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, star, showMore); // 3-小人继续移动 ssd
 
 
-        _this3.data.clickPeopleRunning = true;
+        _this4.data.clickPeopleRunning = true;
 
         var _loop2 = function _loop2(i) {
           setTimeout(function () {
-            _this3.data.people.x = _this3.data.screenInfo.w * (1.11 + i);
+            _this4.data.people.x = _this4.data.screenInfo.w * (1.11 + i);
 
             if (i < 0.75) {
               // this.data.people.x = this.data.screenInfo.w * (1.11 + i)
-              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.6242, 199.7, i * 1000, 0.00002);
+              _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.6242, 199.7, i * 1000, 0.00002);
             } else {
-              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.6351, 690.233, i * 1000, -0.0006);
+              _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.6351, 690.233, i * 1000, -0.0006);
             } // 允许滚动
 
 
             if (i >= 0.84) {
-              _this3.data.clickPeopleRunning = false;
-              _this3.data.peopleCanMoveing = false;
+              _this4.data.clickPeopleRunning = false;
+              _this4.data.peopleCanMoveing = false;
             }
           }, i * 4000 - 2300);
         };
@@ -1012,7 +1020,7 @@ window.ozzx.script = {
         } // 设置可滚动的区域
 
 
-        _this3.setShowPageNumber(4);
+        _this4.setShowPageNumber(4);
       }); // 第五张光 比例1.6582
 
       var fiveLightHeight = bodySize.h / 8;
@@ -1030,15 +1038,15 @@ window.ozzx.script = {
       this.addBind(fiveLight, function () {
         bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png'); // 第五张背景图
 
-        var bg5Line = _this3.methods.createSprite("./images/5-line.png", {
-          width: _this3.data.screenInfo.w,
-          height: _this3.data.screenInfo.h,
-          x: _this3.data.screenInfo.w * 3,
+        var bg5Line = _this4.methods.createSprite("./images/5-line.png", {
+          width: _this4.data.screenInfo.w,
+          height: _this4.data.screenInfo.h,
+          x: _this4.data.screenInfo.w * 3,
           y: 0
         }); // 修改背景颜色
 
 
-        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#59d3cb', 10); // 销毁动画
+        gradientColor(_this4.data.app.renderer, '#c8c9c9', '#59d3cb', 10); // 销毁动画
 
         fiveLightHeightAnimationList.kill(); // 销毁掉亮光
 
@@ -1047,12 +1055,12 @@ window.ozzx.script = {
         cloud5.destroy(); // cloud5AnimationList.kill()
         // 设置可滚动的区域
 
-        _this3.setShowPageNumber(6); // 树1在摇摆 0.6937
+        _this4.setShowPageNumber(6); // 树1在摇摆 0.6937
 
 
         var tree1H = bodySize.h * 0.18;
 
-        var tree1 = _this3.methods.createSprite("./images/tree1.png", {
+        var tree1 = _this4.methods.createSprite("./images/tree1.png", {
           width: tree1H * 0.6937,
           height: tree1H,
           x: bodySize.w * 3.4 - tree1H * 0.9223 / 2,
@@ -1071,7 +1079,7 @@ window.ozzx.script = {
 
         var tree2H = bodySize.h * 0.50;
 
-        var tree2 = _this3.methods.createSprite("./images/tree2.png", {
+        var tree2 = _this4.methods.createSprite("./images/tree2.png", {
           width: tree2H * 0.5323,
           height: tree2H,
           x: bodySize.w * 3.2 - tree2H * 0.5323 / 2,
@@ -1089,7 +1097,7 @@ window.ozzx.script = {
 
         var tree3H = bodySize.h * 0.50;
 
-        var tree3 = _this3.methods.createSprite("./images/tree3.png", {
+        var tree3 = _this4.methods.createSprite("./images/tree3.png", {
           width: tree3H * 0.8517,
           height: tree3H,
           x: bodySize.w * 4 - tree3H * 0.8517 / 2,
@@ -1107,7 +1115,7 @@ window.ozzx.script = {
 
         var house1H = bodySize.h * 0.50;
 
-        var house1 = _this3.methods.createSprite("./images/house1.png", {
+        var house1 = _this4.methods.createSprite("./images/house1.png", {
           width: house1H * 0.5904,
           height: house1H,
           x: bodySize.w * 3.6,
@@ -1125,7 +1133,7 @@ window.ozzx.script = {
 
         var house2H = bodySize.h * 0.40;
 
-        var house2 = _this3.methods.createSprite("./images/house2.png", {
+        var house2 = _this4.methods.createSprite("./images/house2.png", {
           width: house2H * 0.49011,
           height: house2H,
           x: bodySize.w * 3.25,
@@ -1143,7 +1151,7 @@ window.ozzx.script = {
 
         var house3H = bodySize.h * 0.42;
 
-        var house3 = _this3.methods.createSprite("./images/house3.png", {
+        var house3 = _this4.methods.createSprite("./images/house3.png", {
           width: house3H * 0.5904,
           height: house3H,
           x: bodySize.w * 3.5,
@@ -1161,7 +1169,7 @@ window.ozzx.script = {
 
         var house4H = bodySize.h * 0.3;
 
-        var house4 = _this3.methods.createSprite("./images/house4.png", {
+        var house4 = _this4.methods.createSprite("./images/house4.png", {
           width: house4H * 1.034,
           height: house4H,
           x: bodySize.w * 3.7,
@@ -1179,7 +1187,7 @@ window.ozzx.script = {
 
         var house5H = bodySize.h * 0.3;
 
-        var house5 = _this3.methods.createSprite("./images/house5.png", {
+        var house5 = _this4.methods.createSprite("./images/house5.png", {
           width: house5H * 1.4926,
           height: house5H,
           x: bodySize.w * 3.33,
@@ -1197,7 +1205,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this3.methods.createSprite("./images/showMore.png", {
+        var showMore = _this4.methods.createSprite("./images/showMore.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 3.27,
@@ -1214,30 +1222,30 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
-        _this3.addBind(showMore, function () {
+        _this4.addBind(showMore, function () {
           setTimeout(function () {
-            _this3.domList.showTextBox.style.left = "34%";
-            _this3.domList.showTextBox.style.top = "20%";
-            _this3.domList.showTextBox.style.bottom = '';
-            _this3.domList.showTextBox.style.right = '';
-            _this3.domList.textBoxContent.innerText = '“人”、“地”和谐发展，城市有温度，人民更幸福。';
-            _this3.domList.showTextBox.style.display = 'block';
+            _this4.domList.showTextBox.style.left = "34%";
+            _this4.domList.showTextBox.style.top = "20%";
+            _this4.domList.showTextBox.style.bottom = '';
+            _this4.domList.showTextBox.style.right = '';
+            _this4.domList.textBoxContent.innerText = '“人”、“地”和谐发展，城市有温度，人民更幸福。';
+            _this4.domList.showTextBox.style.display = 'block';
           }, 0);
         });
 
-        _this3.data.twoContainer.addChild(bg5Line, house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore); // 5-小人继续移动
+        _this4.data.twoContainer.addChild(bg5Line, house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore); // 5-小人继续移动
 
 
-        _this3.data.clickPeopleRunning = true;
+        _this4.data.clickPeopleRunning = true;
 
         var _loop3 = function _loop3(i) {
           setTimeout(function () {
-            _this3.data.people.x = _this3.data.screenInfo.w * (3.11 + i);
-            _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.3737, 0, i * 1000, -0.00006); // 允许滚动
+            _this4.data.people.x = _this4.data.screenInfo.w * (3.11 + i);
+            _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.3737, 0, i * 1000, -0.00006); // 允许滚动
 
             if (i >= 0.7) {
-              _this3.data.peopleCanMoveing = false;
-              _this3.data.clickPeopleRunning = false;
+              _this4.data.peopleCanMoveing = false;
+              _this4.data.clickPeopleRunning = false;
             }
           }, i * 4000 - 2000);
         };
@@ -1261,7 +1269,7 @@ window.ozzx.script = {
 
       this.addBind(sevenLight, function () {
         // 修改背景颜色
-        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#dccfbc', 10); // this.data.app.renderer.backgroundColor = "0xdccfbc"
+        gradientColor(_this4.data.app.renderer, '#c8c9c9', '#dccfbc', 10); // this.data.app.renderer.backgroundColor = "0xdccfbc"
 
         bg7Image.texture = PIXI.Texture.fromFrame('./images/7-colour.png'); // 销毁动画
 
@@ -1269,7 +1277,7 @@ window.ozzx.script = {
 
         sevenLight.destroy(); // 设置可滚动的区域
 
-        _this3.setShowPageNumber(8);
+        _this4.setShowPageNumber(8);
 
         var cloud7AnimationList = new TweenMax(cloud7, 2, {
           x: bodySize.w * 5 + bodySize.w * 0.05 + 20,
@@ -1279,7 +1287,7 @@ window.ozzx.script = {
         cloud7AnimationList.play(); // 从下面生出政府的手 0.8511
 
         var supportH = bodySize.h * 0.7;
-        var support = new GIF("./images/support.gif", _this3.data.resources);
+        var support = new GIF("./images/support.gif", _this4.data.resources);
         support.sprite.width = supportH * 0.8511;
         support.sprite.height = supportH;
         support.sprite.x = bodySize.w * 5 - supportH * 0.8511 / 2 + bodySize.w * 0.5;
@@ -1296,7 +1304,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this3.methods.createSprite("./images/showMore.png", {
+        var showMore = _this4.methods.createSprite("./images/showMore.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 5.29,
@@ -1313,23 +1321,44 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
-        _this3.addBind(showMore, function () {
+        _this4.addBind(showMore, function () {
           setTimeout(function () {
-            _this3.domList.showTextBox.style.left = "37%";
-            _this3.domList.showTextBox.style.top = "33%";
-            _this3.domList.showTextBox.style.bottom = '';
-            _this3.domList.showTextBox.style.right = '';
-            _this3.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。';
-            _this3.domList.showTextBox.style.display = 'block';
+            _this4.domList.showTextBox.style.left = "32%";
+            _this4.domList.showTextBox.style.top = "16%";
+            _this4.domList.showTextBox.style.bottom = '';
+            _this4.domList.showTextBox.style.right = '';
+            _this4.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。';
+            _this4.domList.showTextBox.style.display = 'block';
           }, 0);
         });
 
-        _this3.data.twoContainer.addChild(support.sprite, showMore); // 允许滚动
+        _this4.data.twoContainer.addChild(support.sprite, showMore); // 允许滚动
+        // 7-小人继续移动
 
 
-        setTimeout(function () {
-          _this3.data.peopleCanMoveing = false;
-        }, 200);
+        _this4.data.clickPeopleRunning = true;
+
+        var _loop4 = function _loop4(i) {
+          setTimeout(function () {
+            _this4.data.people.x = _this4.data.screenInfo.w * (5.11 + i);
+
+            if (i < 0.42) {
+              _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.36, 0, i * 1000, -0.00001); // console.log(this.data.people.y, this.methods.smooth(0.36, 0, i * 1000, -0.00001))
+            } else {
+              _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.3558, 420, i * 1000, 0.00025);
+            } // 允许滚动
+
+
+            if (i >= 0.7) {
+              _this4.data.peopleCanMoveing = false;
+              _this4.data.clickPeopleRunning = false;
+            }
+          }, i * 4000 - 800);
+        };
+
+        for (var i = 0.2; i < 0.72; i += 0.005) {
+          _loop4(i);
+        }
       }); // 第九张图 比例:1
 
       var Light9Height = bodySize.h / 5;
@@ -1346,7 +1375,7 @@ window.ozzx.script = {
 
       this.addBind(Light9, function () {
         // 修改背景颜色
-        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#f6df60', 10); // this.data.app.renderer.backgroundColor = "0xfae768"
+        gradientColor(_this4.data.app.renderer, '#c8c9c9', '#f6df60', 10); // this.data.app.renderer.backgroundColor = "0xfae768"
 
         bg9Image.texture = PIXI.Texture.fromFrame('./images/9-colour.png'); // 销毁动画
 
@@ -1354,7 +1383,7 @@ window.ozzx.script = {
 
         Light9.destroy(); // 设置可滚动的区域
 
-        _this3.setShowPageNumber(10);
+        _this4.setShowPageNumber(10);
 
         var cloud9AnimationList = new TweenMax(cloud9, 2, {
           x: bodySize.w * 7 + bodySize.w * 0.05 + 20,
@@ -1365,7 +1394,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this3.methods.createSprite("./images/showMore2.png", {
+        var showMore = _this4.methods.createSprite("./images/showMore2.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 7.75,
@@ -1382,34 +1411,52 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 显示更多触摸事件
 
-        _this3.addBind(showMore, function () {
+        _this4.addBind(showMore, function () {
           setTimeout(function () {
-            _this3.domList.showTextBox.style.right = "26%";
-            _this3.domList.showTextBox.style.top = "18%";
-            _this3.domList.showTextBox.style.bottom = '';
-            _this3.domList.showTextBox.style.left = '';
-            _this3.domList.textBoxContent.innerText = '一头系着贫，一头系着富，把社会捆绑结实。';
-            _this3.domList.showTextBox.style.display = 'block';
+            _this4.domList.showTextBox.style.right = "22%";
+            _this4.domList.showTextBox.style.top = "18%";
+            _this4.domList.showTextBox.style.bottom = '';
+            _this4.domList.showTextBox.style.left = '';
+            _this4.domList.textBoxContent.innerText = '一头系着贫，一头系着富，把社会捆绑结实。';
+            _this4.domList.showTextBox.style.display = 'block';
           }, 0);
         }); // 群众向上拉 1.22
 
 
         var massesH = bodySize.h * 0.65;
-        var masses = new GIF("./images/masses.gif", _this3.data.resources);
+        var masses = new GIF("./images/masses.gif", _this4.data.resources);
         masses.sprite.width = massesH * 1.22;
         masses.sprite.height = massesH;
         masses.sprite.x = bodySize.w * 7.56 - massesH * 1.22 / 2;
         masses.sprite.y = bodySize.h * 0.555 - massesH / 2;
 
-        _this3.data.twoContainer.addChild(showMore, masses.sprite);
+        _this4.data.twoContainer.addChild(showMore, masses.sprite);
 
         setTimeout(function () {
           masses.play();
         }, 500); // 允许滚动
 
-        setTimeout(function () {
-          _this3.data.peopleCanMoveing = false;
-        }, 200);
+        var _loop5 = function _loop5(i) {
+          setTimeout(function () {
+            _this4.data.people.x = _this4.data.screenInfo.w * (7.11 + i);
+
+            if (i < 0.4) {
+              _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.5, 187.59, i * 1000, -0.00002); // console.log(this.data.people.y, this.methods.smooth(0.5, 187.59, i * 1000, -0.00002))
+            } else {
+              _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.51, 185.9, i * 1000, 0.00001);
+            } // 允许滚动
+
+
+            if (i >= 0.7) {
+              _this4.data.peopleCanMoveing = false;
+              _this4.data.clickPeopleRunning = false;
+            }
+          }, i * 4000 - 800);
+        };
+
+        for (var i = 0.36; i < 0.85; i += 0.005) {
+          _loop5(i);
+        }
       }); // 第11张图 大柚子 比例:1
 
       var Light11Height = bodySize.h / 1.5; // console.log((bodySize.h / bodySize.w))
@@ -1436,7 +1483,7 @@ window.ozzx.script = {
 
       this.addBind(Light11, function () {
         // 修改背景颜色
-        _this3.data.app.renderer.backgroundColor = "0xcfdee5";
+        _this4.data.app.renderer.backgroundColor = "0xcfdee5";
         bg11Image.texture = PIXI.Texture.fromFrame('./images/11-colour.png'); // 替换彩色花瓣材质
 
         petal11.texture = PIXI.Texture.fromFrame('./images/11-petal-colour.png'); // 销毁动画
@@ -1447,12 +1494,12 @@ window.ozzx.script = {
 
         hand.destroy(); // 设置可滚动的区域
 
-        _this3.setShowPageNumber(11); // 从左面生出树叶 0.8106
+        _this4.setShowPageNumber(11); // 从左面生出树叶 0.8106
 
 
         var grass1H = bodySize.h * 0.9;
 
-        var grass1 = _this3.methods.createSprite("./images/grass1.png", {
+        var grass1 = _this4.methods.createSprite("./images/grass1.png", {
           width: grass1H * 0.8106,
           height: grass1H,
           x: bodySize.w * 9,
@@ -1468,7 +1515,7 @@ window.ozzx.script = {
 
         var grass2H = bodySize.h * 0.4;
 
-        var grass2 = _this3.methods.createSprite("./images/grass2.png", {
+        var grass2 = _this4.methods.createSprite("./images/grass2.png", {
           width: grass2H * 2.4909,
           height: grass2H,
           x: bodySize.w * 10 - grass2H * 2.4909,
@@ -1484,7 +1531,7 @@ window.ozzx.script = {
 
         var grass3H = bodySize.h * 0.2;
 
-        var grass3 = _this3.methods.createSprite("./images/grass3.png", {
+        var grass3 = _this4.methods.createSprite("./images/grass3.png", {
           width: grass3H * 1.5402,
           height: grass3H,
           x: bodySize.w * 10 + 2 * grass3H * 1.5402,
@@ -1519,7 +1566,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this3.methods.createSprite("./images/showMore2.png", {
+        var showMore = _this4.methods.createSprite("./images/showMore2.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 9.80,
@@ -1536,20 +1583,20 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 显示更多触摸事件
 
-        _this3.addBind(showMore, function () {
+        _this4.addBind(showMore, function () {
           setTimeout(function () {
-            _this3.domList.showTextBox.style.top = '';
-            _this3.domList.showTextBox.style.right = '';
-            _this3.domList.showTextBox.style.left = "27%";
-            _this3.domList.showTextBox.style.bottom = "13%";
-            _this3.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。';
-            _this3.domList.showTextBox.style.display = 'block';
+            _this4.domList.showTextBox.style.top = '';
+            _this4.domList.showTextBox.style.right = '';
+            _this4.domList.showTextBox.style.left = "40%";
+            _this4.domList.showTextBox.style.bottom = "13%";
+            _this4.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。';
+            _this4.domList.showTextBox.style.display = 'block';
           }, 0);
         }); // 11-手托着地球 1.1212
 
 
         var earthH = bodySize.h * 0.7;
-        var earth = new GIF("./images/earth.gif", _this3.data.resources, true);
+        var earth = new GIF("./images/earth.gif", _this4.data.resources, true);
         earth.sprite.width = earthH * 1.22;
         earth.sprite.height = earthH;
         earth.sprite.x = bodySize.w * 9.5 - earthH * 1.22 / 2;
@@ -1558,25 +1605,25 @@ window.ozzx.script = {
           earth.play();
         }, 500);
 
-        _this3.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore); // 13-小人继续移动
+        _this4.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore); // 13-小人继续移动
 
 
-        _this3.data.clickPeopleRunning = true;
+        _this4.data.clickPeopleRunning = true;
 
-        var _loop4 = function _loop4(i) {
+        var _loop6 = function _loop6(i) {
           setTimeout(function () {
-            _this3.data.people.x = _this3.data.screenInfo.w * (9.11 + i);
-            _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.407, 0, i * 1000, 0.00012); // 允许滚动
+            _this4.data.people.x = _this4.data.screenInfo.w * (9.11 + i);
+            _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.407, 0, i * 1000, 0.00012); // 允许滚动
 
             if (i >= 0.7) {
-              _this3.data.clickPeopleRunning = false;
-              _this3.data.peopleCanMoveing = false;
+              _this4.data.clickPeopleRunning = false;
+              _this4.data.peopleCanMoveing = false;
             }
-          }, i * 4000 - 2000);
+          }, i * 4000 - 1600);
         };
 
         for (var i = 0.407; i < 0.75; i += 0.005) {
-          _loop4(i);
+          _loop6(i);
         }
       }); // 小人跳舞
 
@@ -1632,7 +1679,7 @@ window.ozzx.script = {
       this.scrollBegin();
     },
     "scrollBegin": function scrollBegin() {
-      var _this4 = this;
+      var _this5 = this;
 
       console.log('注册scroll!');
       var transverse = this.data.screenInfo.transverse;
@@ -1640,15 +1687,15 @@ window.ozzx.script = {
         var scrollNumber = transverse ? left : top; // 设置整个页面的x
         // console.log(this.data.twoContainer)
 
-        _this4.data.twoContainer.x = -scrollNumber;
-        var peopleX = scrollNumber + 50 * (1024 / _this4.data.screenInfo.w); // 设置小人的图片
+        _this5.data.twoContainer.x = -scrollNumber;
+        var peopleX = scrollNumber + 50 * (1024 / _this5.data.screenInfo.w); // 设置小人的图片
 
-        _this4.setPeopleImg(peopleX); // console.log(scrollNumber)
+        _this5.setPeopleImg(peopleX); // console.log(scrollNumber)
         // 小球移动轨迹
         // console.log('sd')
 
 
-        _this4.setPeopleY(peopleX);
+        _this5.setPeopleY(peopleX);
       }, {
         zooming: true,
         bouncing: false
@@ -1705,24 +1752,24 @@ window.ozzx.script = {
         }
       }
 
-      if (pageIndex >= 5 && pageIndex <= 5.3) {
+      if (pageIndex >= 5 && pageIndex <= 5.75) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 6) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove3(pageIndex);
           return;
-        } else if (this.data.xMax < 5430) {
+        } else if (this.data.xMax < 6430) {
           return;
         }
       }
 
-      if (pageIndex >= 7 && pageIndex <= 7.5) {
+      if (pageIndex >= 7 && pageIndex <= 7.85) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 8) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove4(pageIndex);
           return;
-        } else if (this.data.xMax < 7628) {
+        } else if (this.data.xMax < 8218) {
           return;
         }
       }
@@ -1733,7 +1780,7 @@ window.ozzx.script = {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove5(pageIndex);
           return;
-        } else if (this.data.xMax < 11000) {
+        } else if (this.data.xMax < 10205) {
           return;
         }
       } // console.log(peopleX)
@@ -1895,102 +1942,102 @@ window.ozzx.script = {
       }
     },
     "mouseEvent": function mouseEvent() {
-      var _this5 = this;
+      var _this6 = this;
 
       // console.log(this.data.scroller)
       $('canvas')[0].addEventListener("touchstart", function (e) {
         // 隐藏掉提示条
-        _this5.domList.showTextBox.style.display = 'none';
-        if (_this5.data.peopleCanMoveing) return;
+        _this6.domList.showTextBox.style.display = 'none';
+        if (_this6.data.peopleCanMoveing) return;
 
-        _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
+        _this6.data.scroller.doTouchStart(e.touches, e.timeStamp);
 
-        _this5.data.mousedown = true;
+        _this6.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("touchmove", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this6.data.peopleCanMoveing) return;
 
-        if (!_this5.data.mousedown) {
+        if (!_this6.data.mousedown) {
           return;
         } // console.log(e.touches, e.timeStamp)
 
 
-        _this5.data.scroller.doTouchMove(e.touches, e.timeStamp);
+        _this6.data.scroller.doTouchMove(e.touches, e.timeStamp);
 
-        _this5.data.mousedown = true;
+        _this6.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("touchend", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this6.data.peopleCanMoveing) return;
 
-        if (!_this5.data.mousedown) {
+        if (!_this6.data.mousedown) {
           return;
         }
 
-        _this5.data.scroller.doTouchEnd(e.timeStamp);
+        _this6.data.scroller.doTouchEnd(e.timeStamp);
 
-        _this5.data.mousedown = false;
+        _this6.data.mousedown = false;
       }, false);
       $('canvas')[0].addEventListener("mousedown", function (e) {
         // 隐藏掉提示条
-        _this5.domList.showTextBox.style.display = 'none';
-        if (_this5.data.peopleCanMoveing) return;
+        _this6.domList.showTextBox.style.display = 'none';
+        if (_this6.data.peopleCanMoveing) return;
 
-        _this5.data.scroller.doTouchStart([e], e.timeStamp);
+        _this6.data.scroller.doTouchStart([e], e.timeStamp);
 
-        _this5.data.mousedown = true;
+        _this6.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mousemove", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this6.data.peopleCanMoveing) return;
 
-        if (!_this5.data.mousedown) {
+        if (!_this6.data.mousedown) {
           return;
         } // console.log(e.touches, e.timeStamp)
 
 
-        _this5.data.scroller.doTouchMove([e], e.timeStamp);
+        _this6.data.scroller.doTouchMove([e], e.timeStamp);
 
-        _this5.data.mousedown = true;
+        _this6.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mouseup", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this6.data.peopleCanMoveing) return;
 
-        if (!_this5.data.mousedown) {
+        if (!_this6.data.mousedown) {
           return;
         }
 
-        _this5.data.scroller.doTouchEnd(e.timeStamp);
+        _this6.data.scroller.doTouchEnd(e.timeStamp);
 
-        _this5.data.mousedown = false;
+        _this6.data.mousedown = false;
       }, false);
       $('#qr')[0].addEventListener("touchstart", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this6.data.peopleCanMoveing) return;
 
-        _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
+        _this6.data.scroller.doTouchStart(e.touches, e.timeStamp);
 
-        _this5.data.mousedown = true;
+        _this6.data.mousedown = true;
       }, false);
       $('#qr')[0].addEventListener("touchmove", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this6.data.peopleCanMoveing) return;
 
-        if (!_this5.data.mousedown) {
+        if (!_this6.data.mousedown) {
           return;
         } // console.log(e.touches, e.timeStamp)
 
 
-        _this5.data.scroller.doTouchMove(e.touches, e.timeStamp);
+        _this6.data.scroller.doTouchMove(e.touches, e.timeStamp);
 
-        _this5.data.mousedown = true;
+        _this6.data.mousedown = true;
       }, false);
       $('#qr')[0].addEventListener("touchend", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this6.data.peopleCanMoveing) return;
 
-        if (!_this5.data.mousedown) {
+        if (!_this6.data.mousedown) {
           return;
         }
 
-        _this5.data.scroller.doTouchEnd(e.timeStamp);
+        _this6.data.scroller.doTouchEnd(e.timeStamp);
 
-        _this5.data.mousedown = false;
+        _this6.data.mousedown = false;
       }, false);
     },
     "addBind": function addBind(item, func) {
@@ -1998,138 +2045,138 @@ window.ozzx.script = {
       item.on('click', func);
     },
     "peopleMove1": function peopleMove1(pageIndex) {
-      var _this6 = this;
+      var _this7 = this;
 
       if (pageIndex === 1) {
         if (this.data.progress < 3 && !this.data.peopleCanMoveing) {
           this.data.peopleCanMoveing = true;
 
-          var _loop5 = function _loop5(i) {
+          var _loop7 = function _loop7(i) {
             setTimeout(function () {
-              if (!_this6.data.peopleCanMoveing || _this6.data.clickPeopleRunning) return;
-              _this6.data.people.x = _this6.data.screenInfo.w * (1.11 + i);
+              if (!_this7.data.peopleCanMoveing || _this7.data.clickPeopleRunning) return;
+              _this7.data.people.x = _this7.data.screenInfo.w * (1.11 + i);
 
               if (i < 0.16) {
-                _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.22, 0, i * 1000, 0.0003);
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.22, 0, i * 1000, 0.0003);
               } else {
                 // console.log(this.data.screenInfo.h * 0.1704, i * this.data.screenInfo.h)
                 // ssd
-                _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.2557, 155, i * 1000, 0.00085); // console.log(this.data.people.y, this.methods.smooth(0.2557, 155, i * 1000 , 0.00085))
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.2557, 155, i * 1000, 0.00085); // console.log(this.data.people.y, this.methods.smooth(0.2557, 155, i * 1000 , 0.00085))
               }
             }, i * 4000);
           };
 
           for (var i = 0; i < 0.58; i += 0.005) {
-            _loop5(i);
+            _loop7(i);
           }
         }
       }
     },
     "peopleMove2": function peopleMove2(pageIndex) {
-      var _this7 = this;
+      var _this8 = this;
 
       if (pageIndex === 3) {
         // console.log(this.data.progress)
         if (this.data.progress < 5 && !this.data.peopleCanMoveing) {
           this.data.peopleCanMoveing = true;
 
-          var _loop6 = function _loop6(i) {
+          var _loop8 = function _loop8(i) {
             setTimeout(function () {
-              if (!_this7.data.peopleCanMoveing || _this7.data.clickPeopleRunning) return;
-              _this7.data.people.x = _this7.data.screenInfo.w * (3.11 + i);
+              if (!_this8.data.peopleCanMoveing || _this8.data.clickPeopleRunning) return;
+              _this8.data.people.x = _this8.data.screenInfo.w * (3.11 + i);
 
               if (i < 0.15) {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.5, 0, i * 1000, 0.0004); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
+                _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.5, 0, i * 1000, 0.0004); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else if (i < 0.3) {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.59, 0, i * 1000, -0.0001); // console.log(this.methods.smooth(0.55, 0.5700, i * 1000 , -0.0001))
+                _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.59, 0, i * 1000, -0.0001); // console.log(this.methods.smooth(0.55, 0.5700, i * 1000 , -0.0001))
               } else {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.76, 0, i * 1000, -0.00075); // console.log(this.data.people.y, this.methods.smooth(0.76, 0, i * 1000 , -0.00075))
+                _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.76, 0, i * 1000, -0.00075); // console.log(this.data.people.y, this.methods.smooth(0.76, 0, i * 1000 , -0.00075))
               }
             }, i * 4000);
           };
 
           for (var i = 0; i < 0.52; i += 0.005) {
-            _loop6(i);
+            _loop8(i);
           }
         }
       }
     },
     "peopleMove3": function peopleMove3(pageIndex) {
-      var _this8 = this;
+      var _this9 = this;
 
       if (pageIndex === 5) {
         // console.log(this.data.progress)
         if (this.data.progress < 7 && !this.data.peopleCanMoveing) {
           this.data.peopleCanMoveing = true;
 
-          var _loop7 = function _loop7(i) {
+          var _loop9 = function _loop9(i) {
             setTimeout(function () {
-              if (!_this8.data.peopleCanMoveing || _this8.data.clickPeopleRunning) return;
-              _this8.data.people.x = _this8.data.screenInfo.w * (5.11 + i);
+              if (!_this9.data.peopleCanMoveing || _this9.data.clickPeopleRunning) return;
+              _this9.data.people.x = _this9.data.screenInfo.w * (5.11 + i);
 
               if (i < 0.15) {
-                _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.48, 0, i * 1000, -0.0008);
+                _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.48, 0, i * 1000, -0.0008); // console.log(this.data.people.y, this.methods.smooth(0.48, 0, i * 1000, -0.0008))
               }
             }, i * 4000);
           };
 
           for (var i = 0; i < 0.2; i += 0.005) {
-            _loop7(i);
+            _loop9(i);
           }
         }
       }
     },
     "peopleMove4": function peopleMove4(pageIndex) {
-      var _this9 = this;
+      var _this10 = this;
 
       if (pageIndex === 7) {
         // console.log(this.data.progress)
         if (this.data.progress < 9 && !this.data.peopleCanMoveing) {
           this.data.peopleCanMoveing = true;
 
-          var _loop8 = function _loop8(i) {
+          var _loop10 = function _loop10(i) {
             setTimeout(function () {
-              if (!_this9.data.peopleCanMoveing || _this9.data.clickPeopleRunning) return;
-              _this9.data.people.x = _this9.data.screenInfo.w * (7.11 + i);
+              if (!_this10.data.peopleCanMoveing || _this10.data.clickPeopleRunning) return;
+              _this10.data.people.x = _this10.data.screenInfo.w * (7.11 + i);
 
               if (i < 0.16) {
-                _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.7, 0, i * 1000, -0.0007); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
+                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.7, 0, i * 1000, -0.0007); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else {
-                _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.66, 0, i * 1000, -0.00045);
+                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.66, 0, i * 1000, -0.00045);
+                console.log(_this10.data.people.y, _this10.methods.smooth(0.66, 0, i * 1000, -0.00045));
               }
             }, i * 4000);
           };
 
           for (var i = 0; i < 0.36; i += 0.005) {
-            _loop8(i);
+            _loop10(i);
           }
         }
       }
     },
     "peopleMove5": function peopleMove5(pageIndex) {
-      var _this10 = this;
+      var _this11 = this;
 
       if (pageIndex === 9) {
         // console.log(this.data.progress)
         if (this.data.progress < 11 && !this.data.peopleCanMoveing) {
           this.data.peopleCanMoveing = true;
 
-          var _loop9 = function _loop9(i) {
+          var _loop11 = function _loop11(i) {
             setTimeout(function () {
-              if (!_this10.data.peopleCanMoveing || _this10.data.clickPeopleRunning) return;
-              _this10.data.people.x = _this10.data.screenInfo.w * (9.11 + i);
+              if (!_this11.data.peopleCanMoveing || _this11.data.clickPeopleRunning) return;
+              _this11.data.people.x = _this11.data.screenInfo.w * (9.11 + i);
 
               if (i < 0.10) {
-                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.3, 0, i * 1000, 0.0001); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
+                _this11.data.people.y = _this11.data.screenInfo.h * _this11.methods.smooth(0.3, 0, i * 1000, 0.0001); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else {
-                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.265, 0, i * 1000, 0.0004);
-                console.log(_this10.data.people.y, _this10.methods.smooth(0.265, 0, i * 1000, 0.0004));
+                _this11.data.people.y = _this11.data.screenInfo.h * _this11.methods.smooth(0.265, 0, i * 1000, 0.0004); // console.log(this.data.people.y, this.methods.smooth(0.265, 0, i * 1000, 0.0004))
               }
             }, i * 4000);
           };
 
           for (var i = 0; i < 0.36; i += 0.005) {
-            _loop9(i);
+            _loop11(i);
           }
         }
       }
