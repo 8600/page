@@ -919,6 +919,20 @@
         const startAnimationList = TweenMax.fromTo(start, 4, {alpha: 0},{alpha: 1}).repeat(-1)
         startAnimationList.play()
 
+        // 气泡发散效果
+        const startA = TweenMax.fromTo(star, 0.6, {
+          x: bodySize.w * 1.6,
+          y: bodySize.h * 0.45,
+          width: 0,
+          height: 0
+        }, {
+          x: bodySize.w * 1.3,
+          y: bodySize.h * 0.05,
+          width: startH * 2.5459,
+          height: startH
+        })
+        startA.play()
+
         // 原子
         const atomH = bodySize.h * 0.1
         const atom = this.methods.createSprite("./images/3-atom.png",{
@@ -931,7 +945,7 @@
         atom.anchor.y = 0.5
         const atomStartA = TweenMax.fromTo(atom, 0.6, {x: bodySize.w * 1.6, y: bodySize.h * 0.45}, {x: bodySize.w + bodySize.w * 0.42, y: bodySize.h * 0.18}).repeat(0)
         atomStartA.play()
-        const atomAnimationList = TweenMax.fromTo(atom.scale, 2, {x: 0.4, y: 0.4}, {x: 0.6, y: 0.6}).repeat(-1)
+        const atomAnimationList = TweenMax.fromTo(atom.scale, 3, {x: 0.3, y: 0.3}, {x: 0.6, y: 0.6}).repeat(-1)
         
         atomAnimationList.play()
 

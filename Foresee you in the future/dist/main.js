@@ -877,7 +877,20 @@ window.ozzx.script = {
         }, {
           alpha: 1
         }).repeat(-1);
-        startAnimationList.play(); // 原子
+        startAnimationList.play(); // 气泡发散效果
+
+        var startA = TweenMax.fromTo(star, 0.6, {
+          x: bodySize.w * 1.6,
+          y: bodySize.h * 0.45,
+          width: 0,
+          height: 0
+        }, {
+          x: bodySize.w * 1.3,
+          y: bodySize.h * 0.05,
+          width: startH * 2.5459,
+          height: startH
+        });
+        startA.play(); // 原子
 
         var atomH = bodySize.h * 0.1;
 
@@ -898,9 +911,9 @@ window.ozzx.script = {
           y: bodySize.h * 0.18
         }).repeat(0);
         atomStartA.play();
-        var atomAnimationList = TweenMax.fromTo(atom.scale, 2, {
-          x: 0.4,
-          y: 0.4
+        var atomAnimationList = TweenMax.fromTo(atom.scale, 3, {
+          x: 0.3,
+          y: 0.3
         }, {
           x: 0.6,
           y: 0.6
