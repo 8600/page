@@ -49,6 +49,7 @@
       xMax: 0,
       resources: null,
       peopleCanMoveing: false,
+      clickPeopleRunning: false,
       imgArr: [
         './images/1.png',
         './images/3-colour.png',
@@ -274,11 +275,6 @@
       // 预加载资源
       this.data.loader = PIXI.loader
       // 加载GIF图
-      this.data.loader.add("./images/left.gif", {
-        loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
-        xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
-        crossOrigin:''
-      })
       this.data.loader.add("./images/sport.gif", {
         loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
         xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
@@ -557,14 +553,15 @@
       })
 
       // 向左箭头 5.032
-      const leftArrowH = bodySize.h * 0.1
-      let leftArrow = new GIF("./images/left.gif", this.data.resources)
-      leftArrow.sprite.width = leftArrowH * 5.032
-      leftArrow.sprite.height = leftArrowH
-      leftArrow.sprite.x = bodySize.w * 0.56 - (leftArrowH * 5.032 / 2)
-      leftArrow.sprite.y = bodySize.h * 0.35 - (leftArrowH / 2)
-      // this.data.twoContainer.addChild(leftArrow)
-      leftArrow.play()
+      const leftArrowH = bodySize.h * 0.08
+      const leftArrow = this.methods.createSprite("./images/1-hand.png",{
+        width: leftArrowH,
+        height: leftArrowH,
+        x: bodySize.w * 0.6 - (leftArrowH / 2),
+        y: bodySize.h * 0.4 - (leftArrowH / 2)
+      })
+      const leftArrowA = TweenMax.fromTo(leftArrow, 4, {x: bodySize.w * 0.6 - (leftArrowH / 2)},{x: bodySize.w * 0.43 - (leftArrowH / 2)}).repeat(-1)
+      leftArrowA.play()
       
       // 第三张背景图
       const bg3Image = this.methods.createSprite("./images/3.png",{
@@ -657,6 +654,9 @@
         x: this.data.screenInfo.w * 10.83,
         y: this.data.screenInfo.h * 0.15
       })
+
+      
+
       // 设置可交互
       shareBT.interactive = true;
       shareBT.buttonMode = true
@@ -666,6 +666,21 @@
           $('#qr')[0].style.display = 'none'
         }, 0)
         return false
+      })
+
+      // 再看一次按钮 0.6732
+      const againBTH = this.data.screenInfo.h * 0.3
+      const againBT = this.methods.createSprite("./images/again.png",{
+        width: againBTH * 0.6723,
+        height: againBTH,
+        x: this.data.screenInfo.w * 10.1,
+        y: this.data.screenInfo.h * 0.6
+      })
+      // 设置可交互
+      againBT.interactive = true;
+      againBT.buttonMode = true
+      this.addBind(shareBT, () => {
+        location.reload()
       })
 
       // ------------------------------------------- 云 -------------------------------------------
@@ -864,6 +879,8 @@
           yoyo:true,
         })
         thoughtAnimationList.play()
+        const thoughtStartA = TweenMax.fromTo(thought, 0.6, {x: bodySize.w * 1.6, width: 0, y: bodySize.h * 0.45, height: 0}, {x: bodySize.w * 1.4, y: 0, width: thoughtH * 1.7756, height: thoughtH})
+        thoughtStartA.play()
         // 气泡 3.5218
         const bubbleH = bodySize.h * 0.35
         const bubble = this.methods.createSprite("./images/3-bubble.png",{
@@ -878,6 +895,8 @@
           yoyo:true,
         })
         bubbleAnimationList.play()
+        const bubbleStartA = TweenMax.fromTo(bubble, 0.6, {x: bodySize.w * 1.6, width: 0, y: bodySize.h * 0.45, height: 0}, {x: bodySize.w * 1.25, y: 0.02, width: bubbleH * 3.5218, height: bubbleH})
+        bubbleStartA.play()
         // 设置可滚动的区域
         this.setShowPageNumber(4)
         // 小孩想到的星星
@@ -902,7 +921,10 @@
         })
         atom.anchor.x = 0.5
         atom.anchor.y = 0.5
+        const atomStartA = TweenMax.fromTo(atom, 0.6, {x: bodySize.w * 1.6, y: bodySize.h * 0.45}, {x: bodySize.w + bodySize.w * 0.42, y: bodySize.h * 0.18}).repeat(0)
+        atomStartA.play()
         const atomAnimationList = TweenMax.fromTo(atom.scale, 1, {x: 0.4, y: 0.4}, {x: 0.5, y: 0.5}).repeat(-1)
+        
         atomAnimationList.play()
 
         // 烧瓶
@@ -922,6 +944,8 @@
           transformOrigin: 'center'
         })
         flaskAnimationList.play()
+        const flaskStartA = TweenMax.fromTo(flask, 0.6, {x: bodySize.w * 1.6, y: bodySize.h * 0.45}, {x: bodySize.w * 1.58, y: bodySize.h * 0.43})
+        flaskStartA.play()
 
         // 星球 1.2352
         const starH = bodySize.h * 0.12
@@ -940,6 +964,8 @@
           transformOrigin:'center'
         })
         starAnimationList.play()
+        const starStartA = TweenMax.fromTo(star, 0.6, {x: bodySize.w * 1.6, y: bodySize.h * 0.45}, {x: bodySize.w * 1.64, y: bodySize.h * 0.2})
+        starStartA.play()
 
         // 3-显示更多
         const showMoreH = bodySize.h * 0.1
@@ -969,6 +995,7 @@
         this.data.twoContainer.addChild(newbg3I, thought, start, atom, bubble, flask, star, showMore)
         
         // 3-小人继续移动 ssd
+        this.data.clickPeopleRunning = true
         for (let i = 0.407; i < 0.85; i += 0.01) {
           setTimeout(() => {
             this.data.people.x = this.data.screenInfo.w * (1.11 + i)
@@ -979,7 +1006,10 @@
               this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.6351, 690.233, i * 1000 , -0.0006)
             }
             // 允许滚动
-            if (i >= 0.84) this.data.peopleCanMoveing = false
+            if (i >= 0.84) {
+              this.data.clickPeopleRunning = false
+              this.data.peopleCanMoveing = false
+            }
           }, i * 4000 - 2300)
         }
         
@@ -1168,12 +1198,16 @@
         this.data.twoContainer.addChild(bg5Line, house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore)
         
         // 5-小人继续移动
+        this.data.clickPeopleRunning = true
         for (let i = 0.52; i < 0.72; i+= 0.005) {
           setTimeout(() => {
             this.data.people.x = this.data.screenInfo.w * (3.11 + i)
             this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3737, 0, i * 1000 , -0.00006)
             // 允许滚动
-            if (i >= 0.7) this.data.peopleCanMoveing = false
+            if (i >= 0.7) {
+              this.data.peopleCanMoveing = false
+              this.data.clickPeopleRunning = false
+            }
           }, i * 4000 - 2000)
         }
       })
@@ -1464,12 +1498,16 @@
         this.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore)
 
         // 13-小人继续移动
+        this.data.clickPeopleRunning = true
         for (let i = 0.407; i < 0.75; i+= 0.005) {
           setTimeout(() => {
             this.data.people.x = this.data.screenInfo.w * (9.11 + i)
             this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.407, 0, i * 1000, 0.00012)
             // 允许滚动
-            if (i >= 0.7) this.data.peopleCanMoveing = false
+            if (i >= 0.7) {
+              this.data.clickPeopleRunning = false
+              this.data.peopleCanMoveing = false
+            }
           }, i * 4000 - 2000)
         }
       })
@@ -1484,7 +1522,7 @@
       
 
       // 添加背景
-      this.data.twoContainer.addChild(bg3Image, this.data.people, child, bg2Image, leftArrow.sprite, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, sport.sprite)
+      this.data.twoContainer.addChild(bg3Image, this.data.people, child, bg2Image, leftArrow, threeLight, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, sevenLight, Light9, shareBT, againBT, sport.sprite)
       setTimeout(() => {
         sport.play()
       }, 2000)
@@ -1860,7 +1898,7 @@
           this.data.peopleCanMoveing = true
           for (let i = 0; i < 0.58; i+= 0.005) {
             setTimeout(() => {
-              if (!this.data.peopleCanMoveing) return
+              if (!this.data.peopleCanMoveing || this.data.clickPeopleRunning) return
               this.data.people.x = this.data.screenInfo.w * (1.11 + i)
               if (i < 0.16) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.22, 0, i * 1000, 0.0003)
@@ -1882,7 +1920,7 @@
           this.data.peopleCanMoveing = true
           for (let i = 0; i < 0.52; i+= 0.005) {
             setTimeout(() => {
-              if (!this.data.peopleCanMoveing) return
+              if (!this.data.peopleCanMoveing || this.data.clickPeopleRunning) return
               this.data.people.x = this.data.screenInfo.w * (3.11 + i)
               if (i < 0.15) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.5, 0, i * 1000, 0.0004)
@@ -1906,7 +1944,7 @@
           this.data.peopleCanMoveing = true
           for (let i = 0; i < 0.2; i += 0.005) {
             setTimeout(() => {
-              if (!this.data.peopleCanMoveing) return
+              if (!this.data.peopleCanMoveing || this.data.clickPeopleRunning) return
               this.data.people.x = this.data.screenInfo.w * (5.11 + i)
               if (i < 0.15) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.48, 0, i * 1000, -0.0008)
@@ -1923,7 +1961,7 @@
           this.data.peopleCanMoveing = true
           for (let i = 0; i < 0.36; i += 0.005) {
             setTimeout(() => {
-              if (!this.data.peopleCanMoveing) return
+              if (!this.data.peopleCanMoveing || this.data.clickPeopleRunning) return
               this.data.people.x = this.data.screenInfo.w * (7.11 + i)
               if (i < 0.16) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.7, 0, i * 1000, -0.0007)
@@ -1943,7 +1981,7 @@
           this.data.peopleCanMoveing = true
           for (let i = 0; i < 0.36; i += 0.005) {
             setTimeout(() => {
-              if (!this.data.peopleCanMoveing) return
+              if (!this.data.peopleCanMoveing || this.data.clickPeopleRunning) return
               this.data.people.x = this.data.screenInfo.w * (9.11 + i)
               if (i < 0.10) {
                 this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.3, 0, i * 1000, 0.0001)
