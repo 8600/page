@@ -1569,29 +1569,29 @@ window.ozzx.script = {
       var pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w; // 记录最大到达的点
 
       if (this.data.xMax < peopleX) this.data.xMax = peopleX; // console.log(pageIndex, this.data.progress)
-      // console.log(this.data.progress, this.data.xMax)
-      // console.log(this.data.peopleCanMoveing)
+
+      console.log(this.data.progress, this.data.xMax); // console.log(this.data.peopleCanMoveing)
       // 第三幅图小人移动到光圈下
       // 1 - 1.52区域小人不接受移动指令
 
-      if (pageIndex >= 1 && pageIndex <= 1.52) {
+      if (pageIndex >= 1 && pageIndex <= 1.58) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 2) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove1(pageIndex);
           return;
-        } else if (this.data.xMax < 1690) {
+        } else if (this.data.xMax < 1710) {
           return;
         }
       }
 
-      if (pageIndex >= 3 && pageIndex <= 3.5) {
+      if (pageIndex >= 3 && pageIndex <= 3.52) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 4) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove2(pageIndex);
           return;
-        } else if (this.data.xMax < 3450) {
+        } else if (this.data.xMax < 3750) {
           return;
         }
       }
@@ -1923,7 +1923,7 @@ window.ozzx.script = {
             }, i * 4000);
           };
 
-          for (var i = 0; i < 0.52; i += 0.005) {
+          for (var i = 0; i < 0.58; i += 0.005) {
             _loop2(i);
           }
         }
@@ -1954,7 +1954,7 @@ window.ozzx.script = {
             }, i * 4000);
           };
 
-          for (var i = 0; i < 0.5; i += 0.005) {
+          for (var i = 0; i < 0.52; i += 0.005) {
             _loop3(i);
           }
         }
