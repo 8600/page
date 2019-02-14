@@ -920,7 +920,7 @@
         startAnimationList.play()
 
         // 气泡发散效果
-        const startA = TweenMax.fromTo(star, 0.6, {
+        const startA = TweenMax.fromTo(start, 0.8, {
           x: bodySize.w * 1.6,
           y: bodySize.h * 0.45,
           width: 0,
@@ -1549,12 +1549,12 @@
 
         // 13-小人继续移动
         this.data.clickPeopleRunning = true
-        for (let i = 0.407; i < 0.75; i+= 0.005) {
+        for (let i = 0.407; i < 0.65; i+= 0.005) {
           setTimeout(() => {
             this.data.people.x = this.data.screenInfo.w * (9.11 + i)
             this.data.people.y = this.data.screenInfo.h * this.methods.smooth(0.407, 0, i * 1000, 0.00012)
             // 允许滚动
-            if (i >= 0.7) {
+            if (i >= 0.64) {
               this.data.clickPeopleRunning = false
               this.data.peopleCanMoveing = false
             }
@@ -1607,7 +1607,6 @@
       const transverse = this.data.screenInfo.transverse
       
       this.data.scroller = new Scroller((left, top, zoom) => {
-
         const scrollNumber = transverse ? left: top
         // 设置整个页面的x
         // console.log(this.data.twoContainer)
@@ -1662,7 +1661,7 @@
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove1(pageIndex)
           return
-        } else if (this.data.xMax < 2210) {
+        } else if (this.data.xMax < 2010) {
           return
         }
       }
@@ -1673,7 +1672,7 @@
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove2(pageIndex)
           return
-        } else if (this.data.xMax < 4050) {
+        } else if (this.data.xMax < 3910) {
           return
         }
       }
@@ -1683,7 +1682,7 @@
           this.data.app.renderer.backgroundColor = '0xc8c9c9'
           this.peopleMove3(pageIndex)
           return
-        } else if (this.data.xMax < 6430) {
+        } else if (this.data.xMax < 5960) {
           return
         }
       }
@@ -1697,7 +1696,7 @@
           return
         }
       }
-      if (pageIndex >= 9 && pageIndex <= 9.8) {
+      if (pageIndex >= 9 && pageIndex <= 9.65) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 10) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9'

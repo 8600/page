@@ -879,7 +879,7 @@ window.ozzx.script = {
         }).repeat(-1);
         startAnimationList.play(); // 气泡发散效果
 
-        var startA = TweenMax.fromTo(star, 0.6, {
+        var startA = TweenMax.fromTo(start, 0.8, {
           x: bodySize.w * 1.6,
           y: bodySize.h * 0.45,
           width: 0,
@@ -1628,14 +1628,14 @@ window.ozzx.script = {
             _this4.data.people.x = _this4.data.screenInfo.w * (9.11 + i);
             _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.407, 0, i * 1000, 0.00012); // 允许滚动
 
-            if (i >= 0.7) {
+            if (i >= 0.64) {
               _this4.data.clickPeopleRunning = false;
               _this4.data.peopleCanMoveing = false;
             }
           }, i * 4000 - 1600);
         };
 
-        for (var i = 0.407; i < 0.75; i += 0.005) {
+        for (var i = 0.407; i < 0.65; i += 0.005) {
           _loop6(i);
         }
       }); // 小人跳舞
@@ -1748,7 +1748,7 @@ window.ozzx.script = {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove1(pageIndex);
           return;
-        } else if (this.data.xMax < 2210) {
+        } else if (this.data.xMax < 2010) {
           return;
         }
       } // sdd
@@ -1760,7 +1760,7 @@ window.ozzx.script = {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove2(pageIndex);
           return;
-        } else if (this.data.xMax < 4050) {
+        } else if (this.data.xMax < 3910) {
           return;
         }
       }
@@ -1771,7 +1771,7 @@ window.ozzx.script = {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
           this.peopleMove3(pageIndex);
           return;
-        } else if (this.data.xMax < 6430) {
+        } else if (this.data.xMax < 5960) {
           return;
         }
       }
@@ -1787,7 +1787,7 @@ window.ozzx.script = {
         }
       }
 
-      if (pageIndex >= 9 && pageIndex <= 9.8) {
+      if (pageIndex >= 9 && pageIndex <= 9.65) {
         // 保证返回的时候不会不流畅
         if (this.data.progress === 10) {
           this.data.app.renderer.backgroundColor = '0xc8c9c9';
