@@ -39,12 +39,13 @@ body {
   width: 100%;
   height: 100%;
   z-index: 999;
-  background-color: #C40D23;
+  background-image: url('./images/loading-bg.png');
+  background-size: 100%;
 }
 
 .ox-voice .loading-box .loading {
   width: 275px;
-  height: 92px;
+  height: 170px;
   position: absolute;
   left: 0;
   right: 0;
@@ -58,11 +59,13 @@ body {
   font-size: 19px;
   color: #fff;
   line-height: 25px;
+  line-height: 30px;
 }
 
 .ox-voice .loading-box img {
-  width: 100%;
   display: block;
+  height: 140px;
+  margin: 0 auto;
 }
 
 .ox-voice .loading-box p {
@@ -119,25 +122,25 @@ body {
 .ox-voice .scale-play-forwards {
   -webkit-animation-name: scale;
           animation-name: scale;
-  -webkit-animation-duration: 0.8s;
-          animation-duration: 0.8s;
+  -webkit-animation-duration: 0.6s;
+          animation-duration: 0.6s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: 0.8;
-          animation-iteration-count: 0.8;
+  -webkit-animation-iteration-count: 0.6;
+          animation-iteration-count: 0.6;
 }
 
 .ox-voice .scale-play {
   -webkit-animation-name: scale;
           animation-name: scale;
-  -webkit-animation-duration: 0.8s;
-          animation-duration: 0.8s;
+  -webkit-animation-duration: 0.6s;
+          animation-duration: 0.6s;
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: 0.8;
-          animation-iteration-count: 0.8;
+  -webkit-animation-iteration-count: 0.6;
+          animation-iteration-count: 0.6;
 }
 
 @-webkit-keyframes flip {
@@ -285,12 +288,12 @@ body {
   top: 10px;
 }
 
-.ox-voice .qr {
+.ox-voice .qr-box {
   position: absolute;
+  width: 120px;
   left: calc(9% - 45px);
-  bottom: 6%;
+  bottom: 0;
   margin: auto;
-  height: 23%;
   display: none;
   padding-top: 40%;
   -webkit-user-select: none;
@@ -298,6 +301,22 @@ body {
       -ms-user-select: none;
           user-select: none;
   -webkit-touch-callout: default;
+}
+
+.ox-voice .qr-box img {
+  width: 100px;
+  height: 100px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin: 0 10px;
+  -webkit-touch-callout: default;
+}
+
+.ox-voice .qr-box .qr-text {
+  text-align: center;
+  line-height: 22px;
 }
 
 .ox-voice .main-box,
@@ -315,17 +334,18 @@ body {
 
 .ox-voice .text-box-content {
   color: #fff;
-  font-size: 0.8em;
+  font-size: 0.9em;
   line-height: 1.4em;
   font-weight: bold;
   font-family: Simsun;
   margin: 0 20px;
+  text-align: center;
 }
 
 .ox-voice .music-box {
   position: fixed;
-  right: 10px;
-  top: 10px;
+  right: 0px;
+  top: 0px;
 }
 
 .ox-voice .music-box .music-play {
@@ -343,4 +363,5 @@ body {
   display: none;
   width: 30px;
   height: 30px;
+  padding: 10px;
 }

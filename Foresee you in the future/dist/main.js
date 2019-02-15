@@ -190,7 +190,7 @@ window.ozzx.script = {
       "resources": null,
       "peopleCanMoveing": false,
       "clickPeopleRunning": false,
-      "imgArr": ["./images/1.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/people-1.png", "./images/people-2.png", "./images/people-3.png", "./images/people-4.png", "./images/people-5.png", "./images/people-6.png", "./images/people-7.png", "./images/people-8.png", "./images/people-9.png", "./images/people-10.png", "./images/people-11.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/4.png", "./images/5.png", "./images/6.png", "./images/7.png", "./images/8.png", "./images/9.png", "./images/10.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/showMore.png", "./images/showMore2.png", "./images/child.png", "./images/grass2.png", "./images/grass3.png", "./images/3-bubble.png", "./images/3-atom.png", "./images/3-flask.png", "./images/3-star.png", "./images/5-line.png", "./images/tree1.png", "./images/tree2.png", "./images/tree3.png", "./images/house1.png", "./images/house2.png", "./images/house3.png", "./images/house4.png", "./images/house5.png"],
+      "imgArr": ["./images/1.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/5.png", "./images/7.png", "./images/9.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/showMore.png", "./images/showMore2.png", "./images/child.png", "./images/grass2.png", "./images/grass3.png", "./images/3-bubble.png", "./images/3-atom.png", "./images/3-flask.png", "./images/3-star.png", "./images/tree1.png", "./images/tree2.png", "./images/tree3.png", "./images/house1.png", "./images/house2.png", "./images/house3.png", "./images/house4.png", "./images/house5.png"],
       "mousedown": false,
       "animationList": {},
       "layer": null
@@ -459,7 +459,11 @@ window.ozzx.script = {
         oneButterfly.destroy();
         setTimeout(function () {
           $('#main')[0].classList.add('scale-play');
-          $('#clock')[0].classList.add('scale-play-forwards'); // 销毁指针
+          $('#clock')[0].classList.add('scale-play-forwards');
+          setTimeout(function () {
+            // 开启第二部分
+            _this3.two();
+          }, 100); // 销毁指针
 
           setTimeout(function () {
             // 动画完毕销毁首页背景
@@ -468,12 +472,12 @@ window.ozzx.script = {
               _this3.data.app.stage.removeChild(one);
             }, 0); // 销毁tocuh监听
 
-            $("#clock").off("touchstart");
-            $('#clock').hide(800);
-            console.log('首页已销毁'); // 开启第二部分
+            $("#clock").off("touchstart"); // alert('sdsd')
 
-            _this3.two();
-          }, 900);
+            $('#clock').hide(); // 
+
+            console.log('首页已销毁');
+          }, 700);
         }, 1000);
       }, 500);
     },
@@ -524,7 +528,7 @@ window.ozzx.script = {
         x: bodySize.w * 0.6 - leftArrowH / 2,
         y: bodySize.h * 0.4 - leftArrowH / 2
       });
-      var leftArrowA = TweenMax.fromTo(leftArrow, 2, {
+      var leftArrowA = TweenMax.fromTo(leftArrow, 3, {
         x: bodySize.w * 0.6 - leftArrowH / 2
       }, {
         x: bodySize.w * 0.43 - leftArrowH / 2
@@ -544,12 +548,30 @@ window.ozzx.script = {
         height: childH,
         x: this.data.screenInfo.w * 1.55 - childH * 0.63 / 2,
         y: this.data.screenInfo.h - childH
-      }); // 第四章背景图
+      }); // 背景线
 
-      var bg4Image = this.methods.createSprite("./images/4.png", {
-        width: this.data.screenInfo.w,
+      var line1 = this.methods.createSprite("./images/line-1.png", {
+        width: this.data.screenInfo.w * 11 / 4,
         height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 2,
+        x: 0,
+        y: 0
+      });
+      var line2 = this.methods.createSprite("./images/line-2.png", {
+        width: this.data.screenInfo.w * 11 / 4,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 11 / 4,
+        y: 0
+      });
+      var line3 = this.methods.createSprite("./images/line-3.png", {
+        width: this.data.screenInfo.w * 11 / 4,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 11 / 4 * 2,
+        y: 0
+      });
+      var line4 = this.methods.createSprite("./images/line-4.png", {
+        width: this.data.screenInfo.w * 11 / 4,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 11 / 4 * 3,
         y: 0
       }); // 第五张背景图
 
@@ -558,13 +580,6 @@ window.ozzx.script = {
         height: this.data.screenInfo.h,
         x: this.data.screenInfo.w * 3,
         y: 0
-      }); // 第五张背景图
-
-      var bg6Image = this.methods.createSprite("./images/6.png", {
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 4,
-        y: 0
       });
       var bg7Image = this.methods.createSprite("./images/7.png", {
         width: this.data.screenInfo.w,
@@ -572,22 +587,10 @@ window.ozzx.script = {
         x: this.data.screenInfo.w * 5,
         y: 0
       });
-      var bg8Image = this.methods.createSprite("./images/8.png", {
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 6,
-        y: 0
-      });
       var bg9Image = this.methods.createSprite("./images/9.png", {
         width: this.data.screenInfo.w,
         height: this.data.screenInfo.h,
         x: this.data.screenInfo.w * 7,
-        y: 0
-      });
-      var bg10Image = this.methods.createSprite("./images/10.png", {
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 8,
         y: 0
       });
       var bg11Image = this.methods.createSprite("./images/11.png", {
@@ -610,7 +613,7 @@ window.ozzx.script = {
         width: shareBTH * 3.982,
         height: shareBTH,
         x: this.data.screenInfo.w * 10.63 - shareBTH * 3.982 / 2,
-        y: this.data.screenInfo.h * 0.82
+        y: this.data.screenInfo.h * 0.818
       }); // 设置可交互
 
       shareBT.interactive = true;
@@ -627,7 +630,7 @@ window.ozzx.script = {
       var againBT = this.methods.createSprite("./images/again.png", {
         width: againBTH * 3.982,
         height: againBTH,
-        x: this.data.screenInfo.w * 10.37 - againBTH * 3.982 / 2,
+        x: this.data.screenInfo.w * 10.372 - againBTH * 3.982 / 2,
         y: this.data.screenInfo.h * 0.82
       }); // 设置可交互
 
@@ -661,8 +664,9 @@ window.ozzx.script = {
         x: bodySize.w * 2,
         y: 0
       });
-      var cloud4AnimationList = new TweenMax(cloud4, 2, {
-        x: bodySize.w * 2 + 20,
+      var cloud4AnimationList = new TweenMax(cloud4, 10, {
+        x: bodySize.w * 2 + 60,
+        y: 3,
         repeat: -1,
         yoyo: true
       });
@@ -690,8 +694,9 @@ window.ozzx.script = {
         x: bodySize.w * 4 + bodySize.w * 0.05,
         y: 0
       });
-      var cloud6AnimationList = new TweenMax(cloud6, 2, {
-        x: bodySize.w * 4 + 20,
+      var cloud6AnimationList = new TweenMax(cloud6, 10, {
+        x: bodySize.w * 4 + 60,
+        y: 2,
         repeat: -1,
         yoyo: true
       });
@@ -713,8 +718,8 @@ window.ozzx.script = {
         x: bodySize.w * 6 + bodySize.w * 0.05,
         y: bodySize.h * 0.05
       });
-      var cloud8AnimationList = new TweenMax(cloud8, 2, {
-        x: bodySize.w * 6 + bodySize.w * 0.05 + 20,
+      var cloud8AnimationList = new TweenMax(cloud8, 8, {
+        x: bodySize.w * 6 + bodySize.w * 0.05 + 50,
         repeat: -1,
         yoyo: true
       });
@@ -737,8 +742,8 @@ window.ozzx.script = {
         x: bodySize.w * 8 + bodySize.w * 0.2,
         y: bodySize.h * 0.15
       });
-      var cloud10AnimationList = new TweenMax(cloud10, 2, {
-        x: bodySize.w * 8 + bodySize.w * 0.2 + 20,
+      var cloud10AnimationList = new TweenMax(cloud10, 11, {
+        x: bodySize.w * 8 + bodySize.w * 0.2 + 70,
         repeat: -1,
         yoyo: true
       });
@@ -791,7 +796,7 @@ window.ozzx.script = {
 
       Hand3.anchor.x = 0.5;
       Hand3.anchor.y = 0.5;
-      var Hand3A = TweenMax.fromTo(Hand3.scale, 1.2, {
+      var Hand3A = TweenMax.fromTo(Hand3.scale, 1.8, {
         x: 0.5,
         y: 0.5
       }, {
@@ -896,7 +901,7 @@ window.ozzx.script = {
           y: 0
         });
 
-        var fantasyAnimationList = TweenMax.fromTo(bubble, 0.4, {
+        var fantasyAnimationList = TweenMax.fromTo(fantasy, 0.4, {
           x: bodySize.w * 1.6,
           width: 0,
           y: bodySize.h * 0.45,
@@ -907,7 +912,15 @@ window.ozzx.script = {
           width: fantasyH * 2.852,
           height: fantasyH
         });
-        fantasyAnimationList.play(); // 小孩想到的星星
+        fantasyAnimationList.play(); // 幻想的云彩左右移动
+        // const fantasyA2 = new TweenMax(fantasy, 2, {
+        //   x: (bodySize.w * 1.22) + 2,
+        //   repeat: -1,
+        //   yoyo: true,
+        //   transformOrigin: 'center'
+        // })
+        // fantasyA2.play()
+        // 小孩想到的星星
 
         var startH = bodySize.h * 0.45;
 
@@ -1102,7 +1115,7 @@ window.ozzx.script = {
 
       Hand5.anchor.x = 0.5;
       Hand5.anchor.y = 0.5;
-      var Hand5A = TweenMax.fromTo(Hand5.scale, 1.2, {
+      var Hand5A = TweenMax.fromTo(Hand5.scale, 1.8, {
         x: 0.5,
         y: 0.5
       }, {
@@ -1115,15 +1128,7 @@ window.ozzx.script = {
       fiveLight.buttonMode = true; // 第五张光 亮光触摸事件
 
       this.addBind(fiveLight, function () {
-        bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png'); // 第五张背景图
-
-        var bg5Line = _this4.methods.createSprite("./images/5-line.png", {
-          width: _this4.data.screenInfo.w,
-          height: _this4.data.screenInfo.h,
-          x: _this4.data.screenInfo.w * 3,
-          y: 0
-        }); // 修改背景颜色
-
+        bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png'); // 修改背景颜色
 
         gradientColor(_this4.data.app.renderer, '#c8c9c9', '#59d3cb', 10); // 销毁动画
 
@@ -1314,7 +1319,7 @@ window.ozzx.script = {
           }, 0);
         });
 
-        _this4.data.twoContainer.addChild(bg5Line, house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore); // 5-小人继续移动
+        _this4.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore); // 5-小人继续移动
 
 
         _this4.data.clickPeopleRunning = true;
@@ -1356,7 +1361,7 @@ window.ozzx.script = {
 
       Hand7.anchor.x = 0.5;
       Hand7.anchor.y = 0.5;
-      var Hand7A = TweenMax.fromTo(Hand7.scale, 1.2, {
+      var Hand7A = TweenMax.fromTo(Hand7.scale, 1.8, {
         x: 0.5,
         y: 0.5
       }, {
@@ -1484,7 +1489,7 @@ window.ozzx.script = {
 
       Hand9.anchor.x = 0.5;
       Hand9.anchor.y = 0.5;
-      var Hand9A = TweenMax.fromTo(Hand9.scale, 1.2, {
+      var Hand9A = TweenMax.fromTo(Hand9.scale, 1.8, {
         x: 0.5,
         y: 0.5
       }, {
@@ -1515,7 +1520,23 @@ window.ozzx.script = {
           repeat: -1,
           yoyo: true
         });
-        cloud9AnimationList.play(); // 9-显示更多
+        cloud9AnimationList.play(); // bird9 比例2.7795
+
+        var bird9H = bodySize.h * 0.2;
+
+        var bird9 = _this4.methods.createSprite("./images/9-bird.png", {
+          width: bird9H * 2.7795,
+          height: bird9H,
+          // 位置中间靠上
+          x: bodySize.w * 7.3,
+          y: bodySize.h * 0.3
+        });
+
+        var bird9A = new TweenMax(bird9, 2, {
+          y: bodySize.h * 0.3 - 5,
+          repeat: -1,
+          yoyo: true
+        }); // 9-显示更多
 
         var showMoreH = bodySize.h * 0.1;
 
@@ -1555,7 +1576,7 @@ window.ozzx.script = {
         masses.sprite.x = bodySize.w * 7.56 - massesH * 1.22 / 2;
         masses.sprite.y = bodySize.h * 0.555 - massesH / 2;
 
-        _this4.data.twoContainer.addChild(showMore, masses.sprite);
+        _this4.data.twoContainer.addChild(bird9, showMore, masses.sprite);
 
         setTimeout(function () {
           masses.play();
@@ -1576,7 +1597,7 @@ window.ozzx.script = {
               _this4.data.peopleCanMoveing = false;
               _this4.data.clickPeopleRunning = false;
             }
-          }, i * 4000 - 800);
+          }, i * 3000 - 1080);
         };
 
         for (var i = 0.36; i < 0.85; i += 0.005) {
@@ -1614,7 +1635,7 @@ window.ozzx.script = {
 
       Hand11.anchor.x = 0.5;
       Hand11.anchor.y = 0.5;
-      var Hand11A = TweenMax.fromTo(Hand11.scale, 1.2, {
+      var Hand11A = TweenMax.fromTo(Hand11.scale, 1.8, {
         x: 0.5,
         y: 0.5
       }, {
@@ -1781,7 +1802,7 @@ window.ozzx.script = {
       sport.sprite.x = bodySize.w * 10.78 - sportH * 1.0775 / 2;
       sport.sprite.y = bodySize.h * 0.44 - sportH / 2; // 添加背景
 
-      this.data.twoContainer.addChild(bg3Image, this.data.people, child, bg2Image, leftArrow, threeLight, Hand3, bg4Image, bg5Image, bg6Image, bg7Image, bg8Image, bg9Image, bg10Image, bg11Image, bgshare, Light11, hand, fiveLight, Hand5, sevenLight, Hand7, Light9, Hand9, Hand11, shareBT, againBT, sport.sprite);
+      this.data.twoContainer.addChild(line1, line2, line3, line4, bg3Image, this.data.people, child, bg2Image, leftArrow, threeLight, Hand3, bg5Image, bg7Image, bg9Image, bg11Image, bgshare, Light11, hand, fiveLight, Hand5, sevenLight, Hand7, Light9, Hand9, Hand11, shareBT, againBT, sport.sprite);
       setTimeout(function () {
         sport.play();
       }, 2000); // 添加云

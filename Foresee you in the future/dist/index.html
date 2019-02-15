@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>{TAG_14226_TAG}</title>
+    <title>预见未来的你</title>
     
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1" />
@@ -28,7 +28,7 @@
   <body ontouchmove="return false">
     <div class="ox-voice ox" id="ox-voice"><div class="loading-box" id="loadingBox">
     <div class="loading">
-      <img src="./images/loading.gif">
+      <img src="./images/loading.svg">
       <div class="progress" id="progress"></div>
     </div>
   </div>
@@ -54,7 +54,10 @@
     <img class="music-play" id="musicPlay" @click="closeMusic" src="./images/music-play.png">
     <img class="music-close" id="musicClose" @click="palyMusic" src="./images/music-close.png">
   </div>
-  <img class="qr" id="qr" src="./images/QR.png">
+  <div id="qr" class="qr-box">
+    <img class="qr" src="./images/QR.png">
+    <div class="qr-text">扫码共享未来</div>
+  </div>
 </div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
