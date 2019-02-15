@@ -128,25 +128,19 @@ body {
 .ox-voice .scale-play-forwards {
   -webkit-animation-name: scalew;
           animation-name: scalew;
-  -webkit-animation-duration: 1.2s;
-          animation-duration: 1.2s;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: 1.2;
-          animation-iteration-count: 1.2;
 }
 
 .ox-voice .scale-play {
   -webkit-animation-name: scale;
           animation-name: scale;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
 }
 
 @-webkit-keyframes flip {
@@ -217,7 +211,7 @@ body {
   100% {
     -webkit-transform: scale(8);
             transform: scale(8);
-    opacity: 0;
+    opacity: 0.6;
   }
 }
 
@@ -231,7 +225,7 @@ body {
   100% {
     -webkit-transform: scale(8);
             transform: scale(8);
-    opacity: 0;
+    opacity: 0.6;
   }
 }
 

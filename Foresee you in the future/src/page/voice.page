@@ -507,25 +507,22 @@
             
             $('#main')[0].classList.add('scale-play')
             $('#clock')[0].classList.add('scale-play-forwards')
-            setTimeout(() => {
-              // 开启第二部分
-              // 动画完毕销毁首页背景
-              bg1Image.destroy()
-              this.two()
-            }, 100)
+            // 开启第二部分
+            // 动画完毕销毁首页背景
             // 销毁指针
             setTimeout(() => {
-              
-              setTimeout(() => {
-                this.data.app.stage.removeChild(one)
-              }, 0)
+
               // 销毁tocuh监听
               $("#clock").off("touchstart")
-              // alert('sdsd')
-              $('#clock').hide()
+              $('#clock')[0].style.display = 'none'
               // 
               console.log('首页已销毁')
             }, 1000)
+            setTimeout(() => {
+              this.two()
+              bg1Image.destroy()
+              this.data.app.stage.removeChild(one)
+            }, 100)
           }, 600)
         }, 500)
     },
@@ -846,7 +843,7 @@
 
       // ------------------------------------------- 亮光 -------------------------------------------
       // 第三张光 比例1
-      const threeLightHeight = bodySize.h / 6
+      const threeLightHeight = bodySize.h / 5
       const threeLight = this.methods.createSprite("./images/3-light.png", {
         width: threeLightHeight,
         height: threeLightHeight,
@@ -856,13 +853,6 @@
       })
       threeLight.anchor.x = 0.5
       threeLight.anchor.y = 0.5
-      // const threeA = new TweenMax(threeLight.scale, 1, {
-      //   x: 0.18,
-      //   y: 0.18,
-      //   repeat:-1,
-      //   yoyo:true,
-      // }, '+=1')
-      // threeA.play()
 
       // 亮光上的小手
       const Hand3H = bodySize.h * 0.05
@@ -1745,23 +1735,23 @@
       this.data.app.stage.addChild(this.data.twoContainer)
       
       // 三-亮光闪烁
-      const threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {alpha: 0},{alpha: 1}).repeat(-1)
+      const threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1)
       threeLightAnimationList.play()
 
       // 五-亮光闪烁
-      const fiveLightHeightAnimationList = TweenMax.fromTo(fiveLight, 1, {alpha: 0},{alpha: 1}).repeat(-1)
+      const fiveLightHeightAnimationList = TweenMax.fromTo(fiveLight, 1, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1)
       fiveLightHeightAnimationList.play()
 
       // 七-亮光闪烁
-      const sevenLightHeightAnimationList = TweenMax.fromTo(sevenLight, 1, {alpha: 0},{alpha: 1}).repeat(-1)
+      const sevenLightHeightAnimationList = TweenMax.fromTo(sevenLight, 1, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1)
       sevenLightHeightAnimationList.play()
 
       // 九-亮光闪烁
-      const Light9AnimationList = TweenMax.fromTo(Light9, 1, {alpha: 0},{alpha: 1}).repeat(-1)
+      const Light9AnimationList = TweenMax.fromTo(Light9, 1, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1)
       Light9AnimationList.play()
 
       // 十一-亮光闪烁
-      const Light11AnimationList = TweenMax.fromTo(Light11, 2, {alpha: 0},{alpha: 1}).repeat(-1)
+      const Light11AnimationList = TweenMax.fromTo(Light11, 2, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1.5)
       Light11AnimationList.play()
 
       this.scrollBegin()
@@ -2292,16 +2282,13 @@
   }
   .scale-play-forwards {
     animation-name: scalew;
-    animation-duration: 1.2s;
+    animation-duration: 2s;
     animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: 1.2;
   }
   .scale-play {
     animation-name: scale;
-    animation-duration: 1s;
+    animation-duration: 2s;
     animation-timing-function: ease-in-out;
-    animation-iteration-count: 1;
   }
   @keyframes flip {
     0% {
@@ -2329,7 +2316,7 @@
     }
     100% {
       transform: scale(8);
-      opacity: 0;
+      opacity: 0.6;
     }
   }
   .point {

@@ -464,26 +464,24 @@ window.ozzx.script = {
         oneButterfly.destroy();
         setTimeout(function () {
           $('#main')[0].classList.add('scale-play');
-          $('#clock')[0].classList.add('scale-play-forwards');
-          setTimeout(function () {
-            // 开启第二部分
-            // 动画完毕销毁首页背景
-            bg1Image.destroy();
-
-            _this3.two();
-          }, 100); // 销毁指针
+          $('#clock')[0].classList.add('scale-play-forwards'); // 开启第二部分
+          // 动画完毕销毁首页背景
+          // 销毁指针
 
           setTimeout(function () {
-            setTimeout(function () {
-              _this3.data.app.stage.removeChild(one);
-            }, 0); // 销毁tocuh监听
-
-            $("#clock").off("touchstart"); // alert('sdsd')
-
-            $('#clock').hide(); // 
+            // 销毁tocuh监听
+            $("#clock").off("touchstart");
+            $('#clock')[0].style.display = 'none'; // 
 
             console.log('首页已销毁');
           }, 1000);
+          setTimeout(function () {
+            _this3.two();
+
+            bg1Image.destroy();
+
+            _this3.data.app.stage.removeChild(one);
+          }, 100);
         }, 600);
       }, 500);
     },
@@ -784,7 +782,7 @@ window.ozzx.script = {
       petal12AnimationList.play(); // ------------------------------------------- 亮光 -------------------------------------------
       // 第三张光 比例1
 
-      var threeLightHeight = bodySize.h / 6;
+      var threeLightHeight = bodySize.h / 5;
       var threeLight = this.methods.createSprite("./images/3-light.png", {
         width: threeLightHeight,
         height: threeLightHeight,
@@ -793,14 +791,7 @@ window.ozzx.script = {
         y: bodySize.h * 0.27
       });
       threeLight.anchor.x = 0.5;
-      threeLight.anchor.y = 0.5; // const threeA = new TweenMax(threeLight.scale, 1, {
-      //   x: 0.18,
-      //   y: 0.18,
-      //   repeat:-1,
-      //   yoyo:true,
-      // }, '+=1')
-      // threeA.play()
-      // 亮光上的小手
+      threeLight.anchor.y = 0.5; // 亮光上的小手
 
       var Hand3H = bodySize.h * 0.05;
       var Hand3 = this.methods.createSprite("./images/light-hand.png", {
@@ -1827,35 +1818,35 @@ window.ozzx.script = {
         alpha: 0
       }, {
         alpha: 1
-      }).repeat(-1);
+      }).repeat(-1).repeatDelay(1);
       threeLightAnimationList.play(); // 五-亮光闪烁
 
       var fiveLightHeightAnimationList = TweenMax.fromTo(fiveLight, 1, {
         alpha: 0
       }, {
         alpha: 1
-      }).repeat(-1);
+      }).repeat(-1).repeatDelay(1);
       fiveLightHeightAnimationList.play(); // 七-亮光闪烁
 
       var sevenLightHeightAnimationList = TweenMax.fromTo(sevenLight, 1, {
         alpha: 0
       }, {
         alpha: 1
-      }).repeat(-1);
+      }).repeat(-1).repeatDelay(1);
       sevenLightHeightAnimationList.play(); // 九-亮光闪烁
 
       var Light9AnimationList = TweenMax.fromTo(Light9, 1, {
         alpha: 0
       }, {
         alpha: 1
-      }).repeat(-1);
+      }).repeat(-1).repeatDelay(1);
       Light9AnimationList.play(); // 十一-亮光闪烁
 
       var Light11AnimationList = TweenMax.fromTo(Light11, 2, {
         alpha: 0
       }, {
         alpha: 1
-      }).repeat(-1);
+      }).repeat(-1).repeatDelay(1.5);
       Light11AnimationList.play();
       this.scrollBegin();
     },
