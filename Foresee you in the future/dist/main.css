@@ -40,12 +40,12 @@ body {
   height: 100%;
   z-index: 999;
   background-image: url('./images/loading-bg.png');
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 
 .ox-voice .loading-box .loading {
-  width: 275px;
-  height: 170px;
+  width: 140px;
+  height: 140px;
   position: absolute;
   left: 0;
   right: 0;
@@ -56,10 +56,16 @@ body {
 
 .ox-voice .loading-box .progress {
   text-align: center;
-  font-size: 19px;
+  font-size: 14px;
   color: #fff;
   line-height: 25px;
-  line-height: 30px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 20px;
 }
 
 .ox-voice .loading-box img {
@@ -122,25 +128,25 @@ body {
 .ox-voice .scale-play-forwards {
   -webkit-animation-name: scale;
           animation-name: scale;
-  -webkit-animation-duration: 0.6s;
-          animation-duration: 0.6s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: 0.6;
-          animation-iteration-count: 0.6;
+  -webkit-animation-iteration-count: 0.5;
+          animation-iteration-count: 0.5;
 }
 
 .ox-voice .scale-play {
   -webkit-animation-name: scale;
           animation-name: scale;
-  -webkit-animation-duration: 0.6s;
-          animation-duration: 0.6s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: 0.6;
-          animation-iteration-count: 0.6;
+  -webkit-animation-iteration-count: 0.5;
+          animation-iteration-count: 0.5;
 }
 
 @-webkit-keyframes flip {
@@ -304,19 +310,17 @@ body {
 }
 
 .ox-voice .qr-box img {
-  width: 100px;
-  height: 100px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  margin: 0 10px;
+  width: 80px;
+  height: 80px;
+  margin: 0 20px;
+  display: block;
   -webkit-touch-callout: default;
 }
 
 .ox-voice .qr-box .qr-text {
   text-align: center;
-  line-height: 22px;
+  line-height: 18px;
+  font-size: 12px;
 }
 
 .ox-voice .main-box,
