@@ -7,5 +7,10 @@
   "minifyCss": false,
   "minifyJs": false,
   "pageFolder": "page",
-  "choiceAnimation": false
+  "choiceAnimation": false,
+  "scriptList": [{
+    "name": "gif",
+    "src": "./src/gif.js",
+    "babel": true
+  }] 
 }

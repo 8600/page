@@ -17,7 +17,7 @@ function gradientColor(objs, startColor, endColor, step){
     for(var i = 0; i < step; i++){
         const color = colorRGB2Hex(colorHex('rgb('+parseInt((sR*i+startR))+','+parseInt((sG*i+startG))+','+parseInt((sB*i+startB))+')'));
         //计算每一步的hex值
-        setTimeout(() => {
+        setTimeout(function () {
             objs.backgroundColor = color
             // console.log(objs)
             // console.log(color)

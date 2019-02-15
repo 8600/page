@@ -172,6 +172,11 @@ var globalConfig = {
   "minifyJs": false,
   "pageFolder": "page",
   "choiceAnimation": false,
+  "scriptList": [{
+    "name": "gif",
+    "src": "./src/gif.js",
+    "babel": true
+  }],
   "isOnePage": true
 };
 window.ozzx.script = {
