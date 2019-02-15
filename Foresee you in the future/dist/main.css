@@ -126,27 +126,27 @@ body {
 }
 
 .ox-voice .scale-play-forwards {
-  -webkit-animation-name: scale;
-          animation-name: scale;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
+  -webkit-animation-name: scalew;
+          animation-name: scalew;
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: 0.5;
-          animation-iteration-count: 0.5;
+  -webkit-animation-iteration-count: 1.2;
+          animation-iteration-count: 1.2;
 }
 
 .ox-voice .scale-play {
   -webkit-animation-name: scale;
           animation-name: scale;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: 0.5;
-          animation-iteration-count: 0.5;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
 }
 
 @-webkit-keyframes flip {
@@ -179,9 +179,14 @@ body {
             transform: scale(1);
   }
 
+  60% {
+    -webkit-transform: scale(4);
+            transform: scale(4);
+  }
+
   100% {
-    -webkit-transform: scale(8);
-            transform: scale(8);
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 
@@ -191,9 +196,42 @@ body {
             transform: scale(1);
   }
 
+  60% {
+    -webkit-transform: scale(4);
+            transform: scale(4);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes scalew {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+
   100% {
     -webkit-transform: scale(8);
             transform: scale(8);
+    opacity: 0;
+  }
+}
+
+@keyframes scalew {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(8);
+            transform: scale(8);
+    opacity: 0;
   }
 }
 

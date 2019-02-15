@@ -467,12 +467,13 @@ window.ozzx.script = {
           $('#clock')[0].classList.add('scale-play-forwards');
           setTimeout(function () {
             // 开启第二部分
+            // 动画完毕销毁首页背景
+            bg1Image.destroy();
+
             _this3.two();
           }, 100); // 销毁指针
 
           setTimeout(function () {
-            // 动画完毕销毁首页背景
-            bg1Image.destroy();
             setTimeout(function () {
               _this3.data.app.stage.removeChild(one);
             }, 0); // 销毁tocuh监听
@@ -482,7 +483,7 @@ window.ozzx.script = {
             $('#clock').hide(); // 
 
             console.log('首页已销毁');
-          }, 600);
+          }, 1000);
         }, 600);
       }, 500);
     },
@@ -783,14 +784,23 @@ window.ozzx.script = {
       petal12AnimationList.play(); // ------------------------------------------- 亮光 -------------------------------------------
       // 第三张光 比例1
 
-      var threeLightHeight = bodySize.h / 3;
+      var threeLightHeight = bodySize.h / 6;
       var threeLight = this.methods.createSprite("./images/3-light.png", {
         width: threeLightHeight,
         height: threeLightHeight,
         // 位置中间靠上
-        x: bodySize.w + bodySize.w * 0.62 - threeLightHeight / 2,
-        y: bodySize.h * 0.1
-      }); // 亮光上的小手
+        x: bodySize.w + bodySize.w * 0.67 - threeLightHeight / 2,
+        y: bodySize.h * 0.27
+      });
+      threeLight.anchor.x = 0.5;
+      threeLight.anchor.y = 0.5; // const threeA = new TweenMax(threeLight.scale, 1, {
+      //   x: 0.18,
+      //   y: 0.18,
+      //   repeat:-1,
+      //   yoyo:true,
+      // }, '+=1')
+      // threeA.play()
+      // 亮光上的小手
 
       var Hand3H = bodySize.h * 0.05;
       var Hand3 = this.methods.createSprite("./images/light-hand.png", {
@@ -803,13 +813,12 @@ window.ozzx.script = {
 
       Hand3.anchor.x = 0.5;
       Hand3.anchor.y = 0.5;
-      var Hand3A = TweenMax.fromTo(Hand3.scale, 1, {
-        x: 0.5,
-        y: 0.5
-      }, {
-        x: 0.4,
-        y: 0.4
-      }).repeat(-1);
+      var Hand3A = new TweenMax(Hand3.scale, 1, {
+        x: 0.3,
+        y: 0.3,
+        repeat: -1,
+        yoyo: true
+      });
       Hand3A.play(); // 设置可交互
 
       threeLight.interactive = true;
@@ -1122,13 +1131,12 @@ window.ozzx.script = {
 
       Hand5.anchor.x = 0.5;
       Hand5.anchor.y = 0.5;
-      var Hand5A = TweenMax.fromTo(Hand5.scale, 1, {
-        x: 0.5,
-        y: 0.5
-      }, {
-        x: 0.4,
-        y: 0.4
-      }).repeat(-1);
+      var Hand5A = new TweenMax(Hand5.scale, 1, {
+        x: 0.3,
+        y: 0.3,
+        repeat: -1,
+        yoyo: true
+      });
       Hand5A.play(); // 设置可交互
 
       fiveLight.interactive = true;
@@ -1368,13 +1376,12 @@ window.ozzx.script = {
 
       Hand7.anchor.x = 0.5;
       Hand7.anchor.y = 0.5;
-      var Hand7A = TweenMax.fromTo(Hand7.scale, 1, {
-        x: 0.5,
-        y: 0.5
-      }, {
-        x: 0.4,
-        y: 0.4
-      }).repeat(-1);
+      var Hand7A = new TweenMax(Hand7.scale, 1, {
+        x: 0.3,
+        y: 0.3,
+        repeat: -1,
+        yoyo: true
+      });
       Hand7A.play(); // 设置可交互
 
       sevenLight.interactive = true;
@@ -1496,13 +1503,12 @@ window.ozzx.script = {
 
       Hand9.anchor.x = 0.5;
       Hand9.anchor.y = 0.5;
-      var Hand9A = TweenMax.fromTo(Hand9.scale, 1, {
-        x: 0.5,
-        y: 0.5
-      }, {
-        x: 0.4,
-        y: 0.4
-      }).repeat(-1);
+      var Hand9A = new TweenMax(Hand9.scale, 1, {
+        x: 0.3,
+        y: 0.3,
+        repeat: -1,
+        yoyo: true
+      });
       Hand9A.play(); // 设置可交互
 
       Light9.interactive = true;
@@ -1643,13 +1649,12 @@ window.ozzx.script = {
 
       Hand11.anchor.x = 0.5;
       Hand11.anchor.y = 0.5;
-      var Hand11A = TweenMax.fromTo(Hand11.scale, 1, {
-        x: 0.5,
-        y: 0.5
-      }, {
-        x: 0.4,
-        y: 0.4
-      }).repeat(-1);
+      var Hand11A = new TweenMax(Hand11.scale, 1, {
+        x: 0.3,
+        y: 0.3,
+        repeat: -1,
+        yoyo: true
+      });
       Hand11A.play(); // 设置可交互
 
       Light11.interactive = true;

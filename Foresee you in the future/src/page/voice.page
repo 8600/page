@@ -509,12 +509,13 @@
             $('#clock')[0].classList.add('scale-play-forwards')
             setTimeout(() => {
               // 开启第二部分
+              // 动画完毕销毁首页背景
+              bg1Image.destroy()
               this.two()
             }, 100)
             // 销毁指针
             setTimeout(() => {
-              // 动画完毕销毁首页背景
-              bg1Image.destroy()
+              
               setTimeout(() => {
                 this.data.app.stage.removeChild(one)
               }, 0)
@@ -524,7 +525,7 @@
               $('#clock').hide()
               // 
               console.log('首页已销毁')
-            }, 600)
+            }, 1000)
           }, 600)
         }, 500)
     },
@@ -845,14 +846,23 @@
 
       // ------------------------------------------- 亮光 -------------------------------------------
       // 第三张光 比例1
-      const threeLightHeight = bodySize.h / 3
+      const threeLightHeight = bodySize.h / 6
       const threeLight = this.methods.createSprite("./images/3-light.png", {
         width: threeLightHeight,
         height: threeLightHeight,
         // 位置中间靠上
-        x: bodySize.w + (bodySize.w * 0.62) - (threeLightHeight / 2),
-        y: bodySize.h * 0.1
+        x: bodySize.w + (bodySize.w * 0.67) - (threeLightHeight / 2),
+        y: bodySize.h * 0.27
       })
+      threeLight.anchor.x = 0.5
+      threeLight.anchor.y = 0.5
+      // const threeA = new TweenMax(threeLight.scale, 1, {
+      //   x: 0.18,
+      //   y: 0.18,
+      //   repeat:-1,
+      //   yoyo:true,
+      // }, '+=1')
+      // threeA.play()
 
       // 亮光上的小手
       const Hand3H = bodySize.h * 0.05
@@ -866,7 +876,12 @@
       // 小手闪烁
       Hand3.anchor.x = 0.5
       Hand3.anchor.y = 0.5
-      const Hand3A = TweenMax.fromTo(Hand3.scale, 1, {x: 0.5, y: 0.5},{x: 0.4, y: 0.4}).repeat(-1)
+      const Hand3A = new TweenMax(Hand3.scale, 1, {
+        x: 0.3,
+        y: 0.3,
+        repeat:-1,
+        yoyo:true,
+      })
       Hand3A.play()
       
       // 设置可交互
@@ -1108,7 +1123,12 @@
       // 小手闪烁
       Hand5.anchor.x = 0.5
       Hand5.anchor.y = 0.5
-      const Hand5A = TweenMax.fromTo(Hand5.scale, 1, {x: 0.5, y: 0.5},{x: 0.4, y: 0.4}).repeat(-1)
+      const Hand5A = new TweenMax(Hand5.scale, 1, {
+        x: 0.3,
+        y: 0.3,
+        repeat:-1,
+        yoyo:true,
+      })
       Hand5A.play()
 
       // 设置可交互
@@ -1314,7 +1334,12 @@
       // 小手闪烁
       Hand7.anchor.x = 0.5
       Hand7.anchor.y = 0.5
-      const Hand7A = TweenMax.fromTo(Hand7.scale, 1, {x: 0.5, y: 0.5},{x: 0.4, y: 0.4}).repeat(-1)
+      const Hand7A = new TweenMax(Hand7.scale, 1, {
+        x: 0.3,
+        y: 0.3,
+        repeat:-1,
+        yoyo:true,
+      })
       Hand7A.play()
 
       // 设置可交互
@@ -1424,7 +1449,12 @@
       // 九-小手闪烁
       Hand9.anchor.x = 0.5
       Hand9.anchor.y = 0.5
-      const Hand9A = TweenMax.fromTo(Hand9.scale, 1, {x: 0.5, y: 0.5},{x: 0.4, y: 0.4}).repeat(-1)
+      const Hand9A = new TweenMax(Hand9.scale, 1, {
+        x: 0.3,
+        y: 0.3,
+        repeat:-1,
+        yoyo:true,
+      })
       Hand9A.play()
 
       // 设置可交互
@@ -1559,7 +1589,12 @@
       // 九-小手闪烁
       Hand11.anchor.x = 0.5
       Hand11.anchor.y = 0.5
-      const Hand11A = TweenMax.fromTo(Hand11.scale, 1, {x: 0.5, y: 0.5},{x: 0.4, y: 0.4}).repeat(-1)
+      const Hand11A = new TweenMax(Hand11.scale, 1, {
+        x: 0.3,
+        y: 0.3,
+        repeat:-1,
+        yoyo:true,
+      })
       Hand11A.play()
       
       // 设置可交互
@@ -2256,17 +2291,17 @@
     animation-iteration-count: 1;
   }
   .scale-play-forwards {
-    animation-name: scale;
-    animation-duration: 0.5s;
+    animation-name: scalew;
+    animation-duration: 1.2s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
-    animation-iteration-count: 0.5;
+    animation-iteration-count: 1.2;
   }
   .scale-play {
     animation-name: scale;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-timing-function: ease-in-out;
-    animation-iteration-count: 0.5;
+    animation-iteration-count: 1;
   }
   @keyframes flip {
     0% {
@@ -2280,8 +2315,21 @@
     0% {
       transform: scale(1);
     }
+    60% {
+      transform: scale(4);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes scalew {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
     100% {
       transform: scale(8);
+      opacity: 0;
     }
   }
   .point {
