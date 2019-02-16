@@ -418,35 +418,34 @@
         
       }
       return {w: ww, h: wh, transverse: true}
-      
     },
     // 打开时钟并进入第二部分
     openClock: function () {
       // 移除对时钟的所有事件监听
       $("#clockDial").unbind()
       for( let i = 0 ; i < 35; i++) {
-          setTimeout(() => {
-            $('#onePoint')[0].style.transform = `rotate(${3 * i}deg)`
-          }, i * 10)
-        }
         setTimeout(() => {
-          $('#clockDial')[0].classList.add(`flip-play`)
-          $("#clock").off("touchmove")
-          // 销毁tocuh监听
-          $("#clock").off("touchstart")
-          // 销毁蝴蝶          
-          
+          $('#onePoint')[0].style.transform = `rotate(${3 * i}deg)`
+        }, i * 10)
+      }
+      setTimeout(() => {
+        $('#clockDial')[0].classList.add(`flip-play`)
+        $("#clock").off("touchmove")
+        // 销毁tocuh监听
+        $("#clock").off("touchstart")
+        // 销毁蝴蝶          
+        
+        setTimeout(() => {
+          $('#one')[0].classList.add('scale-play')
+          // 开启第二部分
+          // 动画完毕销毁首页背景
+          // 销毁指针
           setTimeout(() => {
-            $('#one')[0].classList.add('scale-play')
-            // 开启第二部分
-            // 动画完毕销毁首页背景
-            // 销毁指针
-            setTimeout(() => {
-              $('#one')[0].style.display = 'none'
-              console.log('首页已销毁')
-            }, 1000)
-          }, 800)
-        }, 500)
+            $('#one')[0].style.display = 'none'
+            console.log('首页已销毁')
+          }, 1000)
+        }, 800)
+      }, 500)
     },
     two: function () {
       const bodySize = this.data.screenInfo
