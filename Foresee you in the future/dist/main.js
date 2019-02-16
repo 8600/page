@@ -226,65 +226,19 @@ window.ozzx.script = {
         }
       });
       this.data.container = new PIXI.Container();
-      this.data.container.interactive = true; // 创建一个容器
-
-      var one = new PIXI.Container();
-      one.x = 0;
-      one.y = 0; // 加载背景
-
-      var bg1Image = this.methods.createSprite("./images/1.png", {
-        width: bodySize.w,
-        height: bodySize.h,
-        x: 0,
-        y: 0
-      }); // 加载时钟
-
-      var clockHeight = bodySize.h / 1.2; // 保持图片比例
-
-      var clockWidth = clockHeight * 1.7801; // 加载指针1-point 图片宽度235px
-
-      var pointHeight = bodySize.h / 4; // 加载蝴蝶 图片宽度:1347px 高度:730px 比例1.8452
-
-      var butterflyHeight = bodySize.h / 1.3;
-      var butterflyWidth = bodySize.w;
-      var oneButterfly = this.methods.createSprite("./images/1-butterfly.png", {
-        width: butterflyWidth,
-        height: butterflyHeight,
-        // 位置中间偏下10像素
-        x: 0,
-        y: bodySize.h * 0.1,
-        z: -1
-      });
-      one.addChild(bg1Image, oneButterfly);
+      this.data.container.interactive = true;
       this.addBind($("#clockDial"), function () {
         // 播放音乐
         $('#bgm')[0].play();
         $('#musicPlay').show();
 
-        _this.openClock(one, oneButterfly, bg1Image);
+        _this.openClock();
       }); // 点击事件
       // 加载资源
 
       this.data.loader.load(function (progress, resources) {
         // 资源加载完毕事件
-        _this.data.resources = resources; // console.log(progress)
-        // let gifSprite = new GIF("./images/sport.gif", resources)
-        // gifSprite.sprite.x = 10
-        // gifSprite.sprite.y = 10
-        // this.data.app.stage.addChild(gifSprite.sprite)
-        // 蝴蝶飞舞动画
-
-        _this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {
-          y: _this.data.screenInfo.h * 0.1
-        }, {
-          y: _this.data.screenInfo.h * 0.104,
-          ease: Linear.easeNone
-        }).repeat(-1);
-
-        _this.data.animationList.oneButterfly.play();
-
-        _this.data.app.stage.addChild(one); // 隐藏掉加载页面
-
+        _this.data.resources = resources; // 隐藏掉加载页面
 
         $('#loadingBox').remove(); // 显示时钟页面 1.6481
 
@@ -313,6 +267,10 @@ window.ozzx.script = {
           xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
           crossOrigin: ''
         });
+
+        setTimeout(function () {
+          _this.two();
+        }, 200);
       });
       var shareDom = document.getElementById("shareBox");
 
@@ -365,81 +323,45 @@ window.ozzx.script = {
       var _this2 = this;
 
       // 获取屏幕宽高
-      var ww = $(window).width();
-      var wh = $(window).height();
-      console.log("\u53EF\u89C6\u5BBD\u5EA6:".concat(ww, ", \u53EF\u89C6\u9AD8\u5EA6:").concat(wh)); // alert(`可视宽度:${ww}, 可视高度:${wh}`)
+      var ww = window.innerWidth;
+      var wh = window.innerHeight; // alert(`可视宽度:${ww}, 可视高度:${wh}`)
 
       if (ww < wh) {
-        console.log('竖屏');
-        window.document.body.style.width = "".concat(wh, "px");
-        window.document.body.style.height = "".concat(ww, "px");
-        window.document.body.classList.add('horizontal');
-        window.document.body.style.left = "calc(50% - ".concat(wh / 2, "px)");
-        window.document.body.style.top = "calc(50% - ".concat(ww / 2, "px)");
-        window.document.body.style.display = 'block'; // 获取浏览器缩放比例
-
-        var _devicePixelRatio = window.devicePixelRatio || 1; // 创建画布
-
-
-        if (!this.data.app) {
-          setTimeout(function () {
-            _this2.data.app = new PIXI.Application($(window).height(), $(window).width(), {
-              backgroundColor: '0xc8c9c9',
-              resolution: _devicePixelRatio
-            });
-            _this2.data.app.view.style.width = "".concat(wh, "px");
-            _this2.data.app.view.style.height = "".concat(ww, "px");
-            $('#main').append(_this2.data.app.view);
-            _this2.data.screenInfo = {
-              w: wh,
-              h: ww,
-              transverse: false
-            };
-          }, 0);
-          return {
-            w: wh,
-            h: ww,
-            transverse: false
-          };
-        }
-      } else {
-        console.log('横屏');
-        window.document.body.classList.remove('horizontal');
-        window.document.body.style.width = "".concat(ww, "px");
-        window.document.body.style.height = "".concat(wh, "px");
-        window.document.body.style.left = '';
-        window.document.body.style.top = '';
-        window.document.body.style.display = 'block'; // 创建画布
-
-        if (!this.data.app) {
-          setTimeout(function () {
-            // console.log(devicePixelRatio)
-            _this2.data.app = new PIXI.Application($(window).width(), $(window).height(), {
-              backgroundColor: '0xc8c9c9',
-              resolution: devicePixelRatio
-            });
-            _this2.data.app.view.style.width = "".concat(ww, "px");
-            _this2.data.app.view.style.height = "".concat(wh, "px");
-            $('#main').append(_this2.data.app.view);
-            _this2.data.transverse = true;
-            _this2.data.screenInfo = {
-              w: ww,
-              h: wh,
-              transverse: true
-            };
-          }, 0);
-        }
-
-        return {
-          w: ww,
-          h: wh,
-          transverse: true
-        };
+        var _ref = [wh, ww];
+        ww = _ref[0];
+        wh = _ref[1];
       }
-    },
-    "openClock": function openClock(one, oneButterfly, bg1Image) {
-      var _this3 = this;
 
+      console.log("\u53EF\u89C6\u5BBD\u5EA6:".concat(ww, ", \u53EF\u89C6\u9AD8\u5EA6:").concat(wh)); // 获取浏览器缩放比例
+
+      var devicePixelRatio = window.devicePixelRatio || 1; // 创建画布
+
+      if (!this.data.app) {
+        setTimeout(function () {
+          // console.log(devicePixelRatio)
+          _this2.data.app = new PIXI.Application(ww, wh, {
+            backgroundColor: '0xc8c9c9',
+            resolution: devicePixelRatio
+          });
+          _this2.data.app.view.style.width = "".concat(ww, "px");
+          _this2.data.app.view.style.height = "".concat(wh, "px");
+          $('#main').append(_this2.data.app.view);
+          _this2.data.transverse = true;
+          _this2.data.screenInfo = {
+            w: ww,
+            h: wh,
+            transverse: true
+          };
+        }, 0);
+      }
+
+      return {
+        w: ww,
+        h: wh,
+        transverse: true
+      };
+    },
+    "openClock": function openClock() {
       // 移除对时钟的所有事件监听
       $("#clockDial").unbind();
 
@@ -455,38 +377,24 @@ window.ozzx.script = {
 
       setTimeout(function () {
         $('#clockDial')[0].classList.add("flip-play");
-        $("#clock").off("touchmove"); // 销毁蝴蝶
-        // 停止蝴蝶动画
+        $("#clock").off("touchmove"); // 销毁tocuh监听
 
-        _this3.data.animationList.oneButterfly.kill(); // 销毁蝴蝶
+        $("#clock").off("touchstart"); // 销毁蝴蝶          
 
-
-        oneButterfly.destroy();
         setTimeout(function () {
-          $('#main')[0].classList.add('scale-play');
-          $('#clock')[0].classList.add('scale-play-forwards'); // 开启第二部分
+          $('#one')[0].classList.add('scale-play'); // 开启第二部分
           // 动画完毕销毁首页背景
           // 销毁指针
 
           setTimeout(function () {
-            // 销毁tocuh监听
-            $("#clock").off("touchstart");
-            $('#clock')[0].style.display = 'none'; // 
-
+            $('#one')[0].style.display = 'none';
             console.log('首页已销毁');
-          }, 1200);
-          setTimeout(function () {
-            _this3.two();
-
-            bg1Image.destroy();
-
-            _this3.data.app.stage.removeChild(one);
           }, 1000);
-        }, 600);
+        }, 800);
       }, 500);
     },
     "two": function two() {
-      var _this4 = this;
+      var _this3 = this;
 
       var bodySize = this.data.screenInfo;
       console.log('第二部分!');
@@ -512,10 +420,10 @@ window.ozzx.script = {
           peopleIndex = 16;
         }
 
-        var groupID = _this4.data.peopleImgID > 9 ? 9 : _this4.data.peopleImgID;
+        var groupID = _this3.data.peopleImgID > 9 ? 9 : _this3.data.peopleImgID;
         var texture = PIXI.Texture.fromFrame("./images/".concat(groupID, "/").concat(peopleIndex, ".png"));
         peopleIndex--;
-        _this4.data.people.texture = texture;
+        _this3.data.people.texture = texture;
       }, 100); // 第二张背景图
 
       var bg2Image = this.methods.createSprite("./images/2.png", {
@@ -818,14 +726,14 @@ window.ozzx.script = {
       this.addBind(threeLight, function () {
         // 修改背景颜色
         // this.data.app.renderer.backgroundColor = "0x2a99a5"
-        gradientColor(_this4.data.app.renderer, '#c8c9c9', '#2a99a5', 10);
+        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#2a99a5', 10);
         bg3Image.destroy(); // 重新生成新的背景图
         // 第三张背景图
 
-        var newbg3I = _this4.methods.createSprite('./images/3-colour.png', {
-          width: _this4.data.screenInfo.w,
-          height: _this4.data.screenInfo.h,
-          x: _this4.data.screenInfo.w,
+        var newbg3I = _this3.methods.createSprite('./images/3-colour.png', {
+          width: _this3.data.screenInfo.w,
+          height: _this3.data.screenInfo.h,
+          x: _this3.data.screenInfo.w,
           y: 0
         }); // 销毁动画
 
@@ -841,20 +749,13 @@ window.ozzx.script = {
 
         var thoughtH = bodySize.h * 0.4;
 
-        var thought = _this4.methods.createSprite("./images/3-thought.png", {
+        var thought = _this3.methods.createSprite("./images/3-thought.png", {
           width: thoughtH * 1.7756,
           height: thoughtH,
           x: bodySize.w * 1.4,
           y: 0
         });
 
-        var thoughtAnimationList = new TweenMax(thought, 2, {
-          x: bodySize.w * 1.4 + 5,
-          y: 5,
-          repeat: -1,
-          yoyo: true
-        });
-        thoughtAnimationList.play();
         var thoughtStartA = TweenMax.fromTo(thought, 0.6, {
           x: bodySize.w * 1.6,
           width: 0,
@@ -866,23 +767,26 @@ window.ozzx.script = {
           width: thoughtH * 1.7756,
           height: thoughtH
         });
-        thoughtStartA.play(); // 气泡 3.5218
+        thoughtStartA.play();
+        setTimeout(function () {
+          thoughtStartA.kill();
+          var thoughtAnimationList = new TweenMax(thought, 2, {
+            y: 10,
+            repeat: -1,
+            yoyo: true
+          });
+        }, 700); // thoughtAnimationList.play()
+        // 气泡 3.5218
 
         var bubbleH = bodySize.h * 0.35;
 
-        var bubble = _this4.methods.createSprite("./images/3-bubble.png", {
+        var bubble = _this3.methods.createSprite("./images/3-bubble.png", {
           width: bubbleH * 3.5218,
           height: bubbleH,
           x: bodySize.w * 1.25,
           y: bodySize.h * 0.02
         });
 
-        var bubbleAnimationList = new TweenMax(bubble, 2, {
-          y: bodySize.h * 0.02 + 5,
-          repeat: -1,
-          yoyo: true
-        });
-        bubbleAnimationList.play();
         var bubbleStartA = TweenMax.fromTo(bubble, 0.6, {
           x: bodySize.w * 1.6,
           width: 0,
@@ -894,21 +798,29 @@ window.ozzx.script = {
           width: bubbleH * 3.5218,
           height: bubbleH
         });
-        bubbleStartA.play(); // 设置可滚动的区域
+        bubbleStartA.play();
+        setTimeout(function () {
+          bubbleStartA.kill();
+          var bubbleAnimationList = new TweenMax(bubble, 5, {
+            y: bodySize.h * 0.02 + 15,
+            repeat: -1,
+            yoyo: true
+          });
+        }, 700); // 设置可滚动的区域
 
-        _this4.setShowPageNumber(4); // 幻想的云彩 2.852
+        _this3.setShowPageNumber(4); // 幻想的云彩 2.852
 
 
         var fantasyH = bodySize.h * 0.48;
 
-        var fantasy = _this4.methods.createSprite("./images/3-fantasy.png", {
+        var fantasy = _this3.methods.createSprite("./images/3-fantasy.png", {
           width: fantasyH * 2.852,
           height: fantasyH,
           x: bodySize.w * 1.22,
           y: 0
         });
 
-        var fantasyAnimationList = TweenMax.fromTo(fantasy, 0.4, {
+        var fantasyAnimationList = TweenMax.fromTo(fantasy, 0.3, {
           x: bodySize.w * 1.6,
           width: 0,
           y: bodySize.h * 0.45,
@@ -931,15 +843,15 @@ window.ozzx.script = {
 
         var startH = bodySize.h * 0.45;
 
-        var start = _this4.methods.createSprite("./images/3-start.png", {
+        var start = _this3.methods.createSprite("./images/3-start.png", {
           width: startH * 2.5459,
           height: startH,
           x: bodySize.w + bodySize.w * 0.3,
           y: bodySize.h * 0.05
         });
 
-        var startAnimationList = TweenMax.fromTo(start, 4, {
-          alpha: 0
+        var startAnimationList = TweenMax.fromTo(start, 2, {
+          alpha: 0.6
         }, {
           alpha: 1
         }).repeat(-1);
@@ -960,7 +872,7 @@ window.ozzx.script = {
 
         var atomH = bodySize.h * 0.1;
 
-        var atom = _this4.methods.createSprite("./images/3-atom.png", {
+        var atom = _this3.methods.createSprite("./images/3-atom.png", {
           width: atomH,
           height: atomH,
           x: bodySize.w + bodySize.w * 0.42,
@@ -976,34 +888,32 @@ window.ozzx.script = {
           x: bodySize.w + bodySize.w * 0.42,
           y: bodySize.h * 0.18
         }).repeat(0);
-        atomStartA.play();
-        var atomAnimationList = TweenMax.fromTo(atom.scale, 3, {
-          x: 0.3,
-          y: 0.3
+        atomStartA.play(); // TweenMax.fromTo(atom.scale, 3, {x: 0.3, y: 0.3}, {x: 0.6, y: 0.6}).repeat(-1)
+
+        TweenMax.fromTo(atom, 5, {
+          rotation: 1
         }, {
-          x: 0.6,
-          y: 0.6
+          rotation: 4
         }).repeat(-1);
-        atomAnimationList.play(); // 烧瓶
+        new TweenMax(atom.scale, 3, {
+          x: 0.5,
+          y: 0.5,
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
+        }); // 烧瓶
 
         var flaskH = bodySize.h * 0.12;
 
-        var flask = _this4.methods.createSprite("./images/3-flask.png", {
+        var flask = _this3.methods.createSprite("./images/3-flask.png", {
           width: flaskH * 0.7356,
           height: flaskH,
           x: bodySize.w + bodySize.w * 0.58,
           y: bodySize.h * 0.43
         });
 
-        flask.anchor.x = 0.5;
+        flask.anchor.x = 0.7;
         flask.anchor.y = 1;
-        var flaskAnimationList = new TweenMax(flask, 2, {
-          rotation: 0.5,
-          repeat: -1,
-          yoyo: true,
-          transformOrigin: 'center'
-        });
-        flaskAnimationList.play();
         var flaskStartA = TweenMax.fromTo(flask, 0.6, {
           x: bodySize.w * 1.6,
           y: bodySize.h * 0.45
@@ -1011,11 +921,20 @@ window.ozzx.script = {
           x: bodySize.w * 1.58,
           y: bodySize.h * 0.43
         });
-        flaskStartA.play(); // 星球 1.2352
+        flaskStartA.play();
+        setTimeout(function () {
+          flaskStartA.kill();
+          var flaskAnimationList = new TweenMax(flask, 1, {
+            rotation: 0.5,
+            repeat: -1,
+            yoyo: true,
+            transformOrigin: 'center'
+          });
+        }, 700); // 星球 1.2352
 
         var starH = bodySize.h * 0.12;
 
-        var star = _this4.methods.createSprite("./images/3-star.png", {
+        var star = _this3.methods.createSprite("./images/3-star.png", {
           width: starH * 1.2352,
           height: starH,
           x: bodySize.w + bodySize.w * 0.64,
@@ -1042,7 +961,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this4.methods.createSprite("./images/showMore.png", {
+        var showMore = _this3.methods.createSprite("./images/showMore.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 1.22,
@@ -1059,37 +978,37 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
-        _this4.addBind(showMore, function () {
+        _this3.addBind(showMore, function () {
           setTimeout(function () {
-            _this4.domList.showTextBox.style.left = "25%";
-            _this4.domList.showTextBox.style.top = "35%";
-            _this4.domList.showTextBox.style.bottom = '';
-            _this4.domList.showTextBox.style.right = '';
-            _this4.domList.textBoxContent.innerText = '做有生命力的教育，教育如阳光更加公平普照，让个体生命怒放。';
-            _this4.domList.showTextBox.style.display = 'block';
+            _this3.domList.showTextBox.style.left = "25%";
+            _this3.domList.showTextBox.style.top = "35%";
+            _this3.domList.showTextBox.style.bottom = '';
+            _this3.domList.showTextBox.style.right = '';
+            _this3.domList.textBoxContent.innerText = '做有生命力的教育，教育如阳光更加公平普照，让个体生命怒放。';
+            _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         });
 
-        _this4.data.twoContainer.addChild(newbg3I, fantasy, thought, start, atom, bubble, flask, star, showMore); // 3-小人继续移动 ssd
+        _this3.data.twoContainer.addChild(newbg3I, fantasy, thought, start, atom, bubble, flask, star, showMore); // 3-小人继续移动 ssd
 
 
-        _this4.data.clickPeopleRunning = true;
+        _this3.data.clickPeopleRunning = true;
 
         var _loop2 = function _loop2(i) {
           setTimeout(function () {
-            _this4.data.people.x = _this4.data.screenInfo.w * (1.11 + i);
+            _this3.data.people.x = _this3.data.screenInfo.w * (1.11 + i);
 
             if (i < 0.75) {
               // this.data.people.x = this.data.screenInfo.w * (1.11 + i)
-              _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.6242, 199.7, i * 1000, 0.00002);
+              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.6242, 199.7, i * 1000, 0.00002);
             } else {
-              _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.6351, 690.233, i * 1000, -0.0006);
+              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.6351, 690.233, i * 1000, -0.0006);
             } // 允许滚动
 
 
             if (i >= 0.84) {
-              _this4.data.clickPeopleRunning = false;
-              _this4.data.peopleCanMoveing = false;
+              _this3.data.clickPeopleRunning = false;
+              _this3.data.peopleCanMoveing = false;
             }
           }, i * 4000 - 2300);
         };
@@ -1099,7 +1018,7 @@ window.ozzx.script = {
         } // 设置可滚动的区域
 
 
-        _this4.setShowPageNumber(4);
+        _this3.setShowPageNumber(4);
       }); // 第五张光 比例1.6582
 
       var fiveLightHeight = bodySize.h / 8;
@@ -1136,7 +1055,7 @@ window.ozzx.script = {
       this.addBind(fiveLight, function () {
         bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png'); // 修改背景颜色
 
-        gradientColor(_this4.data.app.renderer, '#c8c9c9', '#59d3cb', 10); // 销毁动画
+        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#59d3cb', 10); // 销毁动画
 
         fiveLightHeightAnimationList.kill();
         Hand5A.kill(); // 销毁掉亮光
@@ -1147,12 +1066,12 @@ window.ozzx.script = {
         cloud5.destroy(); // cloud5AnimationList.kill()
         // 设置可滚动的区域
 
-        _this4.setShowPageNumber(6); // 树1在摇摆 0.6937
+        _this3.setShowPageNumber(6); // 树1在摇摆 0.6937
 
 
         var tree1H = bodySize.h * 0.18;
 
-        var tree1 = _this4.methods.createSprite("./images/tree1.png", {
+        var tree1 = _this3.methods.createSprite("./images/tree1.png", {
           width: tree1H * 0.6937,
           height: tree1H,
           x: bodySize.w * 3.4 - tree1H * 0.9223 / 2,
@@ -1171,7 +1090,7 @@ window.ozzx.script = {
 
         var tree2H = bodySize.h * 0.50;
 
-        var tree2 = _this4.methods.createSprite("./images/tree2.png", {
+        var tree2 = _this3.methods.createSprite("./images/tree2.png", {
           width: tree2H * 0.5323,
           height: tree2H,
           x: bodySize.w * 3.2 - tree2H * 0.5323 / 2,
@@ -1189,7 +1108,7 @@ window.ozzx.script = {
 
         var tree3H = bodySize.h * 0.50;
 
-        var tree3 = _this4.methods.createSprite("./images/tree3.png", {
+        var tree3 = _this3.methods.createSprite("./images/tree3.png", {
           width: tree3H * 0.8517,
           height: tree3H,
           x: bodySize.w * 4 - tree3H * 0.8517 / 2,
@@ -1207,7 +1126,7 @@ window.ozzx.script = {
 
         var house1H = bodySize.h * 0.50;
 
-        var house1 = _this4.methods.createSprite("./images/house1.png", {
+        var house1 = _this3.methods.createSprite("./images/house1.png", {
           width: house1H * 0.5904,
           height: house1H,
           x: bodySize.w * 3.6,
@@ -1225,7 +1144,7 @@ window.ozzx.script = {
 
         var house2H = bodySize.h * 0.40;
 
-        var house2 = _this4.methods.createSprite("./images/house2.png", {
+        var house2 = _this3.methods.createSprite("./images/house2.png", {
           width: house2H * 0.49011,
           height: house2H,
           x: bodySize.w * 3.25,
@@ -1243,7 +1162,7 @@ window.ozzx.script = {
 
         var house3H = bodySize.h * 0.42;
 
-        var house3 = _this4.methods.createSprite("./images/house3.png", {
+        var house3 = _this3.methods.createSprite("./images/house3.png", {
           width: house3H * 0.5904,
           height: house3H,
           x: bodySize.w * 3.5,
@@ -1261,7 +1180,7 @@ window.ozzx.script = {
 
         var house4H = bodySize.h * 0.3;
 
-        var house4 = _this4.methods.createSprite("./images/house4.png", {
+        var house4 = _this3.methods.createSprite("./images/house4.png", {
           width: house4H * 1.034,
           height: house4H,
           x: bodySize.w * 3.7,
@@ -1279,7 +1198,7 @@ window.ozzx.script = {
 
         var house5H = bodySize.h * 0.3;
 
-        var house5 = _this4.methods.createSprite("./images/house5.png", {
+        var house5 = _this3.methods.createSprite("./images/house5.png", {
           width: house5H * 1.4926,
           height: house5H,
           x: bodySize.w * 3.33,
@@ -1297,7 +1216,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this4.methods.createSprite("./images/showMore.png", {
+        var showMore = _this3.methods.createSprite("./images/showMore.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 3.27,
@@ -1314,30 +1233,30 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
-        _this4.addBind(showMore, function () {
+        _this3.addBind(showMore, function () {
           setTimeout(function () {
-            _this4.domList.showTextBox.style.left = "34%";
-            _this4.domList.showTextBox.style.top = "20%";
-            _this4.domList.showTextBox.style.bottom = '';
-            _this4.domList.showTextBox.style.right = '';
-            _this4.domList.textBoxContent.innerText = '“人”、“地”和谐发展，城市有温度，人民更幸福。';
-            _this4.domList.showTextBox.style.display = 'block';
+            _this3.domList.showTextBox.style.left = "34%";
+            _this3.domList.showTextBox.style.top = "20%";
+            _this3.domList.showTextBox.style.bottom = '';
+            _this3.domList.showTextBox.style.right = '';
+            _this3.domList.textBoxContent.innerText = '“人”、“地”和谐发展，城市有温度，人民更幸福。';
+            _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         });
 
-        _this4.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore); // 5-小人继续移动
+        _this3.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore); // 5-小人继续移动
 
 
-        _this4.data.clickPeopleRunning = true;
+        _this3.data.clickPeopleRunning = true;
 
         var _loop3 = function _loop3(i) {
           setTimeout(function () {
-            _this4.data.people.x = _this4.data.screenInfo.w * (3.11 + i);
-            _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.3737, 0, i * 1000, -0.00006); // 允许滚动
+            _this3.data.people.x = _this3.data.screenInfo.w * (3.11 + i);
+            _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.3737, 0, i * 1000, -0.00006); // 允许滚动
 
             if (i >= 0.7) {
-              _this4.data.peopleCanMoveing = false;
-              _this4.data.clickPeopleRunning = false;
+              _this3.data.peopleCanMoveing = false;
+              _this3.data.clickPeopleRunning = false;
             }
           }, i * 4000 - 2000);
         };
@@ -1380,7 +1299,7 @@ window.ozzx.script = {
 
       this.addBind(sevenLight, function () {
         // 修改背景颜色
-        gradientColor(_this4.data.app.renderer, '#c8c9c9', '#dccfbc', 10); // this.data.app.renderer.backgroundColor = "0xdccfbc"
+        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#dccfbc', 10); // this.data.app.renderer.backgroundColor = "0xdccfbc"
 
         bg7Image.texture = PIXI.Texture.fromFrame('./images/7-colour.png'); // 销毁动画
 
@@ -1390,7 +1309,7 @@ window.ozzx.script = {
         sevenLight.destroy();
         Hand7.destroy(); // 设置可滚动的区域
 
-        _this4.setShowPageNumber(8);
+        _this3.setShowPageNumber(8);
 
         var cloud7AnimationList = new TweenMax(cloud7, 2, {
           x: bodySize.w * 5 + bodySize.w * 0.05 + 20,
@@ -1400,7 +1319,7 @@ window.ozzx.script = {
         cloud7AnimationList.play(); // 从下面生出政府的手 0.8511
 
         var supportH = bodySize.h * 0.7;
-        var support = new GIF("./images/support.gif", _this4.data.resources);
+        var support = new GIF("./images/support.gif", _this3.data.resources);
         support.sprite.width = supportH * 0.8511;
         support.sprite.height = supportH;
         support.sprite.x = bodySize.w * 5 - supportH * 0.8511 / 2 + bodySize.w * 0.5;
@@ -1417,7 +1336,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this4.methods.createSprite("./images/showMore.png", {
+        var showMore = _this3.methods.createSprite("./images/showMore.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 5.29,
@@ -1434,37 +1353,37 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
-        _this4.addBind(showMore, function () {
+        _this3.addBind(showMore, function () {
           setTimeout(function () {
-            _this4.domList.showTextBox.style.left = "32%";
-            _this4.domList.showTextBox.style.top = "16%";
-            _this4.domList.showTextBox.style.bottom = '';
-            _this4.domList.showTextBox.style.right = '';
-            _this4.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。';
-            _this4.domList.showTextBox.style.display = 'block';
+            _this3.domList.showTextBox.style.left = "32%";
+            _this3.domList.showTextBox.style.top = "16%";
+            _this3.domList.showTextBox.style.bottom = '';
+            _this3.domList.showTextBox.style.right = '';
+            _this3.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。';
+            _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         });
 
-        _this4.data.twoContainer.addChild(support.sprite, showMore); // 允许滚动
+        _this3.data.twoContainer.addChild(support.sprite, showMore); // 允许滚动
         // 7-小人继续移动
 
 
-        _this4.data.clickPeopleRunning = true;
+        _this3.data.clickPeopleRunning = true;
 
         var _loop4 = function _loop4(i) {
           setTimeout(function () {
-            _this4.data.people.x = _this4.data.screenInfo.w * (5.11 + i);
+            _this3.data.people.x = _this3.data.screenInfo.w * (5.11 + i);
 
             if (i < 0.42) {
-              _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.36, 0, i * 1000, -0.00001); // console.log(this.data.people.y, this.methods.smooth(0.36, 0, i * 1000, -0.00001))
+              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.36, 0, i * 1000, -0.00001); // console.log(this.data.people.y, this.methods.smooth(0.36, 0, i * 1000, -0.00001))
             } else {
-              _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.3558, 420, i * 1000, 0.00025);
+              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.3558, 420, i * 1000, 0.00025);
             } // 允许滚动
 
 
             if (i >= 0.7) {
-              _this4.data.peopleCanMoveing = false;
-              _this4.data.clickPeopleRunning = false;
+              _this3.data.peopleCanMoveing = false;
+              _this3.data.clickPeopleRunning = false;
             }
           }, i * 2000 - 400);
         };
@@ -1507,7 +1426,7 @@ window.ozzx.script = {
 
       this.addBind(Light9, function () {
         // 修改背景颜色
-        gradientColor(_this4.data.app.renderer, '#c8c9c9', '#f6df60', 10); // this.data.app.renderer.backgroundColor = "0xfae768"
+        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#f6df60', 10); // this.data.app.renderer.backgroundColor = "0xfae768"
 
         bg9Image.texture = PIXI.Texture.fromFrame('./images/9-colour.png'); // 销毁动画
 
@@ -1517,7 +1436,7 @@ window.ozzx.script = {
         Light9.destroy();
         Hand9.destroy(); // 设置可滚动的区域
 
-        _this4.setShowPageNumber(10);
+        _this3.setShowPageNumber(10);
 
         var cloud9AnimationList = new TweenMax(cloud9, 2, {
           x: bodySize.w * 7 + bodySize.w * 0.05 + 20,
@@ -1528,7 +1447,7 @@ window.ozzx.script = {
 
         var bird9H = bodySize.h * 0.3;
 
-        var bird9 = _this4.methods.createSprite("./images/9-bird.png", {
+        var bird9 = _this3.methods.createSprite("./images/9-bird.png", {
           width: bird9H * 2.7795,
           height: bird9H,
           // 位置中间靠上
@@ -1545,7 +1464,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this4.methods.createSprite("./images/showMore2.png", {
+        var showMore = _this3.methods.createSprite("./images/showMore2.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 7.75,
@@ -1562,26 +1481,26 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 显示更多触摸事件
 
-        _this4.addBind(showMore, function () {
+        _this3.addBind(showMore, function () {
           setTimeout(function () {
-            _this4.domList.showTextBox.style.right = "22%";
-            _this4.domList.showTextBox.style.top = "18%";
-            _this4.domList.showTextBox.style.bottom = '';
-            _this4.domList.showTextBox.style.left = '';
-            _this4.domList.textBoxContent.innerText = '一头系着贫，一头系着富，把社会捆绑结实。';
-            _this4.domList.showTextBox.style.display = 'block';
+            _this3.domList.showTextBox.style.right = "22%";
+            _this3.domList.showTextBox.style.top = "18%";
+            _this3.domList.showTextBox.style.bottom = '';
+            _this3.domList.showTextBox.style.left = '';
+            _this3.domList.textBoxContent.innerText = '一头系着贫，一头系着富，把社会捆绑结实。';
+            _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         }); // 群众向上拉 1.22
 
 
         var massesH = bodySize.h * 0.65;
-        var masses = new GIF("./images/masses.gif", _this4.data.resources);
+        var masses = new GIF("./images/masses.gif", _this3.data.resources);
         masses.sprite.width = massesH * 1.22;
         masses.sprite.height = massesH;
         masses.sprite.x = bodySize.w * 7.56 - massesH * 1.22 / 2;
         masses.sprite.y = bodySize.h * 0.555 - massesH / 2;
 
-        _this4.data.twoContainer.addChild(bird9, showMore, masses.sprite);
+        _this3.data.twoContainer.addChild(bird9, showMore, masses.sprite);
 
         setTimeout(function () {
           masses.play();
@@ -1589,18 +1508,18 @@ window.ozzx.script = {
 
         var _loop5 = function _loop5(i) {
           setTimeout(function () {
-            _this4.data.people.x = _this4.data.screenInfo.w * (7.11 + i);
+            _this3.data.people.x = _this3.data.screenInfo.w * (7.11 + i);
 
             if (i < 0.4) {
-              _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.5, 187.59, i * 1000, -0.00002); // console.log(this.data.people.y, this.methods.smooth(0.5, 187.59, i * 1000, -0.00002))
+              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.5, 187.59, i * 1000, -0.00002); // console.log(this.data.people.y, this.methods.smooth(0.5, 187.59, i * 1000, -0.00002))
             } else {
-              _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.51, 185.9, i * 1000, 0.00001);
+              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.51, 185.9, i * 1000, 0.00001);
             } // 允许滚动
 
 
             if (i >= 0.7) {
-              _this4.data.peopleCanMoveing = false;
-              _this4.data.clickPeopleRunning = false;
+              _this3.data.peopleCanMoveing = false;
+              _this3.data.clickPeopleRunning = false;
             }
           }, i * 3000 - 1080);
         };
@@ -1653,7 +1572,7 @@ window.ozzx.script = {
 
       this.addBind(Hand11, function () {
         // 修改背景颜色
-        _this4.data.app.renderer.backgroundColor = "0xcfdee5";
+        _this3.data.app.renderer.backgroundColor = "0xcfdee5";
         bg11Image.texture = PIXI.Texture.fromFrame('./images/11-colour.png'); // 替换彩色花瓣材质
 
         petal11.texture = PIXI.Texture.fromFrame('./images/11-petal-colour.png'); // 销毁动画
@@ -1666,12 +1585,12 @@ window.ozzx.script = {
 
         hand.destroy(); // 设置可滚动的区域
 
-        _this4.setShowPageNumber(11); // 从左面生出树叶 0.8106
+        _this3.setShowPageNumber(11); // 从左面生出树叶 0.8106
 
 
         var grass1H = bodySize.h * 0.9;
 
-        var grass1 = _this4.methods.createSprite("./images/grass1.png", {
+        var grass1 = _this3.methods.createSprite("./images/grass1.png", {
           width: grass1H * 0.8106,
           height: grass1H,
           x: bodySize.w * 9,
@@ -1687,7 +1606,7 @@ window.ozzx.script = {
 
         var grass2H = bodySize.h * 0.4;
 
-        var grass2 = _this4.methods.createSprite("./images/grass2.png", {
+        var grass2 = _this3.methods.createSprite("./images/grass2.png", {
           width: grass2H * 2.4909,
           height: grass2H,
           x: bodySize.w * 10 - grass2H * 2.4909,
@@ -1703,7 +1622,7 @@ window.ozzx.script = {
 
         var grass3H = bodySize.h * 0.2;
 
-        var grass3 = _this4.methods.createSprite("./images/grass3.png", {
+        var grass3 = _this3.methods.createSprite("./images/grass3.png", {
           width: grass3H * 1.5402,
           height: grass3H,
           x: bodySize.w * 10 + 2 * grass3H * 1.5402,
@@ -1738,7 +1657,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this4.methods.createSprite("./images/showMore2.png", {
+        var showMore = _this3.methods.createSprite("./images/showMore2.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 9.80,
@@ -1755,20 +1674,20 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 显示更多触摸事件
 
-        _this4.addBind(showMore, function () {
+        _this3.addBind(showMore, function () {
           setTimeout(function () {
-            _this4.domList.showTextBox.style.top = '';
-            _this4.domList.showTextBox.style.right = '';
-            _this4.domList.showTextBox.style.left = "40%";
-            _this4.domList.showTextBox.style.bottom = "13%";
-            _this4.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。';
-            _this4.domList.showTextBox.style.display = 'block';
+            _this3.domList.showTextBox.style.top = '';
+            _this3.domList.showTextBox.style.right = '';
+            _this3.domList.showTextBox.style.left = "40%";
+            _this3.domList.showTextBox.style.bottom = "13%";
+            _this3.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。';
+            _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         }); // 11-手托着地球 1.1212
 
 
         var earthH = bodySize.h * 0.7;
-        var earth = new GIF("./images/earth.gif", _this4.data.resources, true);
+        var earth = new GIF("./images/earth.gif", _this3.data.resources, true);
         earth.sprite.width = earthH * 1.22;
         earth.sprite.height = earthH;
         earth.sprite.x = bodySize.w * 9.5 - earthH * 1.22 / 2;
@@ -1777,19 +1696,19 @@ window.ozzx.script = {
           earth.play();
         }, 500);
 
-        _this4.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore); // 13-小人继续移动
+        _this3.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore); // 13-小人继续移动
 
 
-        _this4.data.clickPeopleRunning = true;
+        _this3.data.clickPeopleRunning = true;
 
         var _loop6 = function _loop6(i) {
           setTimeout(function () {
-            _this4.data.people.x = _this4.data.screenInfo.w * (9.11 + i);
-            _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.407, 0, i * 1000, 0.00012); // 允许滚动
+            _this3.data.people.x = _this3.data.screenInfo.w * (9.11 + i);
+            _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.407, 0, i * 1000, 0.00012); // 允许滚动
 
             if (i >= 0.64) {
-              _this4.data.clickPeopleRunning = false;
-              _this4.data.peopleCanMoveing = false;
+              _this3.data.clickPeopleRunning = false;
+              _this3.data.peopleCanMoveing = false;
             }
           }, i * 4000 - 1600);
         };
@@ -1851,7 +1770,7 @@ window.ozzx.script = {
       this.scrollBegin();
     },
     "scrollBegin": function scrollBegin() {
-      var _this5 = this;
+      var _this4 = this;
 
       console.log('注册scroll!');
       var transverse = this.data.screenInfo.transverse;
@@ -1859,15 +1778,15 @@ window.ozzx.script = {
         var scrollNumber = transverse ? left : top; // 设置整个页面的x
         // console.log(this.data.twoContainer)
 
-        _this5.data.twoContainer.x = -scrollNumber;
-        var peopleX = scrollNumber + 50 * (1024 / _this5.data.screenInfo.w); // 设置小人的图片
+        _this4.data.twoContainer.x = -scrollNumber;
+        var peopleX = scrollNumber + 50 * (1024 / _this4.data.screenInfo.w); // 设置小人的图片
 
-        _this5.setPeopleImg(peopleX); // console.log(scrollNumber)
+        _this4.setPeopleImg(peopleX); // console.log(scrollNumber)
         // 小球移动轨迹
         // console.log('sd')
 
 
-        _this5.setPeopleY(peopleX);
+        _this4.setPeopleY(peopleX);
       }, {
         zooming: true,
         bouncing: false
@@ -2114,102 +2033,102 @@ window.ozzx.script = {
       }
     },
     "mouseEvent": function mouseEvent() {
-      var _this6 = this;
+      var _this5 = this;
 
       // console.log(this.data.scroller)
       $('canvas')[0].addEventListener("touchstart", function (e) {
         // 隐藏掉提示条
-        _this6.domList.showTextBox.style.display = 'none';
-        if (_this6.data.peopleCanMoveing) return;
+        _this5.domList.showTextBox.style.display = 'none';
+        if (_this5.data.peopleCanMoveing) return;
 
-        _this6.data.scroller.doTouchStart(e.touches, e.timeStamp);
+        _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
 
-        _this6.data.mousedown = true;
+        _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("touchmove", function (e) {
-        if (_this6.data.peopleCanMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
-        if (!_this6.data.mousedown) {
+        if (!_this5.data.mousedown) {
           return;
         } // console.log(e.touches, e.timeStamp)
 
 
-        _this6.data.scroller.doTouchMove(e.touches, e.timeStamp);
+        _this5.data.scroller.doTouchMove(e.touches, e.timeStamp);
 
-        _this6.data.mousedown = true;
+        _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("touchend", function (e) {
-        if (_this6.data.peopleCanMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
-        if (!_this6.data.mousedown) {
+        if (!_this5.data.mousedown) {
           return;
         }
 
-        _this6.data.scroller.doTouchEnd(e.timeStamp);
+        _this5.data.scroller.doTouchEnd(e.timeStamp);
 
-        _this6.data.mousedown = false;
+        _this5.data.mousedown = false;
       }, false);
       $('canvas')[0].addEventListener("mousedown", function (e) {
         // 隐藏掉提示条
-        _this6.domList.showTextBox.style.display = 'none';
-        if (_this6.data.peopleCanMoveing) return;
+        _this5.domList.showTextBox.style.display = 'none';
+        if (_this5.data.peopleCanMoveing) return;
 
-        _this6.data.scroller.doTouchStart([e], e.timeStamp);
+        _this5.data.scroller.doTouchStart([e], e.timeStamp);
 
-        _this6.data.mousedown = true;
+        _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mousemove", function (e) {
-        if (_this6.data.peopleCanMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
-        if (!_this6.data.mousedown) {
+        if (!_this5.data.mousedown) {
           return;
         } // console.log(e.touches, e.timeStamp)
 
 
-        _this6.data.scroller.doTouchMove([e], e.timeStamp);
+        _this5.data.scroller.doTouchMove([e], e.timeStamp);
 
-        _this6.data.mousedown = true;
+        _this5.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mouseup", function (e) {
-        if (_this6.data.peopleCanMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
-        if (!_this6.data.mousedown) {
+        if (!_this5.data.mousedown) {
           return;
         }
 
-        _this6.data.scroller.doTouchEnd(e.timeStamp);
+        _this5.data.scroller.doTouchEnd(e.timeStamp);
 
-        _this6.data.mousedown = false;
+        _this5.data.mousedown = false;
       }, false);
       $('#qr')[0].addEventListener("touchstart", function (e) {
-        if (_this6.data.peopleCanMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
-        _this6.data.scroller.doTouchStart(e.touches, e.timeStamp);
+        _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
 
-        _this6.data.mousedown = true;
+        _this5.data.mousedown = true;
       }, false);
       $('#qr')[0].addEventListener("touchmove", function (e) {
-        if (_this6.data.peopleCanMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
-        if (!_this6.data.mousedown) {
+        if (!_this5.data.mousedown) {
           return;
         } // console.log(e.touches, e.timeStamp)
 
 
-        _this6.data.scroller.doTouchMove(e.touches, e.timeStamp);
+        _this5.data.scroller.doTouchMove(e.touches, e.timeStamp);
 
-        _this6.data.mousedown = true;
+        _this5.data.mousedown = true;
       }, false);
       $('#qr')[0].addEventListener("touchend", function (e) {
-        if (_this6.data.peopleCanMoveing) return;
+        if (_this5.data.peopleCanMoveing) return;
 
-        if (!_this6.data.mousedown) {
+        if (!_this5.data.mousedown) {
           return;
         }
 
-        _this6.data.scroller.doTouchEnd(e.timeStamp);
+        _this5.data.scroller.doTouchEnd(e.timeStamp);
 
-        _this6.data.mousedown = false;
+        _this5.data.mousedown = false;
       }, false);
     },
     "addBind": function addBind(item, func) {
@@ -2217,7 +2136,7 @@ window.ozzx.script = {
       item.on('click', func);
     },
     "peopleMove1": function peopleMove1(pageIndex) {
-      var _this7 = this;
+      var _this6 = this;
 
       if (pageIndex === 1) {
         if (this.data.progress < 3 && !this.data.peopleCanMoveing) {
@@ -2225,15 +2144,15 @@ window.ozzx.script = {
 
           var _loop7 = function _loop7(i) {
             setTimeout(function () {
-              if (!_this7.data.peopleCanMoveing || _this7.data.clickPeopleRunning) return;
-              _this7.data.people.x = _this7.data.screenInfo.w * (1.11 + i);
+              if (!_this6.data.peopleCanMoveing || _this6.data.clickPeopleRunning) return;
+              _this6.data.people.x = _this6.data.screenInfo.w * (1.11 + i);
 
               if (i < 0.16) {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.22, 0, i * 1000, 0.0003);
+                _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.22, 0, i * 1000, 0.0003);
               } else {
                 // console.log(this.data.screenInfo.h * 0.1704, i * this.data.screenInfo.h)
                 // ssd
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.2557, 155, i * 1000, 0.00085); // console.log(this.data.people.y, this.methods.smooth(0.2557, 155, i * 1000 , 0.00085))
+                _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.2557, 155, i * 1000, 0.00085); // console.log(this.data.people.y, this.methods.smooth(0.2557, 155, i * 1000 , 0.00085))
               }
             }, i * 4000);
           };
@@ -2245,7 +2164,7 @@ window.ozzx.script = {
       }
     },
     "peopleMove2": function peopleMove2(pageIndex) {
-      var _this8 = this;
+      var _this7 = this;
 
       if (pageIndex === 3) {
         // console.log(this.data.progress)
@@ -2254,15 +2173,15 @@ window.ozzx.script = {
 
           var _loop8 = function _loop8(i) {
             setTimeout(function () {
-              if (!_this8.data.peopleCanMoveing || _this8.data.clickPeopleRunning) return;
-              _this8.data.people.x = _this8.data.screenInfo.w * (3.11 + i);
+              if (!_this7.data.peopleCanMoveing || _this7.data.clickPeopleRunning) return;
+              _this7.data.people.x = _this7.data.screenInfo.w * (3.11 + i);
 
               if (i < 0.15) {
-                _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.5, 0, i * 1000, 0.0004); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.5, 0, i * 1000, 0.0004); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else if (i < 0.3) {
-                _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.59, 0, i * 1000, -0.0001); // console.log(this.methods.smooth(0.55, 0.5700, i * 1000 , -0.0001))
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.59, 0, i * 1000, -0.0001); // console.log(this.methods.smooth(0.55, 0.5700, i * 1000 , -0.0001))
               } else {
-                _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.76, 0, i * 1000, -0.00075); // console.log(this.data.people.y, this.methods.smooth(0.76, 0, i * 1000 , -0.00075))
+                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.76, 0, i * 1000, -0.00075); // console.log(this.data.people.y, this.methods.smooth(0.76, 0, i * 1000 , -0.00075))
               }
             }, i * 4000);
           };
@@ -2274,7 +2193,7 @@ window.ozzx.script = {
       }
     },
     "peopleMove3": function peopleMove3(pageIndex) {
-      var _this9 = this;
+      var _this8 = this;
 
       if (pageIndex === 5) {
         // console.log(this.data.progress)
@@ -2283,11 +2202,11 @@ window.ozzx.script = {
 
           var _loop9 = function _loop9(i) {
             setTimeout(function () {
-              if (!_this9.data.peopleCanMoveing || _this9.data.clickPeopleRunning) return;
-              _this9.data.people.x = _this9.data.screenInfo.w * (5.11 + i);
+              if (!_this8.data.peopleCanMoveing || _this8.data.clickPeopleRunning) return;
+              _this8.data.people.x = _this8.data.screenInfo.w * (5.11 + i);
 
               if (i < 0.15) {
-                _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.48, 0, i * 1000, -0.0008); // console.log(this.data.people.y, this.methods.smooth(0.48, 0, i * 1000, -0.0008))
+                _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.48, 0, i * 1000, -0.0008); // console.log(this.data.people.y, this.methods.smooth(0.48, 0, i * 1000, -0.0008))
               }
             }, i * 4000);
           };
@@ -2299,7 +2218,7 @@ window.ozzx.script = {
       }
     },
     "peopleMove4": function peopleMove4(pageIndex) {
-      var _this10 = this;
+      var _this9 = this;
 
       if (pageIndex === 7) {
         // console.log(this.data.progress)
@@ -2308,13 +2227,13 @@ window.ozzx.script = {
 
           var _loop10 = function _loop10(i) {
             setTimeout(function () {
-              if (!_this10.data.peopleCanMoveing || _this10.data.clickPeopleRunning) return;
-              _this10.data.people.x = _this10.data.screenInfo.w * (7.11 + i);
+              if (!_this9.data.peopleCanMoveing || _this9.data.clickPeopleRunning) return;
+              _this9.data.people.x = _this9.data.screenInfo.w * (7.11 + i);
 
               if (i < 0.16) {
-                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.7, 0, i * 1000, -0.0007); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
+                _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.7, 0, i * 1000, -0.0007); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else {
-                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.66, 0, i * 1000, -0.00045); // console.log(this.data.people.y, this.methods.smooth(0.66, 0, i * 1000, -0.00045))
+                _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.66, 0, i * 1000, -0.00045); // console.log(this.data.people.y, this.methods.smooth(0.66, 0, i * 1000, -0.00045))
               }
             }, i * 4000);
           };
@@ -2326,7 +2245,7 @@ window.ozzx.script = {
       }
     },
     "peopleMove5": function peopleMove5(pageIndex) {
-      var _this11 = this;
+      var _this10 = this;
 
       if (pageIndex === 9) {
         // console.log(this.data.progress)
@@ -2335,13 +2254,13 @@ window.ozzx.script = {
 
           var _loop11 = function _loop11(i) {
             setTimeout(function () {
-              if (!_this11.data.peopleCanMoveing || _this11.data.clickPeopleRunning) return;
-              _this11.data.people.x = _this11.data.screenInfo.w * (9.11 + i);
+              if (!_this10.data.peopleCanMoveing || _this10.data.clickPeopleRunning) return;
+              _this10.data.people.x = _this10.data.screenInfo.w * (9.11 + i);
 
               if (i < 0.10) {
-                _this11.data.people.y = _this11.data.screenInfo.h * _this11.methods.smooth(0.3, 0, i * 1000, 0.0001); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
+                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.3, 0, i * 1000, 0.0001); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else {
-                _this11.data.people.y = _this11.data.screenInfo.h * _this11.methods.smooth(0.265, 0, i * 1000, 0.0004); // console.log(this.data.people.y, this.methods.smooth(0.265, 0, i * 1000, 0.0004))
+                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.265, 0, i * 1000, 0.0004); // console.log(this.data.people.y, this.methods.smooth(0.265, 0, i * 1000, 0.0004))
               }
             }, i * 4000);
           };

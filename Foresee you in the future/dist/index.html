@@ -33,12 +33,16 @@
     </div>
   </div>
   <div class="main-box" id="main"></div>
-  <div class="clock" id="clock">
-    <div class="dial" id="clockDial">
-      <div class="point" id="onePoint"></div>
-      <div class="hand" id="oneHand"></div>
+  <div class="one" id="one">
+    <div class="clock" id="clock">
+      <div class="dial" id="clockDial">
+        <div class="point" id="onePoint"></div>
+        <div class="hand" id="oneHand"></div>
+      </div>
     </div>
+    <div class="buttyfly" id="buttyfly"></div>
   </div>
+  
   <!-- 背景音乐 -->
   <audio src="./audio/bgm.mp3" id="bgm" loop="">
     您的浏览器不支持 audio 标签。
@@ -59,7 +63,21 @@
     <div class="qr-text">扫码共享未来</div>
   </div>
 </div>
-    
+    <script>
+      // 获取屏幕宽高
+      var ww = window.innerWidth
+      var wh = window.innerHeight
+      // alert(`可视宽度:${ww}, 可视高度:${wh}`)
+      if (ww < wh){
+        console.log('竖屏')
+        window.document.body.style.width = wh + 'px'
+        window.document.body.style.height = ww + 'px'
+        window.document.body.classList.add('horizontal')
+        window.document.body.style.left = 'calc(50% - ' + wh / 2 + 'px)'
+        window.document.body.style.top = 'calc(50% - ' + ww / 2 + 'px)'
+        window.document.body.style.display = 'block'
+      }
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
     <script charset="utf-8" src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.core.js"></script>

@@ -7,7 +7,21 @@
   </head>
   <body ontouchmove="return false">
     <temple name="voice"></temple>
-    
+    <script>
+      // 获取屏幕宽高
+      var ww = window.innerWidth
+      var wh = window.innerHeight
+      // alert(`可视宽度:${ww}, 可视高度:${wh}`)
+      if (ww < wh){
+        console.log('竖屏')
+        window.document.body.style.width = wh + 'px'
+        window.document.body.style.height = ww + 'px'
+        window.document.body.classList.add('horizontal')
+        window.document.body.style.left = 'calc(50% - ' + wh / 2 + 'px)'
+        window.document.body.style.top = 'calc(50% - ' + ww / 2 + 'px)'
+        window.document.body.style.display = 'block'
+      }
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
     <script charset="utf-8" src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.core.js"></script>

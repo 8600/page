@@ -6,12 +6,16 @@
     </div>
   </div>
   <div class="main-box" id="main"></div>
-  <div class="clock" id="clock">
-    <div class="dial" id="clockDial">
-      <div class="point" id="onePoint"></div>
-      <div class="hand" id="oneHand"></div>
+  <div class="one" id="one">
+    <div class="clock" id="clock">
+      <div class="dial" id="clockDial">
+        <div class="point" id="onePoint"></div>
+        <div class="hand" id="oneHand"></div>
+      </div>
     </div>
+    <div class="buttyfly" id="buttyfly"></div>
   </div>
+  
   <!-- 背景音乐 -->
   <audio src="./audio/bgm.mp3" id="bgm" loop>
     您的浏览器不支持 audio 标签。
@@ -293,63 +297,19 @@
       )
       this.data.container = new PIXI.Container()
       this.data.container.interactive = true
-      
-      // 创建一个容器
-      const one = new PIXI.Container()
-      one.x = 0
-      one.y = 0
-      // 加载背景
-      const bg1Image = this.methods.createSprite("./images/1.png", {
-        width: bodySize.w,
-        height: bodySize.h,
-        x: 0,
-        y: 0
-      })
 
-      // 加载时钟
-      const clockHeight = bodySize.h / 1.2
-      // 保持图片比例
-      const clockWidth = clockHeight * 1.7801
-      
-      
-      // 加载指针1-point 图片宽度235px
-      const pointHeight = bodySize.h / 4
-
-
-      // 加载蝴蝶 图片宽度:1347px 高度:730px 比例1.8452
-      const butterflyHeight = bodySize.h / 1.3
-      const butterflyWidth = bodySize.w
-      const oneButterfly = this.methods.createSprite("./images/1-butterfly.png", {
-        width: butterflyWidth,
-        height: butterflyHeight,
-        // 位置中间偏下10像素
-        x: 0,
-        y: bodySize.h * 0.1,
-        z: -1
-      })
-
-      one.addChild(bg1Image, oneButterfly)
       
       this.addBind($("#clockDial"), () => {
         // 播放音乐
         $('#bgm')[0].play()
         $('#musicPlay').show()
-        this.openClock(one, oneButterfly, bg1Image)
+        this.openClock()
       })
       // 点击事件
       // 加载资源
       this.data.loader.load((progress,resources) => {
         // 资源加载完毕事件
         this.data.resources = resources
-        // console.log(progress)
-        // let gifSprite = new GIF("./images/sport.gif", resources)
-        // gifSprite.sprite.x = 10
-        // gifSprite.sprite.y = 10
-        // this.data.app.stage.addChild(gifSprite.sprite)
-        // 蝴蝶飞舞动画
-        this.data.animationList.oneButterfly = TweenMax.fromTo(oneButterfly, 0.8, {y: this.data.screenInfo.h*0.1},{y: this.data.screenInfo.h * 0.104, ease:Linear.easeNone}).repeat(-1)
-        this.data.animationList.oneButterfly.play()
-        this.data.app.stage.addChild(one)
 
         // 隐藏掉加载页面
         $('#loadingBox').remove()
@@ -379,6 +339,9 @@
           xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
           crossOrigin:''
         })
+        setTimeout(() => {
+          this.two()
+        }, 200)
       })
       const shareDom = document.getElementById("shareBox")
       shareDom.ontouchend = function() {
@@ -428,66 +391,37 @@
     // 注册画板区域并返回设备屏幕信息
     calculationScene: function() {
       // 获取屏幕宽高
-      const ww = $(window).width()
-      const wh = $(window).height()
-      console.log(`可视宽度:${ww}, 可视高度:${wh}`)
+      let ww = window.innerWidth
+      let wh = window.innerHeight
+      
       // alert(`可视宽度:${ww}, 可视高度:${wh}`)
       if (ww < wh){
-        console.log('竖屏')
-        window.document.body.style.width = `${wh}px`
-        window.document.body.style.height = `${ww}px`
-        window.document.body.classList.add('horizontal')
-        window.document.body.style.left = `calc(50% - ${wh / 2}px)`
-        window.document.body.style.top = `calc(50% - ${ww / 2}px)`
-        window.document.body.style.display = 'block'
-        // 获取浏览器缩放比例
-        const devicePixelRatio = window.devicePixelRatio || 1
-        // 创建画布
-        if (!this.data.app) {
-          setTimeout(() => {
-            this.data.app = new PIXI.Application($(window).height(), $(window).width(), {
-              backgroundColor: '0xc8c9c9',
-              resolution: devicePixelRatio
-            })
-            this.data.app.view.style.width = `${wh}px`
-            this.data.app.view.style.height = `${ww}px`
-            $('#main').append(this.data.app.view)
-            this.data.screenInfo = {w: wh, h: ww, transverse: false}
-            
-          }, 0)
-          return {w: wh, h: ww, transverse: false}
-          
-        }
-      } else {
-        console.log('横屏')
-        window.document.body.classList.remove('horizontal')
-        window.document.body.style.width = `${ww}px`
-        window.document.body.style.height = `${wh}px`
-        window.document.body.style.left = ''
-        window.document.body.style.top = ''
-        window.document.body.style.display = 'block'
-        // 创建画布
-        if (!this.data.app) {
-          setTimeout(() => {
-            // console.log(devicePixelRatio)
-            this.data.app = new PIXI.Application($(window).width(), $(window).height(), {
-              backgroundColor: '0xc8c9c9',
-              resolution: devicePixelRatio
-            })
-            this.data.app.view.style.width = `${ww}px`
-            this.data.app.view.style.height = `${wh}px`
-            $('#main').append(this.data.app.view)
-            this.data.transverse = true
-            this.data.screenInfo = {w: ww, h: wh, transverse: true}
-          }, 0)
-          
-        }
-        return {w: ww, h: wh, transverse: true}
+        [ww, wh] = [wh, ww]
       }
+      console.log(`可视宽度:${ww}, 可视高度:${wh}`)
+      // 获取浏览器缩放比例
+      const devicePixelRatio = window.devicePixelRatio || 1
+      // 创建画布
+      if (!this.data.app) {
+        setTimeout(() => {
+          // console.log(devicePixelRatio)
+          this.data.app = new PIXI.Application(ww, wh, {
+            backgroundColor: '0xc8c9c9',
+            resolution: devicePixelRatio
+          })
+          this.data.app.view.style.width = `${ww}px`
+          this.data.app.view.style.height = `${wh}px`
+          $('#main').append(this.data.app.view)
+          this.data.transverse = true
+          this.data.screenInfo = {w: ww, h: wh, transverse: true}
+        }, 0)
+        
+      }
+      return {w: ww, h: wh, transverse: true}
       
     },
     // 打开时钟并进入第二部分
-    openClock: function (one, oneButterfly, bg1Image) {
+    openClock: function () {
       // 移除对时钟的所有事件监听
       $("#clockDial").unbind()
       for( let i = 0 ; i < 35; i++) {
@@ -498,32 +432,20 @@
         setTimeout(() => {
           $('#clockDial')[0].classList.add(`flip-play`)
           $("#clock").off("touchmove")
-          // 销毁蝴蝶
-          // 停止蝴蝶动画
-          this.data.animationList.oneButterfly.kill()
-          // 销毁蝴蝶
-          oneButterfly.destroy()
+          // 销毁tocuh监听
+          $("#clock").off("touchstart")
+          // 销毁蝴蝶          
+          
           setTimeout(() => {
-            
-            $('#main')[0].classList.add('scale-play')
-            $('#clock')[0].classList.add('scale-play-forwards')
+            $('#one')[0].classList.add('scale-play')
             // 开启第二部分
             // 动画完毕销毁首页背景
             // 销毁指针
             setTimeout(() => {
-
-              // 销毁tocuh监听
-              $("#clock").off("touchstart")
-              $('#clock')[0].style.display = 'none'
-              // 
+              $('#one')[0].style.display = 'none'
               console.log('首页已销毁')
-            }, 1200)
-            setTimeout(() => {
-              this.two()
-              bg1Image.destroy()
-              this.data.app.stage.removeChild(one)
             }, 1000)
-          }, 600)
+          }, 800)
         }, 500)
     },
     two: function () {
@@ -909,15 +831,20 @@
           x: bodySize.w * 1.4,
           y: 0
         })
-        const thoughtAnimationList = new TweenMax(thought, 2, {
-          x: bodySize.w * 1.4 + 5,
-          y: 5,
-          repeat:-1,
-          yoyo:true,
-        })
-        thoughtAnimationList.play()
+        
         const thoughtStartA = TweenMax.fromTo(thought, 0.6, {x: bodySize.w * 1.6, width: 0, y: bodySize.h * 0.45, height: 0}, {x: bodySize.w * 1.4, y: 0, width: thoughtH * 1.7756, height: thoughtH})
         thoughtStartA.play()
+        
+        setTimeout(() => {
+          thoughtStartA.kill()
+          const thoughtAnimationList = new TweenMax(thought, 2, {
+            y: 10,
+            repeat:-1,
+            yoyo:true,
+          })
+        }, 700);
+        
+        // thoughtAnimationList.play()
         // 气泡 3.5218
         const bubbleH = bodySize.h * 0.35
         const bubble = this.methods.createSprite("./images/3-bubble.png",{
@@ -926,14 +853,19 @@
           x: bodySize.w * 1.25,
           y: bodySize.h * 0.02
         })
-        const bubbleAnimationList = new TweenMax(bubble, 2, {
-          y: bodySize.h * 0.02 + 5,
-          repeat:-1,
-          yoyo:true,
-        })
-        bubbleAnimationList.play()
+        
         const bubbleStartA = TweenMax.fromTo(bubble, 0.6, {x: bodySize.w * 1.6, width: 0, y: bodySize.h * 0.45, height: 0}, {x: bodySize.w * 1.25, y: 0.02, width: bubbleH * 3.5218, height: bubbleH})
         bubbleStartA.play()
+
+        setTimeout(() => {
+          bubbleStartA.kill()
+          const bubbleAnimationList = new TweenMax(bubble, 5, {
+            y: bodySize.h * 0.02 + 15,
+            repeat:-1,
+            yoyo:true,
+          })
+        }, 700)
+
         // 设置可滚动的区域
         this.setShowPageNumber(4)
 
@@ -946,7 +878,7 @@
           y: 0
         })
         
-        const fantasyAnimationList = TweenMax.fromTo(fantasy, 0.4, {x: bodySize.w * 1.6, width: 0, y: bodySize.h * 0.45, height: 0}, {x: bodySize.w * 1.22, y: 0, width: fantasyH * 2.852, height: fantasyH})
+        const fantasyAnimationList = TweenMax.fromTo(fantasy, 0.3, {x: bodySize.w * 1.6, width: 0, y: bodySize.h * 0.45, height: 0}, {x: bodySize.w * 1.22, y: 0, width: fantasyH * 2.852, height: fantasyH})
         fantasyAnimationList.play()
 
         // 幻想的云彩左右移动
@@ -968,7 +900,7 @@
           y: bodySize.h * 0.05
         })
         
-        const startAnimationList = TweenMax.fromTo(start, 4, {alpha: 0},{alpha: 1}).repeat(-1)
+        const startAnimationList = TweenMax.fromTo(start, 2, {alpha: 0.6},{alpha: 1}).repeat(-1)
         startAnimationList.play()
 
         // 气泡发散效果
@@ -997,10 +929,15 @@
         atom.anchor.y = 0.5
         const atomStartA = TweenMax.fromTo(atom, 0.6, {x: bodySize.w * 1.6, y: bodySize.h * 0.45}, {x: bodySize.w + bodySize.w * 0.42, y: bodySize.h * 0.18}).repeat(0)
         atomStartA.play()
-        const atomAnimationList = TweenMax.fromTo(atom.scale, 3, {x: 0.3, y: 0.3}, {x: 0.6, y: 0.6}).repeat(-1)
-        
-        atomAnimationList.play()
-
+        // TweenMax.fromTo(atom.scale, 3, {x: 0.3, y: 0.3}, {x: 0.6, y: 0.6}).repeat(-1)
+        TweenMax.fromTo(atom, 5, {rotation: 1}, {rotation: 4}).repeat(-1)
+        new TweenMax(atom.scale, 3, {
+          x: 0.5,
+          y: 0.5,
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
+        })
         // 烧瓶
         const flaskH = bodySize.h * 0.12
         const flask = this.methods.createSprite("./images/3-flask.png",{
@@ -1009,17 +946,21 @@
           x: bodySize.w + bodySize.w * 0.58,
           y: bodySize.h * 0.43
         })
-        flask.anchor.x = 0.5
+        flask.anchor.x = 0.7
         flask.anchor.y = 1
-        const flaskAnimationList = new TweenMax(flask, 2, {
-          rotation: 0.5,
-          repeat: -1,
-          yoyo: true,
-          transformOrigin: 'center'
-        })
-        flaskAnimationList.play()
+        
         const flaskStartA = TweenMax.fromTo(flask, 0.6, {x: bodySize.w * 1.6, y: bodySize.h * 0.45}, {x: bodySize.w * 1.58, y: bodySize.h * 0.43})
         flaskStartA.play()
+
+        setTimeout(() => {
+          flaskStartA.kill()
+          const flaskAnimationList = new TweenMax(flask, 1, {
+            rotation: 0.5,
+            repeat: -1,
+            yoyo: true,
+            transformOrigin: 'center'
+          })
+        }, 700)
 
         // 星球 1.2352
         const starH = bodySize.h * 0.12
@@ -2214,8 +2155,8 @@
     background-color: black;
     background-size: 100% 100%;
     .loading {
-      width: 140px;
-      height: 140px;
+      width: 110px;
+      height: 110px;
       position: absolute;
       left: 0;
       right: 0;
@@ -2225,8 +2166,8 @@
     }
     .progress {
       text-align: center;
-      font-size: 14px;
-      color: #fff;
+      font-size: 12px;
+      color: #CCFBF7;
       line-height: 25px;
       position: absolute;
       left: 0;
@@ -2234,11 +2175,11 @@
       top: 0;
       bottom: 0;
       margin: auto;
-      height: 20px;
+      height: 25px;
     }
     img {
       display: block;
-      height: 140px;
+      height: 110px;
       margin: 0 auto;
     }
     p {
@@ -2260,6 +2201,7 @@
     position: fixed;
     display: none;
     user-select: none;
+    z-index: 10;
     background-image: url(./images/1-clock.png);
   }
   .dial {
@@ -2280,14 +2222,9 @@
     animation-timing-function: ease-in-out;
     animation-iteration-count: 1;
   }
-  .scale-play-forwards {
-    animation-name: scalew;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-  }
   .scale-play {
     animation-name: scale;
-    animation-duration: 2s;
+    animation-duration: 1.2s;
     animation-timing-function: ease-in-out;
   }
   @keyframes flip {
@@ -2300,20 +2237,11 @@
   }
   @keyframes scale {
     0% {
-      transform: scale(1);
-    }
-    60% {
-      transform: scale(4);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  @keyframes scalew {
-    0% {
+      opacity: 1;
       transform: scale(1);
     }
     100% {
+      opacity: 0;
       transform: scale(5);
     }
   }
@@ -2337,8 +2265,8 @@
     }
   }
   @keyframes circle{
-      0%{ transform:rotate(0deg); }
-      100%{ transform:rotate(360deg); }
+    0%{ transform:rotate(0deg); }
+    100%{ transform:rotate(360deg); }
   }
   .hand {
     width: 15%;
@@ -2427,6 +2355,38 @@
       width: 30px;
       height: 30px;
       padding: 10px;
+    }
+  }
+  .one {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-image: url(./images/1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    .buttyfly {
+      background-image: url(./images/1-butterfly.png);
+      background-size: 100%;
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      // 动画
+      animation-name: flay;
+      animation-duration: 5s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+  }
+  @keyframes flay {
+    0% {
+      top: 0;
+    }
+    100% {
+      top: 10px;
     }
   }
 </style>
