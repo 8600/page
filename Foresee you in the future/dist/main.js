@@ -474,14 +474,14 @@ window.ozzx.script = {
             $('#clock')[0].style.display = 'none'; // 
 
             console.log('首页已销毁');
-          }, 1000);
+          }, 1200);
           setTimeout(function () {
             _this3.two();
 
             bg1Image.destroy();
 
             _this3.data.app.stage.removeChild(one);
-          }, 100);
+          }, 1000);
         }, 600);
       }, 500);
     },
@@ -618,7 +618,7 @@ window.ozzx.script = {
       var shareBT = this.methods.createSprite("./images/share-button.png", {
         width: shareBTH * 3.982,
         height: shareBTH,
-        x: this.data.screenInfo.w * 10.63 - shareBTH * 3.982 / 2,
+        x: this.data.screenInfo.w * 10.65 - shareBTH * 3.982 / 2,
         y: this.data.screenInfo.h * 0.78
       }); // 设置可交互
 
@@ -636,7 +636,7 @@ window.ozzx.script = {
       var againBT = this.methods.createSprite("./images/again.png", {
         width: againBTH * 3.982,
         height: againBTH,
-        x: this.data.screenInfo.w * 10.372 - againBTH * 3.982 / 2,
+        x: this.data.screenInfo.w * 10.37 - againBTH * 3.982 / 2,
         y: this.data.screenInfo.h * 0.78
       }); // 设置可交互
 
@@ -798,8 +798,8 @@ window.ozzx.script = {
         width: Hand3H,
         height: Hand3H,
         // 位置中间靠上
-        x: bodySize.w * 1.65 - Hand3H / 2,
-        y: bodySize.h * 0.30
+        x: bodySize.w * 1.64 - Hand3H / 2,
+        y: bodySize.h * 0.29
       }); // 小手闪烁
 
       Hand3.anchor.x = 0.5;
@@ -1116,8 +1116,8 @@ window.ozzx.script = {
         width: Hand5H,
         height: Hand5H,
         // 位置中间靠上
-        x: bodySize.w * 3.65 - Hand5H / 2,
-        y: bodySize.h * 0.67
+        x: bodySize.w * 3.634 - Hand5H / 2,
+        y: bodySize.h * 0.65
       }); // 小手闪烁
 
       Hand5.anchor.x = 0.5;
@@ -1361,7 +1361,7 @@ window.ozzx.script = {
         width: Hand7H,
         height: Hand7H,
         // 位置中间靠上
-        x: bodySize.w * 5.35 - Hand7H / 2,
+        x: bodySize.w * 5.34 - Hand7H / 2,
         y: bodySize.h * 0.70
       }); // 小手闪烁
 
@@ -1488,8 +1488,8 @@ window.ozzx.script = {
         width: Hand9H,
         height: Hand9H,
         // 位置中间靠上
-        x: bodySize.w * 7.6 - Hand9H / 2,
-        y: bodySize.h * 0.2
+        x: bodySize.w * 7.59 - Hand9H / 2,
+        y: bodySize.h * 0.18
       }); // 九-小手闪烁
 
       Hand9.anchor.x = 0.5;
@@ -1629,29 +1629,29 @@ window.ozzx.script = {
         y: bodySize.h * 0.065
       }); // 亮光上的小手
 
-      var Hand11H = bodySize.h * 0.05;
+      var Hand11H = bodySize.h * 0.08;
       var Hand11 = this.methods.createSprite("./images/light-hand.png", {
         width: Hand11H,
         height: Hand11H,
         // 位置中间靠上
-        x: bodySize.w * 9.6 - Hand11H / 2,
-        y: bodySize.h * 0.5
+        x: bodySize.w * 9.55 - Hand11H / 2,
+        y: bodySize.h * 0.48
       }); // 九-小手闪烁
 
       Hand11.anchor.x = 0.5;
       Hand11.anchor.y = 0.5;
       var Hand11A = new TweenMax(Hand11.scale, 1, {
-        x: 0.3,
-        y: 0.3,
+        x: 0.4,
+        y: 0.4,
         repeat: -1,
         yoyo: true
       });
       Hand11A.play(); // 设置可交互
 
-      Light11.interactive = true;
-      Light11.buttonMode = true; // 第五张光 亮光触摸事件
+      Hand11.interactive = true;
+      Hand11.buttonMode = true; // 第五张光 亮光触摸事件
 
-      this.addBind(Light11, function () {
+      this.addBind(Hand11, function () {
         // 修改背景颜色
         _this4.data.app.renderer.backgroundColor = "0xcfdee5";
         bg11Image.texture = PIXI.Texture.fromFrame('./images/11-colour.png'); // 替换彩色花瓣材质

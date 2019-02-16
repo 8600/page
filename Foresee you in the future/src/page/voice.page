@@ -517,12 +517,12 @@
               $('#clock')[0].style.display = 'none'
               // 
               console.log('首页已销毁')
-            }, 1000)
+            }, 1200)
             setTimeout(() => {
               this.two()
               bg1Image.destroy()
               this.data.app.stage.removeChild(one)
-            }, 100)
+            }, 1000)
           }, 600)
         }, 500)
     },
@@ -661,7 +661,7 @@
       const shareBT = this.methods.createSprite("./images/share-button.png",{
         width: shareBTH * 3.982,
         height: shareBTH,
-        x: this.data.screenInfo.w * 10.63 - (shareBTH * 3.982 / 2),
+        x: this.data.screenInfo.w * 10.65 - (shareBTH * 3.982 / 2),
         y: this.data.screenInfo.h * 0.78
       })
 
@@ -683,7 +683,7 @@
       const againBT = this.methods.createSprite("./images/again.png",{
         width: againBTH * 3.982,
         height: againBTH,
-        x: this.data.screenInfo.w * 10.372 - (againBTH * 3.982 /2 ),
+        x: this.data.screenInfo.w * 10.37 - (againBTH * 3.982 /2 ),
         y: this.data.screenInfo.h * 0.78
       })
       // 设置可交互
@@ -860,8 +860,8 @@
         width: Hand3H,
         height: Hand3H,
         // 位置中间靠上
-        x: bodySize.w * 1.65 - (Hand3H / 2),
-        y: bodySize.h * 0.30
+        x: bodySize.w * 1.64 - (Hand3H / 2),
+        y: bodySize.h * 0.29
       })
       // 小手闪烁
       Hand3.anchor.x = 0.5
@@ -1107,8 +1107,8 @@
         width: Hand5H,
         height: Hand5H,
         // 位置中间靠上
-        x: bodySize.w * 3.65 - (Hand5H / 2),
-        y: bodySize.h * 0.67
+        x: bodySize.w * 3.634 - (Hand5H / 2),
+        y: bodySize.h * 0.65
       })
       // 小手闪烁
       Hand5.anchor.x = 0.5
@@ -1318,7 +1318,7 @@
         width: Hand7H,
         height: Hand7H,
         // 位置中间靠上
-        x: bodySize.w * 5.35 - (Hand7H / 2),
+        x: bodySize.w * 5.34 - (Hand7H / 2),
         y: bodySize.h * 0.70
       })
       // 小手闪烁
@@ -1432,8 +1432,8 @@
         width: Hand9H,
         height: Hand9H,
         // 位置中间靠上
-        x: bodySize.w * 7.6 - (Hand9H / 2),
-        y: bodySize.h * 0.2
+        x: bodySize.w * 7.59 - (Hand9H / 2),
+        y: bodySize.h * 0.18
       })
 
       // 九-小手闪烁
@@ -1567,31 +1567,31 @@
       })
 
       // 亮光上的小手
-      const Hand11H = bodySize.h * 0.05
+      const Hand11H = bodySize.h * 0.08
       const Hand11 = this.methods.createSprite("./images/light-hand.png", {
         width: Hand11H,
         height: Hand11H,
         // 位置中间靠上
-        x: bodySize.w * 9.6 - (Hand11H / 2),
-        y: bodySize.h * 0.5
+        x: bodySize.w * 9.55 - (Hand11H / 2),
+        y: bodySize.h * 0.48
       })
 
       // 九-小手闪烁
       Hand11.anchor.x = 0.5
       Hand11.anchor.y = 0.5
       const Hand11A = new TweenMax(Hand11.scale, 1, {
-        x: 0.3,
-        y: 0.3,
+        x: 0.4,
+        y: 0.4,
         repeat:-1,
         yoyo:true,
       })
       Hand11A.play()
       
       // 设置可交互
-      Light11.interactive = true;
-      Light11.buttonMode = true
+      Hand11.interactive = true;
+      Hand11.buttonMode = true
       // 第五张光 亮光触摸事件
-      this.addBind(Light11, () => {
+      this.addBind(Hand11, () => {
         // 修改背景颜色
         this.data.app.renderer.backgroundColor = "0xcfdee5"
         bg11Image.texture = PIXI.Texture.fromFrame('./images/11-colour.png')
@@ -2211,7 +2211,7 @@
     width: 100%;
     height: 100%;
     z-index: 999;
-    background-image: url('./images/loading-bg.png');
+    background-color: black;
     background-size: 100% 100%;
     .loading {
       width: 140px;
@@ -2312,11 +2312,9 @@
   @keyframes scalew {
     0% {
       transform: scale(1);
-      opacity: 1;
     }
     100% {
-      transform: scale(8);
-      opacity: 0.6;
+      transform: scale(5);
     }
   }
   .point {
