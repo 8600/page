@@ -196,6 +196,7 @@ window.ozzx.script = {
       "peopleCanMoveing": false,
       "clickPeopleRunning": false,
       "imgArr": ["./images/1.png", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/hand.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/5.png", "./images/7.png", "./images/9.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/1.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/showMore.png", "./images/showMore2.png", "./images/child.png", "./images/grass2.png", "./images/grass3.png", "./images/3-bubble.png", "./images/3-atom.png", "./images/3-flask.png", "./images/3-star.png", "./images/tree1.png", "./images/tree2.png", "./images/tree3.png", "./images/house1.png", "./images/house2.png", "./images/house3.png", "./images/house4.png", "./images/house5.png", "./images/line-1.png", "./images/line-2.png", "./images/line-3.png", "./images/line-4.png", "./images/share-button.png", "./images/again.png", "./images/11-petal.png", "./images/share-petal-colour.png", "./images/light-hand.png", "./images/5-light.png", "./images/9-light.png", "./images/3-fantasy.png", "./images/9-bird.png"],
+      "transverse": true,
       "mousedown": false,
       "animationList": {},
       "layer": null
@@ -208,7 +209,8 @@ window.ozzx.script = {
       var wh = $(window).height(); // alert(`可视宽度:${ww}, 可视高度:${wh}`)
       // 创建画板区域并获取设备屏幕宽高
 
-      var bodySize = this.calculationScene(this); // 预加载资源
+      var bodySize = this.calculationScene(this);
+      console.log(bodySize); // 预加载资源
 
       this.data.loader = PIXI.loader; // 手托着地球
 
@@ -216,14 +218,11 @@ window.ozzx.script = {
         loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
         xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
         crossOrigin: ''
-      });
-      this.data.loader.add(this.data.imgArr).onProgress.add(function (e) {
-        // 资源加载完毕后显示one
-        var progressDom = $('#progress')[0];
+      }); // 资源加载完毕后显示one
 
-        if (progressDom) {
-          progressDom.innerText = parseInt(e.progress) + '%';
-        }
+      var progressDom = $('#progress')[0];
+      this.data.loader.add(this.data.imgArr).onProgress.add(function (e) {
+        progressDom.innerText = parseInt(e.progress) + '%';
       });
       this.data.container = new PIXI.Container();
       this.data.container.interactive = true;
@@ -247,7 +246,10 @@ window.ozzx.script = {
         clockDom.style.display = 'block'; // 根据比例计算时钟合适高度
 
         clockDom.style.width = clockDomHeight * 1.6481 + 'px';
-        clockDom.style.height = clockDomHeight + 'px'; // 开始加载gif
+        clockDom.style.height = clockDomHeight + 'px';
+        setTimeout(function () {
+          _this.one();
+        }, 0); // 开始加载gif
 
         _this.data.loader.add("./images/sport.gif", {
           loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
@@ -267,10 +269,6 @@ window.ozzx.script = {
           xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
           crossOrigin: ''
         });
-
-        setTimeout(function () {
-          _this.two();
-        }, 200);
       });
       var shareDom = document.getElementById("shareBox");
 
@@ -324,12 +322,14 @@ window.ozzx.script = {
 
       // 获取屏幕宽高
       var ww = window.innerWidth;
-      var wh = window.innerHeight; // alert(`可视宽度:${ww}, 可视高度:${wh}`)
+      var wh = window.innerHeight;
+      var transverse = true; // alert(`可视宽度:${ww}, 可视高度:${wh}`)
 
       if (ww < wh) {
         var _ref = [wh, ww];
         ww = _ref[0];
         wh = _ref[1];
+        transverse = false;
       }
 
       console.log("\u53EF\u89C6\u5BBD\u5EA6:".concat(ww, ", \u53EF\u89C6\u9AD8\u5EA6:").concat(wh)); // 获取浏览器缩放比例
@@ -346,19 +346,19 @@ window.ozzx.script = {
           _this2.data.app.view.style.width = "".concat(ww, "px");
           _this2.data.app.view.style.height = "".concat(wh, "px");
           $('#main').append(_this2.data.app.view);
-          _this2.data.transverse = true;
           _this2.data.screenInfo = {
             w: ww,
             h: wh,
-            transverse: true
+            transverse: transverse
           };
         }, 0);
       }
 
+      this.data.transverse = transverse;
       return {
         w: ww,
         h: wh,
-        transverse: true
+        transverse: transverse
       };
     },
     "openClock": function openClock() {
@@ -393,7 +393,7 @@ window.ozzx.script = {
         }, 800);
       }, 500);
     },
-    "two": function two() {
+    "one": function one() {
       var _this3 = this;
 
       var bodySize = this.data.screenInfo;
@@ -424,7 +424,9 @@ window.ozzx.script = {
         var texture = PIXI.Texture.fromFrame("./images/".concat(groupID, "/").concat(peopleIndex, ".png"));
         peopleIndex--;
         _this3.data.people.texture = texture;
-      }, 100); // 第二张背景图
+      }, 100); // 注册滚动
+
+      this.scrollBegin(); // 第二张背景图
 
       var bg2Image = this.methods.createSprite("./images/2.png", {
         width: this.data.screenInfo.w + 1,
@@ -469,89 +471,6 @@ window.ozzx.script = {
         height: this.data.screenInfo.h,
         x: 0,
         y: 0
-      });
-      var line2 = this.methods.createSprite("./images/line-2.png", {
-        width: this.data.screenInfo.w * 11 / 4,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 11 / 4,
-        y: 0
-      });
-      var line3 = this.methods.createSprite("./images/line-3.png", {
-        width: this.data.screenInfo.w * 11 / 4,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 11 / 4 * 2,
-        y: 0
-      });
-      var line4 = this.methods.createSprite("./images/line-4.png", {
-        width: this.data.screenInfo.w * 11 / 4,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 11 / 4 * 3,
-        y: 0
-      }); // 第五张背景图
-
-      var bg5Image = this.methods.createSprite("./images/5.png", {
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 3,
-        y: 0
-      });
-      var bg7Image = this.methods.createSprite("./images/7.png", {
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 5,
-        y: 0
-      });
-      var bg9Image = this.methods.createSprite("./images/9.png", {
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 7,
-        y: 0
-      });
-      var bg11Image = this.methods.createSprite("./images/11.png", {
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 9,
-        y: 0
-      });
-      var bgshare = this.methods.createSprite("./images/share.png", {
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 10,
-        y: 0
-      });
-      bgshare.interactive = true;
-      bgshare.buttonMode = true; // 呼唤朋友按钮 3.982
-
-      var shareBTH = this.data.screenInfo.h * 0.1;
-      var shareBT = this.methods.createSprite("./images/share-button.png", {
-        width: shareBTH * 3.982,
-        height: shareBTH,
-        x: this.data.screenInfo.w * 10.65 - shareBTH * 3.982 / 2,
-        y: this.data.screenInfo.h * 0.78
-      }); // 设置可交互
-
-      shareBT.interactive = true;
-      shareBT.buttonMode = true;
-      this.addBind(shareBT, function () {
-        $('#shareBox')[0].style.display = 'block';
-        setTimeout(function () {
-          $('#qr')[0].style.display = 'none';
-        }, 0);
-        return false;
-      }); // 再看一次按钮 3.982
-
-      var againBTH = this.data.screenInfo.h * 0.1;
-      var againBT = this.methods.createSprite("./images/again.png", {
-        width: againBTH * 3.982,
-        height: againBTH,
-        x: this.data.screenInfo.w * 10.37 - againBTH * 3.982 / 2,
-        y: this.data.screenInfo.h * 0.78
-      }); // 设置可交互
-
-      againBT.interactive = true;
-      againBT.buttonMode = true;
-      this.addBind(againBT, function () {
-        location.reload();
       }); // ------------------------------------------- 云 -------------------------------------------
       // 3云 比例6.397
 
@@ -568,126 +487,13 @@ window.ozzx.script = {
       //   yoyo:true,
       // })
       // cloud3AnimationList.play()
-      // 4云 比例2.1159
-
-      var cloud4H = bodySize.h * 0.8;
-      var cloud4 = this.methods.createSprite("./images/4-cloud.png", {
-        width: cloud4H * 2.1159,
-        height: cloud4H,
-        // 位置中间靠上
-        x: bodySize.w * 2,
-        y: 0
-      });
-      var cloud4AnimationList = new TweenMax(cloud4, 10, {
-        x: bodySize.w * 2 + 60,
-        y: 3,
-        repeat: -1,
-        yoyo: true
-      });
-      cloud4AnimationList.play(); // cloud5 比例4.7467
-
-      var cloud5H = bodySize.h * 0.3;
-      var cloud5 = this.methods.createSprite("./images/5-cloud.png", {
-        width: cloud5H * 4.7467,
-        height: cloud5H,
-        x: bodySize.w * 3 + bodySize.w * 0.05,
-        y: bodySize.h * 0.1
-      }); // const cloud5AnimationList = new TweenMax(cloud5, 2, {
+      // const cloud5AnimationList = new TweenMax(cloud5, 2, {
       //   x: bodySize.w * 3 + (bodySize.w * 0.05) + 20,
       //   repeat:-1,
       //   yoyo:true,
       // })
       // cloud5AnimationList.play()
-      // 6云 比例2.0727
-
-      var cloud6H = bodySize.h * 0.6;
-      var cloud6 = this.methods.createSprite("./images/6-cloud.png", {
-        width: cloud6H * 2.0727,
-        height: cloud6H,
-        // 位置中间靠上
-        x: bodySize.w * 4 + bodySize.w * 0.05,
-        y: 0
-      });
-      var cloud6AnimationList = new TweenMax(cloud6, 10, {
-        x: bodySize.w * 4 + 60,
-        y: 2,
-        repeat: -1,
-        yoyo: true
-      });
-      cloud6AnimationList.play(); // cloud7 比例5.0339
-
-      var cloud7H = bodySize.h * 0.3;
-      var cloud7 = this.methods.createSprite("./images/7-cloud.png", {
-        width: cloud7H * 5.0339,
-        height: cloud7H,
-        x: bodySize.w * 5 + bodySize.w * 0.05,
-        y: 0
-      }); // cloud8 比例2.5685
-
-      var cloud8H = bodySize.h * 0.6;
-      var cloud8 = this.methods.createSprite("./images/8-cloud.png", {
-        width: cloud8H * 2.5685,
-        height: cloud8H,
-        // 位置中间靠上
-        x: bodySize.w * 6 + bodySize.w * 0.05,
-        y: bodySize.h * 0.05
-      });
-      var cloud8AnimationList = new TweenMax(cloud8, 8, {
-        x: bodySize.w * 6 + bodySize.w * 0.05 + 50,
-        repeat: -1,
-        yoyo: true
-      });
-      cloud8AnimationList.play(); // cloud9 比例3.8078
-
-      var cloud9H = bodySize.h * 0.45;
-      var cloud9 = this.methods.createSprite("./images/9-cloud.png", {
-        width: cloud9H * 3.8078,
-        height: cloud9H,
-        // 位置中间靠上
-        x: bodySize.w * 7 + bodySize.w * 0.05,
-        y: bodySize.h * 0.15
-      }); // cloud10 比例2.1029
-
-      var cloud10H = bodySize.h * 0.6;
-      var cloud10 = this.methods.createSprite("./images/10-cloud.png", {
-        width: cloud10H * 2.1029,
-        height: cloud10H,
-        // 位置中间靠上
-        x: bodySize.w * 8 + bodySize.w * 0.2,
-        y: bodySize.h * 0.15
-      });
-      var cloud10AnimationList = new TweenMax(cloud10, 11, {
-        x: bodySize.w * 8 + bodySize.w * 0.2 + 70,
-        repeat: -1,
-        yoyo: true
-      });
-      cloud10AnimationList.play(); // 飘散的花瓣运动 比例1.7130
-
-      var petal11H = bodySize.h * 0.8;
-      var petal11 = this.methods.createSprite("./images/11-petal.png", {
-        width: petal11H * 1.7130,
-        height: petal11H,
-        // 位置中间靠上
-        x: bodySize.w * 9 + bodySize.w * 0.2,
-        y: bodySize.h * 0.15
-      }); // 分享页花瓣 比例1.8293
-
-      var petal12H = bodySize.h * 0.8;
-      var petal12 = this.methods.createSprite("./images/share-petal-colour.png", {
-        width: petal12H * 1.8293,
-        height: petal12H,
-        // 位置中间靠上
-        x: bodySize.w * 10 + bodySize.w * 0.1,
-        y: bodySize.h * 0.15
-      });
-      var petal12AnimationList = TweenMax.fromTo(petal12, 8, {
-        x: bodySize.w * 10 + bodySize.w * 0.1 - 20,
-        y: bodySize.h * 0.15 - 20
-      }, {
-        x: bodySize.w * 10 + bodySize.w * 0.1 + 20,
-        y: bodySize.h * 0.15 + 40
-      }).repeat(-1);
-      petal12AnimationList.play(); // ------------------------------------------- 亮光 -------------------------------------------
+      // ------------------------------------------- 亮光 -------------------------------------------
       // 第三张光 比例1
 
       var threeLightHeight = bodySize.h / 5;
@@ -978,10 +784,13 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
-        _this3.addBind(showMore, function () {
+        _this3.addBind(showMore, function (e) {
+          // console.log(e.data.global)
+          var position = _this3.smartShowBox(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y);
+
           setTimeout(function () {
-            _this3.domList.showTextBox.style.left = "25%";
-            _this3.domList.showTextBox.style.top = "35%";
+            _this3.domList.showTextBox.style.left = "".concat(position.left, "px");
+            _this3.domList.showTextBox.style.top = "".concat(position.top, "px");
             _this3.domList.showTextBox.style.bottom = '';
             _this3.domList.showTextBox.style.right = '';
             _this3.domList.textBoxContent.innerText = '做有生命力的教育，教育如阳光更加公平普照，让个体生命怒放。';
@@ -1019,6 +828,62 @@ window.ozzx.script = {
 
 
         _this3.setShowPageNumber(4);
+      }); // 添加元素
+
+      this.data.twoContainer.addChild(cloud3, bg3Image, line1, this.data.people, child, bg2Image, leftArrow, threeLight, Hand3);
+      this.data.app.stage.addChild(this.data.twoContainer); // 三-亮光闪烁
+
+      var threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {
+        alpha: 0
+      }, {
+        alpha: 1
+      }).repeat(-1).repeatDelay(1);
+      threeLightAnimationList.play(); // 开始加载下一场景
+
+      setTimeout(function () {
+        _this3.creatTwo();
+      }, 0);
+    },
+    "creatTwo": function creatTwo() {
+      var _this4 = this;
+
+      var bodySize = this.data.screenInfo;
+      var line2 = this.methods.createSprite("./images/line-2.png", {
+        width: this.data.screenInfo.w * 11 / 4,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 11 / 4,
+        y: 0
+      }); // 第五张背景图
+
+      var bg5Image = this.methods.createSprite("./images/5.png", {
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 3,
+        y: 0
+      }); // 4云 比例2.1159
+
+      var cloud4H = bodySize.h * 0.8;
+      var cloud4 = this.methods.createSprite("./images/4-cloud.png", {
+        width: cloud4H * 2.1159,
+        height: cloud4H,
+        // 位置中间靠上
+        x: bodySize.w * 2,
+        y: 0
+      });
+      var cloud4AnimationList = new TweenMax(cloud4, 10, {
+        x: bodySize.w * 2 + 60,
+        y: 3,
+        repeat: -1,
+        yoyo: true
+      });
+      cloud4AnimationList.play(); // cloud5 比例4.7467
+
+      var cloud5H = bodySize.h * 0.3;
+      var cloud5 = this.methods.createSprite("./images/5-cloud.png", {
+        width: cloud5H * 4.7467,
+        height: cloud5H,
+        x: bodySize.w * 3 + bodySize.w * 0.05,
+        y: bodySize.h * 0.1
       }); // 第五张光 比例1.6582
 
       var fiveLightHeight = bodySize.h / 8;
@@ -1055,7 +920,7 @@ window.ozzx.script = {
       this.addBind(fiveLight, function () {
         bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png'); // 修改背景颜色
 
-        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#59d3cb', 10); // 销毁动画
+        gradientColor(_this4.data.app.renderer, '#c8c9c9', '#59d3cb', 10); // 销毁动画
 
         fiveLightHeightAnimationList.kill();
         Hand5A.kill(); // 销毁掉亮光
@@ -1066,12 +931,12 @@ window.ozzx.script = {
         cloud5.destroy(); // cloud5AnimationList.kill()
         // 设置可滚动的区域
 
-        _this3.setShowPageNumber(6); // 树1在摇摆 0.6937
+        _this4.setShowPageNumber(6); // 树1在摇摆 0.6937
 
 
         var tree1H = bodySize.h * 0.18;
 
-        var tree1 = _this3.methods.createSprite("./images/tree1.png", {
+        var tree1 = _this4.methods.createSprite("./images/tree1.png", {
           width: tree1H * 0.6937,
           height: tree1H,
           x: bodySize.w * 3.4 - tree1H * 0.9223 / 2,
@@ -1090,7 +955,7 @@ window.ozzx.script = {
 
         var tree2H = bodySize.h * 0.50;
 
-        var tree2 = _this3.methods.createSprite("./images/tree2.png", {
+        var tree2 = _this4.methods.createSprite("./images/tree2.png", {
           width: tree2H * 0.5323,
           height: tree2H,
           x: bodySize.w * 3.2 - tree2H * 0.5323 / 2,
@@ -1108,7 +973,7 @@ window.ozzx.script = {
 
         var tree3H = bodySize.h * 0.50;
 
-        var tree3 = _this3.methods.createSprite("./images/tree3.png", {
+        var tree3 = _this4.methods.createSprite("./images/tree3.png", {
           width: tree3H * 0.8517,
           height: tree3H,
           x: bodySize.w * 4 - tree3H * 0.8517 / 2,
@@ -1126,7 +991,7 @@ window.ozzx.script = {
 
         var house1H = bodySize.h * 0.50;
 
-        var house1 = _this3.methods.createSprite("./images/house1.png", {
+        var house1 = _this4.methods.createSprite("./images/house1.png", {
           width: house1H * 0.5904,
           height: house1H,
           x: bodySize.w * 3.6,
@@ -1144,7 +1009,7 @@ window.ozzx.script = {
 
         var house2H = bodySize.h * 0.40;
 
-        var house2 = _this3.methods.createSprite("./images/house2.png", {
+        var house2 = _this4.methods.createSprite("./images/house2.png", {
           width: house2H * 0.49011,
           height: house2H,
           x: bodySize.w * 3.25,
@@ -1162,7 +1027,7 @@ window.ozzx.script = {
 
         var house3H = bodySize.h * 0.42;
 
-        var house3 = _this3.methods.createSprite("./images/house3.png", {
+        var house3 = _this4.methods.createSprite("./images/house3.png", {
           width: house3H * 0.5904,
           height: house3H,
           x: bodySize.w * 3.5,
@@ -1180,7 +1045,7 @@ window.ozzx.script = {
 
         var house4H = bodySize.h * 0.3;
 
-        var house4 = _this3.methods.createSprite("./images/house4.png", {
+        var house4 = _this4.methods.createSprite("./images/house4.png", {
           width: house4H * 1.034,
           height: house4H,
           x: bodySize.w * 3.7,
@@ -1198,7 +1063,7 @@ window.ozzx.script = {
 
         var house5H = bodySize.h * 0.3;
 
-        var house5 = _this3.methods.createSprite("./images/house5.png", {
+        var house5 = _this4.methods.createSprite("./images/house5.png", {
           width: house5H * 1.4926,
           height: house5H,
           x: bodySize.w * 3.33,
@@ -1216,7 +1081,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this3.methods.createSprite("./images/showMore.png", {
+        var showMore = _this4.methods.createSprite("./images/showMore.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 3.27,
@@ -1233,30 +1098,32 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
-        _this3.addBind(showMore, function () {
+        _this4.addBind(showMore, function (e) {
+          var position = _this4.smartShowBox(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y);
+
           setTimeout(function () {
-            _this3.domList.showTextBox.style.left = "34%";
-            _this3.domList.showTextBox.style.top = "20%";
-            _this3.domList.showTextBox.style.bottom = '';
-            _this3.domList.showTextBox.style.right = '';
-            _this3.domList.textBoxContent.innerText = '“人”、“地”和谐发展，城市有温度，人民更幸福。';
-            _this3.domList.showTextBox.style.display = 'block';
+            _this4.domList.showTextBox.style.left = "".concat(position.left, "px");
+            _this4.domList.showTextBox.style.top = "".concat(position.top, "px");
+            _this4.domList.showTextBox.style.bottom = '';
+            _this4.domList.showTextBox.style.right = '';
+            _this4.domList.textBoxContent.innerText = '“人”、“地”和谐发展，城市有温度，人民更幸福。';
+            _this4.domList.showTextBox.style.display = 'block';
           }, 0);
         });
 
-        _this3.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore); // 5-小人继续移动
+        _this4.data.twoContainer.addChild(house4, house1, house5, house3, house2, bg5Image, tree1, tree2, tree3, showMore); // 5-小人继续移动
 
 
-        _this3.data.clickPeopleRunning = true;
+        _this4.data.clickPeopleRunning = true;
 
         var _loop3 = function _loop3(i) {
           setTimeout(function () {
-            _this3.data.people.x = _this3.data.screenInfo.w * (3.11 + i);
-            _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.3737, 0, i * 1000, -0.00006); // 允许滚动
+            _this4.data.people.x = _this4.data.screenInfo.w * (3.11 + i);
+            _this4.data.people.y = _this4.data.screenInfo.h * _this4.methods.smooth(0.3737, 0, i * 1000, -0.00006); // 允许滚动
 
             if (i >= 0.7) {
-              _this3.data.peopleCanMoveing = false;
-              _this3.data.clickPeopleRunning = false;
+              _this4.data.peopleCanMoveing = false;
+              _this4.data.clickPeopleRunning = false;
             }
           }, i * 4000 - 2000);
         };
@@ -1264,6 +1131,60 @@ window.ozzx.script = {
         for (var i = 0.52; i < 0.72; i += 0.005) {
           _loop3(i);
         }
+      }); // 五-亮光闪烁
+
+      var fiveLightHeightAnimationList = TweenMax.fromTo(fiveLight, 1, {
+        alpha: 0
+      }, {
+        alpha: 1
+      }).repeat(-1).repeatDelay(1);
+      fiveLightHeightAnimationList.play(); // 添加元素
+
+      this.data.twoContainer.addChild(line2, bg5Image, cloud4, cloud5, fiveLight, Hand5); // 开始加载下一场景
+
+      setTimeout(function () {
+        _this4.creatThree();
+      }, 0);
+    },
+    "creatThree": function creatThree() {
+      var _this5 = this;
+
+      var bodySize = this.data.screenInfo;
+      var line3 = this.methods.createSprite("./images/line-3.png", {
+        width: this.data.screenInfo.w * 11 / 4,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 11 / 4 * 2,
+        y: 0
+      });
+      var bg7Image = this.methods.createSprite("./images/7.png", {
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 5,
+        y: 0
+      }); // 6云 比例2.0727
+
+      var cloud6H = bodySize.h * 0.6;
+      var cloud6 = this.methods.createSprite("./images/6-cloud.png", {
+        width: cloud6H * 2.0727,
+        height: cloud6H,
+        // 位置中间靠上
+        x: bodySize.w * 4 + bodySize.w * 0.05,
+        y: 0
+      });
+      var cloud6AnimationList = new TweenMax(cloud6, 10, {
+        x: bodySize.w * 4 + 60,
+        y: 2,
+        repeat: -1,
+        yoyo: true
+      });
+      cloud6AnimationList.play(); // cloud7 比例5.0339
+
+      var cloud7H = bodySize.h * 0.3;
+      var cloud7 = this.methods.createSprite("./images/7-cloud.png", {
+        width: cloud7H * 5.0339,
+        height: cloud7H,
+        x: bodySize.w * 5 + bodySize.w * 0.05,
+        y: 0
       }); // 第七张图 比例:0.7421
 
       var sevenLightHeight = bodySize.h / 5;
@@ -1299,7 +1220,7 @@ window.ozzx.script = {
 
       this.addBind(sevenLight, function () {
         // 修改背景颜色
-        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#dccfbc', 10); // this.data.app.renderer.backgroundColor = "0xdccfbc"
+        gradientColor(_this5.data.app.renderer, '#c8c9c9', '#dccfbc', 10); // this.data.app.renderer.backgroundColor = "0xdccfbc"
 
         bg7Image.texture = PIXI.Texture.fromFrame('./images/7-colour.png'); // 销毁动画
 
@@ -1309,7 +1230,7 @@ window.ozzx.script = {
         sevenLight.destroy();
         Hand7.destroy(); // 设置可滚动的区域
 
-        _this3.setShowPageNumber(8);
+        _this5.setShowPageNumber(8);
 
         var cloud7AnimationList = new TweenMax(cloud7, 2, {
           x: bodySize.w * 5 + bodySize.w * 0.05 + 20,
@@ -1319,7 +1240,7 @@ window.ozzx.script = {
         cloud7AnimationList.play(); // 从下面生出政府的手 0.8511
 
         var supportH = bodySize.h * 0.7;
-        var support = new GIF("./images/support.gif", _this3.data.resources);
+        var support = new GIF("./images/support.gif", _this5.data.resources);
         support.sprite.width = supportH * 0.8511;
         support.sprite.height = supportH;
         support.sprite.x = bodySize.w * 5 - supportH * 0.8511 / 2 + bodySize.w * 0.5;
@@ -1336,7 +1257,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this3.methods.createSprite("./images/showMore.png", {
+        var showMore = _this5.methods.createSprite("./images/showMore.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 5.29,
@@ -1353,37 +1274,39 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
-        _this3.addBind(showMore, function () {
+        _this5.addBind(showMore, function (e) {
+          var position = _this5.smartShowBox(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y);
+
           setTimeout(function () {
-            _this3.domList.showTextBox.style.left = "32%";
-            _this3.domList.showTextBox.style.top = "16%";
-            _this3.domList.showTextBox.style.bottom = '';
-            _this3.domList.showTextBox.style.right = '';
-            _this3.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。';
-            _this3.domList.showTextBox.style.display = 'block';
+            _this5.domList.showTextBox.style.left = "".concat(position.left, "px");
+            _this5.domList.showTextBox.style.top = "".concat(position.top, "px");
+            _this5.domList.showTextBox.style.bottom = '';
+            _this5.domList.showTextBox.style.right = '';
+            _this5.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。';
+            _this5.domList.showTextBox.style.display = 'block';
           }, 0);
         });
 
-        _this3.data.twoContainer.addChild(support.sprite, showMore); // 允许滚动
+        _this5.data.twoContainer.addChild(support.sprite, showMore); // 允许滚动
         // 7-小人继续移动
 
 
-        _this3.data.clickPeopleRunning = true;
+        _this5.data.clickPeopleRunning = true;
 
         var _loop4 = function _loop4(i) {
           setTimeout(function () {
-            _this3.data.people.x = _this3.data.screenInfo.w * (5.11 + i);
+            _this5.data.people.x = _this5.data.screenInfo.w * (5.11 + i);
 
             if (i < 0.42) {
-              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.36, 0, i * 1000, -0.00001); // console.log(this.data.people.y, this.methods.smooth(0.36, 0, i * 1000, -0.00001))
+              _this5.data.people.y = _this5.data.screenInfo.h * _this5.methods.smooth(0.36, 0, i * 1000, -0.00001); // console.log(this.data.people.y, this.methods.smooth(0.36, 0, i * 1000, -0.00001))
             } else {
-              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.3558, 420, i * 1000, 0.00025);
+              _this5.data.people.y = _this5.data.screenInfo.h * _this5.methods.smooth(0.3558, 420, i * 1000, 0.00025);
             } // 允许滚动
 
 
             if (i >= 0.7) {
-              _this3.data.peopleCanMoveing = false;
-              _this3.data.clickPeopleRunning = false;
+              _this5.data.peopleCanMoveing = false;
+              _this5.data.clickPeopleRunning = false;
             }
           }, i * 2000 - 400);
         };
@@ -1391,6 +1314,60 @@ window.ozzx.script = {
         for (var i = 0.2; i < 0.72; i += 0.005) {
           _loop4(i);
         }
+      }); // 七-亮光闪烁
+
+      var sevenLightHeightAnimationList = TweenMax.fromTo(sevenLight, 1, {
+        alpha: 0
+      }, {
+        alpha: 1
+      }).repeat(-1).repeatDelay(1);
+      sevenLightHeightAnimationList.play(); // 添加元素
+
+      this.data.twoContainer.addChild(line3, bg7Image, sevenLight, cloud6, Hand7, cloud7); // 开始加载下一场景
+
+      setTimeout(function () {
+        _this5.creatFour();
+      }, 0);
+    },
+    "creatFour": function creatFour() {
+      var _this6 = this;
+
+      var bodySize = this.data.screenInfo;
+      var line4 = this.methods.createSprite("./images/line-4.png", {
+        width: this.data.screenInfo.w * 11 / 4,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 11 / 4 * 3,
+        y: 0
+      });
+      var bg9Image = this.methods.createSprite("./images/9.png", {
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 7,
+        y: 0
+      }); // cloud8 比例2.5685
+
+      var cloud8H = bodySize.h * 0.6;
+      var cloud8 = this.methods.createSprite("./images/8-cloud.png", {
+        width: cloud8H * 2.5685,
+        height: cloud8H,
+        // 位置中间靠上
+        x: bodySize.w * 6 + bodySize.w * 0.05,
+        y: bodySize.h * 0.05
+      });
+      var cloud8AnimationList = new TweenMax(cloud8, 8, {
+        x: bodySize.w * 6 + bodySize.w * 0.05 + 50,
+        repeat: -1,
+        yoyo: true
+      });
+      cloud8AnimationList.play(); // cloud9 比例3.8078
+
+      var cloud9H = bodySize.h * 0.45;
+      var cloud9 = this.methods.createSprite("./images/9-cloud.png", {
+        width: cloud9H * 3.8078,
+        height: cloud9H,
+        // 位置中间靠上
+        x: bodySize.w * 7 + bodySize.w * 0.05,
+        y: bodySize.h * 0.15
       }); // 第九张图 比例:1
 
       var Light9Height = bodySize.h / 5;
@@ -1398,7 +1375,7 @@ window.ozzx.script = {
         width: Light9Height,
         height: Light9Height,
         // 位置中间靠上
-        x: bodySize.w * 7 + bodySize.w * 0.57 - sevenLightHeight / 2,
+        x: bodySize.w * 7 + bodySize.w * 0.57 - Light9Height / 2,
         y: bodySize.h * 0.065
       }); // 亮光上的小手
 
@@ -1426,7 +1403,7 @@ window.ozzx.script = {
 
       this.addBind(Light9, function () {
         // 修改背景颜色
-        gradientColor(_this3.data.app.renderer, '#c8c9c9', '#f6df60', 10); // this.data.app.renderer.backgroundColor = "0xfae768"
+        gradientColor(_this6.data.app.renderer, '#c8c9c9', '#f6df60', 10); // this.data.app.renderer.backgroundColor = "0xfae768"
 
         bg9Image.texture = PIXI.Texture.fromFrame('./images/9-colour.png'); // 销毁动画
 
@@ -1436,7 +1413,7 @@ window.ozzx.script = {
         Light9.destroy();
         Hand9.destroy(); // 设置可滚动的区域
 
-        _this3.setShowPageNumber(10);
+        _this6.setShowPageNumber(10);
 
         var cloud9AnimationList = new TweenMax(cloud9, 2, {
           x: bodySize.w * 7 + bodySize.w * 0.05 + 20,
@@ -1447,7 +1424,7 @@ window.ozzx.script = {
 
         var bird9H = bodySize.h * 0.3;
 
-        var bird9 = _this3.methods.createSprite("./images/9-bird.png", {
+        var bird9 = _this6.methods.createSprite("./images/9-bird.png", {
           width: bird9H * 2.7795,
           height: bird9H,
           // 位置中间靠上
@@ -1464,7 +1441,7 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this3.methods.createSprite("./images/showMore2.png", {
+        var showMore = _this6.methods.createSprite("./images/showMore2.png", {
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 7.75,
@@ -1481,26 +1458,26 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 显示更多触摸事件
 
-        _this3.addBind(showMore, function () {
+        _this6.addBind(showMore, function () {
           setTimeout(function () {
-            _this3.domList.showTextBox.style.right = "22%";
-            _this3.domList.showTextBox.style.top = "18%";
-            _this3.domList.showTextBox.style.bottom = '';
-            _this3.domList.showTextBox.style.left = '';
-            _this3.domList.textBoxContent.innerText = '一头系着贫，一头系着富，把社会捆绑结实。';
-            _this3.domList.showTextBox.style.display = 'block';
+            _this6.domList.showTextBox.style.right = "22%";
+            _this6.domList.showTextBox.style.top = "18%";
+            _this6.domList.showTextBox.style.bottom = '';
+            _this6.domList.showTextBox.style.left = '';
+            _this6.domList.textBoxContent.innerText = '一头系着贫，一头系着富，把社会捆绑结实。';
+            _this6.domList.showTextBox.style.display = 'block';
           }, 0);
         }); // 群众向上拉 1.22
 
 
         var massesH = bodySize.h * 0.65;
-        var masses = new GIF("./images/masses.gif", _this3.data.resources);
+        var masses = new GIF("./images/masses.gif", _this6.data.resources);
         masses.sprite.width = massesH * 1.22;
         masses.sprite.height = massesH;
         masses.sprite.x = bodySize.w * 7.56 - massesH * 1.22 / 2;
         masses.sprite.y = bodySize.h * 0.555 - massesH / 2;
 
-        _this3.data.twoContainer.addChild(bird9, showMore, masses.sprite);
+        _this6.data.twoContainer.addChild(bird9, showMore, masses.sprite);
 
         setTimeout(function () {
           masses.play();
@@ -1508,18 +1485,18 @@ window.ozzx.script = {
 
         var _loop5 = function _loop5(i) {
           setTimeout(function () {
-            _this3.data.people.x = _this3.data.screenInfo.w * (7.11 + i);
+            _this6.data.people.x = _this6.data.screenInfo.w * (7.11 + i);
 
             if (i < 0.4) {
-              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.5, 187.59, i * 1000, -0.00002); // console.log(this.data.people.y, this.methods.smooth(0.5, 187.59, i * 1000, -0.00002))
+              _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.5, 187.59, i * 1000, -0.00002); // console.log(this.data.people.y, this.methods.smooth(0.5, 187.59, i * 1000, -0.00002))
             } else {
-              _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.51, 185.9, i * 1000, 0.00001);
+              _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.51, 185.9, i * 1000, 0.00001);
             } // 允许滚动
 
 
             if (i >= 0.7) {
-              _this3.data.peopleCanMoveing = false;
-              _this3.data.clickPeopleRunning = false;
+              _this6.data.peopleCanMoveing = false;
+              _this6.data.clickPeopleRunning = false;
             }
           }, i * 3000 - 1080);
         };
@@ -1527,7 +1504,66 @@ window.ozzx.script = {
         for (var i = 0.36; i < 0.85; i += 0.005) {
           _loop5(i);
         }
-      }); // 第11张图 大柚子 比例:1
+      }); // 九-亮光闪烁
+
+      var Light9AnimationList = TweenMax.fromTo(Light9, 1, {
+        alpha: 0
+      }, {
+        alpha: 1
+      }).repeat(-1).repeatDelay(1);
+      Light9AnimationList.play(); // 添加元素
+
+      this.data.twoContainer.addChild(line4, bg9Image, Light9, Hand9, cloud8, cloud9); // 开始加载下一场景
+
+      setTimeout(function () {
+        _this6.creatFive();
+      }, 0);
+    },
+    "creatFive": function creatFive() {
+      var _this7 = this;
+
+      var bodySize = this.data.screenInfo; // cloud10 比例2.1029
+
+      var cloud10H = bodySize.h * 0.61;
+      var cloud10 = this.methods.createSprite("./images/10-cloud.png", {
+        width: cloud10H * 2.1029,
+        height: cloud10H,
+        // 位置中间靠上
+        x: bodySize.w * 8 + bodySize.w * 0.2,
+        y: bodySize.h * 0.15
+      });
+      var cloud10AnimationList = new TweenMax(cloud10, 11, {
+        x: bodySize.w * 8 + bodySize.w * 0.2 + 70,
+        repeat: -1,
+        yoyo: true
+      });
+      cloud10AnimationList.play(); // 飘散的花瓣运动 比例1.7130
+
+      var petal11H = bodySize.h * 0.8;
+      var petal11 = this.methods.createSprite("./images/11-petal.png", {
+        width: petal11H * 1.7130,
+        height: petal11H,
+        // 位置中间靠上
+        x: bodySize.w * 9 + bodySize.w * 0.2,
+        y: bodySize.h * 0.15
+      }); // 分享页花瓣 比例1.8293
+
+      var petal12H = bodySize.h * 0.8;
+      var petal12 = this.methods.createSprite("./images/share-petal-colour.png", {
+        width: petal12H * 1.8293,
+        height: petal12H,
+        // 位置中间靠上
+        x: bodySize.w * 10 + bodySize.w * 0.1,
+        y: bodySize.h * 0.15
+      });
+      var petal12AnimationList = TweenMax.fromTo(petal12, 8, {
+        x: bodySize.w * 10 + bodySize.w * 0.1 - 20,
+        y: bodySize.h * 0.15 - 20
+      }, {
+        x: bodySize.w * 10 + bodySize.w * 0.1 + 20,
+        y: bodySize.h * 0.15 + 40
+      }).repeat(-1);
+      petal12AnimationList.play(); // 第11张图 大柚子 比例:1
 
       var Light11Height = bodySize.h / 1.5; // console.log((bodySize.h / bodySize.w))
 
@@ -1535,7 +1571,7 @@ window.ozzx.script = {
         width: Light11Height,
         height: Light11Height,
         // 位置中间靠上
-        x: bodySize.w * 9 + bodySize.w * 0.39 - sevenLightHeight / 2,
+        x: bodySize.w * 9 + bodySize.w * 0.54 - Light11Height / 2,
         y: bodySize.h * 0.09
       }); // 拖着的手
 
@@ -1544,7 +1580,7 @@ window.ozzx.script = {
         width: handH,
         height: handH,
         // 位置中间靠上
-        x: bodySize.w * 9 + bodySize.w * 0.35 - sevenLightHeight / 2,
+        x: bodySize.w * 9 + bodySize.w * 0.5 - Light11Height / 2,
         y: bodySize.h * 0.065
       }); // 亮光上的小手
 
@@ -1572,7 +1608,7 @@ window.ozzx.script = {
 
       this.addBind(Hand11, function () {
         // 修改背景颜色
-        _this3.data.app.renderer.backgroundColor = "0xcfdee5";
+        _this7.data.app.renderer.backgroundColor = "0xcfdee5";
         bg11Image.texture = PIXI.Texture.fromFrame('./images/11-colour.png'); // 替换彩色花瓣材质
 
         petal11.texture = PIXI.Texture.fromFrame('./images/11-petal-colour.png'); // 销毁动画
@@ -1585,12 +1621,12 @@ window.ozzx.script = {
 
         hand.destroy(); // 设置可滚动的区域
 
-        _this3.setShowPageNumber(11); // 从左面生出树叶 0.8106
+        _this7.setShowPageNumber(11); // 从左面生出树叶 0.8106
 
 
         var grass1H = bodySize.h * 0.9;
 
-        var grass1 = _this3.methods.createSprite("./images/grass1.png", {
+        var grass1 = _this7.methods.createSprite("./images/grass1.png", {
           width: grass1H * 0.8106,
           height: grass1H,
           x: bodySize.w * 9,
@@ -1606,7 +1642,7 @@ window.ozzx.script = {
 
         var grass2H = bodySize.h * 0.4;
 
-        var grass2 = _this3.methods.createSprite("./images/grass2.png", {
+        var grass2 = _this7.methods.createSprite("./images/grass2.png", {
           width: grass2H * 2.4909,
           height: grass2H,
           x: bodySize.w * 10 - grass2H * 2.4909,
@@ -1622,7 +1658,7 @@ window.ozzx.script = {
 
         var grass3H = bodySize.h * 0.2;
 
-        var grass3 = _this3.methods.createSprite("./images/grass3.png", {
+        var grass3 = _this7.methods.createSprite("./images/grass3.png", {
           width: grass3H * 1.5402,
           height: grass3H,
           x: bodySize.w * 10 + 2 * grass3H * 1.5402,
@@ -1657,11 +1693,11 @@ window.ozzx.script = {
 
         var showMoreH = bodySize.h * 0.1;
 
-        var showMore = _this3.methods.createSprite("./images/showMore2.png", {
+        var showMore = _this7.methods.createSprite("./images/showMore.png", {
           width: showMoreH,
           height: showMoreH,
-          x: bodySize.w * 9.80,
-          y: bodySize.h * 0.82
+          x: bodySize.w * 9.77,
+          y: bodySize.h * 0.84
         });
 
         var showMoreA = TweenMax.fromTo(showMore, 1.2, {
@@ -1674,20 +1710,22 @@ window.ozzx.script = {
         showMore.interactive = true;
         showMore.buttonMode = true; // 显示更多触摸事件
 
-        _this3.addBind(showMore, function () {
+        _this7.addBind(showMore, function (e) {
+          var position = _this7.smartShowBox(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y);
+
           setTimeout(function () {
-            _this3.domList.showTextBox.style.top = '';
-            _this3.domList.showTextBox.style.right = '';
-            _this3.domList.showTextBox.style.left = "40%";
-            _this3.domList.showTextBox.style.bottom = "13%";
-            _this3.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。';
-            _this3.domList.showTextBox.style.display = 'block';
+            _this7.domList.showTextBox.style.top = '';
+            _this7.domList.showTextBox.style.right = '';
+            _this7.domList.showTextBox.style.left = "".concat(position.left, "px");
+            _this7.domList.showTextBox.style.bottom = "13%";
+            _this7.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。';
+            _this7.domList.showTextBox.style.display = 'block';
           }, 0);
         }); // 11-手托着地球 1.1212
 
 
         var earthH = bodySize.h * 0.7;
-        var earth = new GIF("./images/earth.gif", _this3.data.resources, true);
+        var earth = new GIF("./images/earth.gif", _this7.data.resources, true);
         earth.sprite.width = earthH * 1.22;
         earth.sprite.height = earthH;
         earth.sprite.x = bodySize.w * 9.5 - earthH * 1.22 / 2;
@@ -1696,19 +1734,19 @@ window.ozzx.script = {
           earth.play();
         }, 500);
 
-        _this3.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore); // 13-小人继续移动
+        _this7.data.twoContainer.addChild(earth.sprite, grass1, grass2, grass3, showMore); // 13-小人继续移动
 
 
-        _this3.data.clickPeopleRunning = true;
+        _this7.data.clickPeopleRunning = true;
 
         var _loop6 = function _loop6(i) {
           setTimeout(function () {
-            _this3.data.people.x = _this3.data.screenInfo.w * (9.11 + i);
-            _this3.data.people.y = _this3.data.screenInfo.h * _this3.methods.smooth(0.407, 0, i * 1000, 0.00012); // 允许滚动
+            _this7.data.people.x = _this7.data.screenInfo.w * (9.11 + i);
+            _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.407, 0, i * 1000, 0.00012); // 允许滚动
 
             if (i >= 0.64) {
-              _this3.data.clickPeopleRunning = false;
-              _this3.data.peopleCanMoveing = false;
+              _this7.data.clickPeopleRunning = false;
+              _this7.data.peopleCanMoveing = false;
             }
           }, i * 4000 - 1600);
         };
@@ -1716,6 +1754,8 @@ window.ozzx.script = {
         for (var i = 0.407; i < 0.65; i += 0.005) {
           _loop6(i);
         }
+
+        sport.play();
       }); // 小人跳舞
 
       var sportH = bodySize.h * 0.14;
@@ -1723,43 +1763,7 @@ window.ozzx.script = {
       sport.sprite.width = sportH * 1.0775;
       sport.sprite.height = sportH;
       sport.sprite.x = bodySize.w * 10.88 - sportH * 1.0775 / 2;
-      sport.sprite.y = bodySize.h * 0.43 - sportH / 2; // 添加背景
-
-      this.data.twoContainer.addChild(line1, line2, line3, line4, bg3Image, this.data.people, child, bg2Image, leftArrow, threeLight, Hand3, bg5Image, bg7Image, bg9Image, bg11Image, bgshare, Light11, hand, fiveLight, Hand5, sevenLight, Hand7, Light9, Hand9, Hand11, shareBT, againBT, sport.sprite);
-      setTimeout(function () {
-        sport.play();
-      }, 2000); // 添加云
-
-      this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12);
-      this.data.app.stage.addChild(this.data.twoContainer); // 三-亮光闪烁
-
-      var threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {
-        alpha: 0
-      }, {
-        alpha: 1
-      }).repeat(-1).repeatDelay(1);
-      threeLightAnimationList.play(); // 五-亮光闪烁
-
-      var fiveLightHeightAnimationList = TweenMax.fromTo(fiveLight, 1, {
-        alpha: 0
-      }, {
-        alpha: 1
-      }).repeat(-1).repeatDelay(1);
-      fiveLightHeightAnimationList.play(); // 七-亮光闪烁
-
-      var sevenLightHeightAnimationList = TweenMax.fromTo(sevenLight, 1, {
-        alpha: 0
-      }, {
-        alpha: 1
-      }).repeat(-1).repeatDelay(1);
-      sevenLightHeightAnimationList.play(); // 九-亮光闪烁
-
-      var Light9AnimationList = TweenMax.fromTo(Light9, 1, {
-        alpha: 0
-      }, {
-        alpha: 1
-      }).repeat(-1).repeatDelay(1);
-      Light9AnimationList.play(); // 十一-亮光闪烁
+      sport.sprite.y = bodySize.h * 0.43 - sportH / 2; // 十一-亮光闪烁
 
       var Light11AnimationList = TweenMax.fromTo(Light11, 2, {
         alpha: 0
@@ -1767,26 +1771,73 @@ window.ozzx.script = {
         alpha: 1
       }).repeat(-1).repeatDelay(1.5);
       Light11AnimationList.play();
-      this.scrollBegin();
+      var bg11Image = this.methods.createSprite("./images/11.png", {
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 9,
+        y: 0
+      });
+      var bgshare = this.methods.createSprite("./images/share.png", {
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 10,
+        y: 0
+      });
+      bgshare.interactive = true;
+      bgshare.buttonMode = true; // 呼唤朋友按钮 3.982
+
+      var shareBTH = this.data.screenInfo.h * 0.1;
+      var shareBT = this.methods.createSprite("./images/share-button.png", {
+        width: shareBTH * 3.982,
+        height: shareBTH,
+        x: this.data.screenInfo.w * 10.65 - shareBTH * 3.982 / 2,
+        y: this.data.screenInfo.h * 0.78
+      }); // 设置可交互
+
+      shareBT.interactive = true;
+      shareBT.buttonMode = true;
+      this.addBind(shareBT, function () {
+        $('#shareBox')[0].style.display = 'block';
+        setTimeout(function () {
+          $('#qr')[0].style.display = 'none';
+        }, 0);
+        return false;
+      }); // 再看一次按钮 3.982
+
+      var againBTH = this.data.screenInfo.h * 0.1;
+      var againBT = this.methods.createSprite("./images/again.png", {
+        width: againBTH * 3.982,
+        height: againBTH,
+        x: this.data.screenInfo.w * 10.37 - againBTH * 3.982 / 2,
+        y: this.data.screenInfo.h * 0.78
+      }); // 设置可交互
+
+      againBT.interactive = true;
+      againBT.buttonMode = true;
+      this.addBind(againBT, function () {
+        location.reload();
+      }); // 添加元素
+
+      this.data.twoContainer.addChild(bg11Image, bgshare, Light11, Hand11, shareBT, againBT, sport.sprite, cloud10, petal11, petal12, hand);
     },
     "scrollBegin": function scrollBegin() {
-      var _this4 = this;
+      var _this8 = this;
 
       console.log('注册scroll!');
       var transverse = this.data.screenInfo.transverse;
       this.data.scroller = new Scroller(function (left, top, zoom) {
         var scrollNumber = transverse ? left : top; // 设置整个页面的x
-        // console.log(this.data.twoContainer)
+        // console.log(scrollNumber)
 
-        _this4.data.twoContainer.x = -scrollNumber;
-        var peopleX = scrollNumber + 50 * (1024 / _this4.data.screenInfo.w); // 设置小人的图片
+        _this8.data.twoContainer.x = -scrollNumber;
+        var peopleX = scrollNumber + 50 * (1024 / _this8.data.screenInfo.w); // 设置小人的图片
 
-        _this4.setPeopleImg(peopleX); // console.log(scrollNumber)
+        _this8.setPeopleImg(peopleX); // console.log(scrollNumber)
         // 小球移动轨迹
-        // console.log('sd')
+        // console.log(peopleX)
 
 
-        _this4.setPeopleY(peopleX);
+        _this8.setPeopleY(peopleX);
       }, {
         zooming: true,
         bouncing: false
@@ -2033,102 +2084,102 @@ window.ozzx.script = {
       }
     },
     "mouseEvent": function mouseEvent() {
-      var _this5 = this;
+      var _this9 = this;
 
       // console.log(this.data.scroller)
       $('canvas')[0].addEventListener("touchstart", function (e) {
         // 隐藏掉提示条
-        _this5.domList.showTextBox.style.display = 'none';
-        if (_this5.data.peopleCanMoveing) return;
+        _this9.domList.showTextBox.style.display = 'none';
+        if (_this9.data.peopleCanMoveing) return;
 
-        _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
+        _this9.data.scroller.doTouchStart(e.touches, e.timeStamp);
 
-        _this5.data.mousedown = true;
+        _this9.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("touchmove", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this9.data.peopleCanMoveing) return;
 
-        if (!_this5.data.mousedown) {
+        if (!_this9.data.mousedown) {
           return;
         } // console.log(e.touches, e.timeStamp)
 
 
-        _this5.data.scroller.doTouchMove(e.touches, e.timeStamp);
+        _this9.data.scroller.doTouchMove(e.touches, e.timeStamp);
 
-        _this5.data.mousedown = true;
+        _this9.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("touchend", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this9.data.peopleCanMoveing) return;
 
-        if (!_this5.data.mousedown) {
+        if (!_this9.data.mousedown) {
           return;
         }
 
-        _this5.data.scroller.doTouchEnd(e.timeStamp);
+        _this9.data.scroller.doTouchEnd(e.timeStamp);
 
-        _this5.data.mousedown = false;
+        _this9.data.mousedown = false;
       }, false);
       $('canvas')[0].addEventListener("mousedown", function (e) {
         // 隐藏掉提示条
-        _this5.domList.showTextBox.style.display = 'none';
-        if (_this5.data.peopleCanMoveing) return;
+        _this9.domList.showTextBox.style.display = 'none';
+        if (_this9.data.peopleCanMoveing) return;
 
-        _this5.data.scroller.doTouchStart([e], e.timeStamp);
+        _this9.data.scroller.doTouchStart([e], e.timeStamp);
 
-        _this5.data.mousedown = true;
+        _this9.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mousemove", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this9.data.peopleCanMoveing) return;
 
-        if (!_this5.data.mousedown) {
+        if (!_this9.data.mousedown) {
           return;
         } // console.log(e.touches, e.timeStamp)
 
 
-        _this5.data.scroller.doTouchMove([e], e.timeStamp);
+        _this9.data.scroller.doTouchMove([e], e.timeStamp);
 
-        _this5.data.mousedown = true;
+        _this9.data.mousedown = true;
       }, false);
       $('canvas')[0].addEventListener("mouseup", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this9.data.peopleCanMoveing) return;
 
-        if (!_this5.data.mousedown) {
+        if (!_this9.data.mousedown) {
           return;
         }
 
-        _this5.data.scroller.doTouchEnd(e.timeStamp);
+        _this9.data.scroller.doTouchEnd(e.timeStamp);
 
-        _this5.data.mousedown = false;
+        _this9.data.mousedown = false;
       }, false);
       $('#qr')[0].addEventListener("touchstart", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this9.data.peopleCanMoveing) return;
 
-        _this5.data.scroller.doTouchStart(e.touches, e.timeStamp);
+        _this9.data.scroller.doTouchStart(e.touches, e.timeStamp);
 
-        _this5.data.mousedown = true;
+        _this9.data.mousedown = true;
       }, false);
       $('#qr')[0].addEventListener("touchmove", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this9.data.peopleCanMoveing) return;
 
-        if (!_this5.data.mousedown) {
+        if (!_this9.data.mousedown) {
           return;
         } // console.log(e.touches, e.timeStamp)
 
 
-        _this5.data.scroller.doTouchMove(e.touches, e.timeStamp);
+        _this9.data.scroller.doTouchMove(e.touches, e.timeStamp);
 
-        _this5.data.mousedown = true;
+        _this9.data.mousedown = true;
       }, false);
       $('#qr')[0].addEventListener("touchend", function (e) {
-        if (_this5.data.peopleCanMoveing) return;
+        if (_this9.data.peopleCanMoveing) return;
 
-        if (!_this5.data.mousedown) {
+        if (!_this9.data.mousedown) {
           return;
         }
 
-        _this5.data.scroller.doTouchEnd(e.timeStamp);
+        _this9.data.scroller.doTouchEnd(e.timeStamp);
 
-        _this5.data.mousedown = false;
+        _this9.data.mousedown = false;
       }, false);
     },
     "addBind": function addBind(item, func) {
@@ -2136,7 +2187,7 @@ window.ozzx.script = {
       item.on('click', func);
     },
     "peopleMove1": function peopleMove1(pageIndex) {
-      var _this6 = this;
+      var _this10 = this;
 
       if (pageIndex === 1) {
         if (this.data.progress < 3 && !this.data.peopleCanMoveing) {
@@ -2144,15 +2195,15 @@ window.ozzx.script = {
 
           var _loop7 = function _loop7(i) {
             setTimeout(function () {
-              if (!_this6.data.peopleCanMoveing || _this6.data.clickPeopleRunning) return;
-              _this6.data.people.x = _this6.data.screenInfo.w * (1.11 + i);
+              if (!_this10.data.peopleCanMoveing || _this10.data.clickPeopleRunning) return;
+              _this10.data.people.x = _this10.data.screenInfo.w * (1.11 + i);
 
               if (i < 0.16) {
-                _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.22, 0, i * 1000, 0.0003);
+                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.22, 0, i * 1000, 0.0003);
               } else {
                 // console.log(this.data.screenInfo.h * 0.1704, i * this.data.screenInfo.h)
                 // ssd
-                _this6.data.people.y = _this6.data.screenInfo.h * _this6.methods.smooth(0.2557, 155, i * 1000, 0.00085); // console.log(this.data.people.y, this.methods.smooth(0.2557, 155, i * 1000 , 0.00085))
+                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.2557, 155, i * 1000, 0.00085); // console.log(this.data.people.y, this.methods.smooth(0.2557, 155, i * 1000 , 0.00085))
               }
             }, i * 4000);
           };
@@ -2164,7 +2215,7 @@ window.ozzx.script = {
       }
     },
     "peopleMove2": function peopleMove2(pageIndex) {
-      var _this7 = this;
+      var _this11 = this;
 
       if (pageIndex === 3) {
         // console.log(this.data.progress)
@@ -2173,15 +2224,15 @@ window.ozzx.script = {
 
           var _loop8 = function _loop8(i) {
             setTimeout(function () {
-              if (!_this7.data.peopleCanMoveing || _this7.data.clickPeopleRunning) return;
-              _this7.data.people.x = _this7.data.screenInfo.w * (3.11 + i);
+              if (!_this11.data.peopleCanMoveing || _this11.data.clickPeopleRunning) return;
+              _this11.data.people.x = _this11.data.screenInfo.w * (3.11 + i);
 
               if (i < 0.15) {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.5, 0, i * 1000, 0.0004); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
+                _this11.data.people.y = _this11.data.screenInfo.h * _this11.methods.smooth(0.5, 0, i * 1000, 0.0004); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else if (i < 0.3) {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.59, 0, i * 1000, -0.0001); // console.log(this.methods.smooth(0.55, 0.5700, i * 1000 , -0.0001))
+                _this11.data.people.y = _this11.data.screenInfo.h * _this11.methods.smooth(0.59, 0, i * 1000, -0.0001); // console.log(this.methods.smooth(0.55, 0.5700, i * 1000 , -0.0001))
               } else {
-                _this7.data.people.y = _this7.data.screenInfo.h * _this7.methods.smooth(0.76, 0, i * 1000, -0.00075); // console.log(this.data.people.y, this.methods.smooth(0.76, 0, i * 1000 , -0.00075))
+                _this11.data.people.y = _this11.data.screenInfo.h * _this11.methods.smooth(0.76, 0, i * 1000, -0.00075); // console.log(this.data.people.y, this.methods.smooth(0.76, 0, i * 1000 , -0.00075))
               }
             }, i * 4000);
           };
@@ -2193,7 +2244,7 @@ window.ozzx.script = {
       }
     },
     "peopleMove3": function peopleMove3(pageIndex) {
-      var _this8 = this;
+      var _this12 = this;
 
       if (pageIndex === 5) {
         // console.log(this.data.progress)
@@ -2202,11 +2253,11 @@ window.ozzx.script = {
 
           var _loop9 = function _loop9(i) {
             setTimeout(function () {
-              if (!_this8.data.peopleCanMoveing || _this8.data.clickPeopleRunning) return;
-              _this8.data.people.x = _this8.data.screenInfo.w * (5.11 + i);
+              if (!_this12.data.peopleCanMoveing || _this12.data.clickPeopleRunning) return;
+              _this12.data.people.x = _this12.data.screenInfo.w * (5.11 + i);
 
               if (i < 0.15) {
-                _this8.data.people.y = _this8.data.screenInfo.h * _this8.methods.smooth(0.48, 0, i * 1000, -0.0008); // console.log(this.data.people.y, this.methods.smooth(0.48, 0, i * 1000, -0.0008))
+                _this12.data.people.y = _this12.data.screenInfo.h * _this12.methods.smooth(0.48, 0, i * 1000, -0.0008); // console.log(this.data.people.y, this.methods.smooth(0.48, 0, i * 1000, -0.0008))
               }
             }, i * 4000);
           };
@@ -2218,7 +2269,7 @@ window.ozzx.script = {
       }
     },
     "peopleMove4": function peopleMove4(pageIndex) {
-      var _this9 = this;
+      var _this13 = this;
 
       if (pageIndex === 7) {
         // console.log(this.data.progress)
@@ -2227,13 +2278,13 @@ window.ozzx.script = {
 
           var _loop10 = function _loop10(i) {
             setTimeout(function () {
-              if (!_this9.data.peopleCanMoveing || _this9.data.clickPeopleRunning) return;
-              _this9.data.people.x = _this9.data.screenInfo.w * (7.11 + i);
+              if (!_this13.data.peopleCanMoveing || _this13.data.clickPeopleRunning) return;
+              _this13.data.people.x = _this13.data.screenInfo.w * (7.11 + i);
 
               if (i < 0.16) {
-                _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.7, 0, i * 1000, -0.0007); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
+                _this13.data.people.y = _this13.data.screenInfo.h * _this13.methods.smooth(0.7, 0, i * 1000, -0.0007); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else {
-                _this9.data.people.y = _this9.data.screenInfo.h * _this9.methods.smooth(0.66, 0, i * 1000, -0.00045); // console.log(this.data.people.y, this.methods.smooth(0.66, 0, i * 1000, -0.00045))
+                _this13.data.people.y = _this13.data.screenInfo.h * _this13.methods.smooth(0.66, 0, i * 1000, -0.00045); // console.log(this.data.people.y, this.methods.smooth(0.66, 0, i * 1000, -0.00045))
               }
             }, i * 4000);
           };
@@ -2245,7 +2296,7 @@ window.ozzx.script = {
       }
     },
     "peopleMove5": function peopleMove5(pageIndex) {
-      var _this10 = this;
+      var _this14 = this;
 
       if (pageIndex === 9) {
         // console.log(this.data.progress)
@@ -2254,13 +2305,13 @@ window.ozzx.script = {
 
           var _loop11 = function _loop11(i) {
             setTimeout(function () {
-              if (!_this10.data.peopleCanMoveing || _this10.data.clickPeopleRunning) return;
-              _this10.data.people.x = _this10.data.screenInfo.w * (9.11 + i);
+              if (!_this14.data.peopleCanMoveing || _this14.data.clickPeopleRunning) return;
+              _this14.data.people.x = _this14.data.screenInfo.w * (9.11 + i);
 
               if (i < 0.10) {
-                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.3, 0, i * 1000, 0.0001); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
+                _this14.data.people.y = _this14.data.screenInfo.h * _this14.methods.smooth(0.3, 0, i * 1000, 0.0001); // console.log(i, 1- this.methods.smooth(0.7, 0, i * 1000, -0.0008))
               } else {
-                _this10.data.people.y = _this10.data.screenInfo.h * _this10.methods.smooth(0.265, 0, i * 1000, 0.0004); // console.log(this.data.people.y, this.methods.smooth(0.265, 0, i * 1000, 0.0004))
+                _this14.data.people.y = _this14.data.screenInfo.h * _this14.methods.smooth(0.265, 0, i * 1000, 0.0004); // console.log(this.data.people.y, this.methods.smooth(0.265, 0, i * 1000, 0.0004))
               }
             }, i * 4000);
           };
@@ -2270,6 +2321,28 @@ window.ozzx.script = {
           }
         }
       }
+    },
+    "smartShowBox": function smartShowBox(areaW, areaH, boxW, boxH, x, y) {
+      var left, top; // 先判断横坐标
+      // 距离右侧区域
+
+      if (areaW - x > boxW) {
+        left = x;
+      } else {
+        left = x - boxW;
+      } // 判断纵坐标
+
+
+      if (areaH - y > boxH) {
+        top = y;
+      } else {
+        top = y - boxH;
+      }
+
+      return {
+        left: left,
+        top: top
+      };
     }
   }
 };

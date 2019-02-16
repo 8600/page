@@ -266,6 +266,7 @@
         "./images/3-fantasy.png",
         "./images/9-bird.png"
       ],
+      transverse: true,
       mousedown: false,
       animationList: {},
       layer: null
@@ -277,6 +278,7 @@
       // alert(`可视宽度:${ww}, 可视高度:${wh}`)
       // 创建画板区域并获取设备屏幕宽高
       let bodySize = this.calculationScene(this)
+      console.log(bodySize)
       // 预加载资源
       this.data.loader = PIXI.loader
       
@@ -286,13 +288,11 @@
         xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
         crossOrigin:''
       })
+      // 资源加载完毕后显示one
+      const progressDom = $('#progress')[0]
       this.data.loader.add(this.data.imgArr)
         .onProgress.add((e) => {
-          // 资源加载完毕后显示one
-          const progressDom = $('#progress')[0]
-          if (progressDom) {
-            progressDom.innerText = parseInt(e.progress) + '%'
-          }
+          progressDom.innerText = parseInt(e.progress) + '%'
         }
       )
       this.data.container = new PIXI.Container()
@@ -321,7 +321,9 @@
         // 根据比例计算时钟合适高度
         clockDom.style.width = clockDomHeight * 1.6481 + 'px'
         clockDom.style.height = clockDomHeight + 'px'
-
+        setTimeout(() => {
+          this.one()
+        }, 0)
         // 开始加载gif
         this.data.loader.add("./images/sport.gif", {
           loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
@@ -339,9 +341,7 @@
           xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
           crossOrigin:''
         })
-        setTimeout(() => {
-          this.two()
-        }, 200)
+        
       })
       const shareDom = document.getElementById("shareBox")
       shareDom.ontouchend = function() {
@@ -393,10 +393,11 @@
       // 获取屏幕宽高
       let ww = window.innerWidth
       let wh = window.innerHeight
-      
+      let transverse = true
       // alert(`可视宽度:${ww}, 可视高度:${wh}`)
       if (ww < wh){
         [ww, wh] = [wh, ww]
+        transverse = false
       }
       console.log(`可视宽度:${ww}, 可视高度:${wh}`)
       // 获取浏览器缩放比例
@@ -412,12 +413,12 @@
           this.data.app.view.style.width = `${ww}px`
           this.data.app.view.style.height = `${wh}px`
           $('#main').append(this.data.app.view)
-          this.data.transverse = true
-          this.data.screenInfo = {w: ww, h: wh, transverse: true}
+          
+          this.data.screenInfo = {w: ww, h: wh, transverse: transverse}
         }, 0)
-        
       }
-      return {w: ww, h: wh, transverse: true}
+      this.data.transverse = transverse
+      return {w: ww, h: wh, transverse: transverse}
     },
     // 打开时钟并进入第二部分
     openClock: function () {
@@ -447,13 +448,14 @@
         }, 800)
       }, 500)
     },
-    two: function () {
+    one: function () {
       const bodySize = this.data.screenInfo
       console.log('第二部分!')
       this.data.twoContainer = new PIXI.Container()
       this.data.twoContainer.x = 0
       this.data.twoContainer.y = 0
       this.data.twoContainer.width = this.data.screenInfo.w
+      
       // ----------------------------- 加载文字 -----------------------------
 
       // this.data.app.stage.addChild(richText)
@@ -478,6 +480,8 @@
         peopleIndex--
         this.data.people.texture = texture
       }, 100)
+      // 注册滚动
+      this.scrollBegin()
       // 第二张背景图
       const bg2Image = this.methods.createSprite("./images/2.png",{
         width: this.data.screenInfo.w + 1,
@@ -521,98 +525,8 @@
         x: 0,
         y: 0
       })
-      const line2 = this.methods.createSprite("./images/line-2.png",{
-        width: this.data.screenInfo.w * 11 / 4,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 11 / 4,
-        y: 0
-      })
-      const line3 = this.methods.createSprite("./images/line-3.png",{
-        width: this.data.screenInfo.w * 11 / 4,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 11 / 4 * 2,
-        y: 0
-      })
-      const line4 = this.methods.createSprite("./images/line-4.png",{
-        width: this.data.screenInfo.w * 11 / 4,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 11 / 4 * 3,
-        y: 0
-      })
 
-      // 第五张背景图
-      const bg5Image = this.methods.createSprite("./images/5.png",{
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 3,
-        y: 0
-      })
-
-      const bg7Image = this.methods.createSprite("./images/7.png",{
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 5,
-        y: 0
-      })
-      const bg9Image = this.methods.createSprite("./images/9.png",{
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 7,
-        y: 0
-      })
-
-      const bg11Image = this.methods.createSprite("./images/11.png",{
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 9,
-        y: 0
-      })
-
-      const bgshare = this.methods.createSprite("./images/share.png",{
-        width: this.data.screenInfo.w,
-        height: this.data.screenInfo.h,
-        x: this.data.screenInfo.w * 10,
-        y: 0
-      })
-      bgshare.interactive = true;
-      bgshare.buttonMode = true
-
-      // 呼唤朋友按钮 3.982
-      const shareBTH = this.data.screenInfo.h * 0.1
-      const shareBT = this.methods.createSprite("./images/share-button.png",{
-        width: shareBTH * 3.982,
-        height: shareBTH,
-        x: this.data.screenInfo.w * 10.65 - (shareBTH * 3.982 / 2),
-        y: this.data.screenInfo.h * 0.78
-      })
-
-      
-
-      // 设置可交互
-      shareBT.interactive = true;
-      shareBT.buttonMode = true
-      this.addBind(shareBT, () => {
-        $('#shareBox')[0].style.display = 'block'
-        setTimeout(() => {
-          $('#qr')[0].style.display = 'none'
-        }, 0)
-        return false
-      })
-
-      // 再看一次按钮 3.982
-      const againBTH = this.data.screenInfo.h * 0.1
-      const againBT = this.methods.createSprite("./images/again.png",{
-        width: againBTH * 3.982,
-        height: againBTH,
-        x: this.data.screenInfo.w * 10.37 - (againBTH * 3.982 /2 ),
-        y: this.data.screenInfo.h * 0.78
-      })
-      // 设置可交互
-      againBT.interactive = true;
-      againBT.buttonMode = true
-      this.addBind(againBT, () => {
-        location.reload()
-      })
+     
 
       // ------------------------------------------- 云 -------------------------------------------
       
@@ -632,136 +546,17 @@
       // })
       // cloud3AnimationList.play()
 
-      // 4云 比例2.1159
-      const cloud4H = bodySize.h * 0.8
-      const cloud4 = this.methods.createSprite("./images/4-cloud.png", {
-        width: cloud4H * 2.1159,
-        height: cloud4H,
-        // 位置中间靠上
-        x: bodySize.w * 2,
-        y: 0
-      })
-      const cloud4AnimationList = new TweenMax(cloud4, 10, {
-        x: bodySize.w * 2 + 60,
-        y: 3,
-        repeat:-1,
-        yoyo:true,
-      })
-      cloud4AnimationList.play()
       
-      // cloud5 比例4.7467
-      const cloud5H = bodySize.h * 0.3
-      const cloud5 = this.methods.createSprite("./images/5-cloud.png", {
-        width: cloud5H * 4.7467,
-        height: cloud5H,
-        x: bodySize.w * 3 + (bodySize.w * 0.05),
-        y: bodySize.h * 0.1
-      })
+      
+      
       // const cloud5AnimationList = new TweenMax(cloud5, 2, {
       //   x: bodySize.w * 3 + (bodySize.w * 0.05) + 20,
       //   repeat:-1,
       //   yoyo:true,
       // })
       // cloud5AnimationList.play()
+
       
-
-      // 6云 比例2.0727
-      const cloud6H = bodySize.h * 0.6
-      const cloud6 = this.methods.createSprite("./images/6-cloud.png", {
-        width: cloud6H * 2.0727,
-        height: cloud6H,
-        // 位置中间靠上
-        x: bodySize.w * 4 + (bodySize.w * 0.05),
-        y: 0
-      })
-      const cloud6AnimationList = new TweenMax(cloud6, 10, {
-        x: bodySize.w * 4 + 60,
-        y: 2,
-        repeat:-1,
-        yoyo:true,
-      })
-      cloud6AnimationList.play()
-
-      // cloud7 比例5.0339
-      const cloud7H = bodySize.h * 0.3
-      const cloud7 = this.methods.createSprite("./images/7-cloud.png", {
-        width: cloud7H * 5.0339,
-        height: cloud7H,
-        x: bodySize.w * 5 + (bodySize.w * 0.05),
-        y: 0
-      })
-
-      // cloud8 比例2.5685
-      const cloud8H = bodySize.h * 0.6
-      const cloud8 = this.methods.createSprite("./images/8-cloud.png", {
-        width: cloud8H * 2.5685,
-        height: cloud8H,
-        // 位置中间靠上
-        x: bodySize.w * 6 + (bodySize.w * 0.05),
-        y: bodySize.h * 0.05
-      })
-      const cloud8AnimationList = new TweenMax(cloud8, 8, {
-        x: bodySize.w * 6  + (bodySize.w * 0.05) + 50,
-        repeat:-1,
-        yoyo:true,
-      })
-      cloud8AnimationList.play()
-
-      // cloud9 比例3.8078
-      const cloud9H = bodySize.h * 0.45
-      const cloud9 = this.methods.createSprite("./images/9-cloud.png", {
-        width: cloud9H * 3.8078,
-        height: cloud9H,
-        // 位置中间靠上
-        x: bodySize.w * 7 + (bodySize.w * 0.05),
-        y: bodySize.h * 0.15
-      })
-
-
-      // cloud10 比例2.1029
-      const cloud10H = bodySize.h * 0.6
-      const cloud10 = this.methods.createSprite("./images/10-cloud.png", {
-        width: cloud10H * 2.1029,
-        height: cloud10H,
-        // 位置中间靠上
-        x: bodySize.w * 8 + (bodySize.w * 0.2),
-        y: bodySize.h * 0.15
-      })
-      const cloud10AnimationList = new TweenMax(cloud10, 11, {
-        x: bodySize.w * 8  + (bodySize.w * 0.2) + 70,
-        repeat:-1,
-        yoyo:true,
-      })
-      cloud10AnimationList.play()
-
-      // 飘散的花瓣运动 比例1.7130
-      const petal11H = bodySize.h * 0.8
-      const petal11 = this.methods.createSprite("./images/11-petal.png", {
-        width: petal11H * 1.7130,
-        height: petal11H,
-        // 位置中间靠上
-        x: bodySize.w * 9 + (bodySize.w * 0.2),
-        y: bodySize.h * 0.15
-      })
-
-      // 分享页花瓣 比例1.8293
-      const petal12H = bodySize.h * 0.8
-      const petal12 = this.methods.createSprite("./images/share-petal-colour.png", {
-        width: petal12H * 1.8293,
-        height: petal12H,
-        // 位置中间靠上
-        x: bodySize.w * 10 + (bodySize.w * 0.1),
-        y: bodySize.h * 0.15
-      })
-      const petal12AnimationList = TweenMax.fromTo(petal12, 8, {
-          x: bodySize.w * 10  + (bodySize.w * 0.1) - 20,
-          y: bodySize.h * 0.15 - 20,
-        },{
-          x: bodySize.w * 10  + (bodySize.w * 0.1) + 20,
-          y: bodySize.h * 0.15 + 40,
-        }).repeat(-1)
-      petal12AnimationList.play()
-
       // ------------------------------------------- 亮光 -------------------------------------------
       // 第三张光 比例1
       const threeLightHeight = bodySize.h / 5
@@ -995,10 +790,12 @@
         showMore.interactive = true;
         showMore.buttonMode = true
         // 第三张图 显示更多触摸事件
-        this.addBind(showMore, () => {
+        this.addBind(showMore, (e) => {
+          // console.log(e.data.global)
+          const position = this.smartShowBox(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
-            this.domList.showTextBox.style.left = "25%"
-            this.domList.showTextBox.style.top = "35%"
+            this.domList.showTextBox.style.left = `${position.left}px`
+            this.domList.showTextBox.style.top = `${position.top}px`
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
             this.domList.textBoxContent.innerText = '做有生命力的教育，教育如阳光更加公平普照，让个体生命怒放。'
@@ -1029,6 +826,62 @@
         
         // 设置可滚动的区域
         this.setShowPageNumber(4)
+      })
+
+      // 添加元素
+      this.data.twoContainer.addChild(cloud3, bg3Image, line1, this.data.people, child, bg2Image, leftArrow, threeLight, Hand3)
+
+      this.data.app.stage.addChild(this.data.twoContainer)
+      
+      // 三-亮光闪烁
+      const threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1)
+      threeLightAnimationList.play()
+      // 开始加载下一场景
+      setTimeout(() => {
+        this.creatTwo()
+      }, 0)
+    },
+    creatTwo: function () {
+      const bodySize = this.data.screenInfo
+      const line2 = this.methods.createSprite("./images/line-2.png",{
+        width: this.data.screenInfo.w * 11 / 4,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 11 / 4,
+        y: 0
+      })
+      // 第五张背景图
+      const bg5Image = this.methods.createSprite("./images/5.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 3,
+        y: 0
+      })
+      
+
+      // 4云 比例2.1159
+      const cloud4H = bodySize.h * 0.8
+      const cloud4 = this.methods.createSprite("./images/4-cloud.png", {
+        width: cloud4H * 2.1159,
+        height: cloud4H,
+        // 位置中间靠上
+        x: bodySize.w * 2,
+        y: 0
+      })
+      const cloud4AnimationList = new TweenMax(cloud4, 10, {
+        x: bodySize.w * 2 + 60,
+        y: 3,
+        repeat:-1,
+        yoyo:true,
+      })
+      cloud4AnimationList.play()
+
+      // cloud5 比例4.7467
+      const cloud5H = bodySize.h * 0.3
+      const cloud5 = this.methods.createSprite("./images/5-cloud.png", {
+        width: cloud5H * 4.7467,
+        height: cloud5H,
+        x: bodySize.w * 3 + (bodySize.w * 0.05),
+        y: bodySize.h * 0.1
       })
 
       // 第五张光 比例1.6582
@@ -1214,10 +1067,11 @@
         showMore.interactive = true;
         showMore.buttonMode = true
         // 第三张图 显示更多触摸事件
-        this.addBind(showMore, () => {
+        this.addBind(showMore, (e) => {
+          const position = this.smartShowBox(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
-            this.domList.showTextBox.style.left = "34%"
-            this.domList.showTextBox.style.top = "20%"
+            this.domList.showTextBox.style.left = `${position.left}px`
+            this.domList.showTextBox.style.top = `${position.top}px`
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
             this.domList.textBoxContent.innerText = '“人”、“地”和谐发展，城市有温度，人民更幸福。'
@@ -1240,6 +1094,57 @@
             }
           }, i * 4000 - 2000)
         }
+        
+      })
+
+      // 五-亮光闪烁
+      const fiveLightHeightAnimationList = TweenMax.fromTo(fiveLight, 1, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1)
+      fiveLightHeightAnimationList.play()
+      // 添加元素
+      this.data.twoContainer.addChild(line2, bg5Image, cloud4, cloud5, fiveLight, Hand5)
+      // 开始加载下一场景
+      setTimeout(() => {
+        this.creatThree()
+      }, 0)
+    },
+    creatThree: function () {
+      const bodySize = this.data.screenInfo
+      const line3 = this.methods.createSprite("./images/line-3.png",{
+        width: this.data.screenInfo.w * 11 / 4,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 11 / 4 * 2,
+        y: 0
+      })
+      const bg7Image = this.methods.createSprite("./images/7.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 5,
+        y: 0
+      })
+      // 6云 比例2.0727
+      const cloud6H = bodySize.h * 0.6
+      const cloud6 = this.methods.createSprite("./images/6-cloud.png", {
+        width: cloud6H * 2.0727,
+        height: cloud6H,
+        // 位置中间靠上
+        x: bodySize.w * 4 + (bodySize.w * 0.05),
+        y: 0
+      })
+      const cloud6AnimationList = new TweenMax(cloud6, 10, {
+        x: bodySize.w * 4 + 60,
+        y: 2,
+        repeat:-1,
+        yoyo:true,
+      })
+      cloud6AnimationList.play()
+
+      // cloud7 比例5.0339
+      const cloud7H = bodySize.h * 0.3
+      const cloud7 = this.methods.createSprite("./images/7-cloud.png", {
+        width: cloud7H * 5.0339,
+        height: cloud7H,
+        x: bodySize.w * 5 + (bodySize.w * 0.05),
+        y: 0
       })
 
       // 第七张图 比例:0.7421
@@ -1324,10 +1229,11 @@
         showMore.interactive = true;
         showMore.buttonMode = true
         // 第三张图 显示更多触摸事件
-        this.addBind(showMore, () => {
+        this.addBind(showMore, (e) => {
+          const position = this.smartShowBox(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
-            this.domList.showTextBox.style.left = "32%"
-            this.domList.showTextBox.style.top = "16%"
+            this.domList.showTextBox.style.left = `${position.left}px`
+            this.domList.showTextBox.style.top = `${position.top}px`
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
             this.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。'
@@ -1355,15 +1261,67 @@
             }
           }, i * 2000 - 400)
         }
+        
       })
 
+      // 七-亮光闪烁
+      const sevenLightHeightAnimationList = TweenMax.fromTo(sevenLight, 1, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1)
+      sevenLightHeightAnimationList.play()
+      // 添加元素
+      this.data.twoContainer.addChild(line3, bg7Image, sevenLight, cloud6, Hand7, cloud7)
+      // 开始加载下一场景
+      setTimeout(() => {
+        this.creatFour()
+      }, 0)
+    },
+    creatFour: function () {
+      const bodySize = this.data.screenInfo
+      const line4 = this.methods.createSprite("./images/line-4.png",{
+        width: this.data.screenInfo.w * 11 / 4,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 11 / 4 * 3,
+        y: 0
+      })
+
+      const bg9Image = this.methods.createSprite("./images/9.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 7,
+        y: 0
+      })
+      
+      // cloud8 比例2.5685
+      const cloud8H = bodySize.h * 0.6
+      const cloud8 = this.methods.createSprite("./images/8-cloud.png", {
+        width: cloud8H * 2.5685,
+        height: cloud8H,
+        // 位置中间靠上
+        x: bodySize.w * 6 + (bodySize.w * 0.05),
+        y: bodySize.h * 0.05
+      })
+      const cloud8AnimationList = new TweenMax(cloud8, 8, {
+        x: bodySize.w * 6  + (bodySize.w * 0.05) + 50,
+        repeat:-1,
+        yoyo:true,
+      })
+      cloud8AnimationList.play()
+
+      // cloud9 比例3.8078
+      const cloud9H = bodySize.h * 0.45
+      const cloud9 = this.methods.createSprite("./images/9-cloud.png", {
+        width: cloud9H * 3.8078,
+        height: cloud9H,
+        // 位置中间靠上
+        x: bodySize.w * 7 + (bodySize.w * 0.05),
+        y: bodySize.h * 0.15
+      })
       // 第九张图 比例:1
       const Light9Height = bodySize.h / 5
       const Light9 = this.methods.createSprite("./images/9-light.png", {
         width: Light9Height,
         height: Light9Height,
         // 位置中间靠上
-        x: bodySize.w * 7 + (bodySize.w * 0.57) - (sevenLightHeight / 2),
+        x: bodySize.w * 7 + (bodySize.w * 0.57) - (Light9Height / 2),
         y: bodySize.h * 0.065
       })
       // 亮光上的小手
@@ -1484,7 +1442,64 @@
             }
           }, i * 3000 - 1080)
         }
+        
       })
+      // 九-亮光闪烁
+      const Light9AnimationList = TweenMax.fromTo(Light9, 1, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1)
+      Light9AnimationList.play()
+      
+      // 添加元素
+      this.data.twoContainer.addChild(line4, bg9Image, Light9, Hand9, cloud8, cloud9)
+      // 开始加载下一场景
+      setTimeout(() => {
+        this.creatFive()
+      }, 0)
+    },
+    creatFive: function () {
+      const bodySize = this.data.screenInfo
+      // cloud10 比例2.1029
+      const cloud10H = bodySize.h * 0.61
+      const cloud10 = this.methods.createSprite("./images/10-cloud.png", {
+        width: cloud10H * 2.1029,
+        height: cloud10H,
+        // 位置中间靠上
+        x: bodySize.w * 8 + (bodySize.w * 0.2),
+        y: bodySize.h * 0.15
+      })
+      const cloud10AnimationList = new TweenMax(cloud10, 11, {
+        x: bodySize.w * 8  + (bodySize.w * 0.2) + 70,
+        repeat:-1,
+        yoyo:true,
+      })
+      cloud10AnimationList.play()
+
+      // 飘散的花瓣运动 比例1.7130
+      const petal11H = bodySize.h * 0.8
+      const petal11 = this.methods.createSprite("./images/11-petal.png", {
+        width: petal11H * 1.7130,
+        height: petal11H,
+        // 位置中间靠上
+        x: bodySize.w * 9 + (bodySize.w * 0.2),
+        y: bodySize.h * 0.15
+      })
+
+      // 分享页花瓣 比例1.8293
+      const petal12H = bodySize.h * 0.8
+      const petal12 = this.methods.createSprite("./images/share-petal-colour.png", {
+        width: petal12H * 1.8293,
+        height: petal12H,
+        // 位置中间靠上
+        x: bodySize.w * 10 + (bodySize.w * 0.1),
+        y: bodySize.h * 0.15
+      })
+      const petal12AnimationList = TweenMax.fromTo(petal12, 8, {
+          x: bodySize.w * 10  + (bodySize.w * 0.1) - 20,
+          y: bodySize.h * 0.15 - 20,
+        },{
+          x: bodySize.w * 10  + (bodySize.w * 0.1) + 20,
+          y: bodySize.h * 0.15 + 40,
+        }).repeat(-1)
+      petal12AnimationList.play()
 
       // 第11张图 大柚子 比例:1
       const Light11Height = bodySize.h / 1.5
@@ -1493,7 +1508,7 @@
         width: Light11Height,
         height: Light11Height,
         // 位置中间靠上
-        x: bodySize.w * 9 + (bodySize.w * 0.39) - (sevenLightHeight / 2),
+        x: bodySize.w * 9 + (bodySize.w * 0.54) - (Light11Height / 2),
         y: bodySize.h * 0.09
       })
       // 拖着的手
@@ -1502,7 +1517,7 @@
         width: handH,
         height: handH,
         // 位置中间靠上
-        x: bodySize.w * 9 + (bodySize.w * 0.35) - (sevenLightHeight / 2),
+        x: bodySize.w * 9 + (bodySize.w * 0.5) - (Light11Height / 2),
         y: bodySize.h * 0.065
       })
 
@@ -1602,11 +1617,11 @@
 
         // 11-显示更多
         const showMoreH = bodySize.h * 0.1
-        const showMore = this.methods.createSprite("./images/showMore2.png",{
+        const showMore = this.methods.createSprite("./images/showMore.png",{
           width: showMoreH,
           height: showMoreH,
-          x: bodySize.w * 9.80,
-          y: bodySize.h * 0.82
+          x: bodySize.w * 9.77,
+          y: bodySize.h * 0.84
         })
         const showMoreA = TweenMax.fromTo(showMore, 1.2, {alpha: 0.2},{alpha: 1}).repeat(-1)
         showMoreA.play()
@@ -1615,11 +1630,12 @@
         showMore.buttonMode = true
 
         // 显示更多触摸事件
-        this.addBind(showMore, () => {
+        this.addBind(showMore, (e) => {
+          const position = this.smartShowBox(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
             this.domList.showTextBox.style.top = ''
             this.domList.showTextBox.style.right = ''
-            this.domList.showTextBox.style.left = "40%"
+            this.domList.showTextBox.style.left = `${position.left}px`
             this.domList.showTextBox.style.bottom = "13%"
             this.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。'
             this.domList.showTextBox.style.display = 'block'
@@ -1654,6 +1670,8 @@
             }
           }, i * 4000 - 1600)
         }
+        sport.play()
+        
       })
       // 小人跳舞
       const sportH = bodySize.h * 0.14
@@ -1663,38 +1681,64 @@
       sport.sprite.x = bodySize.w * 10.88 - (sportH * 1.0775 / 2)
       sport.sprite.y = bodySize.h * 0.43 - (sportH / 2)
 
-      
-
-      // 添加背景
-      this.data.twoContainer.addChild(line1, line2, line3, line4, bg3Image, this.data.people, child, bg2Image, leftArrow, threeLight, Hand3, bg5Image, bg7Image, bg9Image, bg11Image, bgshare, Light11, hand, fiveLight, Hand5, sevenLight, Hand7, Light9, Hand9, Hand11, shareBT, againBT, sport.sprite)
-      setTimeout(() => {
-        sport.play()
-      }, 2000)
-      // 添加云
-      this.data.twoContainer.addChild(cloud3, cloud4, cloud5, cloud6, cloud7, cloud8, cloud9, cloud10, petal11, petal12)
-      this.data.app.stage.addChild(this.data.twoContainer)
-      
-      // 三-亮光闪烁
-      const threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1)
-      threeLightAnimationList.play()
-
-      // 五-亮光闪烁
-      const fiveLightHeightAnimationList = TweenMax.fromTo(fiveLight, 1, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1)
-      fiveLightHeightAnimationList.play()
-
-      // 七-亮光闪烁
-      const sevenLightHeightAnimationList = TweenMax.fromTo(sevenLight, 1, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1)
-      sevenLightHeightAnimationList.play()
-
-      // 九-亮光闪烁
-      const Light9AnimationList = TweenMax.fromTo(Light9, 1, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1)
-      Light9AnimationList.play()
-
       // 十一-亮光闪烁
       const Light11AnimationList = TweenMax.fromTo(Light11, 2, {alpha: 0},{alpha: 1}).repeat(-1).repeatDelay(1.5)
       Light11AnimationList.play()
 
-      this.scrollBegin()
+       const bg11Image = this.methods.createSprite("./images/11.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 9,
+        y: 0
+      })
+
+      const bgshare = this.methods.createSprite("./images/share.png",{
+        width: this.data.screenInfo.w,
+        height: this.data.screenInfo.h,
+        x: this.data.screenInfo.w * 10,
+        y: 0
+      })
+      bgshare.interactive = true;
+      bgshare.buttonMode = true
+
+      // 呼唤朋友按钮 3.982
+      const shareBTH = this.data.screenInfo.h * 0.1
+      const shareBT = this.methods.createSprite("./images/share-button.png",{
+        width: shareBTH * 3.982,
+        height: shareBTH,
+        x: this.data.screenInfo.w * 10.65 - (shareBTH * 3.982 / 2),
+        y: this.data.screenInfo.h * 0.78
+      })
+
+      
+
+      // 设置可交互
+      shareBT.interactive = true;
+      shareBT.buttonMode = true
+      this.addBind(shareBT, () => {
+        $('#shareBox')[0].style.display = 'block'
+        setTimeout(() => {
+          $('#qr')[0].style.display = 'none'
+        }, 0)
+        return false
+      })
+
+      // 再看一次按钮 3.982
+      const againBTH = this.data.screenInfo.h * 0.1
+      const againBT = this.methods.createSprite("./images/again.png",{
+        width: againBTH * 3.982,
+        height: againBTH,
+        x: this.data.screenInfo.w * 10.37 - (againBTH * 3.982 /2 ),
+        y: this.data.screenInfo.h * 0.78
+      })
+      // 设置可交互
+      againBT.interactive = true;
+      againBT.buttonMode = true
+      this.addBind(againBT, () => {
+        location.reload()
+      })
+      // 添加元素
+      this.data.twoContainer.addChild(bg11Image, bgshare, Light11, Hand11, shareBT, againBT, sport.sprite, cloud10, petal11, petal12, hand)
     },
     scrollBegin: function () {
       console.log('注册scroll!')
@@ -1703,14 +1747,14 @@
       this.data.scroller = new Scroller((left, top, zoom) => {
         const scrollNumber = transverse ? left: top
         // 设置整个页面的x
-        // console.log(this.data.twoContainer)
+        // console.log(scrollNumber)
         this.data.twoContainer.x = -scrollNumber
         const peopleX = scrollNumber + 50 * (1024 / this.data.screenInfo.w)
         // 设置小人的图片
         this.setPeopleImg(peopleX)
         // console.log(scrollNumber)
         // 小球移动轨迹
-        // console.log('sd')
+        // console.log(peopleX)
         this.setPeopleY(peopleX)
       }, {
         zooming: true,
@@ -2139,6 +2183,23 @@
           }
         }
       }
+    },
+    smartShowBox: (areaW, areaH, boxW, boxH, x, y) => {
+      let left, top
+      // 先判断横坐标
+      // 距离右侧区域
+      if((areaW - x) > boxW) {
+        left = x
+      } else {
+        left = x - boxW
+      }
+      // 判断纵坐标
+      if((areaH - y) > boxH) {
+        top = y
+      } else {
+        top = y - boxH
+      }
+      return {left, top}
     }
   }
 </script>
@@ -2326,7 +2387,7 @@
   }
   .text-box {
     position: absolute;
-    width: 30%;
+    width: 40%;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.6);
   }
