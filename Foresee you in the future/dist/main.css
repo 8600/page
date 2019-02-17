@@ -366,14 +366,14 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  background-image: url(./images/1.png);
+  background-image: url(./images/1.jpg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
 .ox-voice .one .buttyfly {
   background-image: url(./images/1-butterfly.png);
-  background-size: 100%;
+  background-size: 100% 100%;
   height: 100%;
   position: fixed;
   left: 0;
@@ -381,30 +381,200 @@ body {
   width: 100%;
   -webkit-animation-name: flay;
           animation-name: flay;
-  -webkit-animation-duration: 5s;
-          animation-duration: 5s;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
 }
 
+.ox-voice .one .thicket-1 {
+  position: fixed;
+  left: 9%;
+  bottom: 0;
+  height: 78%;
+  z-index: 7;
+  -webkit-animation-name: fluctuate;
+          animation-name: fluctuate;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.ox-voice .one .thicket-2 {
+  position: fixed;
+  bottom: 18px;
+  height: 40%;
+  z-index: 1;
+  -webkit-animation-name: fluctuate;
+          animation-name: fluctuate;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.ox-voice .one .thicket-3 {
+  position: fixed;
+  height: 34%;
+  bottom: 0;
+  z-index: 2;
+  -webkit-animation-name: swing;
+          animation-name: swing;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-transform-origin: 0 100%;
+          transform-origin: 0 100%;
+}
+
+.ox-voice .one .thicket-4 {
+  position: fixed;
+  bottom: 0;
+  height: 34%;
+  left: 11%;
+  z-index: 3;
+  -webkit-animation-name: swing;
+          animation-name: swing;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-transform-origin: 50% 100%;
+          transform-origin: 50% 100%;
+}
+
+.ox-voice .one .thicket-5 {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 26%;
+  z-index: 1;
+  -webkit-animation-name: fluctuate;
+          animation-name: fluctuate;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.ox-voice .one .thicket-6 {
+  position: fixed;
+  bottom: 0;
+  right: 1%;
+  height: 41%;
+  z-index: 2;
+  -webkit-animation-name: swing;
+          animation-name: swing;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-transform-origin: 50% 100%;
+          transform-origin: 50% 100%;
+}
+
 @-webkit-keyframes flay {
   0% {
-    top: 0;
+    opacity: 1;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
   }
 
   100% {
-    top: 10px;
+    opacity: 0.6;
+    -webkit-transform: translate(3px, 10px);
+            transform: translate(3px, 10px);
   }
 }
 
 @keyframes flay {
   0% {
-    top: 0;
+    opacity: 1;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
   }
 
   100% {
-    top: 10px;
+    opacity: 0.6;
+    -webkit-transform: translate(3px, 10px);
+            transform: translate(3px, 10px);
+  }
+}
+
+@-webkit-keyframes swing {
+  0% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+}
+
+@keyframes swing {
+  0% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+}
+
+@-webkit-keyframes fluctuate {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(0, 5px);
+            transform: translate(0, 5px);
+  }
+}
+
+@keyframes fluctuate {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(0, 5px);
+            transform: translate(0, 5px);
   }
 }

@@ -14,6 +14,12 @@
       </div>
     </div>
     <div class="buttyfly" id="buttyfly"></div>
+    <img class="thicket-1" src="./images/thicket1.png"/>
+    <img class="thicket-2" src="./images/thicket2.png"/>
+    <img class="thicket-3" src="./images/thicket3.png"/>
+    <img class="thicket-4" src="./images/thicket4.png"/>
+    <img class="thicket-5" src="./images/thicket5.png"/>
+    <img class="thicket-6" src="./images/thicket6.png"/>
   </div>
   
   <!-- 背景音乐 -->
@@ -58,7 +64,7 @@
       peopleCanMoveing: false,
       clickPeopleRunning: false,
       imgArr: [
-        './images/1.png',
+        './images/1.jpg',
         './images/3-colour.png',
         "./images/1-clock.png",
         "./images/1-point.png",
@@ -792,7 +798,7 @@
         // 第三张图 显示更多触摸事件
         this.addBind(showMore, (e) => {
           // console.log(e.data.global)
-          const position = this.smartShowBox(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
+          const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
             this.domList.showTextBox.style.left = `${position.left}px`
             this.domList.showTextBox.style.top = `${position.top}px`
@@ -1068,7 +1074,7 @@
         showMore.buttonMode = true
         // 第三张图 显示更多触摸事件
         this.addBind(showMore, (e) => {
-          const position = this.smartShowBox(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
+          const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
             this.domList.showTextBox.style.left = `${position.left}px`
             this.domList.showTextBox.style.top = `${position.top}px`
@@ -1230,7 +1236,7 @@
         showMore.buttonMode = true
         // 第三张图 显示更多触摸事件
         this.addBind(showMore, (e) => {
-          const position = this.smartShowBox(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
+          const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
             this.domList.showTextBox.style.left = `${position.left}px`
             this.domList.showTextBox.style.top = `${position.top}px`
@@ -1380,6 +1386,16 @@
           y: bodySize.h * 0.22
         })
 
+        // 台子9 比例2.943
+        const platform9H = bodySize.h * 0.55
+        const platform9 = this.methods.createSprite("./images/9-platform.png", {
+          width: platform9H * 2.943,
+          height: platform9H,
+          // 位置中间靠上
+          x: bodySize.w * 7.51 - (platform9H * 2.943 / 2),
+          y: bodySize.h - platform9H
+        })
+
         const bird9A = new TweenMax(bird9, 4, {
           y: bodySize.h * 0.25 - 20,
           repeat:-1,
@@ -1402,26 +1418,27 @@
         showMore.buttonMode = true
 
         // 显示更多触摸事件
-        this.addBind(showMore, () => {
+        this.addBind(showMore, (e) => {
+          const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
-            this.domList.showTextBox.style.right = "22%"
-            this.domList.showTextBox.style.top = "18%"
+            this.domList.showTextBox.style.left = `${position.left}px`
+            this.domList.showTextBox.style.top = `${position.top}px`
             this.domList.showTextBox.style.bottom = ''
-            this.domList.showTextBox.style.left = ''
+            this.domList.showTextBox.style.right = ''
             this.domList.textBoxContent.innerText = '一头系着贫，一头系着富，把社会捆绑结实。'
             this.domList.showTextBox.style.display = 'block'
           }, 0)
         })
 
         // 群众向上拉 1.22
-        const massesH = bodySize.h * 0.65
+        const massesH = bodySize.h * 0.6
         let masses = new GIF("./images/masses.gif", this.data.resources)
         masses.sprite.width = massesH * 1.22
         masses.sprite.height = massesH
         masses.sprite.x = bodySize.w * 7.56 - (massesH * 1.22 / 2)
-        masses.sprite.y = bodySize.h * 0.555 - (massesH / 2)
+        masses.sprite.y = bodySize.h * 0.57 - (massesH / 2)
 
-        this.data.twoContainer.addChild(bird9, showMore, masses.sprite)
+        this.data.twoContainer.addChild(bird9, showMore, platform9, masses.sprite)
         setTimeout(() => {
           masses.play()
         }, 500)
@@ -1617,7 +1634,7 @@
 
         // 11-显示更多
         const showMoreH = bodySize.h * 0.1
-        const showMore = this.methods.createSprite("./images/showMore.png",{
+        const showMore = this.methods.createSprite("./images/showMore2.png",{
           width: showMoreH,
           height: showMoreH,
           x: bodySize.w * 9.77,
@@ -1631,7 +1648,7 @@
 
         // 显示更多触摸事件
         this.addBind(showMore, (e) => {
-          const position = this.smartShowBox(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
+          const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
             this.domList.showTextBox.style.top = ''
             this.domList.showTextBox.style.right = ''
@@ -2183,23 +2200,6 @@
           }
         }
       }
-    },
-    smartShowBox: (areaW, areaH, boxW, boxH, x, y) => {
-      let left, top
-      // 先判断横坐标
-      // 距离右侧区域
-      if((areaW - x) > boxW) {
-        left = x
-      } else {
-        left = x - boxW
-      }
-      // 判断纵坐标
-      if((areaH - y) > boxH) {
-        top = y
-      } else {
-        top = y - boxH
-      }
-      return {left, top}
     }
   }
 </script>
@@ -2423,12 +2423,12 @@
     position: fixed;
     left: 0;
     top: 0;
-    background-image: url(./images/1.png);
+    background-image: url(./images/1.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     .buttyfly {
       background-image: url(./images/1-butterfly.png);
-      background-size: 100%;
+      background-size: 100% 100%;
       height: 100%;
       position: fixed;
       left: 0;
@@ -2436,17 +2436,109 @@
       width: 100%;
       // 动画
       animation-name: flay;
-      animation-duration: 5s;
+      animation-duration: 4s;
       animation-timing-function: linear;
+      animation-direction: alternate;
       animation-iteration-count: infinite;
+    }
+    .thicket-1 {
+      position: fixed;
+      left: 9%;
+      bottom: 0;
+      height: 78%;
+      z-index: 7;
+      animation-name: fluctuate;
+      animation-duration: 2s;
+      animation-timing-function: linear;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+    }
+    .thicket-2 {
+      position: fixed;
+      bottom: 18px;
+      height: 40%;
+      z-index: 1;
+      animation-name: fluctuate;
+      animation-duration: 2s;
+      animation-timing-function: linear;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+    }
+    .thicket-3 {
+      position: fixed;
+      height: 34%;
+      bottom: 0;
+      z-index: 2;
+      animation-name: swing;
+      animation-duration: 2s;
+      animation-timing-function: linear;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+      transform-origin: 0 100%;
+    }
+    .thicket-4 {
+      position: fixed;
+      bottom: 0;
+      height: 34%;
+      left: 11%;
+      z-index: 3;
+      animation-name: swing;
+      animation-duration: 2s;
+      animation-timing-function: linear;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+      transform-origin: 50% 100%;
+    }
+    .thicket-5 {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      height: 26%;
+      z-index: 1;
+      animation-name: fluctuate;
+      animation-duration: 2s;
+      animation-timing-function: linear;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+    }
+    .thicket-6 {
+      position: fixed;
+      bottom: 0;
+      right: 1%;
+      height: 41%;
+      z-index: 2;
+      animation-name: swing;
+      animation-duration: 2s;
+      animation-timing-function: linear;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+      transform-origin: 50% 100%;
     }
   }
   @keyframes flay {
     0% {
-      top: 0;
+      opacity: 1;
+      transform:translate(0, 0);
     }
     100% {
-      top: 10px;
+      opacity: 0.6;
+      transform:translate(3px, 10px);
+    }
+  }
+  @keyframes swing {
+    0% {
+      transform: rotate(-5deg);
+    }
+    100% {
+      transform: rotate(5deg);
+    }
+  }
+  @keyframes fluctuate {
+    0% {
+      transform:translate(0, 0);
+    }
+    100% {
+      transform:translate(0, 5px);
     }
   }
 </style>
