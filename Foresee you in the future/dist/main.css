@@ -91,7 +91,6 @@ body {
   bottom: 0;
   margin: auto;
   position: fixed;
-  display: none;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;

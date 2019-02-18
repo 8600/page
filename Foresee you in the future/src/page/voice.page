@@ -304,12 +304,22 @@
       this.data.container = new PIXI.Container()
       this.data.container.interactive = true
 
+      // 微信自动播放音频
+      document.addEventListener('WeixinJSBridgeReady', () => {
+        setTimeout(() => {
+          // 播放音乐
+          $('#bgm')[0].play()
+          $('#musicPlay').show()
+        }, 0)
+      })
       
       this.addBind($("#clockDial"), () => {
-        // 播放音乐
-        $('#bgm')[0].play()
-        $('#musicPlay').show()
         this.openClock()
+        setTimeout(() => {
+          // 播放音乐
+          $('#bgm')[0].play()
+          $('#musicPlay').show()
+        }, 0)
       })
       // 点击事件
       // 加载资源
@@ -323,13 +333,10 @@
         // 显示时钟页面 1.6481
         const clockDom = $('#clock')[0]
         const clockDomHeight = this.data.screenInfo.h * 0.8
-        clockDom.style.display = 'block'
         // 根据比例计算时钟合适高度
         clockDom.style.width = clockDomHeight * 1.6481 + 'px'
         clockDom.style.height = clockDomHeight + 'px'
-        setTimeout(() => {
-          this.one()
-        }, 0)
+        
         // 开始加载gif
         this.data.loader.add("./images/sport.gif", {
           loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
@@ -353,7 +360,9 @@
           xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
           crossOrigin:''
         })
-        
+        setTimeout(() => {
+          this.one()
+        }, 0)
       })
       const shareDom = document.getElementById("shareBox")
       shareDom.ontouchend = function() {
@@ -634,11 +643,11 @@
         const thought = this.methods.createSprite("./images/3-thought.png",{
           width: thoughtH * 1.7756,
           height: thoughtH,
-          x: bodySize.w * 1.4,
+          x: bodySize.w * 1.38,
           y: 0
         })
         
-        const thoughtStartA = TweenMax.fromTo(thought, 0.6, {x: bodySize.w * 1.6, width: 0, y: bodySize.h * 0.45, height: 0}, {x: bodySize.w * 1.4, y: 0, width: thoughtH * 1.7756, height: thoughtH})
+        const thoughtStartA = TweenMax.fromTo(thought, 0.6, {x: bodySize.w * 1.6, width: 0, y: bodySize.h * 0.45, height: 0}, {x: bodySize.w * 1.38, y: 0, width: thoughtH * 1.7756, height: thoughtH})
         thoughtStartA.play()
         
         setTimeout(() => {
@@ -680,11 +689,11 @@
         const fantasy = this.methods.createSprite("./images/3-fantasy.png",{
           width: fantasyH * 2.852,
           height: fantasyH,
-          x: bodySize.w * 1.22,
+          x: bodySize.w * 1.15,
           y: 0
         })
         
-        const fantasyAnimationList = TweenMax.fromTo(fantasy, 0.3, {x: bodySize.w * 1.6, width: 0, y: bodySize.h * 0.45, height: 0}, {x: bodySize.w * 1.22, y: 0, width: fantasyH * 2.852, height: fantasyH})
+        const fantasyAnimationList = TweenMax.fromTo(fantasy, 0.3, {x: bodySize.w * 1.6, width: 0, y: bodySize.h * 0.45, height: 0}, {x: bodySize.w * 1.15, y: 0, width: fantasyH * 2.852, height: fantasyH})
         fantasyAnimationList.play()
 
         // 幻想的云彩时隐时现
@@ -749,13 +758,13 @@
         const flask = this.methods.createSprite("./images/3-flask.png",{
           width: flaskH * 0.7356,
           height: flaskH,
-          x: bodySize.w + bodySize.w * 0.58,
+          x: bodySize.w + bodySize.w * 0.56,
           y: bodySize.h * 0.43
         })
         flask.anchor.x = 0.7
         flask.anchor.y = 1
         
-        const flaskStartA = TweenMax.fromTo(flask, 0.6, {x: bodySize.w * 1.6, y: bodySize.h * 0.45}, {x: bodySize.w * 1.58, y: bodySize.h * 0.43})
+        const flaskStartA = TweenMax.fromTo(flask, 0.6, {x: bodySize.w * 1.6, y: bodySize.h * 0.45}, {x: bodySize.w * 1.55, y: bodySize.h * 0.43})
         flaskStartA.play()
 
         setTimeout(() => {
@@ -869,7 +878,7 @@
       // 开始加载下一场景
       setTimeout(() => {
         this.creatTwo()
-      }, 0)
+      }, 500)
     },
     creatTwo: function () {
       const bodySize = this.data.screenInfo
@@ -1135,7 +1144,7 @@
       // 开始加载下一场景
       setTimeout(() => {
         this.creatThree()
-      }, 0)
+      }, 500)
     },
     creatThree: function () {
       const bodySize = this.data.screenInfo
@@ -1302,7 +1311,7 @@
       // 开始加载下一场景
       setTimeout(() => {
         this.creatFour()
-      }, 0)
+      }, 500)
     },
     creatFour: function () {
       const bodySize = this.data.screenInfo
@@ -1441,7 +1450,7 @@
         })
 
         // 9-树1 比例0.5053
-        const tree1H = bodySize.h * 0.4
+        const tree1H = bodySize.h * 0.32
         const tree1 = this.methods.createSprite("./images/9-tree1.png", {
           width: tree1H * 0.5053,
           height: tree1H,
@@ -1451,7 +1460,7 @@
         })
 
         // 9-树2 比例0.5094
-        const tree2H = bodySize.h * 0.55
+        const tree2H = bodySize.h * 0.52
         const tree2 = this.methods.createSprite("./images/9-tree2.png", {
           width: tree2H * 0.5094,
           height: tree2H,
@@ -1564,7 +1573,7 @@
       // 开始加载下一场景
       setTimeout(() => {
         this.creatFive()
-      }, 0)
+      }, 500)
     },
     creatFive: function () {
       const bodySize = this.data.screenInfo
@@ -1787,6 +1796,7 @@
         
       })
       // 小人跳舞
+      console.log('创建小人')
       const sportH = bodySize.h * 0.14
       let sport = new GIF("./images/sport.gif", this.data.resources)
       sport.sprite.width = sportH * 1.0775
@@ -2356,7 +2366,6 @@
     bottom: 0;
     margin: auto;
     position: fixed;
-    display: none;
     user-select: none;
     z-index: 10;
     background-image: url(./images/1-clock.png);

@@ -569,7 +569,7 @@ window.ozzx.script = {
         var thought = _this3.methods.createSprite("./images/3-thought.png", {
           width: thoughtH * 1.7756,
           height: thoughtH,
-          x: bodySize.w * 1.38,
+          x: bodySize.w * 1.4,
           y: 0
         });
 
@@ -579,7 +579,7 @@ window.ozzx.script = {
           y: bodySize.h * 0.45,
           height: 0
         }, {
-          x: bodySize.w * 1.38,
+          x: bodySize.w * 1.4,
           y: 0,
           width: thoughtH * 1.7756,
           height: thoughtH
@@ -633,7 +633,7 @@ window.ozzx.script = {
         var fantasy = _this3.methods.createSprite("./images/3-fantasy.png", {
           width: fantasyH * 2.852,
           height: fantasyH,
-          x: bodySize.w * 1.15,
+          x: bodySize.w * 1.22,
           y: 0
         });
 
@@ -643,7 +643,7 @@ window.ozzx.script = {
           y: bodySize.h * 0.45,
           height: 0
         }, {
-          x: bodySize.w * 1.15,
+          x: bodySize.w * 1.22,
           y: 0,
           width: fantasyH * 2.852,
           height: fantasyH
@@ -725,7 +725,7 @@ window.ozzx.script = {
         var flask = _this3.methods.createSprite("./images/3-flask.png", {
           width: flaskH * 0.7356,
           height: flaskH,
-          x: bodySize.w + bodySize.w * 0.56,
+          x: bodySize.w + bodySize.w * 0.58,
           y: bodySize.h * 0.43
         });
 
@@ -735,7 +735,7 @@ window.ozzx.script = {
           x: bodySize.w * 1.6,
           y: bodySize.h * 0.45
         }, {
-          x: bodySize.w * 1.55,
+          x: bodySize.w * 1.58,
           y: bodySize.h * 0.43
         });
         flaskStartA.play();

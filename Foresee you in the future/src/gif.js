@@ -6,6 +6,7 @@
     // - Header (GIF87a or GIF89a).
     if (buf[p++] !== 0x47 ||            buf[p++] !== 0x49 || buf[p++] !== 0x46 ||
         buf[p++] !== 0x38 || (buf[p++]+1 & 0xfd) !== 0x38 || buf[p++] !== 0x61) {
+          alert('资源加载失败!')
       throw new Error("Invalid GIF 87a/89a header.");
     }
   
@@ -378,6 +379,7 @@
 
 class GIF{
   constructor(esource, resources, overlying){
+    console.log(esource, resources)
       var _ts = this;
       _ts.esource = esource;
       _ts.resources = resources;
