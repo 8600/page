@@ -195,7 +195,7 @@ window.ozzx.script = {
       "resources": null,
       "peopleCanMoveing": false,
       "clickPeopleRunning": false,
-      "imgArr": ["./images/1.jpg", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/hand.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/5.png", "./images/7.png", "./images/9.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/showMore.png", "./images/showMore2.png", "./images/child.png", "./images/grass2.png", "./images/grass3.png", "./images/3-bubble.png", "./images/3-atom.png", "./images/3-flask.png", "./images/3-star.png", "./images/tree1.png", "./images/tree2.png", "./images/tree3.png", "./images/house1.png", "./images/house2.png", "./images/house3.png", "./images/house4.png", "./images/house5.png", "./images/line-1.png", "./images/line-2.png", "./images/line-3.png", "./images/line-4.png", "./images/share-button.png", "./images/again.png", "./images/11-petal.png", "./images/share-petal-colour.png", "./images/light-hand.png", "./images/5-light.png", "./images/9-light.png", "./images/3-fantasy.png", "./images/9-bird.png"],
+      "imgArr": ["./images/1.jpg", "./images/3-colour.png", "./images/1-clock.png", "./images/1-point.png", "./images/hand.png", "./images/1-hand.png", "./images/1-butterfly.png", "./images/2.png", "./images/3.png", "./images/3-thought.png", "./images/3-start.png", "./images/3-light.png", "./images/5.png", "./images/7.png", "./images/9.png", "./images/11.png", "./images/share.png", "./images/5-colour.png", "./images/7-light.png", "./images/7-colour.png", "./images/9-colour.png", "./images/11-light.png", "./images/11-colour.png", "./images/3-cloud.png", "./images/4-cloud.png", "./images/5-cloud.png", "./images/6-cloud.png", "./images/7-cloud.png", "./images/8-cloud.png", "./images/9-cloud.png", "./images/10-cloud.png", "./images/11-petal-colour.png", "./images/1/2.png", "./images/1/3.png", "./images/1/4.png", "./images/1/5.png", "./images/1/6.png", "./images/1/7.png", "./images/1/8.png", "./images/1/9.png", "./images/1/10.png", "./images/1/11.png", "./images/1/12.png", "./images/1/13.png", "./images/1/14.png", "./images/1/15.png", "./images/1/16.png", "./images/2/1.png", "./images/2/2.png", "./images/2/3.png", "./images/2/4.png", "./images/2/5.png", "./images/2/6.png", "./images/2/7.png", "./images/2/8.png", "./images/2/9.png", "./images/2/10.png", "./images/2/11.png", "./images/2/12.png", "./images/2/13.png", "./images/2/14.png", "./images/2/15.png", "./images/2/16.png", "./images/3/1.png", "./images/3/2.png", "./images/3/3.png", "./images/3/4.png", "./images/3/5.png", "./images/3/6.png", "./images/3/7.png", "./images/3/8.png", "./images/3/9.png", "./images/3/10.png", "./images/3/11.png", "./images/3/12.png", "./images/3/13.png", "./images/3/14.png", "./images/3/15.png", "./images/3/16.png", "./images/4/1.png", "./images/4/2.png", "./images/4/3.png", "./images/4/4.png", "./images/4/5.png", "./images/4/6.png", "./images/4/7.png", "./images/4/8.png", "./images/4/9.png", "./images/4/10.png", "./images/4/11.png", "./images/4/12.png", "./images/4/13.png", "./images/4/14.png", "./images/4/15.png", "./images/4/16.png", "./images/5/1.png", "./images/5/2.png", "./images/5/3.png", "./images/5/4.png", "./images/5/5.png", "./images/5/6.png", "./images/5/7.png", "./images/5/8.png", "./images/5/9.png", "./images/5/10.png", "./images/5/11.png", "./images/5/12.png", "./images/5/13.png", "./images/5/14.png", "./images/5/15.png", "./images/5/16.png", "./images/6/1.png", "./images/6/2.png", "./images/6/3.png", "./images/6/4.png", "./images/6/5.png", "./images/6/6.png", "./images/6/7.png", "./images/6/8.png", "./images/6/9.png", "./images/6/10.png", "./images/6/11.png", "./images/6/12.png", "./images/6/13.png", "./images/6/14.png", "./images/6/15.png", "./images/6/16.png", "./images/7/1.png", "./images/7/2.png", "./images/7/3.png", "./images/7/4.png", "./images/7/5.png", "./images/7/6.png", "./images/7/7.png", "./images/7/8.png", "./images/7/9.png", "./images/7/10.png", "./images/7/11.png", "./images/7/12.png", "./images/7/13.png", "./images/7/14.png", "./images/7/15.png", "./images/7/16.png", "./images/8/1.png", "./images/8/2.png", "./images/8/3.png", "./images/8/4.png", "./images/8/5.png", "./images/8/6.png", "./images/8/7.png", "./images/8/8.png", "./images/8/9.png", "./images/8/10.png", "./images/8/11.png", "./images/8/12.png", "./images/8/13.png", "./images/8/14.png", "./images/8/15.png", "./images/8/16.png", "./images/9/1.png", "./images/9/2.png", "./images/9/3.png", "./images/9/4.png", "./images/9/5.png", "./images/9/6.png", "./images/9/7.png", "./images/9/8.png", "./images/9/9.png", "./images/9/10.png", "./images/9/11.png", "./images/9/12.png", "./images/9/13.png", "./images/9/14.png", "./images/9/15.png", "./images/9/16.png", "./images/grass1.png", "./images/showMore.png", "./images/showMore2.png", "./images/child.png", "./images/grass2.png", "./images/grass3.png", "./images/3-bubble.png", "./images/3-atom.png", "./images/3-flask.png", "./images/3-star.png", "./images/tree1.png", "./images/tree2.png", "./images/tree3.png", "./images/house1.png", "./images/house2.png", "./images/house3.png", "./images/house4.png", "./images/house5.png", "./images/line-1.png", "./images/line-2.png", "./images/line-3.png", "./images/line-4.png", "./images/share-button.png", "./images/again.png", "./images/11-petal.png", "./images/share-petal-colour.png", "./images/light-hand.png", "./images/5-light.png", "./images/9-light.png", "./images/3-fantasy.png", "./images/9-bird.png", "./images/3-dna.png", "./images/9-platform.png", "./images/9-mountain1.png", "./images/9-tree2.png", "./images/9-mountain2.png", "./images/9-tree1.png"],
       "transverse": true,
       "mousedown": false,
       "animationList": {},
@@ -212,13 +212,7 @@ window.ozzx.script = {
       var bodySize = this.calculationScene(this);
       console.log(bodySize); // 预加载资源
 
-      this.data.loader = PIXI.loader; // 手托着地球
-
-      this.data.loader.add("./images/earth.gif", {
-        loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
-        xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
-        crossOrigin: ''
-      }); // 资源加载完毕后显示one
+      this.data.loader = PIXI.loader; // 资源加载完毕后显示one
 
       var progressDom = $('#progress')[0];
       this.data.loader.add(this.data.imgArr).onProgress.add(function (e) {
@@ -265,6 +259,13 @@ window.ozzx.script = {
 
 
         _this.data.loader.add("./images/masses.gif", {
+          loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
+          xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
+          crossOrigin: ''
+        }); // 手托着地球
+
+
+        _this.data.loader.add("./images/earth.gif", {
           loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
           xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
           crossOrigin: ''
@@ -530,8 +531,10 @@ window.ozzx.script = {
       threeLight.buttonMode = true; // 第三张图 亮光触摸事件
 
       this.addBind(threeLight, function () {
-        // 修改背景颜色
+        // 防止误触
+        if (!_this3.data.peopleCanMoveing) return; // 修改背景颜色
         // this.data.app.renderer.backgroundColor = "0x2a99a5"
+
         gradientColor(_this3.data.app.renderer, '#c8c9c9', '#2a99a5', 10);
         bg3Image.destroy(); // 重新生成新的背景图
         // 第三张背景图
@@ -777,7 +780,7 @@ window.ozzx.script = {
         dna.anchor.x = 0.5;
         dna.anchor.y = 0.5;
         var dnaAnimationList = new TweenMax(dna, 4, {
-          rotation: 0.2,
+          rotation: 0.4,
           repeat: -1,
           yoyo: true,
           transformOrigin: 'center'
@@ -803,7 +806,9 @@ window.ozzx.script = {
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
         _this3.addBind(showMore, function (e) {
-          // console.log(e.data.global)
+          // 防止误触
+          if (!_this3.data.peopleCanMoveing) return; // console.log(e.data.global)
+
           var position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y);
           setTimeout(function () {
             _this3.domList.showTextBox.style.left = "".concat(position.left, "px");
@@ -935,6 +940,7 @@ window.ozzx.script = {
       fiveLight.buttonMode = true; // 第五张光 亮光触摸事件
 
       this.addBind(fiveLight, function () {
+        if (!_this4.data.peopleCanMoveing) return;
         bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png'); // 修改背景颜色
 
         gradientColor(_this4.data.app.renderer, '#c8c9c9', '#59d3cb', 10); // 销毁动画
@@ -1235,7 +1241,9 @@ window.ozzx.script = {
       sevenLight.buttonMode = true; // 第七张光 亮光触摸事件
 
       this.addBind(sevenLight, function () {
-        // 修改背景颜色
+        // 防止误触
+        if (!_this5.data.peopleCanMoveing) return; // 修改背景颜色
+
         gradientColor(_this5.data.app.renderer, '#c8c9c9', '#dccfbc', 10); // this.data.app.renderer.backgroundColor = "0xdccfbc"
 
         bg7Image.texture = PIXI.Texture.fromFrame('./images/7-colour.png'); // 销毁动画
@@ -1291,6 +1299,8 @@ window.ozzx.script = {
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
         _this5.addBind(showMore, function (e) {
+          // 防止误触
+          if (!_this5.data.peopleCanMoveing) return;
           var position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y);
           setTimeout(function () {
             _this5.domList.showTextBox.style.left = "".concat(position.left, "px");
@@ -1417,7 +1427,9 @@ window.ozzx.script = {
       Light9.buttonMode = true; // 第五张光 亮光触摸事件
 
       this.addBind(Light9, function () {
-        // 修改背景颜色
+        // 防止误触
+        if (!_this6.data.peopleCanMoveing) return; // 修改背景颜色
+
         gradientColor(_this6.data.app.renderer, '#c8c9c9', '#f6df60', 10); // this.data.app.renderer.backgroundColor = "0xfae768"
 
         bg9Image.texture = PIXI.Texture.fromFrame('./images/9-colour.png'); // 销毁动画
@@ -1445,19 +1457,91 @@ window.ozzx.script = {
           // 位置中间靠上
           x: bodySize.w * 7.1,
           y: bodySize.h * 0.22
-        }); // 台子9 比例2.943
+        }); // 台子9 比例2.138
 
 
         var platform9H = bodySize.h * 0.55;
 
         var platform9 = _this6.methods.createSprite("./images/9-platform.png", {
-          width: platform9H * 2.943,
+          width: platform9H * 2.138,
           height: platform9H,
           // 位置中间靠上
-          x: bodySize.w * 7.51 - platform9H * 2.943 / 2,
+          x: bodySize.w * 7.52 - platform9H * 2.138 / 2,
           y: bodySize.h - platform9H
-        });
+        }); // 9-山1 比例4.078
 
+
+        var mountain1H = bodySize.h * 0.2;
+
+        var mountain1 = _this6.methods.createSprite("./images/9-mountain1.png", {
+          width: mountain1H * 4.078,
+          height: mountain1H,
+          // 位置中间靠上
+          x: bodySize.w * 7.3 - mountain1H * 4.078 / 2,
+          y: bodySize.h - mountain1H
+        }); // 9-山2 比例7.6516
+
+
+        var mountain2H = bodySize.h * 0.1;
+
+        var mountain2 = _this6.methods.createSprite("./images/9-mountain2.png", {
+          width: mountain2H * 7.6516,
+          height: mountain2H,
+          // 位置中间靠上
+          x: bodySize.w * 7.8 - mountain2H * 7.6516 / 2,
+          y: bodySize.h - mountain2H
+        }); // 9-树1 比例0.5053
+
+
+        var tree1H = bodySize.h * 0.4;
+
+        var tree1 = _this6.methods.createSprite("./images/9-tree1.png", {
+          width: tree1H * 0.5053,
+          height: tree1H,
+          // 位置中间靠上
+          x: bodySize.w * 8 - tree1H * 0.5053 / 2,
+          y: bodySize.h
+        }); // 9-树2 比例0.5094
+
+
+        var tree2H = bodySize.h * 0.55;
+
+        var tree2 = _this6.methods.createSprite("./images/9-tree2.png", {
+          width: tree2H * 0.5094,
+          height: tree2H,
+          // 位置中间靠上
+          x: bodySize.w * 7.92 - tree2H * 0.5094 / 2,
+          y: bodySize.h + 3
+        }); // 山上下晃动
+
+
+        new TweenMax(mountain1, 4, {
+          y: bodySize.h - mountain1H + 8,
+          repeat: -1,
+          yoyo: true
+        });
+        new TweenMax(mountain2, 4, {
+          y: bodySize.h - mountain2H + 8,
+          repeat: -1,
+          yoyo: true
+        }); // 树左右摇摆
+
+        tree1.anchor.x = 0.6;
+        tree1.anchor.y = 1;
+        new TweenMax(tree1, 3, {
+          rotation: 0.2,
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
+        });
+        tree2.anchor.x = 0.7;
+        tree2.anchor.y = 1;
+        new TweenMax(tree2, 3, {
+          rotation: 0.15,
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
+        });
         var bird9A = new TweenMax(bird9, 4, {
           y: bodySize.h * 0.25 - 20,
           repeat: -1,
@@ -1485,6 +1569,8 @@ window.ozzx.script = {
         showMore.buttonMode = true; // 显示更多触摸事件
 
         _this6.addBind(showMore, function (e) {
+          // 防止误触
+          if (!_this6.data.peopleCanMoveing) return;
           var position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y);
           setTimeout(function () {
             _this6.domList.showTextBox.style.left = "".concat(position.left, "px");
@@ -1502,9 +1588,9 @@ window.ozzx.script = {
         masses.sprite.width = massesH * 1.22;
         masses.sprite.height = massesH;
         masses.sprite.x = bodySize.w * 7.56 - massesH * 1.22 / 2;
-        masses.sprite.y = bodySize.h * 0.57 - massesH / 2;
+        masses.sprite.y = bodySize.h * 0.57 - massesH / 2 + 2;
 
-        _this6.data.twoContainer.addChild(bird9, showMore, platform9, masses.sprite);
+        _this6.data.twoContainer.addChild(bird9, showMore, mountain1, platform9, masses.sprite, tree1, mountain2, tree2);
 
         setTimeout(function () {
           masses.play();
@@ -1630,11 +1716,13 @@ window.ozzx.script = {
       });
       Hand11A.play(); // 设置可交互
 
-      Hand11.interactive = true;
-      Hand11.buttonMode = true; // 第五张光 亮光触摸事件
+      Light11.interactive = true;
+      Light11.buttonMode = true; // 第五张光 亮光触摸事件
 
-      this.addBind(Hand11, function () {
-        // 修改背景颜色
+      this.addBind(Light11, function () {
+        // 防止误触
+        if (!_this7.data.peopleCanMoveing) return; // 修改背景颜色
+
         _this7.data.app.renderer.backgroundColor = "0xcfdee5";
         bg11Image.texture = PIXI.Texture.fromFrame('./images/11-colour.png'); // 替换彩色花瓣材质
 
@@ -1738,6 +1826,8 @@ window.ozzx.script = {
         showMore.buttonMode = true; // 显示更多触摸事件
 
         _this7.addBind(showMore, function (e) {
+          // 防止误触
+          if (!_this7.data.peopleCanMoveing) return;
           var position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y);
           setTimeout(function () {
             _this7.domList.showTextBox.style.top = '';
@@ -1823,6 +1913,8 @@ window.ozzx.script = {
       shareBT.interactive = true;
       shareBT.buttonMode = true;
       this.addBind(shareBT, function () {
+        // 防止误触
+        if (!_this7.data.peopleCanMoveing) return;
         $('#shareBox')[0].style.display = 'block';
         setTimeout(function () {
           $('#qr')[0].style.display = 'none';
@@ -1841,6 +1933,8 @@ window.ozzx.script = {
       againBT.interactive = true;
       againBT.buttonMode = true;
       this.addBind(againBT, function () {
+        // 防止误触
+        if (!_this7.data.peopleCanMoveing) return;
         location.reload();
       }); // 添加元素
 
@@ -1886,8 +1980,9 @@ window.ozzx.script = {
       }
     },
     "setPeopleY": function setPeopleY(X) {
-      // 当时是在屏幕分辨率为1024*768做的 所以要计算换算为真实屏幕
+      if (this.data.clickPeopleRunning) return; // 当时是在屏幕分辨率为1024*768做的 所以要计算换算为真实屏幕
       // console.log(peopleX / this.data.screenInfo.w)
+
       var peopleX = X * (1024 / this.data.screenInfo.w);
       var pageIndex = (X - 50 / this.data.screenInfo.w * 1024) / this.data.screenInfo.w; // 记录最大到达的点
 

@@ -269,7 +269,13 @@
         "./images/5-light.png",
         "./images/9-light.png",
         "./images/3-fantasy.png",
-        "./images/9-bird.png"
+        "./images/9-bird.png",
+        "./images/3-dna.png",
+        "./images/9-platform.png",
+        "./images/9-mountain1.png",
+        "./images/9-tree2.png",
+        "./images/9-mountain2.png",
+        "./images/9-tree1.png",
       ],
       transverse: true,
       mousedown: false,
@@ -287,12 +293,7 @@
       // 预加载资源
       this.data.loader = PIXI.loader
       
-      // 手托着地球
-      this.data.loader.add("./images/earth.gif", {
-        loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
-        xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
-        crossOrigin:''
-      })
+      
       // 资源加载完毕后显示one
       const progressDom = $('#progress')[0]
       this.data.loader.add(this.data.imgArr)
@@ -342,6 +343,12 @@
         })
         // 群众
         this.data.loader.add("./images/masses.gif", {
+          loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
+          xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
+          crossOrigin:''
+        })
+        // 手托着地球
+        this.data.loader.add("./images/earth.gif", {
           loadType: PIXI.loaders.Resource.LOAD_TYPE.XHR,
           xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER,
           crossOrigin:''
@@ -600,6 +607,8 @@
       threeLight.buttonMode = true
       // 第三张图 亮光触摸事件
       this.addBind(threeLight, () => {
+        // 防止误触
+        if (!this.data.peopleCanMoveing) return
         // 修改背景颜色
         // this.data.app.renderer.backgroundColor = "0x2a99a5"
         gradientColor(this.data.app.renderer,'#c8c9c9','#2a99a5',10)
@@ -793,7 +802,7 @@
         dna.anchor.x = 0.5
         dna.anchor.y = 0.5
         const dnaAnimationList = new TweenMax(dna, 4, {
-          rotation: 0.2,
+          rotation: 0.4,
           repeat:-1,
           yoyo:true,
           transformOrigin:'center'
@@ -814,6 +823,8 @@
         showMore.buttonMode = true
         // 第三张图 显示更多触摸事件
         this.addBind(showMore, (e) => {
+          // 防止误触
+          if (!this.data.peopleCanMoveing) return
           // console.log(e.data.global)
           const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
@@ -942,6 +953,7 @@
       fiveLight.buttonMode = true
       // 第五张光 亮光触摸事件
       this.addBind(fiveLight, () => {
+        if (!this.data.peopleCanMoveing) return
         bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png')
 
 
@@ -1205,6 +1217,8 @@
       sevenLight.buttonMode = true
       // 第七张光 亮光触摸事件
       this.addBind(sevenLight, () => {
+        // 防止误触
+        if (!this.data.peopleCanMoveing) return
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#dccfbc',10)
         // this.data.app.renderer.backgroundColor = "0xdccfbc"
@@ -1253,6 +1267,8 @@
         showMore.buttonMode = true
         // 第三张图 显示更多触摸事件
         this.addBind(showMore, (e) => {
+          // 防止误触
+          if (!this.data.peopleCanMoveing) return
           const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
             this.domList.showTextBox.style.left = `${position.left}px`
@@ -1373,6 +1389,8 @@
       Light9.buttonMode = true
       // 第五张光 亮光触摸事件
       this.addBind(Light9, () => {
+        // 防止误触
+        if (!this.data.peopleCanMoveing) return
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#f6df60',10)
         // this.data.app.renderer.backgroundColor = "0xfae768"
@@ -1403,14 +1421,84 @@
           y: bodySize.h * 0.22
         })
 
-        // 台子9 比例2.943
+        // 台子9 比例2.138
         const platform9H = bodySize.h * 0.55
         const platform9 = this.methods.createSprite("./images/9-platform.png", {
-          width: platform9H * 2.943,
+          width: platform9H * 2.138,
           height: platform9H,
           // 位置中间靠上
-          x: bodySize.w * 7.51 - (platform9H * 2.943 / 2),
+          x: bodySize.w * 7.52 - (platform9H * 2.138 / 2),
           y: bodySize.h - platform9H
+        })
+
+        // 9-山1 比例4.078
+        const mountain1H = bodySize.h * 0.2
+        const mountain1 = this.methods.createSprite("./images/9-mountain1.png", {
+          width: mountain1H * 4.078,
+          height: mountain1H,
+          // 位置中间靠上
+          x: bodySize.w * 7.3 - (mountain1H * 4.078 / 2),
+          y: bodySize.h - mountain1H
+        })
+
+        // 9-山2 比例7.6516
+        const mountain2H = bodySize.h * 0.1
+        const mountain2 = this.methods.createSprite("./images/9-mountain2.png", {
+          width: mountain2H * 7.6516,
+          height: mountain2H,
+          // 位置中间靠上
+          x: bodySize.w * 7.8 - (mountain2H * 7.6516 / 2),
+          y: bodySize.h - mountain2H
+        })
+
+        // 9-树1 比例0.5053
+        const tree1H = bodySize.h * 0.4
+        const tree1 = this.methods.createSprite("./images/9-tree1.png", {
+          width: tree1H * 0.5053,
+          height: tree1H,
+          // 位置中间靠上
+          x: bodySize.w * 8 - (tree1H * 0.5053 / 2),
+          y: bodySize.h
+        })
+
+        // 9-树2 比例0.5094
+        const tree2H = bodySize.h * 0.55
+        const tree2 = this.methods.createSprite("./images/9-tree2.png", {
+          width: tree2H * 0.5094,
+          height: tree2H,
+          // 位置中间靠上
+          x: bodySize.w * 7.92 - (tree2H * 0.5094 / 2),
+          y: bodySize.h + 3
+        })
+
+        // 山上下晃动
+        new TweenMax(mountain1, 4, {
+          y: bodySize.h - mountain1H + 8,
+          repeat:-1,
+          yoyo:true,
+        })
+        new TweenMax(mountain2, 4, {
+          y: bodySize.h - mountain2H + 8,
+          repeat:-1,
+          yoyo:true,
+        })
+        // 树左右摇摆
+        tree1.anchor.x = 0.6
+        tree1.anchor.y = 1
+        new TweenMax(tree1, 3, {
+          rotation: 0.2,
+          repeat:-1,
+          yoyo:true,
+          transformOrigin:'center'
+        })
+
+        tree2.anchor.x = 0.7
+        tree2.anchor.y = 1
+        new TweenMax(tree2, 3, {
+          rotation: 0.15,
+          repeat:-1,
+          yoyo:true,
+          transformOrigin:'center'
         })
 
         const bird9A = new TweenMax(bird9, 4, {
@@ -1436,6 +1524,8 @@
 
         // 显示更多触摸事件
         this.addBind(showMore, (e) => {
+          // 防止误触
+          if (!this.data.peopleCanMoveing) return
           const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
             this.domList.showTextBox.style.left = `${position.left}px`
@@ -1453,9 +1543,9 @@
         masses.sprite.width = massesH * 1.22
         masses.sprite.height = massesH
         masses.sprite.x = bodySize.w * 7.56 - (massesH * 1.22 / 2)
-        masses.sprite.y = bodySize.h * 0.57 - (massesH / 2)
+        masses.sprite.y = bodySize.h * 0.57 - (massesH / 2) + 2
 
-        this.data.twoContainer.addChild(bird9, showMore, platform9, masses.sprite)
+        this.data.twoContainer.addChild(bird9, showMore, mountain1, platform9, masses.sprite, tree1, mountain2, tree2)
         setTimeout(() => {
           masses.play()
         }, 500)
@@ -1577,10 +1667,12 @@
       Hand11A.play()
       
       // 设置可交互
-      Hand11.interactive = true;
-      Hand11.buttonMode = true
+      Light11.interactive = true;
+      Light11.buttonMode = true
       // 第五张光 亮光触摸事件
-      this.addBind(Hand11, () => {
+      this.addBind(Light11, () => {
+        // 防止误触
+        if (!this.data.peopleCanMoveing) return
         // 修改背景颜色
         this.data.app.renderer.backgroundColor = "0xcfdee5"
         bg11Image.texture = PIXI.Texture.fromFrame('./images/11-colour.png')
@@ -1665,6 +1757,8 @@
 
         // 显示更多触摸事件
         this.addBind(showMore, (e) => {
+          // 防止误触
+          if (!this.data.peopleCanMoveing) return
           const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
             this.domList.showTextBox.style.top = ''
@@ -1750,6 +1844,8 @@
       shareBT.interactive = true;
       shareBT.buttonMode = true
       this.addBind(shareBT, () => {
+        // 防止误触
+        if (!this.data.peopleCanMoveing) return
         $('#shareBox')[0].style.display = 'block'
         setTimeout(() => {
           $('#qr')[0].style.display = 'none'
@@ -1769,6 +1865,8 @@
       againBT.interactive = true;
       againBT.buttonMode = true
       this.addBind(againBT, () => {
+        // 防止误触
+        if (!this.data.peopleCanMoveing) return
         location.reload()
       })
       // 添加元素
@@ -1815,6 +1913,7 @@
     },
     // 计算并设置小人Y坐标
     setPeopleY: function (X) {
+      if (this.data.clickPeopleRunning) return
       // 当时是在屏幕分辨率为1024*768做的 所以要计算换算为真实屏幕
       // console.log(peopleX / this.data.screenInfo.w)
       const peopleX = X * (1024 / this.data.screenInfo.w)
