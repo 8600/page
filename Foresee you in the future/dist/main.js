@@ -637,15 +637,15 @@ window.ozzx.script = {
           width: fantasyH * 2.852,
           height: fantasyH
         });
-        fantasyAnimationList.play(); // 幻想的云彩左右移动
-        // const fantasyA2 = new TweenMax(fantasy, 2, {
-        //   x: (bodySize.w * 1.22) + 2,
-        //   repeat: -1,
-        //   yoyo: true,
-        //   transformOrigin: 'center'
-        // })
-        // fantasyA2.play()
-        // 小孩想到的星星
+        fantasyAnimationList.play(); // 幻想的云彩时隐时现
+
+        var fantasyA2 = new TweenMax(fantasy, 2, {
+          alpha: 0.8,
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
+        });
+        fantasyA2.play(); // 小孩想到的星星
 
         var startH = bodySize.h * 0.45;
 
@@ -763,7 +763,25 @@ window.ozzx.script = {
           x: bodySize.w * 1.64,
           y: bodySize.h * 0.2
         });
-        starStartA.play(); // 3-显示更多
+        starStartA.play(); // DNA 0.856
+
+        var dnaH = bodySize.h * 0.2;
+
+        var dna = _this3.methods.createSprite("./images/3-dna.png", {
+          width: dnaH * 0.856,
+          height: dnaH,
+          x: bodySize.w + bodySize.w * 0.8,
+          y: bodySize.h * 0.63
+        });
+
+        dna.anchor.x = 0.5;
+        dna.anchor.y = 0.5;
+        var dnaAnimationList = new TweenMax(dna, 4, {
+          rotation: 0.2,
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
+        }); // 3-显示更多
 
         var showMoreH = bodySize.h * 0.1;
 
@@ -797,7 +815,7 @@ window.ozzx.script = {
           }, 0);
         });
 
-        _this3.data.twoContainer.addChild(newbg3I, fantasy, thought, start, atom, bubble, flask, star, showMore); // 3-小人继续移动 ssd
+        _this3.data.twoContainer.addChild(newbg3I, fantasy, thought, start, atom, bubble, flask, star, showMore, dna); // 3-小人继续移动 ssd
 
 
         _this3.data.clickPeopleRunning = true;
@@ -869,7 +887,7 @@ window.ozzx.script = {
         x: bodySize.w * 2,
         y: 0
       });
-      var cloud4AnimationList = new TweenMax(cloud4, 10, {
+      var cloud4AnimationList = new TweenMax(cloud4, 6, {
         x: bodySize.w * 2 + 60,
         y: 3,
         repeat: -1,
@@ -1230,7 +1248,7 @@ window.ozzx.script = {
 
         _this5.setShowPageNumber(8);
 
-        var cloud7AnimationList = new TweenMax(cloud7, 2, {
+        var cloud7AnimationList = new TweenMax(cloud7, 6, {
           x: bodySize.w * 5 + bodySize.w * 0.05 + 20,
           repeat: -1,
           yoyo: true
@@ -1351,7 +1369,7 @@ window.ozzx.script = {
         x: bodySize.w * 6 + bodySize.w * 0.05,
         y: bodySize.h * 0.05
       });
-      var cloud8AnimationList = new TweenMax(cloud8, 8, {
+      var cloud8AnimationList = new TweenMax(cloud8, 6, {
         x: bodySize.w * 6 + bodySize.w * 0.05 + 50,
         repeat: -1,
         yoyo: true

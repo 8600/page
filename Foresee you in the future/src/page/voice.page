@@ -680,14 +680,14 @@
         const fantasyAnimationList = TweenMax.fromTo(fantasy, 0.3, {x: bodySize.w * 1.6, width: 0, y: bodySize.h * 0.45, height: 0}, {x: bodySize.w * 1.22, y: 0, width: fantasyH * 2.852, height: fantasyH})
         fantasyAnimationList.play()
 
-        // 幻想的云彩左右移动
-        // const fantasyA2 = new TweenMax(fantasy, 2, {
-        //   x: (bodySize.w * 1.22) + 2,
-        //   repeat: -1,
-        //   yoyo: true,
-        //   transformOrigin: 'center'
-        // })
-        // fantasyA2.play()
+        // 幻想的云彩时隐时现
+        const fantasyA2 = new TweenMax(fantasy, 2, {
+          alpha: 0.8,
+          repeat: -1,
+          yoyo: true,
+          transformOrigin: 'center'
+        })
+        fantasyA2.play()
 
 
         // 小孩想到的星星
@@ -781,6 +781,24 @@
         const starStartA = TweenMax.fromTo(star, 0.6, {x: bodySize.w * 1.6, y: bodySize.h * 0.45}, {x: bodySize.w * 1.64, y: bodySize.h * 0.2})
         starStartA.play()
 
+
+        // DNA 0.856
+        const dnaH = bodySize.h * 0.2
+        const dna = this.methods.createSprite("./images/3-dna.png",{
+          width: dnaH * 0.856,
+          height: dnaH,
+          x: bodySize.w + bodySize.w * 0.8,
+          y: bodySize.h * 0.63
+        })
+        dna.anchor.x = 0.5
+        dna.anchor.y = 0.5
+        const dnaAnimationList = new TweenMax(dna, 4, {
+          rotation: 0.2,
+          repeat:-1,
+          yoyo:true,
+          transformOrigin:'center'
+        })
+
         // 3-显示更多
         const showMoreH = bodySize.h * 0.1
         const showMore = this.methods.createSprite("./images/showMore.png",{
@@ -808,7 +826,7 @@
           }, 0)
         })
 
-        this.data.twoContainer.addChild(newbg3I, fantasy, thought, start, atom, bubble, flask, star, showMore)
+        this.data.twoContainer.addChild(newbg3I, fantasy, thought, start, atom, bubble, flask, star, showMore, dna)
         
         // 3-小人继续移动 ssd
         this.data.clickPeopleRunning = true
@@ -872,7 +890,7 @@
         x: bodySize.w * 2,
         y: 0
       })
-      const cloud4AnimationList = new TweenMax(cloud4, 10, {
+      const cloud4AnimationList = new TweenMax(cloud4, 6, {
         x: bodySize.w * 2 + 60,
         y: 3,
         repeat:-1,
@@ -1200,7 +1218,7 @@
         // 设置可滚动的区域
         this.setShowPageNumber(8)
         
-        const cloud7AnimationList = new TweenMax(cloud7, 2, {
+        const cloud7AnimationList = new TweenMax(cloud7, 6, {
           x: bodySize.w * 5 + (bodySize.w * 0.05) + 20,
           repeat:-1,
           yoyo:true,
@@ -1304,7 +1322,7 @@
         x: bodySize.w * 6 + (bodySize.w * 0.05),
         y: bodySize.h * 0.05
       })
-      const cloud8AnimationList = new TweenMax(cloud8, 8, {
+      const cloud8AnimationList = new TweenMax(cloud8, 6, {
         x: bodySize.w * 6  + (bodySize.w * 0.05) + 50,
         repeat:-1,
         yoyo:true,
