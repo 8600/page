@@ -837,7 +837,7 @@
             this.domList.showTextBox.style.top = `${position.top}px`
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
-            this.domList.textBoxContent.innerText = '做有生命力的教育，教育如阳光更加公平普照，让个体生命怒放。'
+            this.domList.textBoxContent.innerText = textList[0]
             this.domList.showTextBox.style.display = 'block'
           }, 0)
         })
@@ -906,8 +906,8 @@
         x: bodySize.w * 2,
         y: 0
       })
-      const cloud4AnimationList = new TweenMax(cloud4, 6, {
-        x: bodySize.w * 2 + 60,
+      const cloud4AnimationList = new TweenMax(cloud4, 3, {
+        x: bodySize.w * 2 + 10,
         y: 3,
         repeat:-1,
         yoyo:true,
@@ -1113,7 +1113,7 @@
             this.domList.showTextBox.style.top = `${position.top}px`
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
-            this.domList.textBoxContent.innerText = '“人”、“地”和谐发展，城市有温度，人民更幸福。'
+            this.domList.textBoxContent.innerText = textList[1]
             this.domList.showTextBox.style.display = 'block'
           }, 0)
         })
@@ -1275,7 +1275,7 @@
             this.domList.showTextBox.style.top = `${position.top}px`
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
-            this.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。'
+            this.domList.textBoxContent.innerText = textList[2]
             this.domList.showTextBox.style.display = 'block'
           }, 0)
         })
@@ -1528,7 +1528,7 @@
             this.domList.showTextBox.style.top = `${position.top}px`
             this.domList.showTextBox.style.bottom = ''
             this.domList.showTextBox.style.right = ''
-            this.domList.textBoxContent.innerText = '一头系着贫，一头系着富，把社会捆绑结实。'
+            this.domList.textBoxContent.innerText = textList[3]
             this.domList.showTextBox.style.display = 'block'
           }, 0)
         })
@@ -1759,7 +1759,7 @@
             this.domList.showTextBox.style.right = ''
             this.domList.showTextBox.style.left = `${position.left}px`
             this.domList.showTextBox.style.bottom = "13%"
-            this.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。'
+            this.domList.textBoxContent.innerText = textList[4]
             this.domList.showTextBox.style.display = 'block'
           }, 0)
         })

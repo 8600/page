@@ -1,0 +1,579 @@
+body, html, .ox-home {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Microsoft YaHei;
+}
+body {
+  display: none;
+}
+/* 清除浮动 */
+.clear {
+  clear: both;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+.ox {
+  width: 100%;
+  height: 100%;
+}
+a{text-decoration:none}
+
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+}
+.horizontal {
+  -webkit-transform: translate3d(0, 0, 0) rotate(90deg);
+          transform: translate3d(0, 0, 0) rotate(90deg);
+}
+.ox-voice .loading-box {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: black;
+  background-size: 100% 100%;
+}
+
+.ox-voice .loading-box .loading {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.ox-voice .loading-box .progress {
+  text-align: center;
+  font-size: 12px;
+  color: #CCFBF7;
+  line-height: 25px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 25px;
+}
+
+.ox-voice .loading-box img {
+  display: block;
+  height: 110px;
+  margin: 0 auto;
+}
+
+.ox-voice .loading-box p {
+  color: white;
+  text-align: center;
+  line-height: 30px;
+}
+
+.ox-voice .clock {
+  width: 80%;
+  height: 80%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  left: 5%;
+  right: 0;
+  top: 15%;
+  bottom: 0;
+  margin: auto;
+  position: fixed;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  z-index: 10;
+  background-image: url(../images/1-clock.png);
+}
+
+.ox-voice .dial {
+  width: 47.2%;
+  height: 76.8%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  left: 21.8%;
+  top: 7.4%;
+  -webkit-transform-origin: 0 50%;
+          transform-origin: 0 50%;
+  background-image: url(../images/1-clock-dial.png);
+}
+
+.ox-voice .flip-play {
+  -webkit-animation-name: flip;
+          animation-name: flip;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+}
+
+.ox-voice .scale-play {
+  -webkit-animation-name: scale;
+          animation-name: scale;
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes flip {
+  0% {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotateY(120deg);
+            transform: rotateY(120deg);
+  }
+}
+
+@keyframes flip {
+  0% {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotateY(120deg);
+            transform: rotateY(120deg);
+  }
+}
+
+@-webkit-keyframes scale {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(5);
+            transform: scale(5);
+  }
+}
+
+@keyframes scale {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(5);
+            transform: scale(5);
+  }
+}
+
+.ox-voice .point {
+  width: 64%;
+  height: 64%;
+  left: 17%;
+  top: 19%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  background-image: url(../images/1-point.png);
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+}
+
+@-webkit-keyframes scale2 {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+}
+
+@keyframes scale2 {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+}
+
+@-webkit-keyframes circle {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes circle {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.ox-voice .hand {
+  width: 15%;
+  height: 15%;
+  left: 50%;
+  top: 27%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  background-image: url(../images/1-hand.png);
+  -webkit-animation-name: scale2;
+          animation-name: scale2;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.ox-voice .share-box {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ox-voice .share-box img {
+  position: absolute;
+  left: 0;
+  top: 10px;
+}
+
+.ox-voice .qr-box {
+  position: absolute;
+  width: 120px;
+  left: calc(9% - 45px);
+  bottom: 0;
+  margin: auto;
+  display: none;
+  padding-top: 40%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-touch-callout: default;
+}
+
+.ox-voice .qr-box img {
+  width: 80px;
+  height: 80px;
+  margin: 0 20px;
+  display: block;
+  -webkit-touch-callout: default;
+}
+
+.ox-voice .qr-box .qr-text {
+  text-align: center;
+  line-height: 18px;
+  font-size: 12px;
+}
+
+.ox-voice .main-box,
+.ox-voice canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.ox-voice .text-box {
+  position: absolute;
+  width: 40%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.ox-voice .text-box-content {
+  color: #fff;
+  font-size: 0.9em;
+  line-height: 1.4em;
+  font-weight: bold;
+  font-family: Simsun;
+  margin: 0 20px;
+  text-align: center;
+}
+
+.ox-voice .music-box {
+  position: fixed;
+  right: 0px;
+  top: 0px;
+}
+
+.ox-voice .music-box .music-play {
+  -webkit-animation-name: circle;
+          animation-name: circle;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.ox-voice .music-box img {
+  display: none;
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+}
+
+.ox-voice .one {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-image: url(../images/1.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.ox-voice .one .buttyfly {
+  background-image: url(../images/1-butterfly.png);
+  background-size: 100% 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  -webkit-animation-name: flay;
+          animation-name: flay;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.ox-voice .one .thicket-1 {
+  position: fixed;
+  left: 9%;
+  bottom: 0;
+  height: 78%;
+  z-index: 7;
+  -webkit-animation-name: fluctuate;
+          animation-name: fluctuate;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.ox-voice .one .thicket-2 {
+  position: fixed;
+  bottom: 18px;
+  height: 40%;
+  z-index: 1;
+  -webkit-animation-name: fluctuate;
+          animation-name: fluctuate;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.ox-voice .one .thicket-3 {
+  position: fixed;
+  height: 34%;
+  bottom: 0;
+  z-index: 2;
+  -webkit-animation-name: swing;
+          animation-name: swing;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-transform-origin: 0 100%;
+          transform-origin: 0 100%;
+}
+
+.ox-voice .one .thicket-4 {
+  position: fixed;
+  bottom: 0;
+  height: 34%;
+  left: 11%;
+  z-index: 3;
+  -webkit-animation-name: swing;
+          animation-name: swing;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-transform-origin: 50% 100%;
+          transform-origin: 50% 100%;
+}
+
+.ox-voice .one .thicket-5 {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 26%;
+  z-index: 1;
+  -webkit-animation-name: fluctuate;
+          animation-name: fluctuate;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.ox-voice .one .thicket-6 {
+  position: fixed;
+  bottom: 0;
+  right: 1%;
+  height: 41%;
+  z-index: 2;
+  -webkit-animation-name: swing;
+          animation-name: swing;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-transform-origin: 50% 100%;
+          transform-origin: 50% 100%;
+}
+
+@-webkit-keyframes flay {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+
+  100% {
+    opacity: 0.6;
+    -webkit-transform: translate(3px, 10px);
+            transform: translate(3px, 10px);
+  }
+}
+
+@keyframes flay {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+
+  100% {
+    opacity: 0.6;
+    -webkit-transform: translate(3px, 10px);
+            transform: translate(3px, 10px);
+  }
+}
+
+@-webkit-keyframes swing {
+  0% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+}
+
+@keyframes swing {
+  0% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+}
+
+@-webkit-keyframes fluctuate {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(0, 5px);
+            transform: translate(0, 5px);
+  }
+}
+
+@keyframes fluctuate {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate(0, 5px);
+            transform: translate(0, 5px);
+  }
+}

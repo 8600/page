@@ -821,7 +821,7 @@ window.ozzx.script = {
             _this3.domList.showTextBox.style.top = "".concat(position.top, "px");
             _this3.domList.showTextBox.style.bottom = '';
             _this3.domList.showTextBox.style.right = '';
-            _this3.domList.textBoxContent.innerText = '做有生命力的教育，教育如阳光更加公平普照，让个体生命怒放。';
+            _this3.domList.textBoxContent.innerText = textList[0];
             _this3.domList.showTextBox.style.display = 'block';
           }, 0);
         });
@@ -898,8 +898,8 @@ window.ozzx.script = {
         x: bodySize.w * 2,
         y: 0
       });
-      var cloud4AnimationList = new TweenMax(cloud4, 6, {
-        x: bodySize.w * 2 + 60,
+      var cloud4AnimationList = new TweenMax(cloud4, 3, {
+        x: bodySize.w * 2 + 10,
         y: 3,
         repeat: -1,
         yoyo: true
@@ -1133,7 +1133,7 @@ window.ozzx.script = {
             _this4.domList.showTextBox.style.top = "".concat(position.top, "px");
             _this4.domList.showTextBox.style.bottom = '';
             _this4.domList.showTextBox.style.right = '';
-            _this4.domList.textBoxContent.innerText = '“人”、“地”和谐发展，城市有温度，人民更幸福。';
+            _this4.domList.textBoxContent.innerText = textList[1];
             _this4.domList.showTextBox.style.display = 'block';
           }, 0);
         });
@@ -1308,7 +1308,7 @@ window.ozzx.script = {
             _this5.domList.showTextBox.style.top = "".concat(position.top, "px");
             _this5.domList.showTextBox.style.bottom = '';
             _this5.domList.showTextBox.style.right = '';
-            _this5.domList.textBoxContent.innerText = '从容之中见温馨，夕阳的壮美比朝霞更浑厚。';
+            _this5.domList.textBoxContent.innerText = textList[2];
             _this5.domList.showTextBox.style.display = 'block';
           }, 0);
         });
@@ -1574,7 +1574,7 @@ window.ozzx.script = {
             _this6.domList.showTextBox.style.top = "".concat(position.top, "px");
             _this6.domList.showTextBox.style.bottom = '';
             _this6.domList.showTextBox.style.right = '';
-            _this6.domList.textBoxContent.innerText = '一头系着贫，一头系着富，把社会捆绑结实。';
+            _this6.domList.textBoxContent.innerText = textList[3];
             _this6.domList.showTextBox.style.display = 'block';
           }, 0);
         }); // 群众向上拉 1.22
@@ -1829,7 +1829,7 @@ window.ozzx.script = {
             _this7.domList.showTextBox.style.right = '';
             _this7.domList.showTextBox.style.left = "".concat(position.left, "px");
             _this7.domList.showTextBox.style.bottom = "13%";
-            _this7.domList.textBoxContent.innerText = '爱心缔造家园，践行绿色生活，共创美丽中国。';
+            _this7.domList.textBoxContent.innerText = textList[4];
             _this7.domList.showTextBox.style.display = 'block';
           }, 0);
         }); // 11-手托着地球 1.1212

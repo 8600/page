@@ -397,7 +397,7 @@ function () {
   function GIF(esource, resources, overlying) {
     _classCallCheck(this, GIF);
 
-    console.log(esource, resources);
+    // console.log(esource, resources);
 
     var _ts = this;
 
