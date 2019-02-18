@@ -531,10 +531,8 @@ window.ozzx.script = {
       threeLight.buttonMode = true; // 第三张图 亮光触摸事件
 
       this.addBind(threeLight, function () {
-        // 防止误触
-        if (!_this3.data.peopleCanMoveing) return; // 修改背景颜色
+        // 修改背景颜色
         // this.data.app.renderer.backgroundColor = "0x2a99a5"
-
         gradientColor(_this3.data.app.renderer, '#c8c9c9', '#2a99a5', 10);
         bg3Image.destroy(); // 重新生成新的背景图
         // 第三张背景图
@@ -806,9 +804,7 @@ window.ozzx.script = {
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
         _this3.addBind(showMore, function (e) {
-          // 防止误触
-          if (!_this3.data.peopleCanMoveing) return; // console.log(e.data.global)
-
+          // console.log(e.data.global)
           var position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y);
           setTimeout(function () {
             _this3.domList.showTextBox.style.left = "".concat(position.left, "px");
@@ -852,7 +848,7 @@ window.ozzx.script = {
         _this3.setShowPageNumber(4);
       }); // 添加元素
 
-      this.data.twoContainer.addChild(cloud3, bg3Image, line1, this.data.people, child, bg2Image, leftArrow, threeLight, Hand3);
+      this.data.twoContainer.addChild(line1, cloud3, bg3Image, this.data.people, child, bg2Image, leftArrow, threeLight, Hand3);
       this.data.app.stage.addChild(this.data.twoContainer); // 三-亮光闪烁
 
       var threeLightAnimationList = TweenMax.fromTo(threeLight, 1, {
@@ -940,7 +936,6 @@ window.ozzx.script = {
       fiveLight.buttonMode = true; // 第五张光 亮光触摸事件
 
       this.addBind(fiveLight, function () {
-        if (!_this4.data.peopleCanMoveing) return;
         bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png'); // 修改背景颜色
 
         gradientColor(_this4.data.app.renderer, '#c8c9c9', '#59d3cb', 10); // 销毁动画
@@ -1241,9 +1236,7 @@ window.ozzx.script = {
       sevenLight.buttonMode = true; // 第七张光 亮光触摸事件
 
       this.addBind(sevenLight, function () {
-        // 防止误触
-        if (!_this5.data.peopleCanMoveing) return; // 修改背景颜色
-
+        // 修改背景颜色
         gradientColor(_this5.data.app.renderer, '#c8c9c9', '#dccfbc', 10); // this.data.app.renderer.backgroundColor = "0xdccfbc"
 
         bg7Image.texture = PIXI.Texture.fromFrame('./images/7-colour.png'); // 销毁动画
@@ -1299,8 +1292,6 @@ window.ozzx.script = {
         showMore.buttonMode = true; // 第三张图 显示更多触摸事件
 
         _this5.addBind(showMore, function (e) {
-          // 防止误触
-          if (!_this5.data.peopleCanMoveing) return;
           var position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y);
           setTimeout(function () {
             _this5.domList.showTextBox.style.left = "".concat(position.left, "px");
@@ -1427,9 +1418,7 @@ window.ozzx.script = {
       Light9.buttonMode = true; // 第五张光 亮光触摸事件
 
       this.addBind(Light9, function () {
-        // 防止误触
-        if (!_this6.data.peopleCanMoveing) return; // 修改背景颜色
-
+        // 修改背景颜色
         gradientColor(_this6.data.app.renderer, '#c8c9c9', '#f6df60', 10); // this.data.app.renderer.backgroundColor = "0xfae768"
 
         bg9Image.texture = PIXI.Texture.fromFrame('./images/9-colour.png'); // 销毁动画
@@ -1569,8 +1558,6 @@ window.ozzx.script = {
         showMore.buttonMode = true; // 显示更多触摸事件
 
         _this6.addBind(showMore, function (e) {
-          // 防止误触
-          if (!_this6.data.peopleCanMoveing) return;
           var position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y);
           setTimeout(function () {
             _this6.domList.showTextBox.style.left = "".concat(position.left, "px");
@@ -1826,8 +1813,6 @@ window.ozzx.script = {
         showMore.buttonMode = true; // 显示更多触摸事件
 
         _this7.addBind(showMore, function (e) {
-          // 防止误触
-          if (!_this7.data.peopleCanMoveing) return;
           var position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y);
           setTimeout(function () {
             _this7.domList.showTextBox.style.top = '';
@@ -1913,8 +1898,6 @@ window.ozzx.script = {
       shareBT.interactive = true;
       shareBT.buttonMode = true;
       this.addBind(shareBT, function () {
-        // 防止误触
-        if (!_this7.data.peopleCanMoveing) return;
         $('#shareBox')[0].style.display = 'block';
         setTimeout(function () {
           $('#qr')[0].style.display = 'none';
@@ -1933,8 +1916,6 @@ window.ozzx.script = {
       againBT.interactive = true;
       againBT.buttonMode = true;
       this.addBind(againBT, function () {
-        // 防止误触
-        if (!_this7.data.peopleCanMoveing) return;
         location.reload();
       }); // 添加元素
 

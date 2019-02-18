@@ -2,7 +2,7 @@
   <div class="loading-box" id="loadingBox">
     <div class="loading">
       <img src="./images/loading.svg"/>
-      <div class="progress" id="progress"></div>
+      <div class="progress" id="progress">0%</div>
     </div>
   </div>
   <div class="main-box" id="main"></div>
@@ -607,8 +607,6 @@
       threeLight.buttonMode = true
       // 第三张图 亮光触摸事件
       this.addBind(threeLight, () => {
-        // 防止误触
-        if (!this.data.peopleCanMoveing) return
         // 修改背景颜色
         // this.data.app.renderer.backgroundColor = "0x2a99a5"
         gradientColor(this.data.app.renderer,'#c8c9c9','#2a99a5',10)
@@ -823,8 +821,6 @@
         showMore.buttonMode = true
         // 第三张图 显示更多触摸事件
         this.addBind(showMore, (e) => {
-          // 防止误触
-          if (!this.data.peopleCanMoveing) return
           // console.log(e.data.global)
           const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
@@ -863,7 +859,7 @@
       })
 
       // 添加元素
-      this.data.twoContainer.addChild(cloud3, bg3Image, line1, this.data.people, child, bg2Image, leftArrow, threeLight, Hand3)
+      this.data.twoContainer.addChild(line1, cloud3, bg3Image, this.data.people, child, bg2Image, leftArrow, threeLight, Hand3)
 
       this.data.app.stage.addChild(this.data.twoContainer)
       
@@ -953,7 +949,6 @@
       fiveLight.buttonMode = true
       // 第五张光 亮光触摸事件
       this.addBind(fiveLight, () => {
-        if (!this.data.peopleCanMoveing) return
         bg5Image.texture = PIXI.Texture.fromFrame('./images/5-colour.png')
 
 
@@ -1217,8 +1212,6 @@
       sevenLight.buttonMode = true
       // 第七张光 亮光触摸事件
       this.addBind(sevenLight, () => {
-        // 防止误触
-        if (!this.data.peopleCanMoveing) return
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#dccfbc',10)
         // this.data.app.renderer.backgroundColor = "0xdccfbc"
@@ -1267,8 +1260,6 @@
         showMore.buttonMode = true
         // 第三张图 显示更多触摸事件
         this.addBind(showMore, (e) => {
-          // 防止误触
-          if (!this.data.peopleCanMoveing) return
           const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
             this.domList.showTextBox.style.left = `${position.left}px`
@@ -1389,8 +1380,6 @@
       Light9.buttonMode = true
       // 第五张光 亮光触摸事件
       this.addBind(Light9, () => {
-        // 防止误触
-        if (!this.data.peopleCanMoveing) return
         // 修改背景颜色
         gradientColor(this.data.app.renderer,'#c8c9c9','#f6df60',10)
         // this.data.app.renderer.backgroundColor = "0xfae768"
@@ -1524,8 +1513,6 @@
 
         // 显示更多触摸事件
         this.addBind(showMore, (e) => {
-          // 防止误触
-          if (!this.data.peopleCanMoveing) return
           const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
             this.domList.showTextBox.style.left = `${position.left}px`
@@ -1757,8 +1744,6 @@
 
         // 显示更多触摸事件
         this.addBind(showMore, (e) => {
-          // 防止误触
-          if (!this.data.peopleCanMoveing) return
           const position = ozzx.tool.getPopPosition(bodySize.w, bodySize.h, bodySize.w * 0.4 + 20, 20, e.data.global.x, e.data.global.y)
           setTimeout(() => {
             this.domList.showTextBox.style.top = ''
@@ -1844,8 +1829,6 @@
       shareBT.interactive = true;
       shareBT.buttonMode = true
       this.addBind(shareBT, () => {
-        // 防止误触
-        if (!this.data.peopleCanMoveing) return
         $('#shareBox')[0].style.display = 'block'
         setTimeout(() => {
           $('#qr')[0].style.display = 'none'
@@ -1865,8 +1848,6 @@
       againBT.interactive = true;
       againBT.buttonMode = true
       this.addBind(againBT, () => {
-        // 防止误触
-        if (!this.data.peopleCanMoveing) return
         location.reload()
       })
       // 添加元素
